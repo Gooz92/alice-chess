@@ -1,0 +1,9 @@
+{
+  "node": true,
+  "camelcase": true,
+  "strict": true,
+  "maxparams": 5,
+  "maxlen": 80,
+  "maxcomplexity": 5,
+  "mocha": true
+}

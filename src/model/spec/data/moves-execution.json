@@ -1,0 +1,8 @@
+{
+  "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR": {
+    "e3": "rnbqkbnr/pppppppp/8/8/8/3P4/PPP1PPPP/RNBQKBNR",
+    "e4": "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR",
+    "e2-e3": "rnbqkbnr/pppppppp/8/8/8/3P4/PPP1PPPP/RNBQKBNR",
+    "e2-e4": "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR"
+  }
+}
