@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "description": "Yet another chess engine",
   "main": "Gruntfile.js",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/Gooz92/alice-chess.git"
+  },
   "scripts": {
     "test": "grunt test"
   },
