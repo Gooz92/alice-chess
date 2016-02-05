@@ -183,8 +183,22 @@ objectUtils.extend(Chess.prototype, {
     }
 
     return board;
+  },
+
+  generateFieldPlainObject: function () {
+    var field = {};
+
+    this.pieces.white.forEach(function (piece) {
+      field[piece.square.getName()] = piece.token.toUpperCase();
+    });
+    
+    this.pieces.black.forEach(function (piece) {
+      field[piece.square.getName()] = piece.token;
+    });
+    
+    return field;
   }
-  
+
 }, require('./piece-count-mixin'));
 
 module.exports = Chess;

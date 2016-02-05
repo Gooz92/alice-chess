@@ -148,4 +148,13 @@ describe('Chess', function () {
       ].join('\n'));
     });
   });
+  
+  describe('#generateFieldPlainObject()', function () {
+    it('return correct board representaion for start position', function () {
+      var chess = Chess.createStartPosition(),
+        startPosition = require('./data/start-position.json');
+      
+      assert.deepEqual(chess.generateFieldPlainObject(), startPosition);
+    });
+  });
 });
