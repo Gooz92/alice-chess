@@ -18,6 +18,18 @@ var isUtils = module.exports = {
     return typeof value === 'function';
   },
 
+  isString: function (value) {
+    return typeof value === 'string';
+  },
+  
+  isNumber: function (value) {
+    return typeof value === 'number';
+  },
+
+  isBoolean: function (value) {
+    return typeof value === 'boolean';
+  },
+
   isUndefined: function (value) {
     return typeof value === 'undefined';
   },

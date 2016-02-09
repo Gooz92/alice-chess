@@ -80,6 +80,51 @@ describe('isUtils', function () {
     });
   });
 
+  describe('.isString()', function () {
+    var isString = isUtils.isString;
+
+    it('return true for string', function () {
+      assert.isTrue(isString('something'));
+    });
+
+    it('return false for boolean', function () {
+      var lies = false; // everybody lies
+      assert.isFalse(isString(lies));
+    });
+  });
+
+  describe('.isNumber()', function () {
+    var isNumber = isUtils.isNumber;
+
+    it('return true for number', function () {
+      assert.isTrue(isNumber(42));
+    });
+
+    it('return false for string', function () {
+      var number = '42';
+      assert.isFalse(isNumber(number));
+    });
+  });
+
+  describe('.isBoolean()', function () {
+    var isBoolean = isUtils.isBoolean;
+
+    it('return true for true boolean value', function () {
+      var truth = true;
+      assert.isTrue(isBoolean(truth));
+    });
+
+    it('return true for false boolean value', function () {
+      var lies = false;  // everybody lies
+      assert.isTrue(isBoolean(lies));
+    });
+
+    it('return false for string', function () {
+      var text = 'not a boolean';
+      assert.isFalse(isBoolean(text));
+    });
+  });
+
   describe('.isUndefined()', function () {
     var isUndefined = isUtils.isUndefined;
 
