@@ -4,9 +4,15 @@ var isUtils = require('../common-utils/is-utils');
 
 var listeners = module.exports = {
   onStart: function() {
-    this.data = {
-      board: []
-    };
+    this.data = {};
+  },
+
+  onPiecePlacementStart: function () {
+    if (!isUtils.isObject(this.data)) {
+      this.data = {};
+    }
+
+    this.data.board = [];
   },
 
   onRankStart: function () {
@@ -27,7 +33,7 @@ var listeners = module.exports = {
 
   onPiecePlacementEnd: function () {
     delete this.currentRank;
-    return this.data.field;
+    return this.data.board;
   },
 
   setActiveColor: function (colorName) {

@@ -1,10 +1,30 @@
 'use strict';
 
-var assert = require('assert'),
+var assert = require('chai').assert,
   FenParser = require('../fen-parser');
 
 describe('FenParser default behaviuor', function () {
-  var parser = new FenParser();
+  var parser;
+
+  beforeEach(function () {
+    parser = new FenParser();
+  });
+
+  describe('#parsePiecePlacement()', function () {
+    var startPiecePlacement = [
+      'rnbqkbnr',
+      'pppppppp',
+      8, 8, 8, 8,
+      'PPPPPPPP',
+      'RNBQKBNR'
+     ].join('/');
+
+    it('return array with length = 8', function () {
+      var board = parser.parsePiecePlacement(startPiecePlacement);
+      assert.isArray(board);
+      assert.equal(board.length, 8);
+    });
+  });
 
   describe('#parseRank()', function () {
     it('return [] for empty rank', function () {

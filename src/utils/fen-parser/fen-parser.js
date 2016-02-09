@@ -35,8 +35,11 @@ FenParser.prototype = {
   },
 
   parsePiecePlacement: function (piecePlacement) {
-    var ranks = piecePlacement.split('/'),
-      self = this;
+    var ranks, self = this;
+
+    this.handler.onPiecePlacementStart();
+
+    ranks = piecePlacement.split('/');
 
     ranks.forEach(function (rank) {
       self.parseRank(rank);
@@ -66,7 +69,7 @@ FenParser.prototype = {
       } else if (fenUtils.isPieceToken(token)) {
         self.handler.onPiece(token, fileIndex++);
       } else {
-        throw new Error("Unknown token: " + token);      
+        throw new Error("Unknown token: " + token);
       }
     });
 
@@ -81,9 +84,9 @@ FenParser.prototype = {
     if (colorToken === 'w') {
       return this.handler.onWhiteActiveColor();
     } else if (colorToken === 'b') {
-      return this.handler.onBlackActiveColor();      
+      return this.handler.onBlackActiveColor();
     }
-    
+
     throw new Error("Invalid color token: '" + colorToken + "'");
   },
 

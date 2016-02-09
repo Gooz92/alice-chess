@@ -4,6 +4,7 @@ var isUtils = require('../common-utils/is-utils');
 
 var eventNames = [
   'onStart',
+  'onPiecePlacementStart',
   'onRankStart',
   'onRankEnd',
   'onPiece',
