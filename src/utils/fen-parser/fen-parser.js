@@ -15,9 +15,7 @@ FenParser.prototype = {
   constructor: FenParser,
 
   parse: function (fen) {
-    var fields = fen.split(' '),
-      self = this,
-      fieldParseFunctionNames;
+    var fields = fen.split(' ');
 
     if (fields.length !== 6) {
       throw new Error("Invalid fields count: " + fields.length);
@@ -25,11 +23,12 @@ FenParser.prototype = {
 
     this.handler.onStart();
 
-    fieldParseFunctionNames = this.getFieldParseFunctionNames();
-
-    fieldParseFunctionNames.forEach(function (parseFunctioName, index) {
-      self[parseFunctioName](fields[index]);
-    });
+    this.parseFieldPlacement(fields[0]);
+    this.parseActiveColor(fields[1]);
+    this.parseCastlingAvailability(fields[2]);
+    this.parseEnPassantSquare(fields[3]);
+    this.parseHalfmoveClock(fields[4]);
+    this.parseFullmoveNumber(fields[4]);
 
     return this.handler.onEnd();
   },
