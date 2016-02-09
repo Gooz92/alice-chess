@@ -6,7 +6,8 @@ module.exports = function (grunt) {
   grunt.initConfig({
     mochaTest: {
       options: {
-        reporter: 'list'
+        reporter: 'spec',
+        colors: false
       },
 
       all: {
