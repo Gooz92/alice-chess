@@ -162,5 +162,13 @@ describe('isUtils', function () {
       var notDefined = void 0;
       assert.isFalse(isPresent(notDefined));
     });
+
+    it('return true for object', function () {
+      var box = {
+        content: 'lamb'
+      };
+
+      assert.isTrue(isPresent(box));
+    });
   });
 });
