@@ -26,7 +26,7 @@ describe('boardUtils', function () {
   describe('.fileIndexToName()', function () {
     it('return fileName for index between 0 and 7 (including)', function () {
       var fileNames = 'abcdefgh'.split('');
-      
+
       fileNames.forEach(function (fileName, fileIndex) {
         assert.strictEqual(boardUtils.fileIndexToName(fileIndex), fileName,
           "File with name '" + fileName + "'' should nave index " + fileIndex);

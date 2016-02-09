@@ -36,7 +36,7 @@ Color.getByToken = function (token) {
   if (token === 'b') {
     return Color.BLACK;
   }
-  
+
   throw new Error('Unknown color token: ' + token);
 };
 
@@ -48,7 +48,7 @@ Color.getByName = function (colorName) {
   if (colorName === Color.BLACK.name) {
     return Color.BLACK;
   }
-  
+
   throw new Error('Unknown color name: ' + colorName);
 };
 

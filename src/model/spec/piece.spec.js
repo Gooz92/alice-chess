@@ -18,7 +18,7 @@ describe('Piece', function () {
   describe('#create()', function () {
     it('create white piece for uppercase token', function () {
       var piece = Piece.create('R', {});
-      
+
       assert.isTrue(piece.color.isWhite());
     });
 
@@ -40,7 +40,7 @@ describe('Piece', function () {
 
   describe("#remove", function () {
     it('remove piece from square', function () {
-      var chess = new Chess(), 
+      var chess = new Chess(),
         piece = chess.placePiece('P', 'e2'),
         square = piece.square;
 

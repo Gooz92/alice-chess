@@ -17,14 +17,14 @@ describe('Chess', function () {
     });
   });
 
-  describe('#generateEmptySquares()', function () {    
+  describe('#generateEmptySquares()', function () {
     var squares;
 
     beforeEach(function () {
       squares = chess.generateEmptySquares();
     });
 
-    it('return array with length = 120', function () {      
+    it('return array with length = 120', function () {
       assert.equal(squares.length, 120);
     });
 
@@ -79,7 +79,7 @@ describe('Chess', function () {
       assert.sameMembers(moveNames, [
         'a3', 'a4',
         'b3', 'b4',
-        'c3', 'c4', 
+        'c3', 'c4',
         'd3', 'd4',
         'e3', 'e4',
         'f3', 'f4',
@@ -148,12 +148,12 @@ describe('Chess', function () {
       ].join('\n'));
     });
   });
-  
+
   describe('#generateFieldPlainObject()', function () {
     it('return correct board representaion for start position', function () {
       var chess = Chess.createStartPosition(),
         startPosition = require('./data/start-position.json');
-      
+
       assert.deepEqual(chess.generateFieldPlainObject(), startPosition);
     });
   });

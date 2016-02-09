@@ -10,7 +10,7 @@ describe('fenUtils', function () {
 
       pieceTokens.forEach(function (token) {
         assert.isTrue(fenUtils.isPieceToken(token),
-          "Token '" + token + "'' must be piece token");        
+          "Token '" + token + "'' must be piece token");
       });
     });
 

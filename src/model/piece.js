@@ -70,7 +70,7 @@ var piecePrototype = {
         }
 
         callback.call(self, targetSquare);
-        targetSquareIndex += offset;      
+        targetSquareIndex += offset;
       }
 
     });

@@ -191,11 +191,11 @@ objectUtils.extend(Chess.prototype, {
     this.pieces.white.forEach(function (piece) {
       field[piece.square.getName()] = piece.token.toUpperCase();
     });
-    
+
     this.pieces.black.forEach(function (piece) {
       field[piece.square.getName()] = piece.token;
     });
-    
+
     return field;
   }
 

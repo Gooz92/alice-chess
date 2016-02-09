@@ -71,5 +71,5 @@ describe('sanUtils', function () {
           "Rank name '" + invalidRankName + "'' must be invalid");
       });
     });
-  }); 
+  });
 });

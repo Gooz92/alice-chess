@@ -21,7 +21,7 @@ module.exports = {
 
       if (targetSquare.isEmpty() ||
         targetSquare.isOccupiedByOpponent(self.color)) {
-        callback.call(self, targetSquare);        
+        callback.call(self, targetSquare);
       }
     });
   }

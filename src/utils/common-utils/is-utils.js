@@ -21,7 +21,7 @@ var isUtils = module.exports = {
   isString: function (value) {
     return typeof value === 'string';
   },
-  
+
   isNumber: function (value) {
     return typeof value === 'number';
   },

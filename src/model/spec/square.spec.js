@@ -28,7 +28,7 @@ describe('Square', function () {
 
     it("return false if property 'piece' is undefined", function () {
       square.piece = void 0;
-      assert.isFalse(square.isOccupied());      
+      assert.isFalse(square.isOccupied());
     });
   });
 
