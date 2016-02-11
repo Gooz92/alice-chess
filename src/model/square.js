@@ -18,6 +18,30 @@ Square.fromName = function (squareName, chess) {
 Square.prototype = {
   constructor: Square,
 
+  getRankDistance: function (square) {
+    var sourceRankIndex = this.getRankIndex(),
+      destinationRankIndex = square.getRankIndex(),
+      rankDistance = Math.abs(sourceRankIndex - destinationRankIndex);
+
+    return rankDistance;
+  },
+
+  getFileDistance: function (square) {
+    var sourceFileIndex = this.getFileIndex(),
+      destinationFileIndex = square.getFileIndex(),
+      fileDistance = Math.abs(sourceFileIndex - destinationFileIndex);
+
+    return fileDistance;
+  },
+
+  getDistance: function (square) {
+    var rankDistance = this.getRankDistance(square),
+      fileDistance = this.getFileDistance(square),
+      distance = rankDistance + fileDistance;
+
+    return distance;
+  },
+
   isOccupied: function () {
     return isUtils.isPresent(this.piece);
   },

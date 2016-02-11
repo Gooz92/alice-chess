@@ -40,6 +40,100 @@ describe('Square', function () {
     });
   });
 
+  describe('#getRankDistance()', function () {
+    it('return 0 if source and destination squares are same', function () {
+      var square = Square.fromName('e4'),
+        rankDistance = square.getRankDistance(square);
+
+      assert.strictEqual(rankDistance, 0);
+    });
+
+    it('is symmetric', function () {
+      var source = Square.fromName('a2'),
+        destination = Square.fromName('d4'),
+        source2destination = source.getRankDistance(destination),
+        destination2source = destination.getRankDistance(source);
+
+      assert.strictEqual(source2destination, destination2source);
+    });
+
+    it('return 0 for squares a4 and h4', function () {
+      var source = Square.fromName('a4'),
+        destination = Square.fromName('h4'),
+        distance = source.getRankDistance(destination);
+
+      assert.strictEqual(distance, 0);
+    });
+
+    it('return 7 for squares h8 and a1', function () {
+      var source = Square.fromName('h8'),
+        destination = Square.fromName('a1'),
+        distance = source.getRankDistance(destination);
+
+      assert.strictEqual(distance, 7);
+    });
+  });
+
+  describe('#getFileDistance()', function () {
+    it('return 0 if source and destination squares are same', function () {
+      var square = Square.fromName('d5'),
+        fileDistance = square.getFileDistance(square);
+
+      assert.strictEqual(fileDistance, 0);
+    });
+
+    it('is symmetric', function () {
+      var source = Square.fromName('e2'),
+        destination = Square.fromName('f6'),
+        source2destination = source.getFileDistance(destination),
+        destination2source = destination.getFileDistance(source);
+
+      assert.strictEqual(source2destination, destination2source);
+    });
+
+    it('return 2 for squares a2 and c8', function () {
+      var source = Square.fromName('a2'),
+        destination = Square.fromName('c8'),
+        distance = source.getFileDistance(destination);
+
+      assert.strictEqual(distance, 2);
+    });
+
+    it('return 7 for squares a4 and h1', function () {
+      var source = Square.fromName('a4'),
+        destination = Square.fromName('h1'),
+        distance = source.getFileDistance(destination);
+
+      assert.strictEqual(distance, 7);
+    });
+  });
+
+  describe('#getDistance()', function () {
+    it('return 0 if source and destination squares are same', function () {
+      var square = Square.fromName('c5'),
+        distance = square.getDistance(square);
+
+      assert.strictEqual(distance, 0);
+    });
+
+    it('is symmetric', function () {
+      var source = Square.fromName('a3'),
+        destination = Square.fromName('b4'),
+        source2destination = source.getDistance(destination),
+        destination2source = destination.getDistance(source);
+
+      assert.strictEqual(source2destination, destination2source);
+    });
+
+    it('return 14 for squares a1 and h8', function () {
+      var source = Square.fromName('a1'),
+        destination = Square.fromName('h8'),
+        distance = source.getDistance(destination);
+
+      assert.strictEqual(distance, 14);
+    });
+  });
+
   describe('#isOccupied()', function () {
     it("return true if property 'piece' is not null or undefined", function () {
       square.piece = 'pawn';
