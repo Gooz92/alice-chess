@@ -1,0 +1,30 @@
+.chess-board {
+  margin: 5% auto;
+  border-collapse: collapse;
+  border: 1px solid #f0d9b5
+}
+
+.chess-board th.file-label {
+  padding: 0 2px;
+}
+
+.chess-board td {
+  width: 55px;
+  height: 55px;
+}
+
+.chess-board tr:nth-child(even) td:nth-child(odd) {
+  background-color: #b58863;
+}
+
+.chess-board tr:nth-child(even) td:nth-child(even) {
+  background-color: #f0d9b5;
+}
+
+.chess-board tr:nth-child(odd) td:nth-child(even) {
+  background-color: #b58863;
+}
+
+.chess-board tr:nth-child(odd) td:nth-child(odd) {
+  background-color: #f0d9b5;
+}
