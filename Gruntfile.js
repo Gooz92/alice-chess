@@ -30,11 +30,25 @@ module.exports = function (grunt) {
           'dist/app.chess.js': 'src/browser/app.js'
         }
       }
+    },
+
+    uglify: {
+      dist: {
+        files: {
+          'dist/app.chess.min.js': 'dist/app.chess.js'
+        }
+      }
     }
   });
 
   grunt.registerTask('test', [
     'jshint',
     'mochaTest'
+  ]);
+
+  grunt.registerTask('build', [
+    'test',
+    'browserify',
+    'uglify'
   ]);
 };
