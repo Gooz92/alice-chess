@@ -31,8 +31,10 @@ describe('Piece', function () {
 
   describe('#createMove()', function () {
     it('create move with corresponding piece', function () {
-      var piece = Piece.create('N', {}),
-        move = piece.createMove({});
+      var chess = new Chess(),
+        targetSquare = chess.getSquareByName('a3'),
+        piece = chess.placePiece('N', 'b1'),
+        move = piece.createMove(targetSquare);
 
       assert.strictEqual(move.piece, piece);
     });
