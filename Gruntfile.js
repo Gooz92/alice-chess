@@ -22,6 +22,14 @@ module.exports = function (grunt) {
           jshintrc: true
         }
       }
+    },
+
+    browserify: {
+      dist: {
+        files: {
+          'dist/app.chess.js': 'src/browser/app.js'
+        }
+      }
     }
   });
 
