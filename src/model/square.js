@@ -42,6 +42,10 @@ Square.prototype = {
     return distance;
   },
 
+  isTargetEnPassantSquare: function () {
+    return this === this.chess.targetEnPassantSquare;
+  },
+
   isOccupied: function () {
     return isUtils.isPresent(this.piece);
   },
