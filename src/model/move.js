@@ -2,31 +2,45 @@
 
 // TODO castling, pawn promotions !!!!
 
-function Move(piece, targetSquare) {
+function Move(piece, targetSquare, promotedPiece) {
   this.piece = piece;
   this.targetSquare = targetSquare;
+  this.promotedPiece = promotedPiece;
+  this.execute = getExecuteFunction(piece, targetSquare);
+}
+
+function getPawnExecuteMoveFunction(pawn, targetSquare) {
+  var execute = execution.silentMove;
+
+  if (pawn.square.getRankDistance(targetSquare) === 2) {
+    execute = execution.bigPawn;
+  } else if (targetSquare.isTargetEnPassantSquare()) {
+    execute = execution.enPassant;
+  } else if ((pawn.color.isWhite() && targetSquare.getRankIndex() === 7) ||
+              (pawn.color.isBlack() && targetSquare.getRankIndex() === 8)) {
+    execute = execution.promotion;
+  }
+
+  return execute;
+}
+
+function getExecuteFunction(piece, targetSquare) {
+  var execute = execution.silentMove;
 
   if (targetSquare.isOccupiedByOpponent(piece.color)) {
-    this.execute = execution.capture;
+    execute = execution.capture;
   }
 
   if (piece.isPawn()) {
-    if (piece.square.getRankDistance(targetSquare) === 2) {
-      this.execute = execution.bigPawn;
-    } else if (targetSquare.isTargetEnPassantSquare()) {
-      this.execute = execution.enPassant;
-    } else if ((piece.color.isWhite() && targetSquare.getRankIndex() === 7) ||
-               (piece.color.isBlack() && targetSquare.getRankIndex() === 8)) {
-      this.execute = execution.promotion;
-    } else {
-      this.execute = execution.silentMove;
-    }
+    execute = getPawnExecuteMoveFunction(piece, targetSquare);
   } else if (piece.isKing() &&
              piece.square.getFileDistance(targetSquare) === 2) {
-    this.execute = execution.castling;
+    execute = execution.castling;
   } else {
-    this.execute = execution.silentMove;
+    execute = execution.silentMove;
   }
+
+  return execute;
 }
 
 var execution = {
