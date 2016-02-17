@@ -1,5 +1,7 @@
 'use strict';
 
+var isUtils = require('../utils/common-utils/is-utils');
+
 // TODO castling, pawn promotions !!!!
 
 function Move(piece, targetSquare, promotedPiece) {
@@ -168,7 +170,9 @@ Move.prototype = {
   toSAN: function () {
     var san = this.targetSquare.getName();
 
-    if (!this.piece.isPawn()) {
+    if (isUtils.isPresent(this.promotedPiece)) {
+      san += '=' + this.promotedPiece.token.toUpperCase();
+    } else if (!this.piece.isPawn()) {
       san = this.piece.token.toUpperCase() + san;
     }
 
