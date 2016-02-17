@@ -60,7 +60,7 @@ module.exports = {
       targetSquare = self.square.chess.squares[targetSquareIndex];
 
       if (targetSquare.isOccupiedByOpponent(self.color) ||
-        targetSquareIndex === self.square.chess.enPassantSquareIndex) {
+        targetSquare === self.square.chess.enPassantTargetSquare) {
         callback.call(self, targetSquare);
       }
     });

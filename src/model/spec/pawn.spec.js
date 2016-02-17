@@ -17,7 +17,7 @@ describe('Pawn', function () {
         moves;
 
       chess.placePiece('p', 'd5');
-      chess.enPassantSquareIndex = boardUtils.squareNameToIndex('d6');
+      chess.enPassantTargetSquare = chess.getSquareByName('d6');
 
       moves = pawn.generateTargetSquareNames();
 
@@ -29,7 +29,7 @@ describe('Pawn', function () {
         captures;
 
       chess.placePiece('P', 'e4');
-      chess.enPassantSquareIndex = boardUtils.squareNameToIndex('e3');
+      chess.enPassantTargetSquare = chess.getSquareByName('e3');
 
       captures = pawn.generateTargetSquareNames();
 
