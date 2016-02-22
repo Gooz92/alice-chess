@@ -8,7 +8,9 @@ module.exports = {
   token: 'k',
 
   forEachTargetSquare: function (callback) {
-    var self = this;
+    var self = this,
+      opponentColor = this.color.toggle(),
+      chess = self.square.chess;
 
     offsets.forEach(function (offset) {
       var targetSquareIndex = self.square.index + offset,
@@ -19,6 +21,10 @@ module.exports = {
       }
 
       targetSquare = self.square.chess.squares[targetSquareIndex];
+
+      if (chess.isSquareAttacked(targetSquare.index, opponentColor)) {
+        return;
+      }
 
       if (targetSquare.isEmpty() ||
         targetSquare.isOccupiedByOpponent(self.color)) {
