@@ -12,6 +12,10 @@ module.exports = function (grunt) {
 
       all: {
         src: ['src/**/*.spec.js'],
+      },
+
+      attacks: {
+        src: 'src/model/spec/attacks.spec.js'
       }
     },
 
@@ -42,8 +46,8 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('test', [
-    'jshint',
-    'mochaTest'
+    'mochaTest',
+    'jshint'
   ]);
 
   grunt.registerTask('build', [

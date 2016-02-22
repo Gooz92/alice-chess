@@ -5,7 +5,8 @@ var Square = require('./square'),
   Piece = require('./piece'),
   Move = require('./move'),
   boardUtils = require('../utils/chess-utils/board-utils'),
-  objectUtils = require('../utils/common-utils/object-utils');
+  objectUtils = require('../utils/common-utils/object-utils'),
+  rays = require('../utils/chess-utils/rays');
 
 var startPosition = {
   a1: 'R', b1: 'N', c1: 'B', d1: 'Q', e1: 'K', f1: 'B', g1: 'N', h1: 'R',
@@ -119,6 +120,52 @@ objectUtils.extend(Chess.prototype, {
     });
 
     return moveNames;
+  },
+
+  isSquareAttacked: function (squareIndex, color) {
+    var squares = this.squares;
+
+    return squares.some(function (square) {
+      var distance, attackIndex;
+
+      if (square.isEmpty() || square.piece.color !== color) {
+        return false;
+      }
+
+      distance = square.index - squareIndex;
+      attackIndex = distance + 119;
+
+      if (!boardUtils.isMayAttacked(attackIndex, square.piece.token)) {
+        return false;
+      }
+
+      if (square.piece.isPawn()) {
+        if (distance < 0) {
+          return square.piece.color.isWhite();
+        }
+        return square.piece.color.isBlack();
+      }
+
+      if (square.piece.isKnight() || square.piece.isKing()) {
+        return true;
+      }
+
+      var offset = rays[attackIndex];
+      var j = square.index + offset;
+      var blocked = false;
+
+      while (j !== square) {
+        console.log(j);
+        if (boardUtils.isSquareOnBoard(j) &&
+            squares[j].isOccupied()) {
+          blocked = true;
+          break;
+        }
+        j += offset;
+      }
+
+      return !blocked;
+    });
   },
 
   turn: function () {
