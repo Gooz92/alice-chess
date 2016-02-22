@@ -122,48 +122,47 @@ objectUtils.extend(Chess.prototype, {
     return moveNames;
   },
 
-  isSquareAttacked: function (squareIndex, color) {
-    var squares = this.squares;
-
-    return squares.some(function (square) {
+  isSquareAttackedByPiece: function (squareIndex, piece) {
       var distance, attackIndex;
 
-      if (square.isEmpty() || square.piece.color !== color) {
-        return false;
-      }
-
-      distance = squareIndex - square.index;
+      distance = squareIndex - piece.square.index;
       attackIndex = distance + 119;
 
-      if (!boardUtils.isMayAttacked(attackIndex, square.piece.token)) {
+      if (!boardUtils.isMayAttacked(attackIndex, piece.token)) {
         return false;
       }
 
-      if (square.piece.isPawn()) {
+      if (piece.isPawn()) {
         if (distance > 0) {
-          return square.piece.color.isWhite();
+          return piece.color.isWhite();
         }
-        return square.piece.color.isBlack();
+        return piece.color.isBlack();
       }
 
-      if (square.piece.isKnight() || square.piece.isKing()) {
+      if (piece.isKnight() || piece.isKing()) {
         return true;
       }
 
       var offset = rays[attackIndex];
-      var j = square.index + offset;
-      var blocked = false;
+      var j = piece.square.index + offset;
 
       while (j !== squareIndex) {
-        if (squares[j].isOccupied()) {
-          blocked = true;
-          break;
+        if (this.squares[j].isOccupied()) {
+          return false;
         }
         j += offset;
       }
 
-      return !blocked;
-    });
+      return true;
+  },
+
+  isSquareAttacked: function (squareIndex, color) {
+    var self = this,
+      pieces = this.pieces[color.name];
+
+     return pieces.some(function (piece) {
+       return self.isSquareAttackedByPiece(squareIndex, piece);
+     });
   },
 
   turn: function () {

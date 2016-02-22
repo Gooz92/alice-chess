@@ -38,10 +38,14 @@ describe('Attacks', function () {
   Object.keys(attackedSquares).forEach(function (pieceToken) {
     var pieceAttackedSquares = attackedSquares[pieceToken];
     Object.keys(pieceAttackedSquares).forEach(function (pieceSquare) {
-      pieceAttackedSquares[pieceSquare][0].forEach(function (attackedSquare) {
+      var attackedSquares = pieceAttackedSquares[pieceSquare][0],
+        notAttackedSquares = pieceAttackedSquares[pieceSquare][1];
+
+      attackedSquares.forEach(function (attackedSquare) {
         testAttackedSquare(pieceToken, pieceSquare, attackedSquare);
       });
-      pieceAttackedSquares[pieceSquare][1].forEach(function (notAttackedSquare) {
+
+      notAttackedSquares.forEach(function (notAttackedSquare) {
         testNotAttackedSquare(pieceToken, pieceSquare, notAttackedSquare);
       });
     });
