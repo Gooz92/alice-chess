@@ -1,6 +1,7 @@
 'use strict';
 
-var attacks = require('./attacks');
+var attacks = require('./attacks'),
+  squares = require('./squares');
 
 var pieceAttackMasks = {
   p: 1,
@@ -65,12 +66,7 @@ var boardUtils = module.exports = {
   },
 
   squareNameToIndex: function (squareName) {
-    var fileName = squareName.charAt(0),
-      rankName = squareName.charAt(1),
-      fileIndex = boardUtils.fileNameToIndex(fileName),
-      rankIndex = boardUtils.rankNameToIndex(rankName);
-
-    return 16 * rankIndex + fileIndex;
+    return squares[squareName];
   },
 
   isSquareOnBoard: function (squareIndex) {
