@@ -1,1148 +1,0 @@
-[4mRunning "mochaTest:attacks" (mochaTest) task[24m
-
-
-  Attacks
-    √ P on e2 should attack d3
-    √ P on e2 should attack f3
-    √ P on e2 should't attack d1
-    √ P on e2 should't attack f1
-    √ P on e2 should't attack c4
-    √ P on e2 should't attack f4
-    √ P on a2 should attack b3
-    √ P on a2 should't attack b1
-    √ P on h2 should attack g3
-    √ P on h2 should't attack g1
-    √ p on d7 should attack c6
-    √ p on d7 should attack e6
-    √ p on d7 should't attack c8
-    √ p on d7 should't attack e8
-    √ p on d7 should't attack c5
-    √ p on d7 should't attack e5
-    √ p on a7 should attack b6
-    √ p on a7 should't attack b8
-    √ p on h7 should attack g6
-    √ p on h7 should't attack g8
-    √ n on d4 should attack b3
-    √ n on d4 should attack b5
-    √ n on d4 should attack f3
-    √ n on d4 should attack f5
-    √ n on d4 should attack c6
-    √ n on d4 should attack e6
-    √ n on d4 should attack c2
-    √ n on d4 should attack e2
-    √ n on d4 should't attack d4
-    √ n on d4 should't attack b8
-    √ n on d4 should't attack h2
-    √ n on a1 should attack c2
-    √ n on a1 should attack b3
-    √ n on a1 should't attack c3
-    √ n on a1 should't attack b2
-    √ N on e5 should attack g6
-    √ N on e5 should attack g4
-    √ N on e5 should attack c6
-    √ N on e5 should attack c4
-    √ N on e5 should attack f7
-    √ N on e5 should attack d7
-    √ N on e5 should attack f3
-    √ N on e5 should attack d3
-    √ N on e5 should't attack h8
-    √ N on e5 should't attack b8
-    √ N on e5 should't attack h2
-    √ N on e5 should't attack e1
-    √ N on h8 should attack f7
-    √ N on h8 should attack g6
-    √ N on h8 should't attack d6
-    √ N on h8 should't attack d8
-    √ N on h8 should't attack e4
-    √ k on a1 should attack a2
-    √ k on a1 should attack b2
-    √ k on a1 should attack b1
-    √ k on a1 should't attack a3
-    √ k on a1 should't attack b3
-    √ k on a1 should't attack c1
-    √ k on a1 should't attack c3
-    √ k on f3 should attack e4
-    √ k on f3 should attack f4
-    √ k on f3 should attack g4
-    √ k on f3 should attack e3
-    √ k on f3 should attack g3
-    √ k on f3 should attack e2
-    √ k on f3 should attack f2
-    √ k on f3 should attack g2
-    √ k on f3 should't attack h5
-    √ k on f3 should't attack f5
-    √ k on f3 should't attack e1
-    √ k on h8 should attack h7
-    √ k on h8 should attack g7
-    √ k on h8 should attack g8
-    √ k on h8 should't attack f6
-    √ k on h8 should't attack e5
-    √ k on h8 should't attack f7
-    √ k on h8 should't attack h6
-    √ K on a8 should attack a7
-    √ K on a8 should attack b7
-    √ K on a8 should attack b8
-    √ K on a8 should't attack c6
-    √ K on a8 should't attack h1
-    √ K on a8 should't attack b6
-    √ K on e4 should attack d5
-    √ K on e4 should attack e5
-    √ K on e4 should attack f5
-    √ K on e4 should attack d4
-    √ K on e4 should attack f4
-    √ K on e4 should attack d3
-    √ K on e4 should attack e3
-    √ K on e4 should attack f3
-    √ K on e4 should't attack c6
-    √ K on e4 should't attack g2
-    √ K on e4 should't attack e4
-    √ K on e4 should't attack e6
-    √ K on e4 should't attack d2
-    √ K on h1 should attack h2
-    √ K on h1 should attack g1
-    √ K on h1 should attack g2
-    √ K on h1 should't attack h3
-    √ K on h1 should't attack a8
-    √ K on h1 should't attack f3
-    1) r on a1 should attack a2
-    2) r on a1 should attack a5
-    3) r on a1 should attack a8
-    4) r on a1 should attack b1
-    5) r on a1 should attack d1
-    6) r on a1 should attack h1
-    √ r on a1 should't attack b2
-    √ r on a1 should't attack h8
-    7) r on e4 should attack f4
-    8) r on e4 should attack g4
-    9) r on e4 should attack h4
-    10) r on e4 should attack d4
-    11) r on e4 should attack a4
-    12) r on e4 should attack e6
-    13) r on e4 should attack e8
-    14) r on e4 should attack e3
-    15) r on e4 should attack e1
-    √ r on e4 should't attack d3
-    √ r on e4 should't attack g8
-    16) R on h8 should attack h7
-    17) R on h8 should attack h5
-    18) R on h8 should attack h1
-    19) R on h8 should attack g8
-    20) R on h8 should attack f8
-    21) R on h8 should attack b8
-    22) R on h8 should attack a8
-    √ R on h8 should't attack g7
-    √ R on h8 should't attack e4
-    23) R on e5 should attack e4
-    24) R on e5 should attack e2
-    25) R on e5 should attack e1
-    26) R on e5 should attack d5
-    27) R on e5 should attack c5
-    28) R on e5 should attack a5
-    29) R on e5 should attack h5
-    √ R on e5 should't attack e5
-    √ R on e5 should't attack c2
-    √ R on e5 should't attack a1
-    30) b on h1 should attack g2
-    31) b on h1 should attack e4
-    32) b on h1 should attack b7
-    33) b on h1 should attack a8
-    √ b on h1 should't attack h8
-    √ b on h1 should't attack a7
-    √ b on h1 should't attack h1
-    34) b on d4 should attack e5
-    35) b on d4 should attack f6
-    36) b on d4 should attack g7
-    37) b on d4 should attack h8
-    38) b on d4 should attack c3
-    39) b on d4 should attack b2
-    40) b on d4 should attack a1
-    41) b on d4 should attack c4
-    42) b on d4 should attack b5
-    43) b on d4 should attack a6
-    44) b on d4 should attack e4
-    45) b on d4 should attack f3
-    46) b on d4 should attack g2
-    47) b on d4 should attack h1
-    √ b on d4 should't attack e4
-    √ b on d4 should't attack d4
-    √ b on d4 should't attack h5
-    48) b on d1 should attack e2
-    49) b on d1 should attack g4
-    50) b on d1 should attack h5
-    51) b on d1 should attack c2
-    52) b on d1 should attack a4
-    √ b on d1 should't attack a3
-    √ b on d1 should't attack f8
-    53) B on a8 should attack b7
-    54) B on a8 should attack d5
-    55) B on a8 should attack h1
-    √ B on a8 should't attack a7
-    √ B on a8 should't attack h2
-    √ B on a8 should't attack e4
-    56) q on h1 should attack h3
-    57) q on h1 should attack h8
-    58) q on h1 should attack g1
-    59) q on h1 should attack c1
-    60) q on h1 should attack a1
-    61) q on h1 should attack f3
-    62) q on h1 should attack b7
-    63) q on h1 should attack a8
-    √ q on h1 should't attack h4
-    √ q on h1 should't attack a7
-    64) Q on h8 should attack h6
-    65) Q on h8 should attack h1
-    66) Q on h8 should attack g8
-    67) Q on h8 should attack c8
-    68) Q on h8 should attack a8
-    69) Q on h8 should attack g7
-    70) Q on h8 should attack f6
-    71) Q on h8 should attack b2
-    72) Q on h8 should attack a1
-    √ Q on h8 should't attack f5
-    √ Q on h8 should't attack a2
-
-
-  126 passing (417ms)
-  72 failing
-
-  1) Attacks r on a1 should attack a2:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  2) Attacks r on a1 should attack a5:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  3) Attacks r on a1 should attack a8:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  4) Attacks r on a1 should attack b1:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  5) Attacks r on a1 should attack d1:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  6) Attacks r on a1 should attack h1:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  7) Attacks r on e4 should attack f4:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  8) Attacks r on e4 should attack g4:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  9) Attacks r on e4 should attack h4:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  10) Attacks r on e4 should attack d4:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  11) Attacks r on e4 should attack a4:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  12) Attacks r on e4 should attack e6:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  13) Attacks r on e4 should attack e8:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  14) Attacks r on e4 should attack e3:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  15) Attacks r on e4 should attack e1:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  16) Attacks R on h8 should attack h7:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  17) Attacks R on h8 should attack h5:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  18) Attacks R on h8 should attack h1:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  19) Attacks R on h8 should attack g8:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  20) Attacks R on h8 should attack f8:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  21) Attacks R on h8 should attack b8:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  22) Attacks R on h8 should attack a8:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  23) Attacks R on e5 should attack e4:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  24) Attacks R on e5 should attack e2:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  25) Attacks R on e5 should attack e1:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  26) Attacks R on e5 should attack d5:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  27) Attacks R on e5 should attack c5:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  28) Attacks R on e5 should attack a5:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  29) Attacks R on e5 should attack h5:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  30) Attacks b on h1 should attack g2:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  31) Attacks b on h1 should attack e4:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  32) Attacks b on h1 should attack b7:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  33) Attacks b on h1 should attack a8:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  34) Attacks b on d4 should attack e5:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  35) Attacks b on d4 should attack f6:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  36) Attacks b on d4 should attack g7:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  37) Attacks b on d4 should attack h8:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  38) Attacks b on d4 should attack c3:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  39) Attacks b on d4 should attack b2:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  40) Attacks b on d4 should attack a1:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  41) Attacks b on d4 should attack c4:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  42) Attacks b on d4 should attack b5:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  43) Attacks b on d4 should attack a6:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  44) Attacks b on d4 should attack e4:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  45) Attacks b on d4 should attack f3:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  46) Attacks b on d4 should attack g2:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  47) Attacks b on d4 should attack h1:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  48) Attacks b on d1 should attack e2:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  49) Attacks b on d1 should attack g4:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  50) Attacks b on d1 should attack h5:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  51) Attacks b on d1 should attack c2:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  52) Attacks b on d1 should attack a4:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  53) Attacks B on a8 should attack b7:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  54) Attacks B on a8 should attack d5:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  55) Attacks B on a8 should attack h1:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  56) Attacks q on h1 should attack h3:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  57) Attacks q on h1 should attack h8:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  58) Attacks q on h1 should attack g1:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  59) Attacks q on h1 should attack c1:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  60) Attacks q on h1 should attack a1:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  61) Attacks q on h1 should attack f3:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  62) Attacks q on h1 should attack b7:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  63) Attacks q on h1 should attack a8:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  64) Attacks Q on h8 should attack h6:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  65) Attacks Q on h8 should attack h1:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  66) Attacks Q on h8 should attack g8:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  67) Attacks Q on h8 should attack c8:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  68) Attacks Q on h8 should attack a8:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  69) Attacks Q on h8 should attack g7:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  70) Attacks Q on h8 should attack f6:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  71) Attacks Q on h8 should attack b2:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-  72) Attacks Q on h8 should attack a1:
-     AssertionError: expected false to be true
-      at Function.assert.isTrue (d:\chess\alice-chess\node_modules\chai\lib\chai\interface\assert.js:332:31)
-      at Context.<anonymous> (d:\chess\alice-chess\src\model\spec\attacks.spec.js:19:12)
-      at callFn (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:315:21)
-      at Test.Runnable.run (d:\chess\alice-chess\node_modules\mocha\lib\runnable.js:308:7)
-      at Runner.runTest (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:422:10)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:533:12
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:342:14)
-      at d:\chess\alice-chess\node_modules\mocha\lib\runner.js:352:7
-      at next (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:284:14)
-      at Immediate._onImmediate (d:\chess\alice-chess\node_modules\mocha\lib\runner.js:320:5)
-
-
-
-[33mWarning: Task "mochaTest:attacks" failed. Use --force to continue.[39m
-
-[31mAborted due to warnings.[39m

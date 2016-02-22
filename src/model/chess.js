@@ -132,7 +132,7 @@ objectUtils.extend(Chess.prototype, {
         return false;
       }
 
-      distance = square.index - squareIndex;
+      distance = squareIndex - square.index;
       attackIndex = distance + 119;
 
       if (!boardUtils.isMayAttacked(attackIndex, square.piece.token)) {
@@ -140,7 +140,7 @@ objectUtils.extend(Chess.prototype, {
       }
 
       if (square.piece.isPawn()) {
-        if (distance < 0) {
+        if (distance > 0) {
           return square.piece.color.isWhite();
         }
         return square.piece.color.isBlack();
@@ -154,10 +154,8 @@ objectUtils.extend(Chess.prototype, {
       var j = square.index + offset;
       var blocked = false;
 
-      while (j !== square) {
-        console.log(j);
-        if (boardUtils.isSquareOnBoard(j) &&
-            squares[j].isOccupied()) {
+      while (j !== squareIndex) {
+        if (squares[j].isOccupied()) {
           blocked = true;
           break;
         }
