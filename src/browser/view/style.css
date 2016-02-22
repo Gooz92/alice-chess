@@ -11,6 +11,8 @@
 .chess-board td {
   width: 55px;
   height: 55px;
+  font-size: 40px;
+  text-align: center;
 }
 
 .chess-board tr:nth-child(even) td:nth-child(odd) {
