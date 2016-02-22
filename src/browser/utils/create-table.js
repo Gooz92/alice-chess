@@ -19,7 +19,8 @@ function createTable(options) {
   for (rowIndex = 0; rowIndex < settings.rowCount; rowIndex++) {
     row = domUtils.createElement('tr');
     for (columnIndex = 0; columnIndex < settings.columnCount; columnIndex++) {
-      cell = domUtils.createElement('td');
+      var cellOptions = settings.getCellOptions(rowIndex, columnIndex);
+      cell = domUtils.createElement('td', cellOptions);
       row.appendChild(cell);
     }
     tbody.appendChild(row);

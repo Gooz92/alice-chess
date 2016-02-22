@@ -42,6 +42,21 @@ module.exports = function (grunt) {
           'dist/app.chess.min.js': 'dist/app.chess.js'
         }
       }
+    },
+
+    copy: {
+      dist: {
+        expand: true,
+        flatten: true,
+        src: ['src/browser/view/*'],
+        dest: 'dist/',
+      }
+    },
+
+    clean: {
+      dist: {
+        src: 'dist'
+      }
     }
   });
 
@@ -52,7 +67,9 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'test',
+    'clean',
     'browserify',
-    'uglify'
+    'uglify',
+    'copy'
   ]);
 };
