@@ -2,7 +2,11 @@
 
 var boardUtils = require('../../utils/chess-utils/board-utils');
 
-var offsets = [16, -16, 1, -1, 15, 17, -15, -17];
+var offsets = [16, -16, 1, -1, 15, 17, -15, -17],
+  castlingOffsets = [
+    -2, // queen-side (long)
+    2 // king-side (short)
+  ];
 
 module.exports = {
   token: 'k',

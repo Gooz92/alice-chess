@@ -24,6 +24,13 @@ function Chess() {
     black: []
   };
 
+  this.castlingAvalibility = {
+    k: true,
+    q: true,
+    K: true,
+    Q: true
+  };
+
   this.squares = this.generateEmptySquares();
 }
 
