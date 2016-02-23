@@ -71,6 +71,28 @@ describe('Chess', function () {
     });
   });
 
+  describe('#getPlayerKing()', function () {
+    it('return white king if activeColor is white', function () {
+      var chess = Chess.createStartPosition(),
+        whiteKing = chess.getPlayerKing();
+
+      assert.isTrue(whiteKing.isKing());
+      assert.isTrue(whiteKing.color.isWhite());
+    });
+
+    it('return black king if activeColor is black', function () {
+      var chess = Chess.createStartPosition(),
+        blackKing;
+
+      chess.turn();
+
+      blackKing = chess.getPlayerKing();
+
+      assert.isTrue(blackKing.isKing());
+      assert.isTrue(blackKing.color.isBlack());
+    });
+  });
+
   describe('#generateMoveNames()', function () {
     it('return correct move names for start position', function () {
       var chess = Chess.createStartPosition(),

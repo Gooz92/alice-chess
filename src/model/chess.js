@@ -40,6 +40,12 @@ Chess.createStartPosition = function () {
 
   objectUtils.forEachOwnProperty(startPosition, placePiece);
 
+  // TODO temporary solution
+  chess.kings = {
+    white: chess.getSquareByName('e1').piece,
+    black: chess.getSquareByName('e8').piece
+  };
+
   return chess;
 };
 
@@ -103,6 +109,10 @@ objectUtils.extend(Chess.prototype, {
 
   getPlayerPieces: function () {
     return this.pieces[this.activeColor.name];
+  },
+
+  getPlayerKing: function () {
+    return this.kings[this.activeColor.name];
   },
 
   generateMoves: function () {
