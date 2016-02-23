@@ -93,6 +93,14 @@ describe('Chess', function () {
     });
   });
 
+  // TODO need more test
+  describe('#inCheck()', function () {
+    it('return false for start position', function () {
+      var chess = Chess.createStartPosition();
+      assert.isFalse(chess.isInCheck());
+    });
+  });
+
   describe('#generateMoveNames()', function () {
     it('return correct move names for start position', function () {
       var chess = Chess.createStartPosition(),

@@ -139,6 +139,12 @@ objectUtils.extend(Chess.prototype, {
     return moveNames;
   },
 
+  isInCheck: function () {
+    var playerKing = this.getPlayerKing();
+    // TODO
+    return this.isSquareAttacked(playerKing.square.getName(), this.activeColor);
+  },
+
   isSquareAttackedByPiece: function (squareIndex, piece) {
       var distance, attackIndex;
 
