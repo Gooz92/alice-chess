@@ -3,6 +3,8 @@
 var assert = require('chai').assert,
   Chess = require('../chess');
 
+require('chai').config.truncateThreshold = 80;
+
 describe('Moves generation', function () {
   describe("pawn, rook, bishop, queen shoul'd jump over pieces", function () {
     var chess;
@@ -61,6 +63,35 @@ describe('Moves generation', function () {
 
       assert.sameMembers(queenMoveTargetSquareNames, [
         'a1', 'c1', 'd1', 'b2', 'a2', 'c2'
+      ]);
+    });
+  });
+
+  describe('in check', function () {
+     var chess;
+
+    beforeEach(function () {
+      chess = new Chess();
+    });
+
+    it('should generate moves only for king', function () {
+      var moveNames;
+
+      chess.kings = {
+        white: chess.placePiece('K', 'e4')
+      };
+
+      chess.placePiece('P', 'f3');
+      chess.placePiece('n', 'g5');
+
+      moveNames = chess.generateMoveNames();
+
+      assert.isFalse(chess.isSquareAttacked('e3', chess.activeColor.toggle()));
+
+      assert.sameMembers(moveNames, [
+        'Kd5', 'Ke5', 'Kf5',
+        'Kd4', 'Kf4',
+        'Kd3', 'Ke3'
       ]);
     });
   });

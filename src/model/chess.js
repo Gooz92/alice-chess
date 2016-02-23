@@ -115,9 +115,15 @@ objectUtils.extend(Chess.prototype, {
     return this.kings[this.activeColor.name];
   },
 
+  // TODO refactor
   generateMoves: function () {
-    var playerPieces = this.getPlayerPieces(),
-      moves = [];
+    var moves = [], playerPieces;
+
+    if (this.isInCheck()) {
+      return this.getPlayerKing().generateMoves();
+    }
+
+    playerPieces = this.getPlayerPieces();
 
     playerPieces.forEach(function (piece) {
       var pieceMoves = piece.generateMoves();
@@ -127,9 +133,15 @@ objectUtils.extend(Chess.prototype, {
     return moves;
   },
 
+  // TODO refactor
   generateMoveNames: function () {
-    var playerPieces = this.getPlayerPieces(),
-      moveNames = [];
+    var moveNames = [], playerPieces;
+
+    if (this.isInCheck()) {
+      return this.getPlayerKing().generateSanMoves();
+    }
+
+    playerPieces = this.getPlayerPieces();
 
     playerPieces.forEach(function (piece) {
       var pieceMoveNames = piece.generateSanMoves();
@@ -140,9 +152,10 @@ objectUtils.extend(Chess.prototype, {
   },
 
   isInCheck: function () {
-    var playerKing = this.getPlayerKing();
+    var playerKing = this.getPlayerKing(),
+      opponentColor = this.activeColor.toggle();
     // TODO
-    return this.isSquareAttacked(playerKing.square.getName(), this.activeColor);
+    return this.isSquareAttacked(playerKing.square.getName(), opponentColor);
   },
 
   isSquareAttackedByPiece: function (squareIndex, piece) {
