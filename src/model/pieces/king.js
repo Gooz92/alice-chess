@@ -26,7 +26,8 @@ module.exports = {
 
       targetSquare = self.square.chess.squares[targetSquareIndex];
 
-      if (chess.isSquareAttacked(targetSquare.index, opponentColor)) {
+      // targetSquare.getName() - performance
+      if (chess.isSquareAttacked(targetSquare.getName(), opponentColor)) {
         return;
       }
 

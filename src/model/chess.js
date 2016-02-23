@@ -163,8 +163,9 @@ objectUtils.extend(Chess.prototype, {
       return true;
   },
 
-  isSquareAttacked: function (squareIndex, color) {
+  isSquareAttacked: function (squareName, color) {
     var self = this,
+      squareIndex= boardUtils.squareNameToIndex(squareName),
       pieces = this.pieces[color.name];
 
      return pieces.some(function (piece) {

@@ -15,7 +15,7 @@ function testAttackedSquare(pieceToken, pieceSquare, attackedSquare) {
   chess.placePiece(pieceToken, pieceSquare);
 
   it(expectation, function () {
-    var attacked = chess.isSquareAttacked(squares[attackedSquare], color);
+    var attacked = chess.isSquareAttacked(attackedSquare, color);
     assert.isTrue(attacked);
   });
 }
@@ -29,7 +29,7 @@ function testNotAttackedSquare(pieceToken, pieceSquare, notAttackedSquare) {
   chess.placePiece(pieceToken, pieceSquare);
 
   it(expectation, function () {
-    var attacked = chess.isSquareAttacked(squares[notAttackedSquare], color);
+    var attacked = chess.isSquareAttacked(notAttackedSquare, color);
     assert.isFalse(attacked);
   });
 }
