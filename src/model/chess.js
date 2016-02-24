@@ -40,12 +40,6 @@ Chess.createStartPosition = function () {
 
   objectUtils.forEachOwnProperty(startPosition, placePiece);
 
-  // TODO temporary solution
-  chess.kings = {
-    white: chess.getSquareByName('e1').piece,
-    black: chess.getSquareByName('e8').piece
-  };
-
   return chess;
 };
 
@@ -116,7 +110,17 @@ objectUtils.extend(Chess.prototype, {
   },
 
   getPlayerKing: function () {
-    return this.kings[this.activeColor.name];
+    var playerPieces = this.getPlayerPieces(),
+      piece, index;
+
+    for (index = 0; index < playerPieces.length; index++) {
+      piece = playerPieces[index];
+      if (piece.isKing()) {
+        return piece;
+      }
+    }
+
+    return null;
   },
 
   // TODO refactor
@@ -158,6 +162,11 @@ objectUtils.extend(Chess.prototype, {
   isInCheck: function () {
     var playerKing = this.getPlayerKing(),
       opponentColor = this.activeColor.toggle();
+
+    if (playerKing === null) {
+      return false;
+    }
+
     // TODO
     return this.isSquareAttacked(playerKing.square.getName(), opponentColor);
   },
