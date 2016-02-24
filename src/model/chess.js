@@ -56,6 +56,10 @@ objectUtils.extend(Chess.prototype, {
     return this.squares[squareIndex];
   },
 
+  place: function (position) {
+    objectUtils.forEachOwnProperty(position, this.placePiece.bind(this));
+  },
+
   placePiece: function (fenToken, squareName) {
     var square = this.getSquareByName(squareName),
       piece = Piece.create(fenToken, square);

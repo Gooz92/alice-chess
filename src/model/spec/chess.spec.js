@@ -131,6 +131,45 @@ describe('Chess', function () {
     });
   });
 
+  describe('#placePiece()', function () {
+    var chess;
+    beforeEach(function () {
+      chess = new Chess();
+    });
+
+    it('add white piece in white pieces array', function () {
+      var addedPiece = chess.placePiece('P', 'e4');
+      assert.equal(addedPiece, chess.pieces.white[0]);
+    });
+
+    it('add black piece in black pieces array', function () {
+      var addedPiece = chess.placePiece('p', 'd5');
+      assert.equal(addedPiece, chess.pieces.black[0]);
+    });
+  });
+
+  describe('#place()', function () {
+    it('place pieces from position object', function () {
+      var chess = new Chess();
+
+      var position = {
+        e4: 'P',
+        d5: 'p',
+        a1: 'R',
+        h1: 'R'
+      };
+
+      chess.place(position);
+
+      Object.keys(position).forEach(function (squareName) {
+        var square = chess.getSquareByName(squareName),
+          pieceFenToken = square.piece.getFenToken();
+
+        assert.equal(pieceFenToken, position[squareName]);
+      });
+    });
+  });
+
   describe('#getRank()', function () {
     describe('for start position', function () {
       beforeEach(function () {
