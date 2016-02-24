@@ -48,6 +48,12 @@ var piecePrototype = {
     return fenToken;
   },
 
+  moveTo: function (square) {
+    delete this.square.piece;
+    this.square = square;
+    square.piece = this;
+  },
+
   /*
    * This implemetation use by rook, bishop and queen.
    * For pawn, knight and king used implementation placed in corresonding module
