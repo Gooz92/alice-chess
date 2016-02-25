@@ -157,10 +157,6 @@ objectUtils.extend(Chess.prototype, {
   generateMoveNames: function () {
     var moveNames = [], playerPieces;
 
-    if (this.isInCheck()) {
-      return this.getPlayerKing().generateSanMoves();
-    }
-
     playerPieces = this.getPlayerPieces();
 
     playerPieces.forEach(function (piece) {
