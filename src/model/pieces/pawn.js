@@ -22,13 +22,17 @@ module.exports = {
   forEachStepSquare: function (callback) {
     var offset = this.color.isWhite() ? 16 : -16,
       targetSquareIndex = this.square.index,
-      targetSquare, isFirstStep = false;
+      targetSquare, isFirstStep = false,
+      move;
 
     do {
       targetSquareIndex += offset;
       targetSquare = this.square.chess.squares[targetSquareIndex];
       if (targetSquare.isEmpty()) {
-        callback.call(this, targetSquare);
+        move = this.createMove(targetSquare);
+        if (!this.square.chess.isInCheckAfter(move)) {
+          callback.call(this, targetSquare);
+        }
         isFirstStep = !isFirstStep;
       } else {
         break;
@@ -51,7 +55,7 @@ module.exports = {
 
     offsets.forEach(function (offset) {
       var targetSquareIndex = self.square.index + offset,
-        targetSquare;
+        targetSquare, move;
 
       if (boardUtils.isSquareOutOfBoard(targetSquareIndex)) {
         return;
@@ -59,8 +63,11 @@ module.exports = {
 
       targetSquare = self.square.chess.squares[targetSquareIndex];
 
-      if (targetSquare.isOccupiedByOpponent(self.color) ||
-        targetSquare === self.square.chess.enPassantTargetSquare) {
+      move = self.createMove(targetSquare);
+
+      if ((targetSquare.isOccupiedByOpponent(self.color) ||
+        targetSquare === self.square.chess.enPassantTargetSquare) &&
+        !targetSquare.chess.isInCheckAfter(move)) {
         callback.call(self, targetSquare);
       }
     });

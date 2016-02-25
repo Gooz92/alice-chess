@@ -118,7 +118,38 @@ describe('Moves generation', function () {
       assert.sameMembers(rookTargerSquareNames, [
         'e4', 'e6', 'e7', 'e8'
       ]);
+    });
 
+    it('pawn silent move', function () {
+      var blackPawn, pawnTargetSquareNames;
+
+      chess.turn();
+
+      chess.place({
+        d3: 'k',
+        f5: 'p',
+        h7: 'B'
+      });
+
+      blackPawn = chess.getSquareByName('f5').piece;
+      pawnTargetSquareNames = blackPawn.generateTargetSquareNames();
+
+      assert.sameMembers(pawnTargetSquareNames, []);
+    });
+
+    it('knight silent move', function() {
+      var whiteKnight, knightTargetSquareNames;
+
+      chess.place({
+        e5: 'N',
+        e6: 'K',
+        e3: 'q'
+      });
+
+      whiteKnight = chess.getSquareByName('e5').piece;
+      knightTargetSquareNames = whiteKnight.generateTargetSquareNames();
+
+      assert.sameMembers(knightTargetSquareNames, []);
     });
   });
 });

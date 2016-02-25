@@ -11,16 +11,18 @@ module.exports = {
 
     offsets.forEach(function (offset) {
       var targetSquareIndex = self.square.index + offset,
-        targetSquare;
+        targetSquare, move;
 
       if (boardUtils.isSquareOutOfBoard(targetSquareIndex)) {
         return;
       }
 
       targetSquare = self.square.chess.squares[targetSquareIndex];
+      move = self.createMove(targetSquare);
 
-      if (targetSquare.isEmpty() ||
-        targetSquare.isOccupiedByOpponent(self.color)) {
+      if ((targetSquare.isEmpty() ||
+        targetSquare.isOccupiedByOpponent(self.color)) &&
+        !targetSquare.chess.isInCheckAfter(move)) {
         callback.call(self, targetSquare);
       }
     });
