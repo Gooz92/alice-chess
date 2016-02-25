@@ -240,6 +240,16 @@ objectUtils.extend(Chess.prototype, {
      });
   },
 
+  isInCheckAfter: function (move) {
+    var inCheck;
+
+    move.make();
+    inCheck = this.isOpponentInCheck();
+    move.unMake();
+
+    return inCheck;
+  },
+
   turn: function () {
     this.activeColor = this.activeColor.toggle();
   },
