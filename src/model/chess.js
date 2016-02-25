@@ -224,7 +224,7 @@ objectUtils.extend(Chess.prototype, {
       sourceSquare = this.getSquareByName(squareNames[0]),
       targetSquare = this.getSquareByName(squareNames[1]);
 
-    return new Move(sourceSquare.piece, targetSquare);
+    return new Move(sourceSquare, targetSquare);
   },
 
   getRank: function (rankIndex) {

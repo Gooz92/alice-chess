@@ -1,20 +1,116 @@
 'use strict';
 
-var isUtils = require('../utils/common-utils/is-utils');
+var isUtils = require('../utils/common-utils/is-utils'),
+  objectUtils = require('../utils/common-utils/object-utils');
 
 // TODO castling, pawn promotions !!!!
 
-function Move(piece, targetSquare, promotedPiece) {
-  this.piece = piece;
+var SilentMove = function (sourceSquare, targetSquare) {
+  this.sourceSquare = sourceSquare;
   this.targetSquare = targetSquare;
-  this.promotedPiece = promotedPiece;
-  this.execute = getExecuteFunction(piece, targetSquare);
-}
+  this.piece = this.sourceSquare.piece;
+};
 
-function getPawnExecuteMoveFunction(pawn, targetSquare) {
-  var execute = execution.silentMove;
+SilentMove.prototype.make = function () {
+  var enPassantTargetSquare = this.sourceSquare.chess.enPassantTargetSquare;
 
-  if (pawn.square.getRankDistance(targetSquare) === 2) {
+  this.piece.moveTo(this.targetSquare);
+
+  this.previousEnPassantTagetSquare = enPassantTargetSquare;
+  this.targetSquare.chess.turn();
+};
+
+SilentMove.prototype.unMake = function () {
+  var chess = this.targetSquare.chess;
+
+  this.piece.moveTo(this.sourceSquare);
+
+  chess.enPassantTargetSquare = this.previousEnPassantTagetSquare;
+
+  this.targetSquare.chess.turn();
+};
+
+SilentMove.prototype.toSAN = function () {
+  var san = this.targetSquare.getName();
+
+  if (!this.piece.isPawn()) {
+    san = this.piece.token.toUpperCase() + san;
+  }
+
+  return san;
+};
+
+var BigPawn = objectUtils.inherit(function (sourceSquare, targetSquare) {
+  this.super.constructor.call(this, sourceSquare, targetSquare);
+}, SilentMove);
+
+BigPawn.prototype.make = function () {
+  var chess = this.targetSquare.chess,
+    squareIndexOffset = this.piece.color.isWhite() ? -16 : 16,
+    epTargetSquareIndex = this.targetSquare.index + squareIndexOffset,
+    epTargetSquare = chess.squares[epTargetSquareIndex];
+
+  this.super.make.call(this);
+
+  chess.enPassantTargetSquare = epTargetSquare;
+};
+
+var Capture = objectUtils.inherit(function (sourceSquare, targetSquare) {
+  this.super.constructor.call(this, sourceSquare, targetSquare);
+  this.capturedPiece = targetSquare.piece;
+}, SilentMove);
+
+Capture.prototype.make = function () {
+  this.targetSquare.piece.remove();
+  this.super.make.call(this);
+};
+
+Capture.prototype.unMake = function () {
+  this.super.unMake.call(this);
+
+  // TODO preformance
+  this.targetSquare.chess.placePiece(
+    this.capturedPiece.getFenToken(),
+    this.targetSquare.getName()
+  );
+};
+
+var EnPassant = objectUtils.inherit(function (sourceSquare, targetSquare) {
+  this.super.constructor.call(this, sourceSquare, targetSquare);
+  this.capturedPawn = this.getCapturedPawn();
+}, SilentMove);
+
+EnPassant.prototype.getCapturedPawn = function () {
+  var chess = this.targetSquare.chess,
+    squareIndexOffset = this.soureSquare.piece.isWhite() ? -16 : 16,
+    capturedPawnSquareIndex = this.tagertSquare.index + squareIndexOffset,
+    capturedPawn = chess.squares[capturedPawnSquareIndex].piece;
+
+  return capturedPawn;
+};
+
+EnPassant.prototype.make = function () {
+  this.capturedPawn.remove();
+  this.super.make.call(this);
+};
+
+EnPassant.prototype.unMake = function () {
+  var chess = this.targetSquare.chess;
+
+  this.super.unMake.call(this);
+
+  // TODO performance
+  chess.placePiece(
+    this.capturedPawn.getFenToken(),
+    this.capturedPawn.square.getName()
+  );
+};
+
+function getPawnExecuteMoveFunction(sourceSquare, targetSquare) {
+  var execute = execution.silentMove,
+    pawn = sourceSquare.piece;
+
+  if (sourceSquare.getRankDistance(targetSquare) === 2) {
     execute = execution.bigPawn;
   } else if (targetSquare.isTargetEnPassantSquare()) {
     execute = execution.enPassant;
@@ -26,8 +122,9 @@ function getPawnExecuteMoveFunction(pawn, targetSquare) {
   return execute;
 }
 
-function getExecuteFunction(piece, targetSquare) {
-  var execute = execution.silentMove;
+function getExecuteFunction(sourceSquare, targetSquare) {
+  var execute = execution.silentMove,
+    piece = sourceSquare.piece;
 
   if (targetSquare.isOccupiedByOpponent(piece.color)) {
     execute = execution.capture;
@@ -36,7 +133,7 @@ function getExecuteFunction(piece, targetSquare) {
   if (piece.isPawn()) {
     execute = getPawnExecuteMoveFunction(piece, targetSquare);
   } else if (piece.isKing() &&
-             piece.square.getFileDistance(targetSquare) === 2) {
+             sourceSquare.getFileDistance(targetSquare) === 2) {
     execute = execution.castling;
   } else {
     execute = execution.silentMove;
@@ -46,42 +143,6 @@ function getExecuteFunction(piece, targetSquare) {
 }
 
 var execution = {
-  silentMove: function  () {
-    delete this.piece.square.piece;
-
-    this.targetSquare.piece = this.piece;
-    this.piece.square = this.targetSquare;
-
-    this.targetSquare.chess.turn();
-  },
-
-  bigPawn: function () {
-    var chess = this.targetSquare.chess,
-      squareIndexOffset = this.piece.color.isWhite() ? -16 : 16,
-      epTargetSquareIndex = this.targetSquare.index + squareIndexOffset,
-      epTargetSquare = chess.squares[epTargetSquareIndex];
-
-    chess.enPassantTargetSquare = epTargetSquare;
-
-    // TODO performance
-    execution.silentMove.call(this);
-  },
-
-  enPassant: function () {
-    var chess = this.targetSquare.chess,
-      squareIndexOffset = this.piece.isWhite() ? -16 : 16,
-      capturedPawnSquareIndex = this.tagertSquare.index + squareIndexOffset,
-      capturedPawn = chess.squares[capturedPawnSquareIndex].piece;
-
-    capturedPawn.remove();
-
-    this.silentMove();
-  },
-
-  capture: function () {
-    this.targetSquare.piece.remove();
-    execution.silentMove.call(this);
-  },
 
   promotion: function () {
     var chess = this.targetSquare.chess,
@@ -124,67 +185,4 @@ var execution = {
   }
 };
 
-Move.prototype = {
-  constructor: Move,
-
-  isPawnBigMove: function () {
-    var sourceRankIndex = this.piece.square.getRankIndex(),
-      destinationRankIndex = this.targetSquare.getRankIndex(),
-      rankDistance = Math.abs(sourceRankIndex - destinationRankIndex);
-
-    return this.piece.isPawn() && rankDistance === 2;
-  },
-
-  updateEnPassantSquareIndex: function () {
-    var chess = this.targetSquare.chess,
-      offset;
-
-    if (!this.isPawnBigMove()) {
-      delete chess.enPassantSquareIndex;
-      return;
-    }
-
-    offset = this.piece.color.isWhite() ? -16 : 16;
-    chess.enPassantSquareIndex = this.targetSquare.index + offset;
-    // TODO ???
-    chess.enPassantPawn = this.piece;
-  },
-
-  isCapture: function () {
-    return this.targetSquare.isOccupiedByOpponent(this.piece.color);
-  },
-
-  isEnPassant: function () {
-    var sourceFileIndex, destinationFileIndex;
-
-    if (!this.piece.isPawn() || this.targetSquare.isOccupied()) {
-      return false;
-    }
-
-    sourceFileIndex = this.piece.square.getFileIndex();
-    destinationFileIndex = this.targetSquare.getFileIndex();
-
-    return sourceFileIndex !== destinationFileIndex;
-  },
-
-  toSAN: function () {
-    var san = this.targetSquare.getName();
-
-    if (isUtils.isPresent(this.promotedPiece)) {
-      san += '=' + this.promotedPiece.token.toUpperCase();
-    } else if (!this.piece.isPawn()) {
-      san = this.piece.token.toUpperCase() + san;
-    }
-
-    return san;
-  },
-
-  toLongSAN: function () {
-    var sourceSquareName = this.piece.square.getName(),
-      destinationSquareName = this.targetSquare.getName();
-
-    return sourceSquareName + '-' + destinationSquareName;
-  }
-};
-
-module.exports = Move;
+module.exports = SilentMove;

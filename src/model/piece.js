@@ -137,7 +137,7 @@ var piecePrototype = {
   },
 
   createMove: function (targetSquare) {
-    return new Move(this, targetSquare);
+    return new Move(this.square, targetSquare);
   },
 
   remove: function () {
