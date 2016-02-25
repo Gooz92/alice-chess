@@ -33,7 +33,7 @@ describe('Move execution', function () {
       chess = Chess.createStartPosition();
     });
 
-    it.skip('update en passant target square for white pawn', function () {
+    it('update en passant target square for white pawn', function () {
       var bigPawnMove = chess.createMove('e2-e4'),
         epTargetSquare = chess.getSquareByName('e3');
 
@@ -42,7 +42,7 @@ describe('Move execution', function () {
       assert.strictEqual(chess.enPassantTargetSquare, epTargetSquare);
     });
 
-    it.skip('update en passant targetsquare for black pawn', function () {
+    it('update en passant target square for black pawn', function () {
       var bigPawnMove = chess.createMove('d7-d5'),
         epTargetSquare = chess.getSquareByName('d6');
 
