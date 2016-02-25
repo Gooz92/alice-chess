@@ -95,4 +95,30 @@ describe('Moves generation', function () {
       ]);
     });
   });
+
+  describe("don't leave king in check", function () {
+    var chess;
+
+    beforeEach(function () {
+      chess = new Chess();
+    });
+
+    it('lang-ranged piece', function () {
+      var whiteRook, rookTargerSquareNames;
+
+      chess.place({
+        e3: 'K',
+        e5: 'R',
+        e8: 'r'
+      });
+
+      whiteRook = chess.getSquareByName('e5').piece;
+      rookTargerSquareNames = whiteRook.generateTargetSquareNames();
+
+      assert.sameMembers(rookTargerSquareNames, [
+        'e4', 'e6', 'e7', 'e8'
+      ]);
+
+    });
+  });
 });

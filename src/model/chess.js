@@ -105,6 +105,11 @@ objectUtils.extend(Chess.prototype, {
     return new Square(squareIndex, this);
   },
 
+  getOpponentPieces: function () {
+    var opponentColor = this.activeColor.toggle();
+    return this.pieces[opponentColor.name];
+  },
+
   getPlayerPieces: function () {
     return this.pieces[this.activeColor.name];
   },
@@ -115,6 +120,20 @@ objectUtils.extend(Chess.prototype, {
 
     for (index = 0; index < playerPieces.length; index++) {
       piece = playerPieces[index];
+      if (piece.isKing()) {
+        return piece;
+      }
+    }
+
+    return null;
+  },
+
+  getOpponentKing: function () {
+    var opponentPieces = this.getOpponentPieces(),
+      piece, index;
+
+    for (index = 0; index < opponentPieces.length; index++) {
+      piece = opponentPieces[index];
       if (piece.isKing()) {
         return piece;
       }
@@ -169,6 +188,19 @@ objectUtils.extend(Chess.prototype, {
 
     // TODO
     return this.isSquareAttacked(playerKing.square.getName(), opponentColor);
+  },
+
+  // used only during move generation
+  isOpponentInCheck: function () {
+     var opponentKing = this.getOpponentKing(),
+      playerColor = this.activeColor;
+
+    if (opponentKing === null) {
+      return false;
+    }
+
+    // TODO
+    return this.isSquareAttacked(opponentKing.square.getName(), playerColor);
   },
 
   isSquareAttackedByPiece: function (squareIndex, piece) {

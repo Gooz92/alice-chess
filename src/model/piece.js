@@ -63,19 +63,34 @@ var piecePrototype = {
 
     this.offsets.forEach(function (offset) {
       var targetSquareIndex = self.square.index + offset,
-        targetSquare;
+        targetSquare, move, inCheck;
 
       while (boardUtils.isSquareOnBoard(targetSquareIndex)) {
         targetSquare = self.square.chess.squares[targetSquareIndex];
 
         if (targetSquare.isOccupied()) {
           if (targetSquare.piece.color !== self.color) {
-            callback.call(self, targetSquare);
+            move = self.createMove(targetSquare);
+            move.make();
+            inCheck = targetSquare.chess.isOpponentInCheck();
+            move.unMake();
+
+            if (!inCheck) {
+              callback.call(self, targetSquare);
+            }
           }
           return;
         }
 
-        callback.call(self, targetSquare);
+        move = self.createMove(targetSquare);
+        move.make();
+        inCheck = targetSquare.chess.isOpponentInCheck();
+        move.unMake();
+
+        if (!inCheck) {
+          callback.call(self, targetSquare);
+        }
+
         targetSquareIndex += offset;
       }
 
@@ -137,7 +152,7 @@ var piecePrototype = {
   },
 
   createMove: function (targetSquare) {
-    return new Move(this.square, targetSquare);
+    return Move.create(this.square, targetSquare);
   },
 
   remove: function () {
