@@ -10,7 +10,7 @@ var Move = function (sourceSquare, targetSquare) {
 };
 
 Move.create = function (sourceSquare, targetSquare, promotionPiece) {
-  if (targetSquare.isOccupied()) {
+  if (targetSquare.isOccupied() && isUtils.isUndefined(promotionPiece)) {
     return new Capture(sourceSquare, targetSquare);
   }
 
@@ -150,6 +150,10 @@ Move);
 
 PawnPromotion.prototype.make = function () {
   var chess = this.targetSquare.chess;
+
+  if (this.targetSquare.isOccupied()) {
+
+  }
 
   this.piece.remove();
 
