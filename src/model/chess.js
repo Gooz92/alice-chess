@@ -139,10 +139,6 @@ objectUtils.extend(Chess.prototype, {
   generateMoves: function () {
     var moves = [], playerPieces;
 
-    if (this.isInCheck()) {
-      return this.getPlayerKing().generateMoves();
-    }
-
     playerPieces = this.getPlayerPieces();
 
     playerPieces.forEach(function (piece) {

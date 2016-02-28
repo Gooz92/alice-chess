@@ -67,35 +67,6 @@ describe('Moves generation', function () {
     });
   });
 
-  describe('in check', function () {
-     var chess;
-
-    beforeEach(function () {
-      chess = new Chess();
-    });
-
-    it('should generate moves only for king', function () {
-      var moveNames;
-
-      chess.kings = {
-        white: chess.placePiece('K', 'e4')
-      };
-
-      chess.placePiece('P', 'f3');
-      chess.placePiece('n', 'g5');
-
-      moveNames = chess.generateMoveNames();
-
-      assert.isFalse(chess.isSquareAttacked('e3', chess.activeColor.toggle()));
-
-      assert.sameMembers(moveNames, [
-        'Kd5', 'Ke5', 'Kf5',
-        'Kd4', 'Kf4',
-        'Kd3', 'Ke3'
-      ]);
-    });
-  });
-
   describe("don't leave king in check", function () {
     var chess;
 
