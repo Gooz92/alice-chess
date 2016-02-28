@@ -73,6 +73,11 @@ Square.prototype = {
 
   getName: function () {
     return boardUtils.squareIndexToName(this.index);
+  },
+
+  isOnLastRank: function () {
+    var rankIndex = this.getRankIndex();
+    return rankIndex === 7 || rankIndex === 0;
   }
 };
 

@@ -183,4 +183,22 @@ describe('Square', function () {
       assert.isFalse(square.isOccupiedByOpponent(playerColor));
     });
   });
+
+  describe('#isOnLastRank()', function () {
+    it('return true if square placed on first rank', function () {
+      var square = Square.fromName('e1');
+      assert.isTrue(square.isOnLastRank());
+    });
+
+    it('return true if square placed on eighth rank', function () {
+      var square = Square.fromName('d8');
+      assert.isTrue(square.isOnLastRank());
+    });
+
+    it('return false if square placed on third rank', function () {
+      var square = Square.fromName('f3');
+      assert.isFalse(square.isOnLastRank());
+    });
+  });
+
 });
