@@ -152,7 +152,8 @@ PawnPromotion.prototype.make = function () {
   var chess = this.targetSquare.chess;
 
   if (this.targetSquare.isOccupied()) {
-
+    this.capturedPiece = this.targetSquare.piece;
+    this.targetSquare.piece.remove();
   }
 
   this.piece.remove();
