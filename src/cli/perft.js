@@ -23,15 +23,12 @@ function perft(depth) {
     subresult = perft(depth - 1);
     move.unMake();
 
-    if (depth === 3) {
-      console.log(move.toLongSAN() + ' : ' + subresult);
-    }
-
     nodes += subresult;
   });
 
   return nodes;
 }
 
+console.time('time');
 console.log(perft(depth));
-
+console.timeEnd('time');
