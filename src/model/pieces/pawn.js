@@ -64,7 +64,7 @@ module.exports = {
 
       targetSquare = self.square.chess.squares[targetSquareIndex];
 
-      move = Move.createCapture(self.square, targetSquare);
+      move = Move.create(self.square, targetSquare);
 
       if ((targetSquare.isOccupiedByOpponent(self.color) ||
         targetSquare === self.square.chess.enPassantTargetSquare) &&
