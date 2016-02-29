@@ -1,7 +1,8 @@
 'use strict';
 
 var isUtils = require('../utils/common-utils/is-utils'),
-  objectUtils = require('../utils/common-utils/object-utils');
+  objectUtils = require('../utils/common-utils/object-utils'),
+  arrayUtils = require('../utils/common-utils/array-utils');
 
 var Move = function (sourceSquare, targetSquare) {
   this.sourceSquare = sourceSquare;
@@ -55,6 +56,7 @@ Move.prototype.make = function () {
 
   this.previousEnPassantTagetSquare = enPassantTargetSquare;
   this.targetSquare.chess.turn();
+  this.targetSquare.chess.history.push(this);
 };
 
 Move.prototype.unMake = function () {
@@ -65,6 +67,7 @@ Move.prototype.unMake = function () {
   chess.enPassantTargetSquare = this.previousEnPassantTagetSquare;
 
   this.targetSquare.chess.turn();
+  arrayUtils.remove(this.targetSquare.chess.history, this);
 };
 
 Move.prototype.toSAN = function () {

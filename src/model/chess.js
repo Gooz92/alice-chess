@@ -12,6 +12,8 @@ var Square = require('./square'),
 function Chess() {
   this.activeColor = Color.WHITE;
 
+  this.history = [];
+
   this.pieces = {
     white: [],
     black: []
@@ -61,6 +63,12 @@ objectUtils.extend(Chess.prototype, {
     var placePiece = this.placePiece.bind(this);
 
     objectUtils.forEachOwnProperty(startPosition, placePiece);
+  },
+
+  getSanHistory: function () {
+    return this.history.map(function (move) {
+      return move.toSAN();
+    });
   },
 
   generateEmptySquares: function () {
