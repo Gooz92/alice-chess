@@ -41,7 +41,7 @@ describe('Chess', function () {
 
       squareNames.forEach(function (squareName) {
         var square = chess.getSquareByName(squareName);
-        assert.strictEqual(squareName, square.getName());
+        assert.strictEqual(squareName, square.name);
       });
 
     });

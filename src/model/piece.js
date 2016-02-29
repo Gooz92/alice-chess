@@ -92,7 +92,7 @@ var piecePrototype = {
 
   forEachTargetSquareName: function (callback) {
     this.forEachMovee(function (move) {
-      var targetSquareName = move.targetSquare.getName();
+      var targetSquareName = move.targetSquare.name;
       callback.call(this, targetSquareName);
     });
   },
@@ -120,7 +120,7 @@ var piecePrototype = {
 
   generateTargetSquareNames: function () {
     return this.mapTargetSquares(function (square) {
-      return square.getName();
+      return square.name;
     });
   },
 

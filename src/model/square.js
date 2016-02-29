@@ -6,6 +6,7 @@ var isUtils = require('../utils/common-utils/is-utils'),
 function Square(index, chess) {
   this.index = index;
   this.chess = chess;
+  this.name = boardUtils.squareIndexToName(index);
 }
 
 Square.fromName = function (squareName, chess) {
@@ -69,10 +70,6 @@ Square.prototype = {
 
   getFileIndex: function () {
     return boardUtils.fileIndexFromSquareIndex(this.index);
-  },
-
-  getName: function () {
-    return boardUtils.squareIndexToName(this.index);
   },
 
   isOnLastRank: function () {

@@ -71,7 +71,7 @@ Move.prototype.unMake = function () {
 };
 
 Move.prototype.toSAN = function () {
-  var san = this.targetSquare.getName();
+  var san = this.targetSquare.name;
 
   if (!this.piece.isPawn()) {
     san = this.piece.token.toUpperCase() + san;
@@ -81,7 +81,7 @@ Move.prototype.toSAN = function () {
 };
 
 Move.prototype.toLongSAN = function () {
-  return this.sourceSquare.getName() + '-' + this.targetSquare.getName();
+  return this.sourceSquare.name + '-' + this.targetSquare.name;
 };
 
 var BigPawn = objectUtils.inherit(function (sourceSquare, targetSquare) {
@@ -144,7 +144,7 @@ EnPassant.prototype.unMake = function () {
   // TODO performance
   chess.placePiece(
     this.capturedPawn.getFenToken(),
-    this.capturedPawn.square.getName()
+    this.capturedPawn.square.name
   );
 };
 
@@ -167,7 +167,7 @@ PawnPromotion.prototype.make = function () {
 
   this.promotedPiece = chess.placePiece(
     this.promotedPiece,
-    this.targetSquare.getName()
+    this.targetSquare.name
   );
 
   this.previousEnPassantTagetSquare = chess.enPassantTargetSquare;
@@ -181,7 +181,7 @@ PawnPromotion.prototype.unMake = function () {
 
   chess.placePiece(
     this.piece,
-    this.sourceSquare.getName()
+    this.sourceSquare.name
   );
 
   chess.enPassantTargetSquare = this.previousEnPassantTagetSquare;

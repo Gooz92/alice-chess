@@ -179,8 +179,7 @@ objectUtils.extend(Chess.prototype, {
       return false;
     }
 
-    // TODO
-    return this.isSquareAttacked(playerKing.square.getName(), opponentColor);
+    return this.isSquareAttacked(playerKing.square.name, opponentColor);
   },
 
   // used only during move generation
@@ -192,8 +191,7 @@ objectUtils.extend(Chess.prototype, {
       return false;
     }
 
-    // TODO
-    return this.isSquareAttacked(opponentKing.square.getName(), playerColor);
+    return this.isSquareAttacked(opponentKing.square.name, playerColor);
   },
 
   isSquareAttackedByPiece: function (squareIndex, piece) {
@@ -318,11 +316,11 @@ objectUtils.extend(Chess.prototype, {
     var field = {};
 
     this.pieces.white.forEach(function (piece) {
-      field[piece.square.getName()] = piece.token.toUpperCase();
+      field[piece.square.name] = piece.token.toUpperCase();
     });
 
     this.pieces.black.forEach(function (piece) {
-      field[piece.square.getName()] = piece.token;
+      field[piece.square.name] = piece.token;
     });
 
     return field;
