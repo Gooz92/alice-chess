@@ -75,6 +75,10 @@ Move.prototype.toSAN = function () {
   return san;
 };
 
+Move.prototype.toLongSAN = function () {
+  return this.sourceSquare.getName() + '-' + this.targetSquare.getName();
+};
+
 var BigPawn = objectUtils.inherit(function (sourceSquare, targetSquare) {
   this.super.constructor.call(this, sourceSquare, targetSquare);
 }, Move);
@@ -103,11 +107,9 @@ Capture.prototype.make = function () {
 Capture.prototype.unMake = function () {
   this.super.unMake.call(this);
 
-  // TODO preformance
-  this.targetSquare.chess.placePiece(
-    this.capturedPiece.getFenToken(),
-    this.targetSquare.getName()
-  );
+  this.targetSquare.piece = this.capturedPiece;
+  this.capturedPiece.square = this.targetSquare;
+  this.targetSquare.chess.pieces[this.capturedPiece.color.name].push(this.capturedPiece);
 };
 
 var EnPassant = objectUtils.inherit(function (sourceSquare, targetSquare) {
