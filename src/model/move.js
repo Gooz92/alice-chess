@@ -10,6 +10,14 @@ var Move = function (sourceSquare, targetSquare) {
   this.piece = this.sourceSquare.piece;
 };
 
+Move.createSilentMove = function (sourceSquare, targetSquare) {
+  return new Move(sourceSquare, targetSquare);
+};
+
+Move.createCapture = function (sourceSquare, targetSquare) {
+  return new Capture(sourceSquare, targetSquare);
+}
+
 Move.create = function (sourceSquare, targetSquare, promotionPiece) {
   if (targetSquare.isOccupied() && isUtils.isUndefined(promotionPiece)) {
     return new Capture(sourceSquare, targetSquare);

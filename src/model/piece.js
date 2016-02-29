@@ -70,7 +70,7 @@ var piecePrototype = {
 
         if (targetSquare.isOccupied()) {
           if (targetSquare.piece.color !== self.color) {
-            move = self.createMove(targetSquare);
+            move = Move.createCapture(self.square, targetSquare);
             if (!targetSquare.chess.isInCheckAfter(move)) {
               callback.call(self, move);
             }
@@ -78,7 +78,7 @@ var piecePrototype = {
           return;
         }
 
-        move = self.createMove(targetSquare);
+        move = Move.createSilentMove(self.square, targetSquare);
 
         if (!targetSquare.chess.isInCheckAfter(move)) {
           callback.call(self, move);

@@ -1,6 +1,7 @@
 'use strict';
 
-var boardUtils = require('../../utils/chess-utils/board-utils');
+var boardUtils = require('../../utils/chess-utils/board-utils'),
+  Move = require('../move');
 
 var captureOffsets = [15, 17];
 
@@ -29,7 +30,7 @@ module.exports = {
       targetSquareIndex += offset;
       targetSquare = this.square.chess.squares[targetSquareIndex];
       if (targetSquare.isEmpty()) {
-        move = this.createMove(targetSquare);
+        move = Move.createSilentMove(this.square, targetSquare);
         if (!this.square.chess.isInCheckAfter(move)) {
           callback.call(this, move);
         }
@@ -63,7 +64,7 @@ module.exports = {
 
       targetSquare = self.square.chess.squares[targetSquareIndex];
 
-      move = self.createMove(targetSquare);
+      move = Move.createCapture(self.square, targetSquare);
 
       if ((targetSquare.isOccupiedByOpponent(self.color) ||
         targetSquare === self.square.chess.enPassantTargetSquare) &&
