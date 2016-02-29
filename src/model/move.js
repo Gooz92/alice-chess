@@ -125,6 +125,14 @@ Capture.prototype.unMake = function () {
   this.targetSquare.chess.pieces[this.capturedPiece.color.name].push(this.capturedPiece);
 };
 
+Capture.prototype.toSAN = function () {
+  if (this.piece.isPawn()) {
+    return this.sourceSquare.getFileName() + 'x' + this.targetSquare.name;
+  }
+
+  return this.piece.token.toUpperCase() + 'x' + this.targetSquare.name;
+};
+
 var EnPassant = objectUtils.inherit(function (sourceSquare, targetSquare) {
   this.super.constructor.call(this, sourceSquare, targetSquare);
   this.capturedPawn = this.getCapturedPawn();

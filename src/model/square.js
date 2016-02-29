@@ -35,6 +35,10 @@ Square.prototype = {
     return fileDistance;
   },
 
+  getFileName: function () {
+    return this.name.charAt(0);
+  },
+
   getDistance: function (square) {
     var rankDistance = this.getRankDistance(square),
       fileDistance = this.getFileDistance(square),
