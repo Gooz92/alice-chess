@@ -6,7 +6,7 @@ var boardUtils = require('../../utils/chess-utils/board-utils'),
 module.exports = {
   token: 'n',
 
-  forEachTargetSquare: function (callback) {
+  forEachMove: function (callback) {
     var self = this;
 
     offsets.forEach(function (offset) {
@@ -23,7 +23,7 @@ module.exports = {
       if ((targetSquare.isEmpty() ||
         targetSquare.isOccupiedByOpponent(self.color)) &&
         !targetSquare.chess.isInCheckAfter(move)) {
-        callback.call(self, targetSquare);
+        callback.call(self, move);
       }
     });
   }

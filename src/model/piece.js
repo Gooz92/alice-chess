@@ -58,7 +58,7 @@ var piecePrototype = {
    * This implemetation use by rook, bishop and queen.
    * For pawn, knight and king used implementation placed in corresonding module
    */
-  forEachTargetSquare: function (callback) {
+  forEachMove: function (callback) {
     var self = this;
 
     this.offsets.forEach(function (offset) {
@@ -72,7 +72,7 @@ var piecePrototype = {
           if (targetSquare.piece.color !== self.color) {
             move = self.createMove(targetSquare);
             if (!targetSquare.chess.isInCheckAfter(move)) {
-              callback.call(self, targetSquare);
+              callback.call(self, move);
             }
           }
           return;
@@ -81,7 +81,7 @@ var piecePrototype = {
         move = self.createMove(targetSquare);
 
         if (!targetSquare.chess.isInCheckAfter(move)) {
-          callback.call(self, targetSquare);
+          callback.call(self, move);
         }
 
         targetSquareIndex += offset;
@@ -91,8 +91,8 @@ var piecePrototype = {
   },
 
   forEachTargetSquareName: function (callback) {
-    this.forEachTargetSquare(function (targetSquare) {
-      var targetSquareName = targetSquare.getName();
+    this.forEachMovee(function (move) {
+      var targetSquareName = move.targetSquare.getName();
       callback.call(this, targetSquareName);
     });
   },
@@ -100,7 +100,7 @@ var piecePrototype = {
   calculateMoveCount: function () {
     var moveCount = 0;
 
-    this.forEachTargetSquare(function () {
+    this.forEachMove(function () {
       ++moveCount;
     });
 
@@ -110,8 +110,8 @@ var piecePrototype = {
   mapTargetSquares: function (callback) {
     var results = [];
 
-    this.forEachTargetSquare(function (targetSquare) {
-      var result = callback.call(this, targetSquare);
+    this.forEachMove(function (move) {
+      var result = callback.call(this, move.targetSquare);
       results.push(result);
     });
 
@@ -125,9 +125,13 @@ var piecePrototype = {
   },
 
   generateMoves: function () {
-    return this.mapTargetSquares(function (square) {
-      return this.createMove(square);
+    var moves = [];
+
+    this.forEachMove(function (move) {
+      moves.push(move);
     });
+
+    return moves;
   },
 
   generateSanMoves: function () {

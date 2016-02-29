@@ -11,7 +11,7 @@ var offsets = [16, -16, 1, -1, 15, 17, -15, -17],
 module.exports = {
   token: 'k',
 
-  forEachTargetSquare: function (callback) {
+  forEachMove: function (callback) {
     var self = this,
       opponentColor = this.color.toggle(),
       chess = self.square.chess;
@@ -33,7 +33,7 @@ module.exports = {
 
       if (targetSquare.isEmpty() ||
         targetSquare.isOccupiedByOpponent(self.color)) {
-        callback.call(self, targetSquare);
+        callback.call(self, self.createMove(targetSquare));
       }
     });
   }

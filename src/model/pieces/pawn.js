@@ -14,12 +14,12 @@ module.exports = {
     return rankIndex === startRankIndex;
   },
 
-  forEachTargetSquare: function (callback) {
-    this.forEachStepSquare(callback);
-    this.forEachCaptureSquare(callback);
+  forEachMove: function (callback) {
+    this.forEachStep(callback);
+    this.forEachCapture(callback);
   },
 
-  forEachStepSquare: function (callback) {
+  forEachStep: function (callback) {
     var offset = this.color.isWhite() ? 16 : -16,
       targetSquareIndex = this.square.index,
       targetSquare, isFirstStep = false,
@@ -31,7 +31,7 @@ module.exports = {
       if (targetSquare.isEmpty()) {
         move = this.createMove(targetSquare);
         if (!this.square.chess.isInCheckAfter(move)) {
-          callback.call(this, targetSquare);
+          callback.call(this, move);
         }
         isFirstStep = !isFirstStep;
       } else {
@@ -40,7 +40,7 @@ module.exports = {
     } while (isFirstStep && this.isOnStartPosition());
   },
 
-  forEachCaptureSquare: function (callback) {
+  forEachCapture: function (callback) {
     var offsets,
       self = this;
 
@@ -68,7 +68,7 @@ module.exports = {
       if ((targetSquare.isOccupiedByOpponent(self.color) ||
         targetSquare === self.square.chess.enPassantTargetSquare) &&
         !targetSquare.chess.isInCheckAfter(move)) {
-        callback.call(self, targetSquare);
+        callback.call(self, move);
       }
     });
   }
