@@ -30,7 +30,7 @@ module.exports = {
       targetSquareIndex += offset;
       targetSquare = this.square.chess.squares[targetSquareIndex];
       if (targetSquare.isEmpty()) {
-        move = Move.createSilentMove(this.square, targetSquare);
+        move = Move.create(this.square, targetSquare);
         if (!this.square.chess.isInCheckAfter(move)) {
           callback.call(this, move);
         }
