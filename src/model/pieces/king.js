@@ -18,7 +18,7 @@ module.exports = {
 
     offsets.forEach(function (offset) {
       var targetSquareIndex = self.square.index + offset,
-        targetSquare;
+        targetSquare, move;
 
       if (boardUtils.isSquareOutOfBoard(targetSquareIndex)) {
         return;
@@ -26,13 +26,21 @@ module.exports = {
 
       targetSquare = self.square.chess.squares[targetSquareIndex];
 
-      if (chess.isSquareAttacked(targetSquare.name, opponentColor)) {
+      if (targetSquare.isOccupiedByOpponent(self.color)) {
+        move = self.createCapture(self.square, targetSquare);
+      } else if (targetSquare.isEmpty()) {
+        move = self.createMove(targetSquare);
+      } else {
+        return;
+      }
+
+      if (chess.isInCheckAfter(move)) {
         return;
       }
 
       if (targetSquare.isEmpty() ||
         targetSquare.isOccupiedByOpponent(self.color)) {
-        callback.call(self, self.createMove(targetSquare));
+        callback.call(self, move);
       }
     });
   }

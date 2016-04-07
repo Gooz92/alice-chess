@@ -30,6 +30,8 @@ describe('King', function () {
       var blackKing = chess.placePiece('k', 'e5'),
         targetSquareNames;
 
+      chess.turn();
+
       chess.placePiece('B', 'g5');
       chess.placePiece('r', 'd7');
 
