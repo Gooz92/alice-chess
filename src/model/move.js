@@ -16,7 +16,7 @@ Move.createSilentMove = function (sourceSquare, targetSquare) {
 
 Move.createCapture = function (sourceSquare, targetSquare) {
   return new Capture(sourceSquare, targetSquare);
-}
+};
 
 Move.create = function (sourceSquare, targetSquare, promotionPiece) {
   if (targetSquare.isOccupied() && isUtils.isUndefined(promotionPiece)) {
@@ -118,11 +118,13 @@ Capture.prototype.make = function () {
 };
 
 Capture.prototype.unMake = function () {
+  var capturedPieceColor = this.capturedPiece.color.name;
+
   this.super.unMake.call(this);
 
   this.targetSquare.piece = this.capturedPiece;
   this.capturedPiece.square = this.targetSquare;
-  this.targetSquare.chess.pieces[this.capturedPiece.color.name].push(this.capturedPiece);
+  this.targetSquare.chess.pieces[capturedPieceColor].push(this.capturedPiece);
 };
 
 Capture.prototype.toSAN = function () {
