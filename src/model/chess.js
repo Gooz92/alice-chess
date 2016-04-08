@@ -260,6 +260,21 @@ objectUtils.extend(Chess.prototype, {
     return Move.create(sourceSquare, targetSquare);
   },
 
+  move: function (moveName) {
+    var moves = this.generateMoves(),
+      move, index;
+
+    for (index = 0; index < moves.length; index++) {
+      move = moves[index];
+      if (move.toSAN() === moveName) {
+        move.make();
+        return true;
+      }
+    }
+
+    return false;
+  },
+
   getRank: function (rankIndex) {
     var rank = [],
       squareIndex = rankIndex * 16;
