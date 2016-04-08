@@ -3,9 +3,9 @@
 var Chess = require('../model/chess');
 
 var chess = Chess.createStartPosition(),
-  depth = process.argv[2];
+  initialDepth = process.argv[2];
 
-depth = parseInt(depth);
+initialDepth = parseInt(initialDepth);
 
 function perft(depth) {
   var nodes = 0, moves;
@@ -21,6 +21,9 @@ function perft(depth) {
 
     move.make();
     subresult = perft(depth - 1);
+    if (depth === initialDepth) {
+      console.log(move.toSAN() + ' : ' + subresult);
+    }
     move.unMake();
 
     nodes += subresult;
@@ -30,5 +33,5 @@ function perft(depth) {
 }
 
 console.time('time');
-console.log(perft(depth));
+console.log(perft(initialDepth));
 console.timeEnd('time');
