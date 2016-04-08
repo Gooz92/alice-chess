@@ -1,7 +1,7 @@
 'use strict';
 
 var assert = require('chai').assert,
-  Chess = require('../chess'),
+  Chess = require('../../chess'),
   perft5Results = require('./data/initial-position-perft5-results');
 
 describe('perft5', function () {

@@ -10,12 +10,24 @@ module.exports = function (grunt) {
         colors: false
       },
 
-      all: {
-        src: ['src/**/*.spec.js'],
+      model: {
+        src: ['src/model/spec/*.spec.js']
       },
 
-      attacks: {
-        src: 'src/model/spec/attacks.spec.js'
+      commonUtils: {
+        src: ['src/utils/common-utils/spec/*.spec.js']
+      },
+
+      chessUtils: {
+        src: ['src/utils/chess-utils/spec/*.spec.js']
+      },
+
+      fenParser: {
+        src: ['src/utils/fen-parser/spec/*.spec.js']
+      },
+
+      perft5: {
+        src: ['src/model/spec/perft/*.spec.js']
       }
     },
 
