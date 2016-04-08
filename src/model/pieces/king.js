@@ -1,6 +1,7 @@
 'use strict';
 
-var boardUtils = require('../../utils/chess-utils/board-utils');
+var boardUtils = require('../../utils/chess-utils/board-utils'),
+  Move = require('../move');
 
 var offsets = [16, -16, 1, -1, 15, 17, -15, -17],
   castlingOffsets = [
@@ -27,7 +28,7 @@ module.exports = {
       targetSquare = self.square.chess.squares[targetSquareIndex];
 
       if (targetSquare.isOccupiedByOpponent(self.color)) {
-        move = self.createCapture(self.square, targetSquare);
+        move = Move.createCapture(self.square, targetSquare);
       } else if (targetSquare.isEmpty()) {
         move = self.createMove(targetSquare);
       } else {
