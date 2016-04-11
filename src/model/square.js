@@ -48,7 +48,7 @@ Square.prototype = {
   },
 
   isTargetEnPassantSquare: function () {
-    return this === this.chess.targetEnPassantSquare;
+    return this === this.chess.enPassantTargetSquare;
   },
 
   isOccupied: function () {

@@ -142,8 +142,8 @@ var EnPassant = objectUtils.inherit(function (sourceSquare, targetSquare) {
 
 EnPassant.prototype.getCapturedPawn = function () {
   var chess = this.targetSquare.chess,
-    squareIndexOffset = this.soureSquare.piece.isWhite() ? -16 : 16,
-    capturedPawnSquareIndex = this.tagertSquare.index + squareIndexOffset,
+    squareIndexOffset = this.sourceSquare.piece.color.isWhite() ? -16 : 16,
+    capturedPawnSquareIndex = this.targetSquare.index + squareIndexOffset,
     capturedPawn = chess.squares[capturedPawnSquareIndex].piece;
 
   return capturedPawn;
@@ -159,11 +159,12 @@ EnPassant.prototype.unMake = function () {
 
   this.super.unMake.call(this);
 
-  // TODO performance
-  chess.placePiece(
-    this.capturedPawn.getFenToken(),
-    this.capturedPawn.square.name
-  );
+  var squareIndexOffset = this.sourceSquare.piece.color.isWhite() ? -16 : 16,
+    capturedPawnSquareIndex = this.targetSquare.index + squareIndexOffset;
+
+  this.capturedPawn.square = chess.squares[capturedPawnSquareIndex];
+  this.capturedPawn.square.piece = this.capturedPawn;
+  chess.pieces[this.capturedPawn.color.name].push(this.capturedPawn);
 };
 
 var PawnPromotion = objectUtils.inherit(
