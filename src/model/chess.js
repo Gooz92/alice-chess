@@ -20,10 +20,15 @@ function Chess() {
   };
 
   this.castlingAvalibility = {
-    k: true,
-    q: true,
-    K: true,
-    Q: true
+    w: {
+      k: true,
+      q: true,
+    },
+
+    b: {
+      k: true,
+      q: true
+    }
   };
 
   this.squares = this.generateEmptySquares();

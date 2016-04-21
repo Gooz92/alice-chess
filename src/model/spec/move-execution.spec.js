@@ -163,4 +163,55 @@ describe('Move execution', function () {
       assert.strictEqual(king.square.name, 'c8');
     });
   });
+
+  describe('update castling avalibility', function () {
+    var chess;
+
+    beforeEach(function () {
+      chess = new Chess();
+
+      chess.placePiece('K', 'e1');
+      chess.placePiece('R', 'a1');
+      chess.placePiece('R', 'h1');
+
+      chess.placePiece('k', 'e8');
+      chess.placePiece('r', 'a8');
+      chess.placePiece('r', 'h8');
+    });
+
+    it('white short castling impossible after moving right rook', function () {
+      chess.move('Rh5');
+      assert.isFalse(chess.castlingAvalibility.w.k);
+    });
+
+    it('white long castling impossible after moving left rook', function () {
+      chess.move('Ra6');
+      assert.isFalse(chess.castlingAvalibility.w.q);
+    });
+
+    it('white castling impossible after moving white king', function () {
+      chess.move('Ke2');
+      assert.isFalse(chess.castlingAvalibility.w.q);
+      assert.isFalse(chess.castlingAvalibility.w.k);
+    });
+
+    it('black castling impossible after moving black king', function () {
+      chess.turn();
+      chess.move('Kd8');
+      assert.isFalse(chess.castlingAvalibility.b.q);
+      assert.isFalse(chess.castlingAvalibility.b.k);
+    });
+
+    it('black short castling impossible after moving left rook', function () {
+      chess.turn();
+      chess.move('Rh6');
+      assert.isFalse(chess.castlingAvalibility.b.k);
+    });
+
+    it('black long castling impossible after moving right rook', function () {
+      chess.turn();
+      chess.move('Ra5');
+      assert.isFalse(chess.castlingAvalibility.b.q);
+    });
+  });
 });

@@ -56,15 +56,37 @@ function createPawnMove(sourceSquare, targetSquare, promotionPiece) {
 }
 
 Move.prototype.make = function () {
-  var enPassantTargetSquare = this.sourceSquare.chess.enPassantTargetSquare;
+  var enPassantTargetSquare = this.sourceSquare.chess.enPassantTargetSquare,
+    chess = this.targetSquare.chess,
+    playerCastlingAvalibility;
 
   delete this.sourceSquare.chess.enPassantTargetSquare;
 
   this.piece.moveTo(this.targetSquare);
 
   this.previousEnPassantTagetSquare = enPassantTargetSquare;
-  this.targetSquare.chess.turn();
-  this.targetSquare.chess.history.push(this);
+  // TODO optimize castlingAvalibility updating
+  this.previousCastlingAvalibility = objectUtils.merge({}, chess.castlingAvalibility);
+
+  chess.turn();
+  chess.history.push(this);
+
+   // TODO optimize castlingAvalibility updating
+  if (this.piece.isRook()) {
+    playerCastlingAvalibility = chess.castlingAvalibility[this.piece.color.token];
+    if (this.sourceSquare.getFileIndex() === 0) {
+      playerCastlingAvalibility.q = false;
+    } else if (this.sourceSquare.getFileIndex() === 7) {
+      playerCastlingAvalibility.k = false;
+    }
+  }
+
+  // TODO optimize castlingAvalibility updating
+  if (this.piece.isKing()) {
+    playerCastlingAvalibility = chess.castlingAvalibility[this.piece.color.token];
+    playerCastlingAvalibility.q = false;
+    playerCastlingAvalibility.k = false;
+  }
 };
 
 Move.prototype.unMake = function () {
@@ -73,6 +95,9 @@ Move.prototype.unMake = function () {
   this.piece.moveTo(this.sourceSquare);
 
   chess.enPassantTargetSquare = this.previousEnPassantTagetSquare;
+
+  // TODO optimize castlingAvalibility updating
+  objectUtils.merge(chess.castlingAvalibility, this.previousCastlingAvalibility);
 
   this.targetSquare.chess.turn();
   arrayUtils.remove(this.targetSquare.chess.history, this);
