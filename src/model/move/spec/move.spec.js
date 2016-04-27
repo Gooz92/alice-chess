@@ -17,4 +17,14 @@ describe('Move', function () {
     it('toggle color');
     it('remove itself from history');
   });
+
+  describe('#toSan()', function () {
+    it("pawn SAN move name don't start with 'p'");
+    it('SAN move name ends with target square name');
+
+    'RNBQK'.split('').forEach(function (pieceToken) {
+      it("SAN move name start with '" +
+        pieceToken + "' for '" + pieceToken + "' piece");
+    });
+  });
 });
