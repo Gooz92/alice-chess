@@ -1,12 +1,12 @@
 'use strict';
 
-var arrayUtils = require('../../utils/common-utils/array-utils')
+var arrayUtils = require('../../utils/common-utils/array-utils');
 
 function Move(sourceSquare, targetSquare) {
   this.sourceSquare = sourceSquare;
   this.targetSquare = targetSquare;
   this.piece = this.sourceSquare.piece;
-};
+}
 
 Move.prototype = {
   constructor: Move,

@@ -1,3 +1,7 @@
+'use strict';
+
+/* jshint esnext: true */
+
 var Chess = require('../model/chess'),
   readline = require('readline');
 
@@ -9,7 +13,7 @@ console.log(chess.toASCII());
 rl
   .on('line', line => {
     if (line === ':q') {
-      rl.close()
+      rl.close();
     }
 
     if (!chess.move(line)) {

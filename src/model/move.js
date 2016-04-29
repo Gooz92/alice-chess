@@ -89,7 +89,10 @@ Move.prototype.make = function () {
     if (chess.castlingAvalibility[2 * this.piece.color.index]) {
       chess.castlingAvalibility[2 * this.piece.color.index] = false;
       chess.castlingAvalibility[2 * this.piece.color.index + 1] = false;
-      this.changesInCastling.push(2 * this.piece.color.index, this.piece.color.index + 1);
+      this.changesInCastling.push(
+        2 * this.piece.color.index,
+        this.piece.color.index + 1
+      );
     }
   }
 };
