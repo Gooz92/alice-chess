@@ -20,6 +20,10 @@ module.exports = {
       make: function () {
         self.moveTo(kingTargetSquare);
         rook.moveTo(rookTargetSquare);
+      },
+
+      toSAN: function () {
+        return 'O-O';
       }
     };
   },
@@ -37,6 +41,29 @@ module.exports = {
         rook.moveTo(rookTargetSquare);
       }
     };
+  },
+
+  isKsideCaslingAvailable: function () {
+    var self = this, squares, rookSquare;
+
+    if (this.color.isWhite()) {
+      squares = [
+        this.square.chess.getSquareByName('f1'),
+        this.square.chess.getSquareByName('g1')
+      ];
+      rookSquare = self.square.chess.getSquareByName('h1');
+    } else {
+      squares = [
+        this.square.chess.getSquareByName('f8'),
+        this.square.chess.getSquareByName('g8')
+      ];
+      rookSquare = self.square.chess.getSquareByName('h8');
+    }
+
+    return rookSquare.isOccupied() && squares.every(function (square) {
+      return (square.isEmpty() &&
+        !square.chess.isSquareAttacked(square.name, self.color.toggle()));
+    });
   },
 
   forEachMove: function (callback) {
@@ -71,5 +98,9 @@ module.exports = {
         callback.call(self, move);
       }
     });
+
+    if (this.square.name === 'e1' && chess.castlingAvalibility[2 * this.color.index] && this.isKsideCaslingAvailable()) {
+      callback.call(self, this.createShortCastlingMove());
+    }
   }
 };
