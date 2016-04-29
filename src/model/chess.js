@@ -19,17 +19,7 @@ function Chess() {
     black: []
   };
 
-  this.castlingAvalibility = {
-    w: {
-      k: true,
-      q: true,
-    },
-
-    b: {
-      k: true,
-      q: true
-    }
-  };
+  this.castlingAvalibility = [true, true, true, true];
 
   this.squares = this.generateEmptySquares();
 }

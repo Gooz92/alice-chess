@@ -2,17 +2,18 @@
 
 var created = false;
 
-function Color(name, token) {
+function Color(name, token, index) {
   if (created) {
     throw new Error('Color enum already created');
   }
 
   this.name = name;
   this.token = token;
+  this.index = index;
 }
 
-Color.WHITE = new Color('white', 'w');
-Color.BLACK = new Color('black', 'b');
+Color.WHITE = new Color('white', 'w', 0);
+Color.BLACK = new Color('black', 'b', 1);
 
 created = true;
 

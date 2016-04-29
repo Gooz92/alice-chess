@@ -57,35 +57,40 @@ function createPawnMove(sourceSquare, targetSquare, promotionPiece) {
 
 Move.prototype.make = function () {
   var enPassantTargetSquare = this.sourceSquare.chess.enPassantTargetSquare,
-    chess = this.targetSquare.chess,
-    playerCastlingAvalibility;
+    chess = this.targetSquare.chess;
 
   delete this.sourceSquare.chess.enPassantTargetSquare;
 
   this.piece.moveTo(this.targetSquare);
 
   this.previousEnPassantTagetSquare = enPassantTargetSquare;
-  // TODO optimize castlingAvalibility updating
-  this.previousCastlingAvalibility = objectUtils.merge({}, chess.castlingAvalibility);
+  this.changesInCastling = [];
 
   chess.turn();
   chess.history.push(this);
 
    // TODO optimize castlingAvalibility updating
   if (this.piece.isRook()) {
-    playerCastlingAvalibility = chess.castlingAvalibility[this.piece.color.token];
     if (this.sourceSquare.getFileIndex() === 0) {
-      playerCastlingAvalibility.q = false;
+      if (chess.castlingAvalibility[2 * this.piece.color.index + 1]) {
+        this.changesInCastling.push(2 * this.piece.color.index + 1);
+        chess.castlingAvalibility[2 * this.piece.color.index + 1] = false;
+      }
     } else if (this.sourceSquare.getFileIndex() === 7) {
-      playerCastlingAvalibility.k = false;
+      if (chess.castlingAvalibility[2 * this.piece.color.index]) {
+        chess.castlingAvalibility[2 * this.piece.color.index] = false;
+        this.changesInCastling.push(2 * this.piece.color.index);
+      }
     }
   }
 
   // TODO optimize castlingAvalibility updating
   if (this.piece.isKing()) {
-    playerCastlingAvalibility = chess.castlingAvalibility[this.piece.color.token];
-    playerCastlingAvalibility.q = false;
-    playerCastlingAvalibility.k = false;
+    if (chess.castlingAvalibility[2 * this.piece.color.index]) {
+      chess.castlingAvalibility[2 * this.piece.color.index] = false;
+      chess.castlingAvalibility[2 * this.piece.color.index + 1] = false;
+      this.changesInCastling.push(2 * this.piece.color.index, this.piece.color.index + 1);
+    }
   }
 };
 
@@ -96,8 +101,9 @@ Move.prototype.unMake = function () {
 
   chess.enPassantTargetSquare = this.previousEnPassantTagetSquare;
 
-  // TODO optimize castlingAvalibility updating
-  objectUtils.merge(chess.castlingAvalibility, this.previousCastlingAvalibility);
+  this.changesInCastling.forEach(function (index) {
+    chess.castlingAvalibility[index] = true;
+  });
 
   this.targetSquare.chess.turn();
   arrayUtils.remove(this.targetSquare.chess.history, this);
