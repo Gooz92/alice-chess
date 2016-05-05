@@ -2,7 +2,8 @@
 
 var boardUtils = require('../../utils/chess-utils/board-utils'),
   Move = require('../move'),
-  squares = require('../../utils/chess-utils/squares');
+  squares = require('../../utils/chess-utils/squares'),
+  arrayUtils = require('../../utils/common-utils/array-utils');
 
 var offsets = [16, -16, 1, -1, 15, 17, -15, -17];
 
@@ -20,6 +21,13 @@ module.exports = {
       make: function () {
         self.moveTo(kingTargetSquare);
         rook.moveTo(rookTargetSquare);
+        self.square.chess.history.push(this);
+      },
+
+      unMake: function () {
+        self.moveTo(self.square.chess.squares[squares.e1]);
+        rook.moveTo(self.square.chess.squares[squares.h1]);
+        arrayUtils.remove(self.square.chess.history, this);
       },
 
       toSAN: function () {
