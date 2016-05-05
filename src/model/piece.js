@@ -135,10 +135,13 @@ var piecePrototype = {
   },
 
   generateSanMoves: function () {
-    return this.mapTargetSquares(function (targetSquare) {
-      var move = this.createMove(targetSquare);
-      return move.toSAN();
+    var moveNames = [];
+
+    this.forEachMove(function (move) {
+      moveNames.push(move.toSAN());
     });
+
+    return moveNames;
   },
 
   move: function (squareName) {
