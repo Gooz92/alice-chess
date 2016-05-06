@@ -198,6 +198,39 @@ objectUtils.extend(Chess.prototype, {
     return result + 0.1 * mobility;
   },
 
+  findBestMove: function () {
+    var self = this,
+      bestMove;
+
+    var negaMax = function (depth) {
+      var max = Number.NEGATIVE_INFINITY,
+        moves, score;
+
+      if (depth === 0) {
+        return self.activeColor.isWhite() ? self.evaluate() : -self.evaluate();
+      }
+
+      moves = self.generateMoves();
+
+      moves.forEach(function (move) {
+        move.make();
+        score = negaMax(depth - 1);
+        if (score > max) {
+          max = score;
+          if (depth === 3) {
+            bestMove = move;
+          }
+        }
+        move.unMake();
+      });
+
+      return score;
+    }
+
+    negaMax(3);
+    return bestMove;
+  },
+
   // used only during move generation
   isOpponentInCheck: function () {
      var opponentKing = this.getOpponentKing(),
