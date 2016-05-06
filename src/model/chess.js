@@ -177,6 +177,27 @@ objectUtils.extend(Chess.prototype, {
     return this.isSquareAttacked(playerKing.square.name, opponentColor);
   },
 
+  evaluate: function () {
+    var pieceCost = {
+      q: 9,
+      r: 5,
+      b: 3,
+      n: 3,
+      p: 1
+    };
+
+    var playerPieces = this.getPlayerPieces();
+    var result = 0, mobility = 0;
+
+    playerPieces.forEach(function (piece) {
+      if (piece.isKing()) return;
+      mobility += piece.calculateMoveCount();
+      result += pieceCost[piece.token];
+    });
+
+    return result + 0.1 * mobility;
+  },
+
   // used only during move generation
   isOpponentInCheck: function () {
      var opponentKing = this.getOpponentKing(),
