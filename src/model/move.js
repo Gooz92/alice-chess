@@ -42,7 +42,9 @@ function createPawnMove(sourceSquare, targetSquare, promotionPiece) {
     return new BigPawn(sourceSquare, targetSquare);
   }
 
-  if (targetSquare.isTargetEnPassantSquare()) {
+  if (targetSquare.isTargetEnPassantSquare() && (
+    (targetSquare.getRankIndex() === 2 && targetSquare.chess.activeColor.isBlack()) ||
+    (targetSquare.getRankIndex() === 5 && targetSquare.chess.activeColor.isWhite()))) {
     return new EnPassant(sourceSquare, targetSquare);
   }
 
