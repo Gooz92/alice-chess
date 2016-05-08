@@ -204,19 +204,28 @@ objectUtils.extend(Chess.prototype, {
 
     var negaMax = function (depth) {
       var max = Number.NEGATIVE_INFINITY,
-        moves, score;
+        moves, score, data, bestMoveData;
 
       if (depth === 0) {
-        return self.activeColor.isWhite() ? self.evaluate() : -self.evaluate();
+        score = self.evaluate();
+        self.turn();
+        score -= self.evaluate();
+        self.turn();
+        return {
+          score: score,
+          history: self.getSanHistory()
+        };
       }
 
       moves = self.generateMoves();
 
       moves.forEach(function (move) {
         move.make();
-        score = negaMax(depth - 1);
-        if (score > max) {
-          max = score;
+        data = negaMax(depth - 1);
+        data.score = -data.score;
+        if (data.score > max) {
+          max = data.score;
+          bestMoveData = data;
           if (depth === 3) {
             bestMove = move;
           }
@@ -224,10 +233,10 @@ objectUtils.extend(Chess.prototype, {
         move.unMake();
       });
 
-      return score;
+      return bestMoveData;
     }
 
-    negaMax(3);
+    console.log(negaMax(3));
     return bestMove;
   },
 
