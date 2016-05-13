@@ -203,6 +203,10 @@ EnPassant.prototype.unMake = function () {
   chess.pieces[this.capturedPawn.color.name].push(this.capturedPawn);
 };
 
+EnPassant.prototype.toSAN = function () {
+  return this.sourceSquare.getFileName() + 'x' + this.targetSquare.name;
+};
+
 var PawnPromotion = objectUtils.inherit(
   function (sourceSquare, targetSquare, promotedPiece) {
     this.super.constructor.call(this, sourceSquare, targetSquare);
