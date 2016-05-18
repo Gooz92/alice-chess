@@ -333,6 +333,10 @@ objectUtils.extend(Chess.prototype, {
     return false;
   },
 
+  getLastMove: function () {
+    return this.history[this.history.length - 1];
+  },
+
   getRank: function (rankIndex) {
     var rank = [],
       squareIndex = rankIndex * 16;
@@ -399,6 +403,6 @@ objectUtils.extend(Chess.prototype, {
     return field;
   }
 
-}, require('./piece-count-mixin'));
+}, require('./piece-count-mixin'), require('./perft-mixin'));
 
 module.exports = Chess;
