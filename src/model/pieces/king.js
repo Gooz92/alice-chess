@@ -107,6 +107,10 @@ module.exports = {
       }
     });
 
+    if (chess.isSquareAttacked(this.square.name, this.color.toggle())) {
+      return;
+    }
+
     if (this.square.name === 'e1' && chess.castlingAvalibility[2 * this.color.index] && this.isKsideCaslingAvailable()) {
       callback.call(self, this.createShortCastlingMove());
     }
