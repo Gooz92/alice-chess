@@ -58,14 +58,10 @@ function createPawnMove(sourceSquare, targetSquare, promotionPiece) {
 }
 
 Move.prototype.make = function () {
-  var enPassantTargetSquare = this.sourceSquare.chess.enPassantTargetSquare,
-    chess = this.targetSquare.chess;
-
-  delete this.sourceSquare.chess.enPassantTargetSquare;
+  var chess = this.targetSquare.chess;
 
   this.piece.moveTo(this.targetSquare);
 
-  this.previousEnPassantTagetSquare = enPassantTargetSquare;
   this.changesInCastling = [];
 
   chess.turn();
