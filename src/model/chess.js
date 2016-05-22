@@ -307,6 +307,9 @@ objectUtils.extend(Chess.prototype, {
   },
 
   turn: function () {
+    var prevEpSquare = this.previousEnPassantTargetSquare;
+    this.previousEnPassantTargetSquare = this.enPassantTargetSquare;
+    this.enPassantTargetSquare = prevEpSquare;
     this.activeColor = this.activeColor.toggle();
   },
 
@@ -403,6 +406,6 @@ objectUtils.extend(Chess.prototype, {
     return field;
   }
 
-}, require('./piece-count-mixin'), require('./perft-mixin'));
+}, require('./piece-count-mixin'));
 
 module.exports = Chess;
