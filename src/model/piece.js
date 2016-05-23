@@ -58,7 +58,7 @@ var piecePrototype = {
    * This implemetation use by rook, bishop and queen.
    * For pawn, knight and king used implementation placed in corresonding module
    */
-  forEachMove: function (callback) {
+  forEachMove: function (callback, pseudoLegal) {
     var self = this;
 
     this.offsets.forEach(function (offset) {
@@ -71,7 +71,7 @@ var piecePrototype = {
         if (targetSquare.isOccupied()) {
           if (targetSquare.piece.color !== self.color) {
             move = Move.createCapture(self.square, targetSquare);
-            if (!targetSquare.chess.isInCheckAfter(move)) {
+            if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
               callback.call(self, move);
             }
           }
@@ -80,7 +80,7 @@ var piecePrototype = {
 
         move = Move.createSilentMove(self.square, targetSquare);
 
-        if (!targetSquare.chess.isInCheckAfter(move)) {
+        if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
           callback.call(self, move);
         }
 
@@ -124,12 +124,12 @@ var piecePrototype = {
     });
   },
 
-  generateMoves: function () {
+  generateMoves: function (pseudoLegal) {
     var moves = [];
 
     this.forEachMove(function (move) {
       moves.push(move);
-    });
+    }, pseudoLegal);
 
     return moves;
   },

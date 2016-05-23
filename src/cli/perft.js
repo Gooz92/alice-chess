@@ -28,19 +28,17 @@ function perft(depth) {
     return 1;
   }
 
-  moves = chess.generateMoves();
+  moves = chess.generateMoves(true);
 
   moves.forEach(function (move) {
     var subresult;
 
     move.make();
-    subresult = perft(depth - 1);
-    if (depth === initialDepth) {
-      console.log(move.toSAN() + ' : ' + subresult);
+    if (!chess.isOpponentInCheck()) {
+      subresult = perft(depth - 1);
+      nodes += subresult;
     }
     move.unMake();
-
-    nodes += subresult;
   });
 
   return nodes;
@@ -48,6 +46,6 @@ function perft(depth) {
 
 if (executeMoves(moves)) {
   console.time('time');
-  perft(initialDepth);
+  console.log(perft(initialDepth));
   console.timeEnd('time');
 }

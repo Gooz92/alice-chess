@@ -139,13 +139,13 @@ objectUtils.extend(Chess.prototype, {
   },
 
   // TODO refactor
-  generateMoves: function () {
+  generateMoves: function (pseudoLegal) {
     var moves = [], playerPieces;
 
     playerPieces = this.getPlayerPieces();
 
     playerPieces.forEach(function (piece) {
-      var pieceMoves = piece.generateMoves();
+      var pieceMoves = piece.generateMoves(pseudoLegal);
       moves = moves.concat(pieceMoves);
     });
 

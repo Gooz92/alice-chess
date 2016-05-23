@@ -74,7 +74,7 @@ module.exports = {
     });
   },
 
-  forEachMove: function (callback) {
+  forEachMove: function (callback, pseudoLegal) {
     var self = this,
       opponentColor = this.color.toggle(),
       chess = self.square.chess;

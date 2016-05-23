@@ -15,17 +15,19 @@ describe('perft5', function () {
        return 1;
      }
 
-     moves = chess.generateMoves();
+     moves = chess.generateMoves(true);
 
      moves.forEach(function (move) {
        var subresult;
 
        move.make();
-       subresult = perft(depth - 1);
-       if (depth === initialDepth) {
-         testPerft5Subresult(move.toSAN(), subresult);
+       if (!chess.isOpponentInCheck()) {
+        subresult = perft(depth - 1);
+        if (depth === initialDepth) {
+          testPerft5Subresult(move.toSAN(), subresult);
+        }
+        result += subresult;
        }
-       result += subresult;
        move.unMake();
      });
 
