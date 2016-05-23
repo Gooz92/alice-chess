@@ -36,15 +36,19 @@ Move.create = function (sourceSquare, targetSquare, promotionPiece) {
 };
 
 function createPawnMove(sourceSquare, targetSquare, promotionPiece) {
-  var pawn;
+  var pawn, targetSquareRankIndex, chess;
 
   if (sourceSquare.getRankDistance(targetSquare) === 2) {
     return new BigPawn(sourceSquare, targetSquare);
   }
 
+  chess = targetSquare.chess;
+
+  targetSquareRankIndex = targetSquare.getRankIndex();
+
   if (targetSquare.isTargetEnPassantSquare() && (
-    (targetSquare.getRankIndex() === 2 && targetSquare.chess.activeColor.isBlack()) ||
-    (targetSquare.getRankIndex() === 5 && targetSquare.chess.activeColor.isWhite()))) {
+    (targetSquareRankIndex === 2 && chess.activeColor.isBlack()) ||
+    (targetSquareRankIndex === 5 && chess.activeColor.isWhite()))) {
     return new EnPassant(sourceSquare, targetSquare);
   }
 

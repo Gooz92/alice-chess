@@ -234,7 +234,7 @@ objectUtils.extend(Chess.prototype, {
       });
 
       return bestMoveData;
-    }
+    };
 
     console.log(negaMax(3));
     return bestMove;

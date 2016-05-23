@@ -1,7 +1,5 @@
 'use strict';
 
-/* jshint esnext: true */
-
 var Chess = require('../model/chess'),
   readline = require('readline');
 

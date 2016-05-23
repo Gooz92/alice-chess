@@ -1,7 +1,5 @@
 'use strict';
 
-/* jshint esnext: true */
-
 var squares = require('../utils/chess-utils/squares'),
   boardUtils = require('../utils/chess-utils/board-utils');
 

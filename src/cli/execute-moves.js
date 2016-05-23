@@ -1,7 +1,5 @@
 'use strict';
 
-/* jshint esnext: true */
-
 var Chess = require('../model/chess'),
   chess = Chess.createStartPosition(),
   moves = process.argv.splice(2);
