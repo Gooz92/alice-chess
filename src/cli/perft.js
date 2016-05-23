@@ -47,5 +47,7 @@ function perft(depth) {
 }
 
 if (executeMoves(moves)) {
+  console.time('time');
   perft(initialDepth);
+  console.timeEnd('time');
 }
