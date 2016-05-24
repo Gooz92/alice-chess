@@ -252,38 +252,35 @@ objectUtils.extend(Chess.prototype, {
     return this.isSquareAttacked(opponentKing.square.name, playerColor);
   },
 
-  isSquareAttackedByPiece: function (squareIndex, piece) {
-      var distance, attackIndex;
+  isSquareAttackedByPiece: function (targetSquareIndex, piece) {
+    var distance = targetSquareIndex - piece.square.index,
+      attackIndex = distance + 119,
+      squareIndex;
 
-      distance = squareIndex - piece.square.index;
-      attackIndex = distance + 119;
+    if (!boardUtils.isMayAttacked(attackIndex, piece.token)) {
+      return false;
+    }
 
-      if (!boardUtils.isMayAttacked(attackIndex, piece.token)) {
+    if (piece.isPawn()) {
+      if (distance > 0) {
+        return piece.color.isWhite();
+      }
+      return piece.color.isBlack();
+    }
+
+    if (piece.isKnight() || piece.isKing()) {
+      return true;
+    }
+
+    squareIndex = piece.square.index;
+
+    while ((squareIndex += rays[attackIndex]) !== targetSquareIndex) {
+      if (this.squares[squareIndex].isOccupied()) {
         return false;
       }
+    }
 
-      if (piece.isPawn()) {
-        if (distance > 0) {
-          return piece.color.isWhite();
-        }
-        return piece.color.isBlack();
-      }
-
-      if (piece.isKnight() || piece.isKing()) {
-        return true;
-      }
-
-      var offset = rays[attackIndex];
-      var j = piece.square.index + offset;
-
-      while (j !== squareIndex) {
-        if (this.squares[j].isOccupied()) {
-          return false;
-        }
-        j += offset;
-      }
-
-      return true;
+    return true;
   },
 
   isSquareAttacked: function (squareName, color) {
