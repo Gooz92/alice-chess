@@ -35,6 +35,14 @@ Move.create = function (sourceSquare, targetSquare, promotionPiece) {
   return new Move(sourceSquare, targetSquare);
 };
 
+Move.createBigPawnMove = function (sourceSquare, targetSquare) {
+  return new BigPawn(sourceSquare, targetSquare);
+};
+
+Move.createEnPassant = function (sourceSquare, targetSquare) {
+  return new EnPassant(sourceSquare, targetSquare);
+};
+
 function createPawnMove(sourceSquare, targetSquare, promotionPiece) {
   var pawn, targetSquareRankIndex, chess;
 

@@ -30,7 +30,7 @@ module.exports = {
       targetSquareIndex += offset;
       targetSquare = this.square.chess.squares[targetSquareIndex];
       if (targetSquare.isEmpty()) {
-        move = Move.create(this.square, targetSquare);
+        move = isFirstStep ? Move.createBigPawnMove(this.square, targetSquare) : new Move(this.square, targetSquare);
         if (pseudoLegal || !this.square.chess.isInCheckAfter(move)) {
           callback.call(this, move);
         }
@@ -64,11 +64,15 @@ module.exports = {
 
       targetSquare = self.square.chess.squares[targetSquareIndex];
 
-      move = Move.create(self.square, targetSquare);
+      if (targetSquare.isOccupiedByOpponent(self.color)) {
+        move = Move.createCapture(self.square, targetSquare);
+      } else if (targetSquare.isTargetEnPassantSquare()) {
+        move = Move.createEnPassant(self.square, targetSquare);
+      } else {
+        return;
+      }
 
-      if ((targetSquare.isOccupiedByOpponent(self.color) ||
-        targetSquare === self.square.chess.enPassantTargetSquare) &&
-        (pseudoLegal || !targetSquare.chess.isInCheckAfter(move))) {
+      if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
         callback.call(self, move);
       }
     });
