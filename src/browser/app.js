@@ -2,9 +2,12 @@
 
 var Chess = require('../model/chess'),
   pieceCharacters = require('./utils/piece-characters'),
-  createTable = require('./utils/create-table');
+  createTable = require('./utils/create-table'),
+  boardUtils = require('../utils/chess-utils/board-utils'),
+  arrayUtils = require('../utils/common-utils/array-utils');
 
-var chess = Chess.createStartPosition();
+var chess = Chess.createStartPosition(),
+  activePiece;
 
 var table = createTable({
   rowCount: 8,
@@ -13,25 +16,47 @@ var table = createTable({
     className: 'chess-board'
   },
   getCellOptions: function (rowIndex, columnIndex) {
-    var className = (rowIndex + columnIndex) % 2 === 0 ? 'light' : 'dark',
+    var className = ['light', 'dark'][(rowIndex + columnIndex) % 2],
+      rankName = boardUtils.rankIndexToName(7 - rowIndex),
+      fileName = boardUtils.fileIndexToName(columnIndex),
+      square = chess.getSquareByName(fileName + rankName),
       innerHTML = '';
-    
-    if (rowIndex === 1) {
-      innerHTML = pieceCharacters.p; 
-    } else if (rowIndex === 6) {
-      innerHTML = pieceCharacters.P;
-    } else if (rowIndex === 0) {
-      innerHTML = pieceCharacters['rnbqkbnr'.charAt(columnIndex)];
-    } else if (rowIndex === 7) {
-      innerHTML = pieceCharacters['RNBQKBNR'.charAt(columnIndex)];
+
+    if (square.isOccupied()) {
+      innerHTML = pieceCharacters[square.piece.getFenToken()];
     }
 
     return {
       className: className,
-      innerHTML: innerHTML
+      innerHTML: innerHTML,
+      id: fileName + rankName,
+      onclick: function () {
+        var square = chess.getSquareByName(this.id),
+          targetSquareNames;
+
+        arrayUtils.toArray(document.querySelectorAll('.highlighted')).forEach(function (cell) {
+          cell.classList.remove('highlighted');
+        });
+
+        if (square.isEmpty() || square.piece.color !== chess.activeColor) {
+          return;
+        }
+
+        targetSquareNames = square.piece.generateTargetSquareNames();
+
+        hightlightTargetSquares(targetSquareNames);
+      }
     };
   }
 });
+
+function hightlightTargetSquares(ids) {
+  ids.map(function (id) {
+    return document.getElementById(id);
+  }).forEach(function (el) {
+    el.classList.add('highlighted');
+  });
+};
 
 document.addEventListener('DOMContentLoaded', function (event) {
   document.body.appendChild(table);

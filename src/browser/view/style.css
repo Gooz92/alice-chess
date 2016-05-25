@@ -22,3 +22,11 @@
 .chess-board .dark {
   background-color: #b58863
 }
+
+.chess-board .light.highlighted {
+  background-color: #989898
+}
+
+.chess-board .dark.highlighted {
+  background-color: #696969
+}
