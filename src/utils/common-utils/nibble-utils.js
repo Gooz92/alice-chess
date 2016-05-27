@@ -3,11 +3,15 @@
 let nibbleUtils = module.exports = {
   composeByte: (highNibble, lowNibble) => highNibble << 4 | lowNibble,
 
-  extractHighNibble: byte => byte >> 4,
+  extractHighNibble: function (byte) {
+    return byte >> 4;
+  },
 
-  extractLowNibble: byte => byte & 15,
+  extractLowNibble: function (byte) {
+    return byte & 15;
+  },
 
-  nibblesToBytes(nibbles) {
+  nibblesToBytes: function (nibbles) {
     let evenLength = nibbles.length - nibbles.length % 2,
       bytes = [];
 
@@ -21,5 +25,15 @@ let nibbleUtils = module.exports = {
     }
 
     return bytes;
+  },
+
+  forEachNibble: function (bytes, callback) {
+    bytes.forEach(function (byte, index) {
+      var highNibble = nibbleUtils.extractHighNibble(byte),
+        lowNibble = nibbleUtils.extractLowNibble(byte);
+
+      callback(highNibble);
+      callback(lowNibble);
+    });
   }
 }
