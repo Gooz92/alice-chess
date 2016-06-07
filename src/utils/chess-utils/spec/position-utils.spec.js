@@ -1,28 +1,27 @@
 'use strict';
 
-let positionUtils = require('../position-utils'),
+var positionUtils = require('../position-utils'),
   assert = require('chai').assert;
 
 describe('positionUtils', function () {
   describe('.isValidSyntax', function () {
-    let isValidSyntax = positionUtils.isValidSyntax;
+    var isValidSyntax = positionUtils.isValidSyntax;
 
     it('return true for empty object', function () {
-      let truth = isValidSyntax({});
+      var truth = isValidSyntax({});
       assert.isTrue(truth);
     });
 
     it('return false for postion with invalid square name', function () {
-      let invalidSquareName = '2a',
-        lie = isValidSyntax({
-          [invalidSquareName]: 'p'
-        });
+      var lie = isValidSyntax({
+        '2a': 'p'
+      });
 
       assert.isFalse(lie);
     });
 
     it('return false for position with invalid piece token', function () {
-      let invalidPieceToken = 'i',
+      var invalidPieceToken = 'i',
         lie = isValidSyntax({
           a1: invalidPieceToken
         });
@@ -32,10 +31,10 @@ describe('positionUtils', function () {
   });
 
   describe('.validateSyntax', function () {
-    let validateSyntax = positionUtils.validateSynax;
-    it('return empty array for empty object', function () {
-      let nothingness = validateSyntax({});
-      assert.deepEqual(nothingness, []);
+    var validateSyntax = positionUtils.validateSynax;
+    it('return empty object for empty object', function () {
+      var nothingness = validateSyntax({});
+      assert.deepEqual(nothingness, {});
     });
   });
 });

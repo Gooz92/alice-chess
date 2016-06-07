@@ -1,5 +1,8 @@
 'use strict';
 
+/* jshint esversion: 6 */
+
+
 let nibbleUtils = module.exports = {
   composeByte: (highNibble, lowNibble) => highNibble << 4 | lowNibble,
 
@@ -16,7 +19,7 @@ let nibbleUtils = module.exports = {
       bytes = [];
 
     for (let i = 0; i < evenLength; i += 2) {
-      let byte = nibbleUtils.composeByte(nibbles[i], nibbles[i + 1])
+      let byte = nibbleUtils.composeByte(nibbles[i], nibbles[i + 1]);
       bytes.push(byte);
     }
 

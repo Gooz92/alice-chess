@@ -1,26 +1,22 @@
 'use strict';
 
-let fenUtils = require('./fen-utils'),
-  sanUtils = require('./san-utils');
+var fenUtils = require('./fen-utils'),
+  sanUtils = require('./san-utils'),
+  objectUtils = require('../common-utils/object-utils');
 
-// SyntaxError
-// InvalidSquareName(squareName)
-// InvalidPieceToken(pieceToken)
-
-// InvalidPawnPosition(squareName) - pawn must be placed on [1-7] ranks
-// InvalidPieceCount(pieceToken, count)
-
-
-let positionUtils = module.exports = {
+var positionUtils = module.exports = {
   isValidSyntax(position) { // validate only square names and piece tokens
-    let squareNames = Object.keys(position);
+    var squareNames = Object.keys(position),
+      squareName, pieceToken, index;
 
-    for (let square of squareNames) {
-      if (!sanUtils.isSquareName(square)) {
+    for (index = 0; index < squareNames.length; index++) {
+      squareName = squareNames[index];
+
+      if (!sanUtils.isSquareName(squareName)) {
         return false;
       }
 
-      let pieceToken = position[square];
+      pieceToken = position[squareName];
 
       if (!fenUtils.isPieceToken(pieceToken)) {
         return false;
@@ -30,10 +26,10 @@ let positionUtils = module.exports = {
     return true;
   },
 
-  validateSynax(position) {
-    let errors = {};
+  validateSynax: function (position) {
+    var errors = {};
 
-    ObjectUtils.forEachOwnProperty((pieceToken, squareName) => {
+    objectUtils.forEachOwnProperty(function (pieceToken, squareName) {
       if (!sanUtils.isSquareName(squareName)) {
         if (!errors.invalidSquareNames) {
           errors.invalidSquareNames = [];
@@ -52,8 +48,8 @@ let positionUtils = module.exports = {
     return errors;
   },
 
-  getPieceCounts(position) {
-    let pieceCounts = {
+  getPieceCounts: function (position) {
+    var pieceCounts = {
       p: 0,
       r: 0,
       n: 0,
@@ -62,7 +58,7 @@ let positionUtils = module.exports = {
       k: 0
     };
 
-    ObjectUtils.forEachOwnProperty(pieceToken => {
+    objectUtils.forEachOwnProperty(function (pieceToken) {
       if (pieceToken in pieceCounts) {
         ++pieceCounts[pieceToken];
       }

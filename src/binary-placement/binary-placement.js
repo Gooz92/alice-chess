@@ -1,5 +1,7 @@
 'use strict';
 
+/* jshint esversion: 6 */
+
 // 0 001 = p BP
 // 0 010 = n BN
 // 0 011 = b BB
@@ -62,7 +64,7 @@ let pieces = {
   R: 12, // c
   Q: 13, // d
   K: 14  // e
-}
+};
 
 let squares = [];
 
@@ -80,14 +82,12 @@ function toArray(position) {
     if (piece in pieces) {
       posArr.push(pieces[piece]);
     } else {
-      posArr.push(0)
+      posArr.push(0);
     }
   });
 
   return posArr;
 }
-
-
 
 function reduce(position) {
   let reduced = [];
