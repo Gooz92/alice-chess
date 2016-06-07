@@ -23,7 +23,7 @@ FenParser.prototype = {
 
     this.handler.onStart();
 
-    this.parseFieldPlacement(fields[0]);
+    this.parsePiecePlacement(fields[0]);
     this.parseActiveColor(fields[1]);
     this.parseCastlingAvailability(fields[2]);
     this.parseEnPassantSquare(fields[3]);
