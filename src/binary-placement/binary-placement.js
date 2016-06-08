@@ -163,7 +163,8 @@ function perft(depth) {
 
     move.make();
     if (!chess.isOpponentInCheck()) {
-      let position = reduce([].concat(reduceEmptySquares(toArray(chess.generateFieldPlainObject()))));
+      let field = chess.generateFieldPlainObject();
+      let position = reduce([].concat(reduceEmptySquares(toArray(field))));
       let key = position.map(toHex).join('');
       if (!posMap[key]) {
         posMap[key] = true;

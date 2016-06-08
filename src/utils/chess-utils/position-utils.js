@@ -5,7 +5,8 @@ var fenUtils = require('./fen-utils'),
   objectUtils = require('../common-utils/object-utils');
 
 var positionUtils = module.exports = {
-  isValidSyntax(position) { // validate only square names and piece tokens
+  // validate only square names and piece tokens
+  isValidSyntax: function (position) {
     var squareNames = Object.keys(position),
       squareName, pieceToken, index;
 

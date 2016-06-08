@@ -32,9 +32,10 @@ var table = createTable({
       id: fileName + rankName,
       onclick: function () {
         var square = chess.getSquareByName(this.id),
+          highlightedCells = document.querySelectorAll('.highlighted'),
           targetSquareNames;
 
-        arrayUtils.toArray(document.querySelectorAll('.highlighted')).forEach(function (cell) {
+        arrayUtils.toArray(highlightedCells).forEach(function (cell) {
           cell.classList.remove('highlighted');
         });
 
@@ -56,7 +57,7 @@ function hightlightTargetSquares(ids) {
   }).forEach(function (el) {
     el.classList.add('highlighted');
   });
-};
+}
 
 document.addEventListener('DOMContentLoaded', function (event) {
   document.body.appendChild(table);

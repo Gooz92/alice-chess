@@ -30,10 +30,16 @@ module.exports = {
       targetSquareIndex += offset;
       targetSquare = this.square.chess.squares[targetSquareIndex];
       if (targetSquare.isEmpty()) {
-        move = isFirstStep ? Move.createBigPawnMove(this.square, targetSquare) : new Move(this.square, targetSquare);
+        if (isFirstStep) {
+          move = Move.createBigPawnMove(this.square, targetSquare);
+        } else {
+          move = new Move(this.square, targetSquare);
+        }
+
         if (pseudoLegal || !this.square.chess.isInCheckAfter(move)) {
           callback.call(this, move);
         }
+
         isFirstStep = !isFirstStep;
       } else {
         break;

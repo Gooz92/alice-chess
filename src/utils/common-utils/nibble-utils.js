@@ -39,4 +39,4 @@ let nibbleUtils = module.exports = {
       callback(lowNibble);
     });
   }
-}
+};
