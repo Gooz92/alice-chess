@@ -403,6 +403,6 @@ objectUtils.extend(Chess.prototype, {
     return field;
   }
 
-}, require('./piece-count-mixin'));
+}, require('./piece-count-mixin'), require('./traverse-mixin'));
 
 module.exports = Chess;
