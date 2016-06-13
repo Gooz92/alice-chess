@@ -100,4 +100,50 @@ describe('castlingRightsUtils', function () {
       assert.isTrue(isCastlingPossible(Qkq));
     });
   });
+
+  describe('toFenField()', function () {
+    var toFenField = castlingRightsUtils.toFenField;
+
+    it("return '-' for 0", function () {
+      var noCastling = 0,
+        fenField = toFenField(noCastling);
+
+      assert.strictEqual(fenField, '-');
+    });
+
+    it("return 'Q' for 4 (=0b0100)", function () {
+      var Q = 4,
+        fenField = toFenField(Q);
+
+      assert.strictEqual(fenField, 'Q');
+    });
+
+    it("return 'k' for 2 (=0b0010)", function () {
+      var k = 2,
+        fenField = toFenField(k);
+
+      assert.strictEqual(fenField, 'k');
+    });
+
+    it("return 'Qk' 6 (=0b0110)", function () {
+      var Qk = 6,
+        fenField = toFenField(Qk);
+
+      assert.strictEqual(fenField, 'Qk');
+    });
+
+    it("return 'Kq' for 9 (=0b1001)", function () {
+      var Kq = 9,
+        fenField = toFenField(Kq);
+
+      assert.strictEqual(fenField, 'Kq');
+    });
+
+    it("return KQkq for 15 (0b=1111)", function () {
+      var KQkq = 15,
+        fenField = toFenField(15);
+
+      assert.strictEqual(fenField, 'KQkq');
+    });
+  });
 });
