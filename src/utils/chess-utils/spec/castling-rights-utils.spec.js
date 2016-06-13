@@ -13,9 +13,9 @@ describe('castlingRightsUtils', function () {
       assert.isFalse(isCastlingPossible(noCastling));
     });
 
-    it('return false for 6 (=0b0110) (Qkq)', function () {
-      var Qkq = parseInt('0110', 2);
-      assert.isFalse(isCastlingPossible(Qkq));
+    it('return false for 6 (=0b0110) (Qk)', function () {
+      var Qk = parseInt('0110', 2);
+      assert.isFalse(isCastlingPossible(Qk));
     });
 
     it('return true for 8 (=0b1000) (K)', function () {
