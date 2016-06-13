@@ -1,5 +1,11 @@
 'use strict';
 
+// KQkq
+// 3210
+
+// 0 => 2, 0
+// 7 => 3, 1
+
 var Move = require('./move'),
   isDefined = require('../../utils/common-utils/is-utils').isDefined;
 
@@ -12,29 +18,22 @@ RookMove.prototype = {
 
   make: function () {
     var chess = this.targetSquare.chess,
-      fileIndex = this.sourceSquare.getFileIndex(),
-      castlingRightsIndex = 2 * this.piece.color.index;
+      castlingRightsIndex = this.sourceSquare.getFileIndex();
 
-    if (fileIndex === 0) {
-      ++castlingRightsIndex;
+    if (castlingRightsIndex === 7) {
+      castlingRightsIndex = 1;
     }
 
-    if (chess.castlingAvalibility[castlingRightsIndex]) {
-      chess.castlingAvalibility[castlingRightsIndex] = false;
-      this.castlingRightsIndex = castlingRightsIndex;
-    }
+    castlingRightsIndex += 2 * sourceSquare.piece.color.index;
+
+    this.previousCastlingRigths = chess.castlingRights;
+    chess.castlingRights &= (16 ^ (1 << castlingRightsIndex));
 
     Move.prototype.make.call(this);
   },
 
   unMake: function () {
-    var chess;
-
-    if (isDefined(this.castlingRightsIndex)) {
-      chess = this.targetSquare.chess;
-      chess.castlingAvalibility[this.castlingRightsIndex] = true;
-    }
-
+    this.targetSquare.chess.castlingRights = this.previousCastlingRigths;
     Move.prototype.unMake.call(this);
   },
 
