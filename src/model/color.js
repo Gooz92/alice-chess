@@ -12,8 +12,8 @@ function Color(name, token, index) {
   this.index = index;
 }
 
-Color.WHITE = new Color('white', 'w', 0);
-Color.BLACK = new Color('black', 'b', 1);
+Color.WHITE = new Color('white', 'w', 1);
+Color.BLACK = new Color('black', 'b', 0);
 
 created = true;
 
