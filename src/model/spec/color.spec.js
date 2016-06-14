@@ -102,6 +102,18 @@ describe('Color', function() {
       var color = Color.getByFlag(false);
       assert.equal(color, Color.BLACK);
     });
+
+    describe('.getByIndex()', function () {
+      it('return Color.WHITE for 1', function () {
+        var color = Color.getByIndex(1);
+        assert.equal(color, Color.WHITE);
+      });
+
+      it('return Color.BLACK for 0', function () {
+        var color = Color.getByIndex(0);
+        assert.equal(color, Color.BLACK);
+      });
+    });
   });
 
 });
