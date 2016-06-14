@@ -27,4 +27,13 @@ describe('template()', function () {
 
     assert.strictEqual(actual, expected);
   });
+
+  it('may take replaced values as array', function () {
+    var pattern = '[x={0};y={1}]',
+      point = [1, 2],
+      expected = '[x=1;y=2]',
+      actual = template(pattern, point);
+
+    assert.strictEqual(actual, expected);
+  });
 });

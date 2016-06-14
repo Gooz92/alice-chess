@@ -1,7 +1,15 @@
 'use strict';
 
+var arrayUtils = require('./array-utils');
+
 function template(pattern /* arg1, arg2 */) {
-  var parameters = arguments;
+  var parameters;
+
+  if (Array.isArray(arguments[1])) {
+    parameters = arguments[1];
+  } else {
+    parameters = arrayUtils.toArray(arguments).splice(1);
+  }
 
   return pattern.replace(/\\?\{(\d+)\}/g, function (placeholder, number) {
     var index;
@@ -10,7 +18,7 @@ function template(pattern /* arg1, arg2 */) {
       return placeholder;
     }
 
-    index = parseInt(number) + 1;
+    index = parseInt(number);
 
     return parameters[index];
   });
