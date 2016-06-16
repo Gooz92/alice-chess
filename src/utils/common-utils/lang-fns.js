@@ -23,7 +23,7 @@ module.exports = {
     return arg1 >= arg2;
   },
 
-  lessOrEqalThan: function (arg1, arg2) {
+  lessOrEqualThan: function (arg1, arg2) {
     return arg1 <= arg2;
   }
 };
