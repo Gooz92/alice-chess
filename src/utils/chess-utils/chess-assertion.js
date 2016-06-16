@@ -1,6 +1,6 @@
 'use strict';
 
-var createAssertion = require('../common-utils/create-assertion'),
+var createAssertion = require('../common-utils/assertion').createUnaryAssertion,
   sanUtils = require('./san-utils'),
   fenUtils = require('./fen-utils');
 

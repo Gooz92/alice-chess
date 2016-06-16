@@ -1,6 +1,7 @@
 'use strict';
 
-var arrayUtils = require('./array-utils');
+var arrayUtils = require('./array-utils'),
+  throwError = require('./throw-error');
 
 function createUnaryAssertion(fn, message) {
   var defaultMessage = message || 'Assertion error';
@@ -26,7 +27,7 @@ function createBinaryAssertion(fn, message) {
   };
 }
 
-var assertion = module.exports = {
+module.exports = {
   createUnaryAssertion: createUnaryAssertion,
   createBinaryAssertion: createBinaryAssertion,
 
