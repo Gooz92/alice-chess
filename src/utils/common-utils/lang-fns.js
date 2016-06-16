@@ -11,7 +11,7 @@ module.exports = {
     return arg1 === arg2;
   },
 
-  greateThan: function (arg1, arg2) {
+  greatThan: function (arg1, arg2) {
     return arg1 > arg2;
   },
 
@@ -19,7 +19,7 @@ module.exports = {
     return arg1 < arg2;
   },
 
-  greateOrEqualThan: function(arg1, arg2) {
+  greatOrEqualThan: function(arg1, arg2) {
     return arg1 >= arg2;
   },
 
