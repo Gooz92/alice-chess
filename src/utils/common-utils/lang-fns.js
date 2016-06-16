@@ -11,11 +11,11 @@ module.exports = {
     return arg1 === arg2;
   },
 
-  greateThen: function (arg1, arg2) {
+  greateThan: function (arg1, arg2) {
     return arg1 > arg2;
   },
 
-  lessThen: function (arg1, arg2) {
+  lessThan: function (arg1, arg2) {
     return arg1 < arg2;
   },
 
