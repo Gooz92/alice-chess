@@ -40,7 +40,5 @@ var assertion = module.exports = {
 
   equal: createBinaryAssertion(function (arg1, arg2) {
     return arg1 == arg2;
-  }),
-
-  strictEqual:
+  })
 };
