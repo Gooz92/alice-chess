@@ -1,6 +1,6 @@
 'use strict';
 
-var fnUtils = require('../utils/common-utils/fn-utils'),
+var noop = require('../utils/common-utils/lang-fns').noop,
   objectUtils = require('../utils/common-utils/object-utils');
 
 var traverseMixin = module.exports = {
@@ -8,9 +8,9 @@ var traverseMixin = module.exports = {
     var chess = this;
 
     callbacks = objectUtils.merge({
-      onMaxDepthReached: fnUtils.noop,
-      onBranchStartTraverse: fnUtils.noop,
-      onBranchEndTraverse: fnUtils.noop
+      onMaxDepthReached: noop,
+      onBranchStartTraverse: noop,
+      onBranchEndTraverse: noop
     }, callbacks || {});
 
     traverse(depth, callbacks, chess);

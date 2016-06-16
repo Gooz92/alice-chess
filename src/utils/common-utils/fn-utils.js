@@ -3,10 +3,6 @@
 var isUtils = require('./is-utils');
 
 module.exports = {
-  noop: function () {
-    // do nothing
-  },
-
   times: function (n, fn) {
     while (n-- > 0) {
       fn();
