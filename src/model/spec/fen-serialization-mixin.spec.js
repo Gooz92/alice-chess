@@ -8,7 +8,7 @@ var fenSerializationMixin = require('../fen-serialization-mixin'),
 describe('fenSerializationMixin', function () {
   describe('generateFenCastlingAvailability()', function () {
 
-    it('toFenField called with chess.castlingRights', function () {
+    it.skip('toFenField called with chess.castlingRights', function () {
       var getFenCastling = fenSerializationMixin.generateFenCastlingAvailability,
         chess = {
           castlingRights: 7
