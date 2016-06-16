@@ -1,24 +1,6 @@
 'use strict';
 
-var fns = module.exports = {
-  noop: function () {},
-
-  isTrue: function (arg) {
-    return arg === true;
-  },
-
-  isFalse: function (arg) {
-    return arg === false;
-  },
-
-  isTruthy: function (arg) {
-    return !!arg;
-  },
-
-  isFalsy: function (arg) {
-    return !arg;
-  },
-
+module.exports = {
   equal: function (arg1, arg2) {
     return arg1 == arg2;
   },
