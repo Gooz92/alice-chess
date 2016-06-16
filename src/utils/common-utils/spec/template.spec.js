@@ -1,7 +1,7 @@
 'use strict';
 
 var assert = require('chai').assert,
-  template = require('../template')
+  template = require('../template');
 
 describe('template()', function () {
   it("return same string for string without placeholders", function () {

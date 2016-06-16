@@ -15,7 +15,7 @@ describe('chessAssertion', function () {
       var invalidSquareName = 'h9';
 
       throws(function () {
-        isSquareName(invalidSquareName)
+        isSquareName(invalidSquareName);
       }, invalidSquareName);
     });
   });
@@ -32,7 +32,7 @@ describe('chessAssertion', function () {
       var invalidPieceToken = 'm';
 
       throws(function () {
-        isPieceToken(invalidPieceToken)
+        isPieceToken(invalidPieceToken);
       }, invalidPieceToken);
     });
   });

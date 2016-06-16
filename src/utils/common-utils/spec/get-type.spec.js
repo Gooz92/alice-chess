@@ -46,7 +46,7 @@ describe('getType()', function () {
     var answer = 42,
       type = getType(answer);
 
-    assert.strictEqual(type, 'number')
+    assert.strictEqual(type, 'number');
   });
 
   // Not-A-Number is a number lol

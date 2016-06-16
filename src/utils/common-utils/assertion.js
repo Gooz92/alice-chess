@@ -22,7 +22,7 @@ function createBinaryAssertion(fn, message) {
     var message = customMessage || defaultMessage;
 
     if (!fn(arg1, arg2)) {
-      throwError(message, arg1, arg2)
+      throwError(message, arg1, arg2);
     }
   };
 }

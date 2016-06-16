@@ -59,12 +59,12 @@ Color.getByFlag = function (flag) {
 
 Color.getByIndex = function (index) {
   if (index === 1) {
-    return Color.WHITE
+    return Color.WHITE;
   } else if (index === 0) {
     return Color.BLACK;
   }
 
   throw new Error('Invalid color index');
-}
+};
 
 module.exports = Color;

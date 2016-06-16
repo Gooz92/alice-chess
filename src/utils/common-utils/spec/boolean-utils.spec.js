@@ -53,7 +53,7 @@ describe('booleanUtils', function () {
     });
 
     it('return false for true', function () {
-      assert.isFalse(isFalse(true))
+      assert.isFalse(isFalse(true));
     });
 
     it('return false for falsy value', function () {
@@ -96,7 +96,7 @@ describe('booleanUtils', function () {
 
     it('return true for truthy value', function () {
       var truthy = {};
-      assert.isTrue(isTruthy(truthy))
+      assert.isTrue(isTruthy(truthy));
     });
 
     it('return false for false', function () {
