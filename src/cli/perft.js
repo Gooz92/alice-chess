@@ -4,7 +4,8 @@ var Chess = require('../model/chess');
 
 var chess = Chess.createStartPosition(),
   initialDepth = process.argv[2],
-  moves = process.argv.splice(3);
+  moves = process.argv.splice(3),
+  leaves = 0;
 
 initialDepth = parseInt(initialDepth);
 
@@ -21,31 +22,14 @@ function executeMoves(moves) {
   return true;
 }
 
-function perft(depth) {
-  var nodes = 0, moves;
-
-  if (depth === 0) {
-    return 1;
-  }
-
-  moves = chess.generateMoves(true);
-
-  moves.forEach(function (move) {
-    var subresult;
-
-    move.make();
-    if (!chess.isOpponentInCheck()) {
-      subresult = perft(depth - 1);
-      nodes += subresult;
-    }
-    move.unMake();
-  });
-
-  return nodes;
-}
-
 if (executeMoves(moves)) {
   console.time('time');
-  console.log(perft(initialDepth));
+  // use callbacks insignificant slow down iteration
+  chess.traverse(initialDepth, {
+    onMaxDepthReached: function () {
+      ++leaves;
+    }
+  });
+  console.log(leaves);
   console.timeEnd('time');
 }
