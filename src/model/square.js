@@ -1,6 +1,6 @@
 'use strict';
 
-var isUtils = require('../utils/common-utils/is-utils'),
+var isTypeUtils = require('../utils/common-utils/is-type-utils'),
   boardUtils = require('../utils/chess-utils/board-utils');
 
 function Square(index, chess) {
@@ -52,7 +52,7 @@ Square.prototype = {
   },
 
   isOccupied: function () {
-    return isUtils.isPresent(this.piece);
+    return isTypeUtils.isPresent(this.piece);
   },
 
   isOccupiedByOpponent: function (playerColor) {

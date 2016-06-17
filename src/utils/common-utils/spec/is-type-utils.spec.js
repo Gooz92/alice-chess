@@ -1,11 +1,11 @@
 'use strict';
 
 var assert = require('chai').assert,
-  isUtils = require('../is-utils');
+  isTypeUtils = require('../is-type-utils');
 
-describe('isUtils', function () {
+describe('isTypeUtils', function () {
   describe('.isObject()', function () {
-    var isObject = isUtils.isObject;
+    var isObject = isTypeUtils.isObject;
 
     it('return true for plain object', function () {
       assert.isTrue(isObject({}));
@@ -27,7 +27,7 @@ describe('isUtils', function () {
     });
 
     it('return false for null', function () {
-      assert.isFalse(isUtils.isObject(null));
+      assert.isFalse(isTypeUtils.isObject(null));
     });
 
     it('return false for function', function () {
@@ -37,7 +37,7 @@ describe('isUtils', function () {
   });
 
   describe('.isPlainObject()', function () {
-    var isPlainObject = isUtils.isPlainObject;
+    var isPlainObject = isTypeUtils.isPlainObject;
 
     it('return true for plain object', function () {
       assert.isTrue(isPlainObject({}));
@@ -68,7 +68,7 @@ describe('isUtils', function () {
   });
 
   describe('.isFunction()', function () {
-    var isFunction = isUtils.isFunction;
+    var isFunction = isTypeUtils.isFunction;
 
     it('return true for function', function () {
       var doSomething = function () {};
@@ -81,7 +81,7 @@ describe('isUtils', function () {
   });
 
   describe('.isString()', function () {
-    var isString = isUtils.isString;
+    var isString = isTypeUtils.isString;
 
     it('return true for string', function () {
       assert.isTrue(isString('something'));
@@ -94,7 +94,7 @@ describe('isUtils', function () {
   });
 
   describe('.isNumber()', function () {
-    var isNumber = isUtils.isNumber;
+    var isNumber = isTypeUtils.isNumber;
 
     it('return true for number', function () {
       assert.isTrue(isNumber(42));
@@ -107,7 +107,7 @@ describe('isUtils', function () {
   });
 
   describe('.isBoolean()', function () {
-    var isBoolean = isUtils.isBoolean;
+    var isBoolean = isTypeUtils.isBoolean;
 
     it('return true for true boolean value', function () {
       var truth = true;
@@ -126,7 +126,7 @@ describe('isUtils', function () {
   });
 
   describe('.isUndefined()', function () {
-    var isUndefined = isUtils.isUndefined;
+    var isUndefined = isTypeUtils.isUndefined;
 
     it('return true for undefined', function () {
       var notDefined = void 0;
@@ -139,7 +139,7 @@ describe('isUtils', function () {
   });
 
   describe('isDefined()', function () {
-    var isDefined = isUtils.isDefined;
+    var isDefined = isTypeUtils.isDefined;
 
     it('return true for defined value', function () {
       var value = "i'm defined!";
@@ -152,7 +152,7 @@ describe('isUtils', function () {
   });
 
   describe('.isNill()', function () {
-    var isNill = isUtils.isNill;
+    var isNill = isTypeUtils.isNill;
 
     it('return true for null', function () {
       assert.isTrue(isNill(null));

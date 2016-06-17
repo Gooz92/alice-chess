@@ -7,7 +7,7 @@
 // 7 => 3, 1
 
 var Move = require('./move'),
-  isDefined = require('../../utils/common-utils/is-utils').isDefined;
+  isDefined = require('../../utils/common-utils/is-type-utils').isDefined;
 
 function RookMove(sourceSquare, targetSquare) {
   Move.call(this, sourceSquare, targetSquare);

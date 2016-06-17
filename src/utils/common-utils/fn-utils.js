@@ -1,6 +1,6 @@
 'use strict';
 
-var isUtils = require('./is-utils');
+var isTypeUtils = require('./is-type-utils');
 
 module.exports = {
   times: function (n, fn) {
@@ -21,11 +21,11 @@ module.exports = {
 
     for (index = 0; index < arguments.length; index++) {
       fn = arguments[index];
-      if (!isUtils.isFunction(fn)) {
+      if (!isTypeUtils.isFunction(fn)) {
         throw new Error();
       }
 
-      if (isUtils.isDefined(fns[fn.length])) {
+      if (isTypeUtils.isDefined(fns[fn.length])) {
         throw new Error();
       }
 
@@ -35,7 +35,7 @@ module.exports = {
     return function () {
       fn = fns[arguments.length];
 
-      if (isUtils.isFunction(fn)) {
+      if (isTypeUtils.isFunction(fn)) {
         return fn.apply(this, arguments);
       }
 

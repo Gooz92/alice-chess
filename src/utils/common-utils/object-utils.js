@@ -1,6 +1,6 @@
 'use strict';
 
-var isUtils = require('./is-utils');
+var isTypeUtils = require('./is-type-utils');
 
 var objectUtils = module.exports = {
   extend: function (target /* sources... */) {
@@ -21,8 +21,8 @@ var objectUtils = module.exports = {
     var index;
 
     var setValue = function (value, key) {
-      if (isUtils.isObject(value)) {
-        if (!isUtils.isObject(target[key])) {
+      if (isTypeUtils.isObject(value)) {
+        if (!isTypeUtils.isObject(target[key])) {
           target[key] = {};
         }
         objectUtils.merge(target[key], value);
@@ -39,7 +39,7 @@ var objectUtils = module.exports = {
   },
 
   forEachOwnProperty: function (object, callback) {
-    if (!isUtils.isObject(object)) {
+    if (!isTypeUtils.isObject(object)) {
       return;
     }
 

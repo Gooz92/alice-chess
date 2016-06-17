@@ -1,6 +1,6 @@
 'use strict';
 
-var isUtils = require('../common-utils/is-utils');
+var isTypeUtils = require('../common-utils/is-type-utils');
 
 var eventNames = [
   'onStart',
@@ -28,9 +28,9 @@ function addEventListeners(handler, listeners) {
   eventNames.forEach(function (eventName) {
     var listener = listeners[eventName];
 
-    if (isUtils.isUndefined(listener)) {
+    if (isTypeUtils.isUndefined(listener)) {
       listener = function() {};
-    } else if (!isUtils.isFunction(listener)) {
+    } else if (!isTypeUtils.isFunction(listener)) {
       throw new Error(eventName + ' must be a function');
     }
 

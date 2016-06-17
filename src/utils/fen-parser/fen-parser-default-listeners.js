@@ -1,6 +1,6 @@
 'use strict';
 
-var isUtils = require('../common-utils/is-utils');
+var isTypeUtils = require('../common-utils/is-type-utils');
 
 var listeners = module.exports = {
   onStart: function() {
@@ -8,7 +8,7 @@ var listeners = module.exports = {
   },
 
   onPiecePlacementStart: function () {
-    if (!isUtils.isObject(this.data)) {
+    if (!isTypeUtils.isObject(this.data)) {
       this.data = {};
     }
 
@@ -24,7 +24,7 @@ var listeners = module.exports = {
   },
 
   onRankEnd: function () {
-    if (isUtils.isObject(this.data) && Array.isArray(this.data.board)) {
+    if (isTypeUtils.isObject(this.data) && Array.isArray(this.data.board)) {
       this.data.board.push(this.currentRank);
     }
 
@@ -37,7 +37,7 @@ var listeners = module.exports = {
   },
 
   setActiveColor: function (colorName) {
-    if (isUtils.isObject(this.data)) {
+    if (isTypeUtils.isObject(this.data)) {
       this.data.activeColor = colorName;
     }
 
@@ -57,7 +57,7 @@ var listeners = module.exports = {
   },
 
   onCastlingAvailability: function (castlingAvalibility) {
-    if (isUtils.isObject(this.data)) {
+    if (isTypeUtils.isObject(this.data)) {
       this.data.castlingAvalibility = castlingAvalibility;
     }
 

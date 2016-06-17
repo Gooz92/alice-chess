@@ -1,6 +1,6 @@
 'use strict';
 
-var isUtils = require('../utils/common-utils/is-utils'),
+var isTypeUtils = require('../utils/common-utils/is-type-utils'),
   objectUtils = require('../utils/common-utils/object-utils'),
   arrayUtils = require('../utils/common-utils/array-utils');
 
@@ -19,7 +19,7 @@ Move.createCapture = function (sourceSquare, targetSquare) {
 };
 
 Move.create = function (sourceSquare, targetSquare, promotionPiece) {
-  if (targetSquare.isOccupied() && isUtils.isUndefined(promotionPiece)) {
+  if (targetSquare.isOccupied() && isTypeUtils.isUndefined(promotionPiece)) {
     return new Capture(sourceSquare, targetSquare);
   }
 
@@ -62,7 +62,7 @@ function createPawnMove(sourceSquare, targetSquare, promotionPiece) {
 
   pawn = sourceSquare.piece;
 
-  if (isUtils.isDefined(promotionPiece)) {
+  if (isTypeUtils.isDefined(promotionPiece)) {
     return new PawnPromotion(sourceSquare, targetSquare, promotionPiece);
   }
 

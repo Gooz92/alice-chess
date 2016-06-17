@@ -1,6 +1,6 @@
 'use strict';
 
-var isUtils = module.exports = {
+var isTypeUtils = module.exports = {
 
   /*
     return false for null
@@ -11,7 +11,7 @@ var isUtils = module.exports = {
   },
 
   isPlainObject: function (value) {
-    return isUtils.isObject(value) && value.constructor.name === 'Object';
+    return isTypeUtils.isObject(value) && value.constructor.name === 'Object';
   },
 
   isFunction: function (value) {
@@ -39,6 +39,6 @@ var isUtils = module.exports = {
   },
 
   isNill: function (value) {
-    return value === null || isUtils.isUndefined(value);
+    return value === null || isTypeUtils.isUndefined(value);
   }
 };

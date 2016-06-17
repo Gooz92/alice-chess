@@ -2,7 +2,7 @@
 
 var squareNames = require('./square-names.js'),
   fenUtils = require('./fen-utils'),
-  isUtils = require('../common-utils/is-utils'),
+  isTypeUtils = require('../common-utils/is-type-utils'),
   nibbleUtils = require('../common-utils/nibble-utils');
 
 var
@@ -62,7 +62,7 @@ module.exports = {
         pushEmptySquareSequence(boardNibbles, emptySquaresCount);
         emptySquaresCount = 0;
         boardNibbles.push(pieceNibbles[pieceToken]);
-      } else if (isUtils.isUndefined(pieceToken)) {
+      } else if (isTypeUtils.isUndefined(pieceToken)) {
         ++emptySquaresCount;
       } else {
         throw new Error("Unknow piece token: '" + pieceToken +
