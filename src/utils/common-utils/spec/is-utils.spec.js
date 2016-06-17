@@ -151,24 +151,24 @@ describe('isUtils', function () {
     });
   });
 
-  describe('.isPresent()', function () {
-    var isPresent = isUtils.isPresent;
+  describe('.isNill()', function () {
+    var isNill = isUtils.isNill;
 
-    it('return false for null', function () {
-      assert.isFalse(isPresent(null));
+    it('return true for null', function () {
+      assert.isTrue(isNill(null));
     });
 
-    it('return false for undefined', function () {
+    it('return true for undefined', function () {
       var notDefined = void 0;
-      assert.isFalse(isPresent(notDefined));
+      assert.isTrue(isNill(notDefined));
     });
 
-    it('return true for object', function () {
+    it('return false for object', function () {
       var box = {
         content: 'lamb'
       };
 
-      assert.isTrue(isPresent(box));
+      assert.isFalse(isNill(box));
     });
   });
 });

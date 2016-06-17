@@ -38,7 +38,7 @@ var isUtils = module.exports = {
     return typeof value !== 'undefined';
   },
 
-  isPresent: function (value) {
-    return value !== null && isUtils.isDefined(value);
+  isNill: function (value) {
+    return value === null || isUtils.isUndefined(value);
   }
 };
