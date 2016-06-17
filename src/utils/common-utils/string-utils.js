@@ -1,5 +1,7 @@
 'use strict';
 
+var isTypeUtils = require('./is-type-utils');
+
 var wrapInQuotesPattern = /^('|")(.+)(\1)$/;
 
 var stringUtils = module.exports = {
@@ -42,5 +44,39 @@ var stringUtils = module.exports = {
     var padding = stringUtils.createPadding(str, size);
 
     return padding + str;
+  },
+
+  stringify: function (str) {
+    var singleQuotesCount = 0,
+      doubleQuotesCount = 0,
+      qoutes, match;
+
+    if (isTypeUtils.isNill(str)) {
+      return "''";
+    }
+
+    qoutes = /'|"/g;
+
+    while ((match = qoutes.exec(str)) !== null) {
+      if (match[0] === '"') {
+        ++doubleQuotesCount;
+      } else {
+        ++singleQuotesCount;
+      }
+    }
+
+    if (singleQuotesCount === 0) {
+      return "'" + str + "'";
+    }
+
+    if (doubleQuotesCount === 0) {
+      return '"' + str + '"';
+    }
+
+    if (doubleQuotesCount > singleQuotesCount) {
+      return "'" + str.replace(/'/g, "\\'") + "'";
+    }
+
+    return '"' + str.replace(/"/g, '\\"') + '"';
   }
 };

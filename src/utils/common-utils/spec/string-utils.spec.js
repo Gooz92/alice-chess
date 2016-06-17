@@ -31,4 +31,36 @@ describe('stringUtils', function () {
       assert.isFalse(isWrappedInQuotes("value'"));
     });
   });
+
+  describe('.stringify()', function () {
+    var stringify = stringUtils.stringify;
+    it('return empty single quotes for null', function () {
+      assert.strictEqual(stringify(null), "''");
+    });
+
+    it('return empty single quotes for undefined', function () {
+      var notDefined = void 0;
+      assert.strictEqual(stringify(notDefined), "''");
+    });
+
+    it('return empty single quotes for empty string', function () {
+      var empty = '';
+      assert.strictEqual(stringify(empty), "''");
+    });
+
+    it('wrap string without quotes in single quotes', function () {
+      var message = 'hello';
+      assert.strictEqual(stringify(message), "'hello'");
+    });
+
+    it('wrap string with double quotes in single quotes', function () {
+      var data = 'message="hello"';
+      assert.strictEqual(stringify(data), "'message=\"hello\"'");
+    });
+
+    it('wrap string with single quotes in double quotes', function () {
+      var data = "message='hello'";
+      assert.strictEqual(stringify(data), '"message=\'hello\'"');
+    });
+  });
 });
