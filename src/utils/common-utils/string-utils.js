@@ -19,30 +19,27 @@ var stringUtils = module.exports = {
     return match[2];
   },
 
-  repeat: function (token, times) {
+  repeat: function (str, times) {
     var repeatition = '';
 
     while (times-- > 0) {
-      repeatition += token;
+      repeatition += str;
     }
 
     return repeatition;
   },
 
-  createPadding: function (str, size) {
-    var padding = stringUtils.repeat(' ', size - str.length);
-    return padding;
+  createPadding: function (str, size, character) {
+    return stringUtils.repeat(character, size - str.length);
   },
 
   padLeft: function (str, size) {
     var padding = stringUtils.createPadding(str, size);
-
     return str + padding;
   },
 
   padRight: function (str, size) {
     var padding = stringUtils.createPadding(str, size);
-
     return padding + str;
   },
 
