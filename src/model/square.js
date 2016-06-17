@@ -52,7 +52,7 @@ Square.prototype = {
   },
 
   isOccupied: function () {
-    return isTypeUtils.isPresent(this.piece);
+    return !isTypeUtils.isNill(this.piece);
   },
 
   isOccupiedByOpponent: function (playerColor) {
