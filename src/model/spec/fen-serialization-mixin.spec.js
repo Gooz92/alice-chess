@@ -7,18 +7,6 @@ var fenSerializationMixin = require('../fen-serialization-mixin'),
 
 describe('fenSerializationMixin', function () {
   describe('generateFenCastlingAvailability()', function () {
-
-    it.skip('toFenField called with chess.castlingRights', function () {
-      var getFenCastling = fenSerializationMixin.generateFenCastlingAvailability,
-        chess = {
-          castlingRights: 7
-        };
-
-      castlingUtils.toFenField = sinon.spy();
-      chess.generateFenCastlingAvailibility = getFenCastling;
-      chess.generateFenCastlingAvailibility();
-
-      assert.isTrue(castlingUtils.toFenField.calledWith(chess.castlingRights));
-    });
+    it('toFenField called with chess.castlingRights');
   });
 });
