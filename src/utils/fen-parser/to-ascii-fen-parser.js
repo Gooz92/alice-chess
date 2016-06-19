@@ -1,6 +1,6 @@
 'use strict';
 
-var isUtils = require('../common-utils/is-utils'),
+var isTypeUtils = require('../common-utils/is-type-utils'),
   FenParser = require('./fen-parser');
 
 var hLine = '  +-----------------+',
@@ -11,7 +11,7 @@ function rankToString(rank, rankIndex) {
 
   for (index = 0; index < 8; index++) {
     token = rank[index];
-    rank[index] = isUtils.isString(token) ? token : '-';
+    rank[index] = isTypeUtils.isString(token) ? token : '-';
   }
 
   return [rankIndex, '|', rank.join(' '), '|', rankIndex].join(' ');
