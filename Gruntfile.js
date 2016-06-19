@@ -73,8 +73,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('test', [
-    'mochaTest',
-    'jshint'
+    'mochaTest'
   ]);
 
   grunt.registerTask('build', [
