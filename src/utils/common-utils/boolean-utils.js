@@ -31,10 +31,6 @@ var booleanUtils = module.exports = {
     return +booleanUtils.isTruthy(arg);
   },
 
-  fromInteger: function (arg) {
-    return booleanUtils.isTruthy(+arg);
-  },
-
   fromString: function (arg) {
     if (arg === 'true') {
       return true;

@@ -153,27 +153,6 @@ describe('booleanUtils', function () {
     });
   });
 
-  describe('.fromInteger()', function () {
-    var fromInteger = booleanUtils.fromInteger;
-    it('return true for 1', function () {
-      assert.isTrue(fromInteger(1));
-    });
-
-    it('return false for 0', function () {
-      assert.isFalse(fromInteger(0));
-    });
-
-    it('return true for negative numbers', function () {
-      var negative = -1;
-      assert.isTrue(fromInteger(negative));
-    });
-
-    it('return true for positive numbers', function () {
-      var positive = 42;
-      assert.isTrue(fromInteger(positive));
-    });
-  });
-
   describe('.fromString()', function () {
     var fromString = booleanUtils.fromString;
     it("return true for 'true", function () {
