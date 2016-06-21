@@ -40,6 +40,21 @@ module.exports = function (grunt) {
       }
     },
 
+    htmlbuild: {
+      dist: {
+        src: 'dist/index.tpl.html',
+        dest: 'dist/index.html',
+        options: {
+          scripts: {
+            chessApp: 'dist/app.chess.min.js'
+          },
+          styles: {
+            style: "dist/style.css"
+          }
+        }
+      }
+    },
+
     browserify: {
       dist: {
         files: {
@@ -81,6 +96,7 @@ module.exports = function (grunt) {
     'clean',
     'browserify',
     'uglify',
-    'copy'
+    'copy',
+    'htmlbuild'
   ]);
 };
