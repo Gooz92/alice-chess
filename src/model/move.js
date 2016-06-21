@@ -3,7 +3,8 @@
 var isTypeUtils = require('../utils/common-utils/is-type-utils'),
   objectUtils = require('../utils/common-utils/object-utils'),
   arrayUtils = require('../utils/common-utils/array-utils'),
-  Move = require('./move/move');
+  Move = require('./move/move'),
+  Capture = require('./move/capture');
 
 Move.createSilentMove = function (sourceSquare, targetSquare) {
   return new Move(sourceSquare, targetSquare);
@@ -77,34 +78,6 @@ BigPawn.prototype.make = function () {
   this.super.make.call(this);
 
   chess.enPassantTargetSquare = epTargetSquare;
-};
-
-var Capture = objectUtils.inherit(function (sourceSquare, targetSquare) {
-  this.super.constructor.call(this, sourceSquare, targetSquare);
-  this.capturedPiece = targetSquare.piece;
-}, Move);
-
-Capture.prototype.make = function () {
-  this.targetSquare.piece.remove();
-  this.super.make.call(this);
-};
-
-Capture.prototype.unMake = function () {
-  var capturedPieceColor = this.capturedPiece.color.name;
-
-  this.super.unMake.call(this);
-
-  this.targetSquare.piece = this.capturedPiece;
-  this.capturedPiece.square = this.targetSquare;
-  this.targetSquare.chess.pieces[capturedPieceColor].push(this.capturedPiece);
-};
-
-Capture.prototype.toSAN = function () {
-  if (this.piece.isPawn()) {
-    return this.sourceSquare.getFileName() + 'x' + this.targetSquare.name;
-  }
-
-  return this.piece.token.toUpperCase() + 'x' + this.targetSquare.name;
 };
 
 var EnPassant = objectUtils.inherit(function (sourceSquare, targetSquare) {

@@ -18,7 +18,7 @@ Capture.prototype = {
   unMake: function () {
     var opponentColorname = this.capturedPiece.color.name;
 
-    this.super.unMake.call(this);
+    Move.prototype.unMake.call(this);
 
     this.targetSquare.piece = this.capturedPiece;
     this.capturedPiece.square = this.targetSquare;
