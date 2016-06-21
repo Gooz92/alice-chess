@@ -5,6 +5,7 @@ var arrayUtils = require('../../utils/common-utils/array-utils');
 function Move(sourceSquare, targetSquare) {
   this.sourceSquare = sourceSquare;
   this.targetSquare = targetSquare;
+  this.piece = sourceSquare.piece;
 }
 
 Move.prototype = {
@@ -30,7 +31,12 @@ Move.prototype = {
   },
 
   // TODO
-  getName: function () {
+  toSAN: function () {
+    if (this.piece.isPawn()) {
+      return this.targetSquare.name;
+    }
+
+    return this.piece.token.toUpperCase() + this.targetSquare.name;
   }
 };
 

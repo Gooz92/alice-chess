@@ -2,13 +2,8 @@
 
 var isTypeUtils = require('../utils/common-utils/is-type-utils'),
   objectUtils = require('../utils/common-utils/object-utils'),
-  arrayUtils = require('../utils/common-utils/array-utils');
-
-var Move = function (sourceSquare, targetSquare) {
-  this.sourceSquare = sourceSquare;
-  this.targetSquare = targetSquare;
-  this.piece = this.sourceSquare.piece;
-};
+  arrayUtils = require('../utils/common-utils/array-utils'),
+  Move = require('./move/move');
 
 Move.createSilentMove = function (sourceSquare, targetSquare) {
   return new Move(sourceSquare, targetSquare);
@@ -68,73 +63,6 @@ function createPawnMove(sourceSquare, targetSquare, promotionPiece) {
 
   return new Move(sourceSquare, targetSquare);
 }
-
-Move.prototype.make = function () {
-  var chess = this.targetSquare.chess;
-
-  this.piece.moveTo(this.targetSquare);
-
-  this.changesInCastling = [];
-
-  chess.turn();
-  chess.history.push(this);
-
-   // TODO optimize castlingAvalibility updating
-  if (this.piece.isRook()) {
-    if (this.sourceSquare.getFileIndex() === 0) {
-      if (chess.castlingAvalibility[2 * this.piece.color.index + 1]) {
-        this.changesInCastling.push(2 * this.piece.color.index + 1);
-        chess.castlingAvalibility[2 * this.piece.color.index + 1] = false;
-      }
-    } else if (this.sourceSquare.getFileIndex() === 7) {
-      if (chess.castlingAvalibility[2 * this.piece.color.index]) {
-        chess.castlingAvalibility[2 * this.piece.color.index] = false;
-        this.changesInCastling.push(2 * this.piece.color.index);
-      }
-    }
-  }
-
-  // TODO optimize castlingAvalibility updating
-  if (this.piece.isKing()) {
-    if (chess.castlingAvalibility[2 * this.piece.color.index]) {
-      chess.castlingAvalibility[2 * this.piece.color.index] = false;
-      chess.castlingAvalibility[2 * this.piece.color.index + 1] = false;
-      this.changesInCastling.push(
-        2 * this.piece.color.index,
-        this.piece.color.index + 1
-      );
-    }
-  }
-};
-
-Move.prototype.unMake = function () {
-  var chess = this.targetSquare.chess;
-
-  this.piece.moveTo(this.sourceSquare);
-
-  chess.enPassantTargetSquare = this.previousEnPassantTagetSquare;
-
-  this.changesInCastling.forEach(function (index) {
-    chess.castlingAvalibility[index] = true;
-  });
-
-  this.targetSquare.chess.turn();
-  arrayUtils.remove(this.targetSquare.chess.history, this);
-};
-
-Move.prototype.toSAN = function () {
-  var san = this.targetSquare.name;
-
-  if (!this.piece.isPawn()) {
-    san = this.piece.token.toUpperCase() + san;
-  }
-
-  return san;
-};
-
-Move.prototype.toLongSAN = function () {
-  return this.sourceSquare.name + '-' + this.targetSquare.name;
-};
 
 var BigPawn = objectUtils.inherit(function (sourceSquare, targetSquare) {
   this.super.constructor.call(this, sourceSquare, targetSquare);
