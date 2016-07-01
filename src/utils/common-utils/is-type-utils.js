@@ -113,5 +113,17 @@ var isTypeUtils = module.exports = {
 
   isNill: function (value) {
     return value === null || isTypeUtils.isUndefined(value);
+  },
+
+  /**
+   * Check if a values is not null and not undefined
+   *
+   * @static
+   * @arg {any} value
+   * @return {boolean}
+   */
+
+  isNotNill: function (value) {
+    return value !== null && isTypeUtils.isDefined(value);
   }
 };

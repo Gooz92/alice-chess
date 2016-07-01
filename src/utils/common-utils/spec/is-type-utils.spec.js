@@ -171,4 +171,21 @@ describe('isTypeUtils', function () {
       assert.isFalse(isNill(box));
     });
   });
+
+  describe('.isNotNill()', function () {
+    var isNotNill = isTypeUtils.isNotNill;
+
+    it('return false for null', function () {
+      assert.isFalse(isNotNill(null));
+    });
+
+    it('return false for undefined', function () {
+      assert.isFalse(isNotNill(void 0));
+    });
+
+    it('return true for not undefined', function () {
+      var defined = "i'm defined";
+      assert.isTrue(isNotNill(defined));
+    });
+  });
 });
