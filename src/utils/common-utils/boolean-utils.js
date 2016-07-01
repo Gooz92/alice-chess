@@ -108,6 +108,6 @@ var booleanUtils = module.exports = {
       return false;
     }
 
-    throwError("Invalid argument: '{0}'. It must be 'true' or 'false'!", arg);
+    throwError("Invalid argument: '{0}'. It must be 'true' or 'false'!", value);
   }
 };
