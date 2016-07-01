@@ -2,39 +2,109 @@
 
 var throwError = require('./throw-error');
 
+/**
+ * @module booleanUtils
+ */
+
 var booleanUtils = module.exports = {
-  isTrue: function (arg) {
-    return arg === true;
+
+  /**
+   * Checks if a a value is true
+   *
+   * @static
+   * @arg {any} value
+   * @returns {boolean}
+   */
+
+  isTrue: function (value) {
+    return value === true;
   },
 
-  isNotTrue: function (arg) {
-    return arg !== true;
+  /**
+   * Checks if a value is not true
+   *
+   * @static
+   * @arg {any} value
+   * @returns {boolean}
+   */
+
+  isNotTrue: function (value) {
+    return value !== true;
   },
 
-  isFalse: function (arg) {
-    return arg === false;
+  /**
+   * Checks if a value is false
+   *
+   * @static
+   * @arg {any} value
+   * @returns {boolean}
+   */
+
+  isFalse: function (value) {
+    return value === false;
   },
 
-  isNotFalse: function (arg) {
-    return arg !== false;
+  /**
+   * Checks if a value is not false
+   *
+   * @static
+   * @arg {any} value
+   * @returns {boolean}
+   */
+
+  isNotFalse: function (value) {
+    return value !== false;
   },
 
-  isTruthy: function (arg) {
-    return !!arg;
+  /**
+   * Checks if a value is truthy
+   *
+   * @static
+   * @arg {any} value
+   * @returns {boolean}
+   */
+
+  isTruthy: function (value) {
+    return !!value;
   },
 
-  isFalsy: function (arg) {
-    return !arg;
+  /**
+   * Checks if a value is falsy
+   *
+   * @static
+   * @arg {any} value
+   * @returns {boolean}
+   */
+
+  isFalsy: function (value) {
+    return !value;
   },
 
-  toInteger: function (arg) {
-    return +booleanUtils.isTruthy(arg);
+  /**
+   * Return 0 for falsy value and 1 for truthy
+   *
+   * @static
+   * @arg {any} values
+   * @returns {number} 0 or 1
+   */
+
+  toInteger: function (value) {
+    return +booleanUtils.isTruthy(value);
   },
 
-  fromString: function (arg) {
-    if (arg === 'true') {
+  /**
+   * Return true for string 'true' and false for string 'false'
+   *
+   * @static
+   * @arg {string} value string 'false' or 'true'
+   * @throws error if value is not 'true' or 'false'
+   * @return {boolean}
+   */
+
+  fromString: function (value) {
+    if (value === 'true') {
       return true;
-    } else if (arg === 'false') {
+    } else if (value === 'false') {
       return false;
     }
 
