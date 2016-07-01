@@ -55,6 +55,15 @@ module.exports = function (grunt) {
       }
     },
 
+    jsdoc: {
+      dist: {
+        src: 'src/**/*.js',
+        options: {
+          destination: 'doc'
+        }
+      }
+    },
+
     browserify: {
       dist: {
         files: {
