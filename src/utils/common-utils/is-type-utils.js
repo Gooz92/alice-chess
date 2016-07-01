@@ -116,7 +116,7 @@ var isTypeUtils = module.exports = {
   },
 
   /**
-   * Check if a values is not null and not undefined
+   * Check if a value is not null and not undefined
    *
    * @static
    * @arg {any} value
