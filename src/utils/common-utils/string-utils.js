@@ -2,23 +2,7 @@
 
 var isTypeUtils = require('./is-type-utils');
 
-var wrapInQuotesPattern = /^('|")(.+)(\1)$/;
-
 var stringUtils = module.exports = {
-  isWrappedInQuotes: function (value)  {
-    return wrapInQuotesPattern.test(value);
-  },
-
-  unwrapQuotes: function (value) {
-    var match = value.match(wrapInQuotesPattern);
-
-    if (match === null) {
-      return value;
-    }
-
-    return match[2];
-  },
-
   repeat: function (str, times) {
     var repeatition = '';
 
