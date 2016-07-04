@@ -14,17 +14,18 @@ var stringUtils = module.exports = {
   },
 
   createPadding: function (str, size, character) {
+    character = character || ' ';
     return stringUtils.repeat(character, size - str.length);
   },
 
-  padLeft: function (str, size) {
-    var padding = stringUtils.createPadding(str, size);
-    return str + padding;
+  padLeft: function (str, size, padChar) {
+    var padding = stringUtils.createPadding(str, size, padChar);
+    return padding + str;
   },
 
-  padRight: function (str, size) {
-    var padding = stringUtils.createPadding(str, size);
-    return padding + str;
+  padRight: function (str, size, padChar) {
+    var padding = stringUtils.createPadding(str, size, padChar);
+    return str + padding;
   },
 
   stringify: function (str) {

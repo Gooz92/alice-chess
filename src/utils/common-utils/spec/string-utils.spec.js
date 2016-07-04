@@ -33,16 +33,43 @@ describe('stringUtils', function () {
 
   describe('.padLeft()', function () {
     var padLeft = stringUtils.padLeft;
-    it('return same string if padding size <= string.length');
-    it('add str.length - size padding characters before string');
-    it('use space as default padding character');
+    it('return same string if padding size <= string.length', function () {
+      var text = 'my length is 15';
+      assert.strictEqual(padLeft(text, 14), text);
+    });
+
+    it('add str.length - size padding characters before string', function () {
+      var str = 'pad me plz',
+        padSize = str.length + 2,
+        padChar = '#',
+        paddedStr = '##pad me plz';
+
+      assert.strictEqual(padLeft(str, padSize, padChar), paddedStr);
+    });
+
+    it('use space as default padding character', function () {
+      assert.strictEqual(padLeft('', 1), ' ');
+    });
   });
 
   describe('.padRight()', function () {
     var padRight = stringUtils.padRight;
-    it('return same string if padding size <= string.length');
-    it('add str.length - size padding characters after string');
-    it('use space as default padding character');
+    it('return same string if padding size <= string.length', function () {
+      assert.strictEqual(padRight('abc', 2), 'abc');
+    });
+
+    it('add str.length - size padding characters after string', function () {
+      var str = 'pad me plz',
+        padSize = str.length + 2,
+        padChar = '#',
+        paddedStr = 'pad me plz##';
+
+      assert.strictEqual(padRight(str, padSize, padChar), paddedStr);
+    });
+
+    it('use space as default padding character', function () {
+      assert.strictEqual(padRight('', 1), ' ');
+    });
   });
 
   describe('.stringify()', function () {
