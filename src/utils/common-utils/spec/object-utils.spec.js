@@ -67,6 +67,18 @@ describe('objectUtils', function () {
     });
   });
 
+  describe('.invert()', function () {
+    it('return object with inverted keys and values', function () {
+      assert.deepEqual(objectUtils.invert({
+        key1: 'val1',
+        key2: 'val2'
+      }), {
+        val1: 'key1',
+        val2: 'key2'
+      });
+    });
+  });
+
   describe('.inherit()', function () {
     function Parent() {
 

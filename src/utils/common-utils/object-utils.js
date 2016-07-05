@@ -68,6 +68,22 @@ var objectUtils = module.exports = {
     return result;
   },
 
+  invert: function (object) {
+    var inverted = {};
+
+    objectUtils.forEachOwnProperty(object, function (value, key) {
+      if (Array.isArray(value)) {
+        value.forEach(function (newKey) {
+          inverted[newKey] = key;
+        });
+      } else {
+        inverted[value] = key;
+      }
+    });
+
+    return inverted;
+  },
+
   inherit: function (Child, Parent) {
     // rewrite childs prototype it's ok ???
     Child.prototype = Object.create(Parent.prototype);
