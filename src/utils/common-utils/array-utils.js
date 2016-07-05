@@ -6,6 +6,16 @@ var arrayUtils = module.exports = {
     return arrayUtils.removeAt(array, index);
   },
 
+  sum: function (arr) {
+    return arr.reduce(function (a, b) {
+      return a + b;
+    });
+  },
+
+  mean: function (arr) {
+    return arrayUtils.sum(arr) / arr.length;
+  },
+
   removeAt: function (array, index) {
     if (index < 0 || index >= array.length) {
       return false;

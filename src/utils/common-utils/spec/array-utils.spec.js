@@ -4,6 +4,19 @@ var assert = require('assert'),
   arrayUtils = require('../array-utils');
 
 describe('arrayUtils', function () {
+
+  describe('.sum()', function () {
+    it('return sum of array elements', function () {
+      assert.strictEqual(arrayUtils.sum([2, 3, 4]), 9);
+    });
+  });
+
+  describe('.mean()', function () {
+    it('return mean of the values in array', function () {
+      assert.strictEqual(arrayUtils.mean([2, 3, 4]), 3);
+    });
+  });
+
   describe('removeAt', function () {
     it('remove element from array by index', function () {
       var array = ['one', 2, '3'];
