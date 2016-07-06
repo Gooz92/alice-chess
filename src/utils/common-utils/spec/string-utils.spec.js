@@ -72,6 +72,21 @@ describe('stringUtils', function () {
     });
   });
 
+  describe('.center()', function () {
+    it('center string in larger string with given size', function () {
+      assert.strictEqual(stringUtils.center('a', 4), ' a  ');
+      assert.strictEqual(stringUtils.center('a', 5), '  a  ');
+    });
+
+    it('return same string if size less or eqaul than string length', function () {
+      assert.strictEqual(stringUtils.center('abc', 2), 'abc');
+    });
+
+    it('may use custom pad character', function () {
+      assert.strictEqual(stringUtils.center('+', 3, '#'), '#+#');
+    });
+  });
+
   describe('.stringify()', function () {
     var stringify = stringUtils.stringify;
     it('return empty single quotes for null', function () {

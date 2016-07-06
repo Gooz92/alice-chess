@@ -28,6 +28,15 @@ var stringUtils = module.exports = {
     return str + padding;
   },
 
+  center: function (str, size, padChar) {
+    var leftPadsCount = Math.floor((str.length + size) / 2);
+
+    str = stringUtils.padLeft(str, leftPadsCount, padChar);
+    str = stringUtils.padRight(str, size, padChar);
+
+    return str;
+  },
+
   stringify: function (str) {
     var singleQuotesCount = 0,
       doubleQuotesCount = 0,
