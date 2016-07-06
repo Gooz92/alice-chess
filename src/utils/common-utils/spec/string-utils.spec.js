@@ -78,8 +78,9 @@ describe('stringUtils', function () {
       assert.strictEqual(stringUtils.center('a', 5), '  a  ');
     });
 
-    it('return same string if size less or eqaul than string length', function () {
+    it('return same string if size <= string.length', function () {
       assert.strictEqual(stringUtils.center('abc', 2), 'abc');
+      assert.strictEqual(stringUtils.center('bob', 1), 'bob');
     });
 
     it('may use custom pad character', function () {
