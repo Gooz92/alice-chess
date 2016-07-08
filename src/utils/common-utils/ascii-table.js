@@ -29,7 +29,7 @@ function createAsciiTable(entries) {
       var text = entry[headerLabel];
 
       if (isTypeUtils.isUndefined(text)) {
-        text = '-'
+        text = '-';
       } else {
         text = text.toString();
       }

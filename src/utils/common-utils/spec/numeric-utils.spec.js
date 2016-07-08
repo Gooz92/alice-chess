@@ -50,6 +50,6 @@ describe('numericUtils', function () {
 
     it('may take custom separator as argument', function () {
       assert.deepEqual(formatThousands(1000, ','), '1,000');
-    })
+    });
   });
 });

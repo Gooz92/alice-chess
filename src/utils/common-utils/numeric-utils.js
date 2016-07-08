@@ -21,7 +21,7 @@ var numericUtils = module.exports = {
     }
 
     if (currentIndex !== 0) {
-      thousands.unshift(number.slice(0, currentIndex))
+      thousands.unshift(number.slice(0, currentIndex));
     }
 
     return thousands;
