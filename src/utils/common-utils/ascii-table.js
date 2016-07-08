@@ -1,6 +1,7 @@
 'use strict';
 
-var stringUtils = require('./string-utils');
+var stringUtils = require('./string-utils'),
+  isTypeUtils = require('./is-type-utils');
 
 function extractHeaderLabels(entries) {
   var headerLabels = [];
@@ -25,7 +26,13 @@ function createAsciiTable(entries) {
 
   entries.forEach(function (entry) {
     var row = headerLabels.map(function (headerLabel, index) {
-      var text = entry[headerLabel] || '-';
+      var text = entry[headerLabel];
+
+      if (isTypeUtils.isUndefined(text)) {
+        text = '-'
+      } else {
+        text = text.toString();
+      }
 
       if (text.length > columnWidths[index].length) {
         columnWidths[index] = text.length;
@@ -37,15 +44,13 @@ function createAsciiTable(entries) {
     table.push(row);
   });
 
-  console.log(columnWidths);
-
   for (i = 0; i < table.length; i++) {
     for (j = 0; j < table[i].length; j++) {
-      table[i][j] = stringUtils.center(table[i][j], columnWidths[j]);
+      table[i][j] = stringUtils.center(table[i][j], columnWidths[j] + 2);
     }
   }
 
-  return table;
+  return table.join('\n');
 }
 
 module.exports = createAsciiTable;
