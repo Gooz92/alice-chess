@@ -9,7 +9,7 @@ module.exports = {
     }
   },
 
-  valueFn: function (value) {
+  constant: function (value) {
     return function () {
       return value;
     };

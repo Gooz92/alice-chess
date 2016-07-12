@@ -16,4 +16,12 @@ describe('fnUtils', function() {
       assert.strictEqual(fn.callCount, n);
     });
   });
+
+  describe('.constant()', function () {
+    var constant = fnUtils.constant;
+    it('create a function that returns given value', function () {
+      var pi = constant(Math.PI);
+      assert.strictEqual(pi(), Math.PI);
+    });
+  });
 });
