@@ -17,6 +17,10 @@ var objectUtils = module.exports = {
     return target;
   },
 
+  defaults: function (obj, defaultValues) {
+    return objectUtils.merge({}, defaultValues, obj);
+  },
+
   merge: function (target /* sources... */) {
     var index;
 

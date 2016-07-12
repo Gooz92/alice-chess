@@ -48,6 +48,26 @@ describe('objectUtils', function () {
     });
   });
 
+  describe('.defaults()', function () {
+    var defaults = objectUtils.defaults;
+    it('set given default values to missed properties', function () {
+      var circle = {
+        radius: 1
+      };
+
+      circle = defaults(circle, {
+        x: 0,
+        y: 0
+      });
+
+      assert.deepEqual(circle, {
+        radius: 1,
+        x: 0,
+        y: 0
+      });
+    });
+  });
+
   describe('.merge()', function () {
     it('copy all properties from sources to target', function () {
       var firstSource = {
