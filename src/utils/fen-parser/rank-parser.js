@@ -1,54 +1,56 @@
 'use strict';
 
-var fnUtils = require('../common-utils/fn-utils'),
-  isTypeUtils = require('../common-utils/is-type-utils');
+var fenUtils = require('../chess-utils/fen-utils'),
+  langFns = require('../common-utils/lang-fns'),
+  fnUtils = require('../common-utils/fn-utils'),
+  objectUtils = require('../common-utils/object-utils'),
+  throwError = require('../common-utils/throw-error');
 
-var handlerNames = [
-  'onPiece',
-  'onEmptySquare',
-  'onEmptySquares'
-];
+var maxFileIndex = 7;
 
 function RankParser(handlers) {
-  handlerNames.forEach(function (handlerName) {
-    var handler = handlers[handlerName];
-
-    if (isTypeUtils.isUndefined(handler)) {
-      handlers[handlerName] = function () {};
-    }
+  this.handlers = objectUtils.defaults(handlers, {
+    onStart: fnUtils.noop,
+    onPiece: fnUtils.noop,
+    onEmptySquare: fnUtils.noop,
+    onEmptySquares: fnUtils.noop,
+    onEnd: fnUtils.noop
   });
-
-  this.handlers = handlers;
 }
 
 RankParser.prototype.parse = function (rank) {
-  var rankTokens = rank.split(''),
-      fileIndex = 0,
-      handlers = this.handlers,
-      data = {};
+  var handlers = this.handlers,
+    fileIndex = 0,
+    data = {},
+    rankTokens;
+
+  handlers.onStart.call(data, rank);
+
+  rankTokens = rank.split('');
 
   rankTokens.forEach(function (token) {
-      if (fileIndex > 7) {
-        throw new Error("Rank '" + rank + "' is too long");
+      if (fileIndex > maxFileIndex) {
+        throwError("Rank '{0}' is too long", rank);
       }
 
       if (fenUtils.isEmptySquaresToken(token)) {
         token = parseInt(token);
-        handlers.onEmptySquaresCount.call(data, token);
+        handlers.onEmptySquares.call(data, token);
         fnUtils.times(token, function () {
           handlers.onEmptySquare.call(data, fileIndex++);
         });
       } else if (fenUtils.isPieceToken(token)) {
         handlers.onPiece.call(data, token, fileIndex++);
       } else {
-        throw new Error("Unknown token: " + token);
+        throwError("Unknown token '{0}' in rank '{1}'", token, rank);
       }
   });
 
-  if (fileIndex < 7) {
-    throw new Error("Rank '" + rank + "' is too short");
+  if (fileIndex < maxFileIndex) {
+    throwError("Rank '{0}' is too short", rank);
   }
+
+  return handlers.onEnd.call(data, rank);
 };
 
 module.exports = RankParser;
-
