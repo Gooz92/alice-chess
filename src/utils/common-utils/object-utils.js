@@ -21,6 +21,18 @@ var objectUtils = module.exports = {
     return objectUtils.merge({}, defaultValues, obj);
   },
 
+  pick: function (obj, keys) {
+    var result = {};
+
+    keys.forEach(function (key) {
+      if (obj.hasOwnProperty(key)) {
+        result[key] = obj[key];
+      }
+    });
+
+    return result;
+  },
+
   merge: function (target /* sources... */) {
     var index;
 

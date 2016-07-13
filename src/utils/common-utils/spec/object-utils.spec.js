@@ -68,6 +68,25 @@ describe('objectUtils', function () {
     });
   });
 
+  describe('.pick()', function () {
+    var pick = objectUtils.pick;
+    it('creates an object with picked object properties', function () {
+      var rectangle = {
+        x: 10,
+        y: 10,
+        width: 50,
+        height: 100
+      };
+
+      var size = pick(rectangle, ['width', 'height']);
+
+      assert.deepEqual(size, {
+        width: 50,
+        height: 100
+      });
+    });
+  });
+
   describe('.merge()', function () {
     it('copy all properties from sources to target', function () {
       var firstSource = {
