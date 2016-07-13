@@ -18,6 +18,7 @@ function RankParser(handlers) {
   });
 }
 
+
 RankParser.prototype.parse = function (rank, data) {
   var handlers = this.handlers,
     fileIndex = 0,
@@ -30,21 +31,28 @@ RankParser.prototype.parse = function (rank, data) {
   rankTokens = rank.split('');
 
   rankTokens.forEach(function (token) {
-      if (fenUtils.isEmptySquaresToken(token)) {
-        token = parseInt(token);
-        handlers.onEmptySquaresCount.call(data, token);
-        fnUtils.times(token, function () {
-          handlers.onEmptySquare.call(data, fileIndex++);
-        });
-      } else if (fenUtils.isPieceToken(token)) {
-        handlers.onPieceToken.call(data, token, fileIndex++);
-      } else {
-        throwError("Unknown token '{0}' in rank '{1}'", token, rank);
+    if (fenUtils.isEmptySquaresToken(token)) {
+      token = parseInt(token);
+      handlers.onEmptySquaresCount.call(data, token);
+
+      if (fileIndex + token > maxFileIndex) {
+        throwError("Rank '{0}' is too long", rank);
       }
+
+      fnUtils.times(token, function () {
+        handlers.onEmptySquare.call(data, fileIndex++);
+      });
+    } else if (fenUtils.isPieceToken(token)) {
+      fileIndex++;
 
       if (fileIndex > maxFileIndex) {
         throwError("Rank '{0}' is too long", rank);
       }
+
+      handlers.onPieceToken.call(data, token, fileIndex);
+    } else {
+      throwError("Unknown token '{0}' in rank '{1}'", token, rank);
+    }
   });
 
   if (fileIndex < maxFileIndex) {
