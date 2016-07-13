@@ -35,7 +35,7 @@ RankParser.prototype.parse = function (rank, data) {
       token = parseInt(token);
       handlers.onEmptySquaresCount.call(data, token);
 
-      if (fileIndex + token > maxFileIndex) {
+      if (fileIndex + token - 1 > maxFileIndex) {
         throwError("Rank '{0}' is too long", rank);
       }
 
@@ -43,13 +43,12 @@ RankParser.prototype.parse = function (rank, data) {
         handlers.onEmptySquare.call(data, fileIndex++);
       });
     } else if (fenUtils.isPieceToken(token)) {
-      fileIndex++;
 
-      if (fileIndex > maxFileIndex) {
+      if (fileIndex - 1 > maxFileIndex) {
         throwError("Rank '{0}' is too long", rank);
       }
 
-      handlers.onPieceToken.call(data, token, fileIndex);
+      handlers.onPieceToken.call(data, token, fileIndex++);
     } else {
       throwError("Unknown token '{0}' in rank '{1}'", token, rank);
     }
