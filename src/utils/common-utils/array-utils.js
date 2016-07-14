@@ -1,6 +1,18 @@
 'use strict';
 
+/**
+ * @module arrayUtils
+ */
+
 var arrayUtils = module.exports = {
+
+  /**
+   * Remove given element from array
+   *
+   * @arg {array} array
+   * @arg {any} element to remove
+   */
+
   remove: function (array, item) {
     var index = array.indexOf(item);
     return arrayUtils.removeAt(array, index);
