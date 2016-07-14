@@ -6,7 +6,8 @@ var fenUtils = require('../chess-utils/fen-utils'),
   objectUtils = require('../common-utils/object-utils'),
   throwError = require('../common-utils/throw-error');
 
-var maxFileIndex = 7;
+var rankLength = 8,
+  maxFileIndex = 7;
 
 function RankParser(handlers) {
   this.handlers = objectUtils.defaults(handlers, {
@@ -17,8 +18,6 @@ function RankParser(handlers) {
     onEnd: langFns.noop
   });
 }
-
-
 RankParser.prototype.parse = function (rank, data) {
   var handlers = this.handlers,
     fileIndex = 0,
@@ -35,7 +34,7 @@ RankParser.prototype.parse = function (rank, data) {
       token = parseInt(token);
       handlers.onEmptySquaresCount.call(data, token);
 
-      if (fileIndex + token - 1 > maxFileIndex) {
+      if (fileIndex + token > rankLength) {
         throwError("Rank '{0}' is too long", rank);
       }
 
@@ -44,7 +43,7 @@ RankParser.prototype.parse = function (rank, data) {
       });
     } else if (fenUtils.isPieceToken(token)) {
 
-      if (fileIndex - 1 > maxFileIndex) {
+      if (fileIndex > maxFileIndex) {
         throwError("Rank '{0}' is too long", rank);
       }
 
@@ -54,7 +53,7 @@ RankParser.prototype.parse = function (rank, data) {
     }
   });
 
-  if (fileIndex < maxFileIndex) {
+  if (fileIndex < rankLength) {
     throwError("Rank '{0}' is too short", rank);
   }
 
