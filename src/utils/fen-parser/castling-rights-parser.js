@@ -1,14 +1,13 @@
 'use strict';
 
-var fenUtils = require('../chess-utils/fen-utils'),
-  throwError = require('../common-utils/throw-error'),
+var throwError = require('../common-utils/throw-error'),
   langFns = require('../common-utils/lang-fns'),
   objectUtils = require('../common-utils/object-utils');
 
-var castlingTokens = ['K', 'Q', 'k', 'q'];
+var castlingTokens = 'KQkq';
 
 function checkOrder(tokenIndex, castlingTokensOccurences) {
-  while (tokenIndex-- > 0) {
+  while (tokenIndex++ < castlingTokensOccurences.length) {
     if (castlingTokensOccurences[tokenIndex]) {
       throwError('wrong castling token order');
     }
@@ -30,7 +29,7 @@ CastlingRightsParser.prototype.parse = function (castlingRights, data) {
 
   data = data || {};
 
-  this.handlers.onStart.call(data);
+  this.handlers.onStart.call(data, castlingRights);
 
   if (castlingRights !== '-') {
     tokens = castlingRights.split('');
