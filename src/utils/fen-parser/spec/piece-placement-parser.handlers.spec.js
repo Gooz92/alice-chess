@@ -9,7 +9,10 @@ describe('PiecePlacementParser', function () {
     describe('onStart', function () {
       it('take not parsed piece placement as single argument');
     });
-    describe('onEnd');
-    describe('#rankParser');
+    describe('#rankParser', function () {
+      describe('#parse', function () {
+        it('called for every rank');
+      });
+    });
   });
 });
