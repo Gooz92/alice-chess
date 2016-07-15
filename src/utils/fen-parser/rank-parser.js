@@ -18,6 +18,11 @@ function RankParser(handlers) {
     onEnd: langFns.noop
   });
 }
+
+function throwTooLongRankError(rank) {
+  throwError("Rank '{0}' is too long", rank);
+}
+
 RankParser.prototype.parse = function (rank, data) {
   var handlers = this.handlers,
     fileIndex = 0,
@@ -35,7 +40,7 @@ RankParser.prototype.parse = function (rank, data) {
       handlers.onEmptySquaresCount.call(data, token);
 
       if (fileIndex + token > rankLength) {
-        throwError("Rank '{0}' is too long", rank);
+        throwTooLongRankError(rank);
       }
 
       fnUtils.times(token, function () {
@@ -44,7 +49,7 @@ RankParser.prototype.parse = function (rank, data) {
     } else if (fenUtils.isPieceToken(token)) {
 
       if (fileIndex > maxFileIndex) {
-        throwError("Rank '{0}' is too long", rank);
+        throwTooLongRankError(rank);
       }
 
       handlers.onPieceToken.call(data, token, fileIndex++);
