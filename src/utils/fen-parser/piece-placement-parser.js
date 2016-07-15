@@ -7,6 +7,8 @@ var RankParser = require('./rank-parser'),
 var ranksCount = 8;
 
 function PiecePlacementParser(handlers) {
+  handlers = handlers || {};
+
   this.handlers = {
     onStart: handlers.onStart || langFns.noop,
     onEnd: handlers.onEnd || langFns.noop
