@@ -24,9 +24,18 @@ describe('PiecePlacementParser', function () {
       describe('#parse()', function () {
         it('called for every rank', function () {
           var piecePlacementParser = new PiecePlacementParser(),
-            piecePlacement = 'rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R',
-            parseRank = sinon.spy(),
-            ranks = piecePlacement.split('/');
+            ranks = [
+              'rnbqkbnr',
+              'pp1ppppp',
+              '8',
+              '2p5',
+              '4P3',
+              '5N2',
+              'PPPP1PPP',
+              'RNBQKB1R'
+            ],
+            piecePlacement = ranks.join('/'),
+            parseRank = sinon.spy();
 
           piecePlacementParser.rankParser.parse = parseRank;
 
