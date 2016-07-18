@@ -26,8 +26,8 @@ Move.prototype = {
     this.targetSquare.piece.moveTo(this.sourceSquare);
 
     chess.enPassantTargetSquare = this.previousEnPassantTagetSquare;
-    this.targetSquare.chess.turn();
-    arrayUtils.remove(this.targetSquare.chess.history, this);
+    chess.turn();
+    arrayUtils.remove(chess.history, this);
   },
 
   // TODO

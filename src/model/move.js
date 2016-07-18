@@ -23,11 +23,6 @@ Move.create = function (sourceSquare, targetSquare, promotionPiece) {
     return createPawnMove(sourceSquare, targetSquare, promotionPiece);
   }
 
-  if (sourceSquare.piece.isKing() &&
-      sourceSquare.getFileDistance(targetSquare) === 2) {
-    return new Castling(sourceSquare, targetSquare);
-  }
-
   return new Move(sourceSquare, targetSquare);
 };
 
@@ -153,43 +148,6 @@ PawnPromotion.prototype.unMake = function () {
   );
 
   chess.enPassantTargetSquare = this.previousEnPassantTagetSquare;
-};
-
-var Castling = objectUtils.inherit(function (sourceSquare, targetSquare) {
-  this.super.constructor.call(this, sourceSquare, targetSquare);
-}, Move);
-
-Castling.prototype.make = function () {
-   var chess = this.targetSquare.chess,
-      targetFileIndex = this.targetSquare.getFileIndex(),
-      rook, rookTargetSquare;
-
-  if (this.piece.isWhite()) {
-    if (targetFileIndex === 2) { // king-side
-      rook = chess.getSquareByName('a1').piece;
-      rookTargetSquare = chess.getSquareByName('d1');
-    } else { // queen-side
-      rook = chess.getSquareByName('h1').piece;
-      rookTargetSquare = chess.getSquareByName('f1');
-    }
-  } else {
-    if (targetFileIndex === 2) {
-      rook = chess.getSquareByName('a8').piece;
-      rookTargetSquare = chess.getSquareByName('d8');
-    } else {
-      rook = chess.getSquareByName('h8');
-      rookTargetSquare = chess.getSquareByName('f8');
-    }
-  }
-
-  this.rookMove = rook.createMove(rookTargetSquare);
-  this.rookMove.make();
-  this.super.make.call(this);
-};
-
-Castling.prototype.unMake = function () {
-  this.super.unMake.call(this);
-  this.rookMove.unMake();
 };
 
 module.exports = Move;
