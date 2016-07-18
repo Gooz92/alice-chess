@@ -27,7 +27,7 @@ var handlerNames = Object.keys(defaultHandlers);
 
 var fieldParseFunctions = [
   function parsePiecePlacement (piecePlacement, data) {
-    this.handlers.piecePlacementParser.parse(piecePlacement, data);
+    this.piecePlacementParser.parse(piecePlacement, data);
   },
 
   function parseActiveColor (activeColor, data) {
@@ -84,7 +84,7 @@ FenParser.prototype.parse = function (fen) {
 
   this.handlers.onStart.call(data, fen);
 
-  fields = fen.split('');
+  fields = fen.split(' ');
 
   fields.forEach(function (field, index) {
     fieldParseFunctions[index].call(fenParser, field, data);
