@@ -16,14 +16,14 @@ Capture.prototype = {
   },
 
   unMake: function () {
-    var opponentColorname = this.capturedPiece.color.name;
+    var opponentColorName = this.capturedPiece.color.name;
 
     Move.prototype.unMake.call(this);
 
     this.targetSquare.piece = this.capturedPiece;
     this.capturedPiece.square = this.targetSquare;
 
-    this.targetSquare.chess.pieces[opponentColorname].push(this.capturedPiece);
+    this.targetSquare.chess.pieces[opponentColorName].push(this.capturedPiece);
   },
 
   toSAN: function (options) {
