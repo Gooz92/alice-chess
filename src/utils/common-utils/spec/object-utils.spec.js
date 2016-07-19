@@ -87,6 +87,11 @@ describe('objectUtils', function () {
     });
   });
 
+  describe('.get()', function () {
+    var get = objectUtils.get;
+    it('get object property by property names chain');
+  });
+
   describe('.merge()', function () {
     it('copy all properties from sources to target', function () {
       var firstSource = {

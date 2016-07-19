@@ -33,6 +33,21 @@ var objectUtils = module.exports = {
     return result;
   },
 
+  get: function (obj, path) {
+    var result = obj, index;
+
+    path = path.split('.');
+
+    for (index = 0; index < path.length; index++) {
+      result = result[path[index]];
+      if (!isTypeUtils.isObject(result)) {
+        return null;
+      }
+    }
+
+    return result;
+  },
+
   merge: function (target /* sources... */) {
     var index;
 
