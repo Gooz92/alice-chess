@@ -25,6 +25,7 @@ function throwTooLongRankError(rank) {
 
 RankParser.prototype.parse = function (rank, data) {
   var handlers = this.handlers,
+    previousTokenIsEmptySquareToken = false,
     fileIndex = 0,
     rankTokens;
 
@@ -36,6 +37,12 @@ RankParser.prototype.parse = function (rank, data) {
 
   rankTokens.forEach(function (token) {
     if (fenUtils.isEmptySquaresToken(token)) {
+
+      if (previousTokenIsEmptySquareToken) {
+        throwError("Consecutively repeated empty square tokens in rank '{0}'",rank);
+      }
+
+      previousTokenIsEmptySquareToken = true;
       token = parseInt(token);
       handlers.onEmptySquaresCount.call(data, token);
 
@@ -47,7 +54,7 @@ RankParser.prototype.parse = function (rank, data) {
         handlers.onEmptySquare.call(data, fileIndex++);
       });
     } else if (fenUtils.isPieceToken(token)) {
-
+       previousTokenIsEmptySquareToken = false;
       if (fileIndex > maxFileIndex) {
         throwTooLongRankError(rank);
       }
