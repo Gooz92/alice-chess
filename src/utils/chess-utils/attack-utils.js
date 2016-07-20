@@ -35,6 +35,9 @@ var attacks = [
 
 var attackUtils = module.exports = {
   isMayAttacked: function (fromIndex, toIndex, pieceFenToken) {
-    var attackIndex = toIndex - fromIndex + offset;
+    var attackIndex = toIndex - fromIndex + offset,
+      pieceAttackMask = pieceAttackMasks[pieceFenToken];
+
+    return (attacks[attackIndex] & pieceAttackMask) !== 0;
   }
 };
