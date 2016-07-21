@@ -24,6 +24,7 @@ var table = createTable({
 
     if (square.isOccupied()) {
       innerHTML = pieceCharacters[square.piece.getFenToken()];
+      className += ' occupied';
     }
 
     return {

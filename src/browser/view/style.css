@@ -15,6 +15,10 @@
   text-align: center;
 }
 
+.light.occupied, .dark.occupied {
+  cursor: pointer;
+}
+
 .chess-board .light {
   background-color: #f0d9b5;
 }
@@ -24,9 +28,11 @@
 }
 
 .chess-board .light.highlighted {
-  background-color: #989898
+  background-color: #989898;
+  cursor: pointer;
 }
 
 .chess-board .dark.highlighted {
-  background-color: #696969
+  background-color: #696969;
+  cursor: pointer;
 }
