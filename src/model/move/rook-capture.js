@@ -11,12 +11,23 @@ RookCapture.prototype = {
   constructor: RookCapture,
 
   make: function () {
-    Capture.prototype.call(this);
-    RookMove.prototype.call(this);
+   this.capturedPiece.remove();
+   RookMove.prototype.make.call(this);
   },
 
   unMake: function (params) {
+    var opponentColorName = this.capturedPiece.color.name;
 
+    RookMove.prototype.unMake.call(this);
+
+    this.targetSquare.piece = this.capturedPiece;
+    this.capturedPiece.squares = this.targetSquare;
+
+    this.targetSquare.chess.pieces[opponentColorName].push(this.capturedPiece);
+  },
+
+  toSAN: function () {
+    return 'Rx' + this.targetSquare.name;
   }
 };
 

@@ -4,7 +4,8 @@ var isTypeUtils = require('../utils/common-utils/is-type-utils'),
   objectUtils = require('../utils/common-utils/object-utils'),
   arrayUtils = require('../utils/common-utils/array-utils'),
   Move = require('./move/move'),
-  Capture = require('./move/capture');
+  Capture = require('./move/capture'),
+  RookCapture = require('./move/rook-capture');
 
 Move.createSilentMove = function (sourceSquare, targetSquare) {
   return new Move(sourceSquare, targetSquare);
@@ -12,6 +13,10 @@ Move.createSilentMove = function (sourceSquare, targetSquare) {
 
 Move.createCapture = function (sourceSquare, targetSquare) {
   return new Capture(sourceSquare, targetSquare);
+};
+
+Move.createRookCapture = function (sourceSquare, targetSquare) {
+  return new RookCapture(sourceSquare, targetSquare);
 };
 
 Move.create = function (sourceSquare, targetSquare, promotionPiece) {
