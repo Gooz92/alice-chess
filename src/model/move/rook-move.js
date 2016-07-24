@@ -27,7 +27,7 @@ RookMove.prototype = {
     castlingRightsIndex += 2 * this.sourceSquare.piece.color.index;
 
     this.previousCastlingRigths = chess.castlingRights;
-    chess.castlingRights &= (16 ^ (1 << castlingRightsIndex));
+    chess.castlingRights &= (15 ^ (1 << castlingRightsIndex));
 
     Move.prototype.make.call(this);
   },

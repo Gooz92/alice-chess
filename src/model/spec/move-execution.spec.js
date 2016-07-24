@@ -179,16 +179,45 @@ describe('Move execution', function () {
       chess.placePiece('r', 'h8');
     });
 
-    it('white short castling impossible after moving right rook');
+    it('white short castling impossible after moving right rook', function () {
+      var castlingRights;
 
-    it('white long castling impossible after moving left rook');
+      chess.move('Rh4');
+      castlingRights = chess.generateFenCastlingRights();
+
+      assert.strictEqual(castlingRights, 'Qkq');
+    });
+
+    it('white long castling impossible after moving left rook', function () {
+      var castlingRights;
+
+      chess.move('Ra3');
+      castlingRights = chess.generateFenCastlingRights();
+      assert.strictEqual(castlingRights, 'Kkq');
+    });
 
     it('white castling impossible after moving white king');
 
     it('black castling impossible after moving black king');
 
-    it('black short castling impossible after moving left rook');
+    it('black short castling impossible after moving left rook', function () {
+      var castlingRights;
 
-    it('black long castling impossible after moving right rook');
+      chess.turn();
+      chess.move('Rh5');
+      castlingRights = chess.generateFenCastlingRights();
+
+      assert.strictEqual(castlingRights, 'KQq');
+    });
+
+    it('black long castling impossible after moving right rook', function () {
+      var castlingRights;
+
+      chess.turn();
+      chess.move('Ra3');
+      castlingRights = chess.generateFenCastlingRights();
+
+      assert.strictEqual(castlingRights, 'KQk');
+    });
   });
 });
