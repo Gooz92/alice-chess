@@ -92,7 +92,7 @@ module.exports = {
       if (targetSquare.isOccupiedByOpponent(self.color)) {
         move = Move.createCapture(self.square, targetSquare);
       } else if (targetSquare.isEmpty()) {
-        move = Move.createSilentMove(self.square, targetSquare);
+        move = Move.createKingMove(self.square, targetSquare);
       } else {
         return;
       }
