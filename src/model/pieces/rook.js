@@ -27,7 +27,7 @@ module.exports = {
           return;
         }
 
-        move = Move.createSilentMove(self.square, targetSquare);
+        move = Move.createRookMove(self.square, targetSquare);
 
         if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
           callback.call(self, move);

@@ -111,10 +111,10 @@ module.exports = {
       return;
     }
 
-    if (this.square.name === 'e1' &&
-        chess.castlingAvalibility[2 * this.color.index] &&
-        this.isKsideCaslingAvailable()) {
-      callback.call(self, this.createShortCastlingMove());
-    }
+    // if (this.square.name === 'e1' &&
+    //     chess.castlingAvalibility[2 * this.color.index] &&
+    //     this.isKsideCaslingAvailable()) {
+    //   callback.call(self, this.createShortCastlingMove());
+    // }
   }
 };
