@@ -10,13 +10,14 @@ KingMove.prototype = {
   constructor: KingMove,
 
   make: function () {
-    var castlingRightsUpdateMask = 12 >> this.piece.color.index,
+    var castlingRightsUpdateMask = 12 >> this.piece.color.index * 2,
       chess = this.targetSquare.chess;
 
     this.previousCastlingRigths = chess.castlingRights;
 
     Move.prototype.make.call(this);
-    this.targetSquare.chess.castlingRights &= castlingRightsUpdateMask;
+
+    chess.castlingRights &= castlingRightsUpdateMask;
   },
 
   unMake: function () {

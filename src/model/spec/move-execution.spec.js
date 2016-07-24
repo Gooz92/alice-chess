@@ -196,9 +196,24 @@ describe('Move execution', function () {
       assert.strictEqual(castlingRights, 'Kkq');
     });
 
-    it('white castling impossible after moving white king');
+    it('white castling impossible after moving white king', function () {
+      var castlingRights;
 
-    it('black castling impossible after moving black king');
+      chess.move('Ke2');
+      castlingRights = chess.generateFenCastlingRights();
+
+      assert.strictEqual(castlingRights, 'kq');
+    });
+
+    it('black castling impossible after moving black king', function () {
+      var castlingRights;
+
+      chess.turn();
+      chess.move('Kd7');
+      castlingRights = chess.generateFenCastlingRights();
+
+      assert.strictEqual(castlingRights, 'KQ');
+    });
 
     it('black short castling impossible after moving left rook', function () {
       var castlingRights;
