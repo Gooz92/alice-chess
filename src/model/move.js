@@ -7,7 +7,8 @@ var isTypeUtils = require('../utils/common-utils/is-type-utils'),
   Capture = require('./move/capture'),
   RookCapture = require('./move/rook-capture'),
   RookMove = require('./move/rook-move'),
-  KingMove = require('./move/king-move');
+  KingMove = require('./move/king-move'),
+  KingCapture = require('./move/king-capture');
 
 Move.createSilentMove = function (sourceSquare, targetSquare) {
   return new Move(sourceSquare, targetSquare);
@@ -27,7 +28,11 @@ Move.createRookCapture = function (sourceSquare, targetSquare) {
 
 Move.createKingMove = function (sourceSquare, targetSquare) {
   return new KingMove(sourceSquare, targetSquare);
-}
+};
+
+Move.createKingCapture = function (sourceSquare, targetSquare) {
+  return new KingCapture(sourceSquare, targetSquare);
+};
 
 Move.create = function (sourceSquare, targetSquare, promotionPiece) {
   if (targetSquare.isOccupied() && isTypeUtils.isUndefined(promotionPiece)) {

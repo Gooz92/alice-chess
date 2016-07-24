@@ -90,7 +90,7 @@ module.exports = {
       targetSquare = self.square.chess.squares[targetSquareIndex];
 
       if (targetSquare.isOccupiedByOpponent(self.color)) {
-        move = Move.createCapture(self.square, targetSquare);
+        move = Move.createKingCapture(self.square, targetSquare);
       } else if (targetSquare.isEmpty()) {
         move = Move.createKingMove(self.square, targetSquare);
       } else {
