@@ -20,6 +20,12 @@ Capture.prototype = {
 
     Move.prototype.unMake.call(this);
 
+    this._placeCapturedPiece();
+  },
+
+  _placeCapturedPiece: function () {
+    var opponentColorName = this.capturedPiece.color.name;
+
     this.targetSquare.piece = this.capturedPiece;
     this.capturedPiece.square = this.targetSquare;
 

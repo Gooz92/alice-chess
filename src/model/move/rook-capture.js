@@ -19,11 +19,7 @@ RookCapture.prototype = {
     var opponentColorName = this.capturedPiece.color.name;
 
     RookMove.prototype.unMake.call(this);
-
-    this.targetSquare.piece = this.capturedPiece;
-    this.capturedPiece.squares = this.targetSquare;
-
-    this.targetSquare.chess.pieces[opponentColorName].push(this.capturedPiece);
+    Capture.prototype._placeCapturedPiece.call(this);
   },
 
   toSAN: function () {
