@@ -16,8 +16,6 @@ RookCapture.prototype = {
   },
 
   unMake: function (params) {
-    var opponentColorName = this.capturedPiece.color.name;
-
     RookMove.prototype.unMake.call(this);
     Capture.prototype._placeCapturedPiece.call(this);
   },
