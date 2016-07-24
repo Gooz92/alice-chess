@@ -48,6 +48,10 @@ objectUtils.extend(Chess.prototype, {
     var square = this.getSquareByName(squareName),
       piece = Piece.create(fenToken, square);
 
+    if (piece.isKing() && !piece.isOnStartPosition()) {
+      this.castlingRights &= 12 >> piece.color.index * 2;
+    }
+
     // TODO what if piece on this square already placed ???
     this.pieces[piece.color.name].push(piece);
 

@@ -10,68 +10,46 @@ var offsets = [16, -16, 1, -1, 15, 17, -15, -17];
 module.exports = {
   token: 'k',
 
-  createShortCastlingMove: function () {
-    var self = this,
-      rookSquareIndex = this.color.isWhite() ? squares.h1 : squares.h8,
-      rook = this.square.chess.squares[rookSquareIndex].piece,
-      rookTargetSquare = this.square.chess.squares[rookSquareIndex - 2],
-      kingTargetSquare = this.square.chess.squares[this.square.index + 2];
+  isQsideCastlingAvalible: function () {
+    var squareIndex = this.square.index,
+      square = this.square.chess.squares[squareIndex - 1];
 
-    return {
-      make: function () {
-        self.moveTo(kingTargetSquare);
-        rook.moveTo(rookTargetSquare);
-        self.square.chess.history.push(this);
-      },
+    if (square.isOccupied() ||
+      square.chess.isSquareAttacked(square.name, this.color.toggle())) {
+      return false;
+    }
 
-      unMake: function () {
-        self.moveTo(self.square.chess.squares[squares.e1]);
-        rook.moveTo(self.square.chess.squares[squares.h1]);
-        arrayUtils.remove(self.square.chess.history, this);
-      },
+    square = square.chess.squares[squareIndex - 2];
 
-      toSAN: function () {
-        return 'O-O';
-      }
-    };
-  },
+    if (square.isOccupied() ||
+      square.chess.isSquareAttacked(square.name, this.color.toggle())) {
+      return false;
+    }
 
-  createLongCastlingMove: function () {
-    var self = this,
-      rookSquareIndex = this.color.isWhite() ? squares.a1 : squares.a8,
-      rook = this.square.chess.squares[rookSquareIndex].piece,
-      rookTargetSquare = this.square.chess.squares[rookSquareIndex + 3],
-      kingTargetSquare = this.square.chess.squares[this.square.index - 2];
-
-    return {
-      make: function () {
-        self.moveTo(kingTargetSquare);
-        rook.moveTo(rookTargetSquare);
-      }
-    };
+    return true;
   },
 
   isKsideCaslingAvailable: function () {
-    var self = this, squares, rookSquare;
+    var squareIndex = this.square.index,
+      square = this.square.chess.squares[squareIndex + 1];
 
-    if (this.color.isWhite()) {
-      squares = [
-        this.square.chess.getSquareByName('f1'),
-        this.square.chess.getSquareByName('g1')
-      ];
-      rookSquare = self.square.chess.getSquareByName('h1');
-    } else {
-      squares = [
-        this.square.chess.getSquareByName('f8'),
-        this.square.chess.getSquareByName('g8')
-      ];
-      rookSquare = self.square.chess.getSquareByName('h8');
+    if (square.isOccupied() ||
+      square.chess.isSquareAttacked(square.name, this.color.toggle())) {
+      return false;
     }
 
-    return rookSquare.isOccupied() && squares.every(function (square) {
-      return (square.isEmpty() &&
-        !square.chess.isSquareAttacked(square.name, self.color.toggle()));
-    });
+    square = square.chess.squares[squareIndex + 2];
+
+    if (square.isOccupied() ||
+      square.chess.isSquareAttacked(square.name, this.color.toggle())) {
+      return false;
+    }
+
+    return true;
+  },
+
+  isOnStartPosition: function () {
+    return this.square.index === squares[this.color.isWhite() ? 'e1' : 'e8'];
   },
 
   forEachMove: function (callback, pseudoLegal) {
@@ -107,14 +85,24 @@ module.exports = {
       }
     });
 
-    if (chess.isSquareAttacked(this.square.name, this.color.toggle())) {
+    if (this.square.chess.isInCheck()) {
       return;
     }
 
-    // if (this.square.name === 'e1' &&
-    //     chess.castlingAvalibility[2 * this.color.index] &&
-    //     this.isKsideCaslingAvailable()) {
-    //   callback.call(self, this.createShortCastlingMove());
-    // }
+    var castlingRights = self.square.chess.castlingRights;
+
+    if (self.color.isWhite()) {
+      castlingRights >>= 2;
+    } else {
+      castlingRights &= 3;
+    }
+
+    if ((castlingRights & 2) === 2 && this.isKsideCaslingAvailable()) {
+      // generate k-side (short) castling move
+    }
+
+    if ((castlingRights & 1) === 1 & this.isQsideCastlingAvalible()) {
+      // generate q-side (long) castling move if now possible
+    }
   }
 };
