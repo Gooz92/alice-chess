@@ -7,7 +7,7 @@ var fenSerializationMixin = require('../fen-serialization-mixin'),
   Chess = require('../chess');
 
 describe('fenSerializationMixin', function () {
-  describe('generateFenCastlingAvailability()', function () {
+  describe('generateFenCastlingRights()', function () {
     it('toFenField called with chess.castlingRights');
   });
 

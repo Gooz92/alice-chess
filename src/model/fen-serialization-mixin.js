@@ -53,7 +53,7 @@ module.exports = {
     return '-';
   },
 
-  generateFenCastlingAvailability: function () {
+  generateFenCastlingRights: function () {
     return castlingRightsUtils.toFenField(this.castlingRights);
   },
 
@@ -65,7 +65,7 @@ module.exports = {
     return [
       this.generatePiecePlacement(),
       this.activeColor.token,
-      this.generateFenCastlingAvailability(),
+      this.generateFenCastlingRights(),
       this.generateEnPassantTargetSquare(),
       this.halfmoveClock,
       this.generateFullmoveNumber()
