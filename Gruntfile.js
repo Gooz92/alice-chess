@@ -26,9 +26,9 @@ module.exports = function (grunt) {
         src: ['src/utils/fen-parser/spec/*.spec.js']
       },
 
-      perft5: {
-        src: ['src/model/spec/perft/*.spec.js']
-      }
+      // perft5: {
+      //   src: ['src/model/spec/perft/*.spec.js']
+      // }
     },
 
     jshint: {
