@@ -26,14 +26,14 @@ RookMove.prototype = {
 
     castlingRightsIndex += 2 * this.sourceSquare.piece.color.index;
 
-    this.previousCastlingRigths = chess.castlingRights;
+    this.previousCastlingRights = chess.castlingRights;
     chess.castlingRights &= (15 ^ (1 << castlingRightsIndex));
 
     Move.prototype.make.call(this);
   },
 
   unMake: function () {
-    this.targetSquare.chess.castlingRights = this.previousCastlingRigths;
+    this.targetSquare.chess.castlingRights = this.previousCastlingRights;
     Move.prototype.unMake.call(this);
   },
 
