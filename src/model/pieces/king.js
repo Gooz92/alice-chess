@@ -85,11 +85,12 @@ module.exports = {
       }
     });
 
-    if (this.square.chess.isInCheck()) {
+    if (chess.isInCheck()) {
       return;
     }
 
-    var castlingRights = self.square.chess.castlingRights;
+    var castlingRights = chess.castlingRights,
+      castling;
 
     if (self.color.isWhite()) {
       castlingRights >>= 2;
@@ -97,8 +98,11 @@ module.exports = {
       castlingRights &= 3;
     }
 
-    if ((castlingRights & 2) === 2 && this.isKsideCaslingAvailable()) {
-      // generate k-side (short) castling move
+    if ((castlingRights & 2) === 2 &&
+      this.isKsideCaslingAvailable() &&
+      chess.squares[this.square.index + 3].isOccupied()) {
+      castling = Move.createShortCastling(this, chess.squares[this.square.index + 3].piece);
+      callback.call(self, castling);
     }
 
     if ((castlingRights & 1) === 1 && this.isQsideCastlingAvalible()) {
