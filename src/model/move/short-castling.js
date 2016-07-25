@@ -11,8 +11,8 @@ ShortCastling.prototype = {
   make: function () {
     var chess = this.king.square.chess,
 
-      targetRookSquare = chess.squares[this.rook.squares.index - 2],
-      targetKingSquare = chess.squares[this.king.squares.index + 2];
+      targetRookSquare = chess.squares[this.rook.square.index - 2],
+      targetKingSquare = chess.squares[this.king.square.index + 2];
 
     this.sourceRookSquare = this.rook.square;
     this.sourceKingSquare = this.king.square;
