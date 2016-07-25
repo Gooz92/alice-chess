@@ -4,7 +4,7 @@ var KingMove = require('./king-move'),
   Capture = require('./capture');
 
 function KingCapture(sourceSquare, targetSquare) {
-  Capture.call(this. sourceSquare, targetSquare);
+  Capture.call(this, sourceSquare, targetSquare);
 }
 
 KingCapture.prototype = {
