@@ -1,13 +1,6 @@
 'use strict';
 
-// KQkq
-// 3210
-
-// 0 => 2, 0
-// 7 => 3, 1
-
-var Move = require('./move'),
-  isDefined = require('../../utils/common-utils/is-type-utils').isDefined;
+var Move = require('./move');
 
 function RookMove(sourceSquare, targetSquare) {
   Move.call(this, sourceSquare, targetSquare);
