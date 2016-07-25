@@ -101,7 +101,7 @@ module.exports = {
       // generate k-side (short) castling move
     }
 
-    if ((castlingRights & 1) === 1 & this.isQsideCastlingAvalible()) {
+    if ((castlingRights & 1) === 1 && this.isQsideCastlingAvalible()) {
       // generate q-side (long) castling move if now possible
     }
   }
