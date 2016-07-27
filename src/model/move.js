@@ -9,7 +9,8 @@ var isTypeUtils = require('../utils/common-utils/is-type-utils'),
   RookMove = require('./move/rook-move'),
   KingMove = require('./move/king-move'),
   KingCapture = require('./move/king-capture'),
-  ShortCastling = require('./move/short-castling');
+  ShortCastling = require('./move/short-castling'),
+  LongCastling = require('./move/long-castling');
 
 Move.createSilentMove = function (sourceSquare, targetSquare) {
   return new Move(sourceSquare, targetSquare);
@@ -37,6 +38,10 @@ Move.createKingCapture = function (sourceSquare, targetSquare) {
 
 Move.createShortCastling = function (king, rook) {
   return new ShortCastling(king, rook);
+};
+
+Move.createLongCastling = function (king, rook) {
+  return new LongCastling(king, rook);
 };
 
 Move.create = function (sourceSquare, targetSquare, promotionPiece) {

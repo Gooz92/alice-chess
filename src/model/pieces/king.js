@@ -100,12 +100,16 @@ module.exports = {
     if ((castlingRights & 2) === 2 &&
       this.isKsideCaslingAvailable() &&
       chess.squares[this.square.index + 3].isOccupied()) {
-      castling = Move.createShortCastling(this, chess.squares[this.square.index + 3].piece);
+      castling = Move.createShortCastling(this,
+        chess.squares[this.square.index + 3].piece);
       callback.call(self, castling);
     }
 
-    if ((castlingRights & 1) === 1 && this.isQsideCastlingAvalible()) {
-      // generate q-side (long) castling move if now possible
+    if ((castlingRights & 1) === 1 &&
+      this.isQsideCastlingAvalible() &&
+      chess.squares[this.square.index - 4].isOccupied()) {
+      castling = Move.createLongCastling(this,
+        chess.squares[this.square.index - 4].piece);
     }
   }
 };
