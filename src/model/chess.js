@@ -106,10 +106,6 @@ objectUtils.extend(Chess.prototype, {
     return mobility;
   },
 
-  createSquare: function (squareIndex) {
-    return new Square(squareIndex, this);
-  },
-
   getOpponentPieces: function () {
     var opponentColor = this.activeColor.toggle();
     return this.pieces[opponentColor.name];
