@@ -2,7 +2,6 @@
 
 var boardUtils = require('../../utils/chess-utils/board-utils'),
   Move = require('../move'),
-  squares = require('../../utils/chess-utils/squares'),
   arrayUtils = require('../../utils/common-utils/array-utils');
 
 var offsets = [16, -16, 1, -1, 15, 17, -15, -17];
@@ -49,7 +48,7 @@ module.exports = {
   },
 
   isOnStartPosition: function () {
-    return this.square.index === squares[this.color.isWhite() ? 'e1' : 'e8'];
+    return this.square.name === (this.color.isWhite() ? 'e1' : 'e8');
   },
 
   forEachMove: function (callback, pseudoLegal) {

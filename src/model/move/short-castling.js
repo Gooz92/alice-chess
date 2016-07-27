@@ -1,7 +1,5 @@
 'use strict';
 
-var squares = require('../../utils/chess-utils/squares');
-
 function ShortCastling(king, rook) {
   this.king = king;
   this.rook = rook;
