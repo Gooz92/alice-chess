@@ -18,11 +18,33 @@ describe('LongCastling', function () {
 
   describe('#make()', function () {
     describe('white', function () {
-      it('place king on c1');
-      it('remove king from start position');
+      var king, rook;
+      beforeEach(function () {
+        var longCastling;
 
-      it('place rook on d1');
-      it('remove rook from start position');
+        king = chess.squares[squares.e1].piece;
+        rook = chess.squares[squares.a1].piece;
+
+        longCastling = new LongCastling(king, rook);
+
+        longCastling.make();
+      });
+
+      it('place king on c1', function () {
+        assert.strictEqual(king.square.name, 'c1');
+      });
+
+      it('remove king from start position', function () {
+        assert.isTrue(chess.squares[squares.e1].isEmpty());
+      });
+
+      it('place rook on d1', function () {
+        assert.strictEqual(rook.square.name, 'd1');
+      });
+
+      it('remove rook from start position', function () {
+        assert.isTrue(chess.squares[squares.a1].isEmpty());
+      });
 
       it('update castling rights');
     });
