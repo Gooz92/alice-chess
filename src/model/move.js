@@ -141,43 +141,4 @@ EnPassant.prototype.toSAN = function () {
   return this.sourceSquare.getFileName() + 'x' + this.targetSquare.name;
 };
 
-var PawnPromotion = objectUtils.inherit(
-  function (sourceSquare, targetSquare, promotedPiece) {
-    this.super.constructor.call(this, sourceSquare, targetSquare);
-    this.promotedPiece = promotedPiece;
-  },
-Move);
-
-PawnPromotion.prototype.make = function () {
-  var chess = this.targetSquare.chess;
-
-  if (this.targetSquare.isOccupied()) {
-    this.capturedPiece = this.targetSquare.piece;
-    this.targetSquare.piece.remove();
-  }
-
-  this.piece.remove();
-
-  this.promotedPiece = chess.placePiece(
-    this.promotedPiece,
-    this.targetSquare.name
-  );
-
-  this.previousEnPassantTagetSquare = chess.enPassantTargetSquare;
-  this.targetSquare.chess.turn();
-};
-
-PawnPromotion.prototype.unMake = function () {
-  var chess = this.targetSquare.chess;
-
-  this.promotedPiece.remove();
-
-  chess.placePiece(
-    this.piece,
-    this.sourceSquare.name
-  );
-
-  chess.enPassantTargetSquare = this.previousEnPassantTagetSquare;
-};
-
 module.exports = Move;
