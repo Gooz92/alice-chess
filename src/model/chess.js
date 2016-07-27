@@ -72,12 +72,17 @@ objectUtils.extend(Chess.prototype, {
 
   generateEmptySquares: function () {
     var squares = [],
-      fileIndex, rankIndex, squareIndex;
+      square,
+      fileIndex,
+      rankIndex,
+      squareIndex;
 
     for (rankIndex = 0; rankIndex < 8; rankIndex++) {
       squareIndex = rankIndex * 16;
       for (fileIndex = 0; fileIndex < 8; fileIndex++) {
-        squares[squareIndex] = this.createSquare(squareIndex);
+        square = new Square(squareIndex, this);
+        squares[squareIndex] = square;
+        squares[square.name] = square;
         ++squareIndex;
       }
     }
