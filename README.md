@@ -26,3 +26,14 @@ TODO
 
 ## GUI
 TODO
+
+versions
+
+* 0.0.x - in dev/test version not for release
+* 0.1.0 - first releases with only simple UI without AI. Only move generation, execution and game end detecting
+* 0.1.x - bugfix, performance improvement, refactoring, improve specs/docs, build system
+* 0.2.x add more UI features (move logging, undo, etc)
+* 0.3.x fen parsing\serialization on ui
+* ...
+* 1.0.0 - add AI on UI
+* 1.x.x - may be add some chess variants
