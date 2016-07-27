@@ -2,7 +2,6 @@
 
 var LongCastling = require('../long-castling'),
   Chess = require('../../chess'),
-  squares = require('../../../utils/chess-utils/squares'),
   assert = require('chai').assert;
 
 describe('LongCastling', function () {
@@ -22,8 +21,8 @@ describe('LongCastling', function () {
       beforeEach(function () {
         var longCastling;
 
-        king = chess.squares[squares.e1].piece;
-        rook = chess.squares[squares.a1].piece;
+        king = chess.squares.e1.piece;
+        rook = chess.squares.a1.piece;
 
         longCastling = new LongCastling(king, rook);
 
@@ -35,7 +34,7 @@ describe('LongCastling', function () {
       });
 
       it('remove king from start position', function () {
-        assert.isTrue(chess.squares[squares.e1].isEmpty());
+        assert.isTrue(chess.squares.e1.isEmpty());
       });
 
       it('place rook on d1', function () {
@@ -43,7 +42,7 @@ describe('LongCastling', function () {
       });
 
       it('remove rook from start position', function () {
-        assert.isTrue(chess.squares[squares.a1].isEmpty());
+        assert.isTrue(chess.squares.a1.isEmpty());
       });
 
       it('update castling rights');

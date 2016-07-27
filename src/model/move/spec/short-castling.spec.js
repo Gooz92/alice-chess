@@ -2,7 +2,6 @@
 
 var ShortCastling = require('../short-castling'),
   Chess = require('../../chess'),
-  squares = require('../../../utils/chess-utils/squares'),
   assert = require('chai').assert;
 
 describe('ShortCastling', function () {
@@ -23,8 +22,8 @@ describe('ShortCastling', function () {
       beforeEach(function () {
         var shortCastling;
 
-        king = chess.squares[squares.e1].piece;
-        rook = chess.squares[squares.h1].piece;
+        king = chess.squares.e1.piece;
+        rook = chess.squares.h1.piece;
 
         shortCastling = new ShortCastling(king, rook);
 
@@ -36,7 +35,7 @@ describe('ShortCastling', function () {
       });
 
       it('remove king from start position', function () {
-        assert.isTrue(chess.squares[squares.e1].isEmpty());
+        assert.isTrue(chess.squares.e1.isEmpty());
       });
 
       it('place rook on f1', function () {
@@ -44,7 +43,7 @@ describe('ShortCastling', function () {
       });
 
       it('remove rook from start position', function () {
-        assert.isTrue(chess.squares[squares.h1].isEmpty());
+        assert.isTrue(chess.squares.h1.isEmpty());
       });
 
       it('update castling rights', function () {
@@ -58,8 +57,8 @@ describe('ShortCastling', function () {
       beforeEach(function () {
         var shortCastling;
 
-        king = chess.squares[squares.e8].piece;
-        rook = chess.squares[squares.h8].piece;
+        king = chess.squares.e8.piece;
+        rook = chess.squares.h8.piece;
 
         shortCastling = new ShortCastling(king, rook);
 
@@ -71,7 +70,7 @@ describe('ShortCastling', function () {
       });
 
       it('remove king from start position', function () {
-        assert.isTrue(chess.squares[squares.e8].isEmpty());
+        assert.isTrue(chess.squares.e8.isEmpty());
       });
 
       it('place rook on f8', function () {
@@ -79,7 +78,7 @@ describe('ShortCastling', function () {
       });
 
       it('remove rook from start position', function () {
-        assert.isTrue(chess.squares[squares.h8].isEmpty());
+        assert.isTrue(chess.squares.h8.isEmpty());
       });
 
       it('update castling rights', function () {
@@ -95,8 +94,8 @@ describe('ShortCastling', function () {
       beforeEach(function () {
         var shortCastling;
 
-        king = chess.squares[squares.e1].piece;
-        rook = chess.squares[squares.h1].piece;
+        king = chess.squares.e1.piece;
+        rook = chess.squares.h1.piece;
 
         shortCastling = new ShortCastling(king, rook);
 
@@ -109,7 +108,7 @@ describe('ShortCastling', function () {
       });
 
       it('remove king from g1', function () {
-        assert.isTrue(chess.squares[squares.g1].isEmpty());
+        assert.isTrue(chess.squares.g1.isEmpty());
       });
 
       it('place rook on start position', function () {
@@ -117,7 +116,7 @@ describe('ShortCastling', function () {
       });
 
       it('remove rook from f1', function () {
-        assert.isTrue(chess.squares[squares.f1].isEmpty());
+        assert.isTrue(chess.squares.f1.isEmpty());
       });
     });
 
@@ -126,8 +125,8 @@ describe('ShortCastling', function () {
       beforeEach(function () {
         var shortCastling;
 
-        king = chess.squares[squares.e8].piece;
-        rook = chess.squares[squares.h8].piece;
+        king = chess.squares.e8.piece;
+        rook = chess.squares.h8.piece;
 
         shortCastling = new ShortCastling(king, rook);
 
@@ -140,7 +139,7 @@ describe('ShortCastling', function () {
       });
 
       it('remove king from g8', function () {
-        assert.isTrue(chess.squares[squares.g8].isEmpty());
+        assert.isTrue(chess.squares.g8.isEmpty());
       });
 
       it('place rook on start position', function () {
@@ -148,7 +147,7 @@ describe('ShortCastling', function () {
       });
 
       it('remove rook from f8', function () {
-        assert.isTrue(chess.squares[squares.f8].isEmpty());
+        assert.isTrue(chess.squares.f8.isEmpty());
       });
     });
 
@@ -160,8 +159,8 @@ describe('ShortCastling', function () {
 
   describe('#toSAN()', function () {
     it("return 'O-O'", function () {
-      var king = chess.squares[squares.e1],
-        rook = chess.squares[squares.h1],
+      var king = chess.squares.e1.piece,
+        rook = chess.squares.h1.piece,
         castling = new ShortCastling(king, rook);
 
       assert.strictEqual(castling.toSAN(), 'O-O');
