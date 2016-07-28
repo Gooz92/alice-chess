@@ -1,5 +1,7 @@
 'use strict';
 
+var arrayUtils = require('../../utils/common-utils/array-utils');
+
 function ShortCastling(king, rook) {
   this.king = king;
   this.rook = rook;
@@ -21,6 +23,9 @@ ShortCastling.prototype = {
     this.rook.moveTo(targetRookSquare);
 
     chess.castlingRights &= 12 >> this.king.color.index * 2;
+
+    chess.turn();
+    chess.history.push(this);
   },
 
   unMake: function () {
@@ -28,6 +33,8 @@ ShortCastling.prototype = {
     this.rook.moveTo(this.sourceRookSquare);
 
     this.king.square.chess.castlingRights = this.previousCastlingRights;
+    this.king.square.chess.turn();
+    arrayUtils.remove(this.king.square.chess.history, this);
   },
 
   toSAN: function () {
