@@ -110,6 +110,7 @@ module.exports = {
       chess.squares[this.square.index - 4].isOccupied()) {
       castling = Move.createLongCastling(this,
         chess.squares[this.square.index - 4].piece);
+      callback.call(self, castling);
     }
   }
 };
