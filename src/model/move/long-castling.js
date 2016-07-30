@@ -25,6 +25,9 @@ LongCastling.prototype = {
     this.rook.moveTo(targetRookSquare);
 
     chess.castlingRights &= 12 >> this.king.color.index * 2;
+
+    chess.turn();
+    chess.history.push(this);
   },
 
    unMake: function () {
