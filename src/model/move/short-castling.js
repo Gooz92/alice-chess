@@ -29,12 +29,15 @@ ShortCastling.prototype = {
   },
 
   unMake: function () {
+    var chess = this.king.square.chess;
+
     this.king.moveTo(this.sourceKingSquare);
     this.rook.moveTo(this.sourceRookSquare);
 
-    this.king.square.chess.castlingRights = this.previousCastlingRights;
-    this.king.square.chess.turn();
-    arrayUtils.remove(this.king.square.chess.history, this);
+    chess.castlingRights = this.previousCastlingRights;
+    chess.turn();
+
+    arrayUtils.remove(chess.history, this);
   },
 
   toSAN: function () {
