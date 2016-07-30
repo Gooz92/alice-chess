@@ -331,11 +331,11 @@ objectUtils.extend(Chess.prototype, {
       move = moves[index];
       if (move.toSAN() === moveName) {
         move.make();
-        return true;
+        return move;
       }
     }
 
-    return false;
+    return null;
   },
 
   getLastMove: function () {
