@@ -1,7 +1,9 @@
 'use strict';
 
 var boardUtils = require('../../utils/chess-utils/board-utils'),
-  Move = require('../move');
+  Move = require('../move'),
+  Promotion = require('../move/promotion'),
+  CapturePromotion = require('../move/capture-promotion');
 
 var captureOffsets = [15, 17];
 
@@ -24,6 +26,8 @@ module.exports = {
     var offset = this.color.isWhite() ? 16 : -16,
       targetSquareIndex = this.square.index,
       targetSquare, isFirstStep = false,
+      promotablePieces = (this.color.isBlack() ? 'rnbq' : 'RNBQ').split(''),
+      self = this,
       move;
 
     do {
@@ -32,12 +36,22 @@ module.exports = {
       if (targetSquare.isEmpty()) {
         if (isFirstStep) {
           move = Move.createBigPawnMove(this.square, targetSquare);
+          if (pseudoLegal || !this.square.chess.isInCheckAfter(move)) {
+            callback.call(this, move);
+          }
+        } else if (targetSquare.getRankIndex() === 0 ||
+            targetSquare.getRankIndex() === 7) {
+          promotablePieces.forEach(function (p) {
+            var move = new Promotion(self.square, targetSquare, p);
+            if (pseudoLegal || !self.square.chess.isInCheckAfter(move)) {
+             callback.call(self, move);
+            }
+          });
         } else {
           move = new Move(this.square, targetSquare);
-        }
-
-        if (pseudoLegal || !this.square.chess.isInCheckAfter(move)) {
-          callback.call(this, move);
+          if (pseudoLegal || !this.square.chess.isInCheckAfter(move)) {
+            callback.call(this, move);
+          }
         }
 
         isFirstStep = !isFirstStep;
@@ -49,7 +63,8 @@ module.exports = {
 
   forEachCapture: function (callback, pseudoLegal) {
     var offsets,
-      self = this;
+      self = this,
+      promotablePieces = (this.color.isBlack() ? 'rnbq' : 'RNBQ').split('');
 
     if (this.color.isWhite()) {
       offsets = captureOffsets;
@@ -71,15 +86,27 @@ module.exports = {
       targetSquare = self.square.chess.squares[targetSquareIndex];
 
       if (targetSquare.isOccupiedByOpponent(self.color)) {
-        move = Move.createCapture(self.square, targetSquare);
+        if (targetSquare.getRankIndex() === 0 ||
+            targetSquare.getRankIndex() === 7) {
+          promotablePieces.forEach(function (p) {
+            var move = new CapturePromotion(self.square, targetSquare, p);
+            if (pseudoLegal || !self.square.chess.isInCheckAfter(move)) {
+             callback.call(self, move);
+            }
+          });
+        } else {
+          move = Move.createCapture(self.square, targetSquare);
+           if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
+        callback.call(self, move);
+      }
+        }
       } else if (targetSquare.isTargetEnPassantSquare()) {
         move = Move.createEnPassant(self.square, targetSquare);
+        if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
+          callback.call(self, move);
+        }
       } else {
         return;
-      }
-
-      if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
-        callback.call(self, move);
       }
     });
   }

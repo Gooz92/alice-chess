@@ -8,6 +8,8 @@ function ShortCastling(king, rook) {
 }
 
 ShortCastling.prototype = {
+  constructor: ShortCastling,
+
   make: function () {
     var chess = this.king.square.chess,
 

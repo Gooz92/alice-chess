@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * 48, 2039, 97862, 4085603, 193690690
+ */
+
 var Chess = require('../model/chess');
 
 var chess = new Chess(),
@@ -33,15 +37,29 @@ function executeMoves(moves) {
   return true;
 }
 
+var promotions = 0, castlings = 0;
+
 if (executeMoves(moves)) {
   console.time('time');
   // use callbacks insignificant slow down iteration
   chess.traverse(initialDepth, {
     onMaxDepthReached: function () {
       ++leaves;
-      console.log(chess.getSanHistory().join(' ') +  ' ' + chess.generateFenCastlingRights());
+      if (chess.getLastMove().constructor.name === 'Promotion') {
+        ++promotions;
+      }
+
+      if (chess.getLastMove().constructor.name === 'CapturePromotion') {
+        ++promotions;
+      }
+
+      if (chess.getLastMove().constructor.name === 'LongCastling') {
+        console.log(chess.toASCII());
+      }
+
+      if (chess.getLastMove().constructor.name === 'ShortCastling') {
+        console.log(chess.toASCII());
+      }
     }
   });
-  console.log(leaves);
-  console.timeEnd('time');
 }
