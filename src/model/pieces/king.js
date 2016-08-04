@@ -25,6 +25,12 @@ module.exports = {
       return false;
     }
 
+    square = square.chess.squares[squareIndex - 3];
+
+    if (square.isOccupied()) {
+      return false;
+    }
+
     return true;
   },
 
