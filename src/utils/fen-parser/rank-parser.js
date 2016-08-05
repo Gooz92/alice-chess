@@ -23,6 +23,10 @@ function throwTooLongRankError(rank) {
   throwError("Rank '{0}' is too long", rank);
 }
 
+function throwRepeatedEmptySquareTokensError(rank) {
+  throwError("Consecutively repeated empty square tokens in rank '{0}'",rank);
+}
+
 RankParser.prototype.parse = function (rank, data) {
   var handlers = this.handlers,
     previousTokenIsEmptySquareToken = false,
@@ -39,7 +43,7 @@ RankParser.prototype.parse = function (rank, data) {
     if (fenUtils.isEmptySquaresToken(token)) {
 
       if (previousTokenIsEmptySquareToken) {
-        throwError("Consecutively repeated empty square tokens in rank '{0}'",rank);
+        throwRepeatedEmptySquareTokensError(rank);
       }
 
       previousTokenIsEmptySquareToken = true;
