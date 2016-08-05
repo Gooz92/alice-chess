@@ -1,9 +1,9 @@
 'use strict';
 
-var fenParser = require('../utils/fen-parser/to-ascii-fen-parser');
+var parse = require('../utils/fen-parser/impl/parse-piece-placement');
 
-var piecePlacement = process.argv[2];
-
-var field = fenParser.parsePiecePlacement(piecePlacement);
+console.time('time');
+var field = parse('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR');
+console.timeEnd('time');
 
 console.log(field);
