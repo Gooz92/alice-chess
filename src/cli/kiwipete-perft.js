@@ -45,21 +45,8 @@ if (executeMoves(moves)) {
   chess.traverse(initialDepth, {
     onMaxDepthReached: function () {
       ++leaves;
-      if (chess.getLastMove().constructor.name === 'Promotion') {
-        ++promotions;
-      }
-
-      if (chess.getLastMove().constructor.name === 'CapturePromotion') {
-        ++promotions;
-      }
-
-      if (chess.getLastMove().constructor.name === 'LongCastling') {
-        console.log(chess.toASCII());
-      }
-
-      if (chess.getLastMove().constructor.name === 'ShortCastling') {
-        console.log(chess.toASCII());
-      }
     }
   });
 }
+
+console.log(leaves);

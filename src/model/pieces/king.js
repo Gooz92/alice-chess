@@ -105,7 +105,8 @@ module.exports = {
 
     if ((castlingRights & 2) === 2 &&
       this.isKsideCaslingAvailable() &&
-      chess.squares[this.square.index + 3].isOccupied()) {
+      chess.squares[this.square.index + 3].isOccupied() &&
+      chess.squares[this.square.index + 3].piece.isRook()) {
       castling = Move.createShortCastling(this,
         chess.squares[this.square.index + 3].piece);
       callback.call(self, castling);
@@ -113,7 +114,8 @@ module.exports = {
 
     if ((castlingRights & 1) === 1 &&
       this.isQsideCastlingAvalible() &&
-      chess.squares[this.square.index - 4].isOccupied()) {
+      chess.squares[this.square.index - 4].isOccupied() &&
+      chess.squares[this.square.index - 4].piece.isRook()) {
       castling = Move.createLongCastling(this,
         chess.squares[this.square.index - 4].piece);
       callback.call(self, castling);
