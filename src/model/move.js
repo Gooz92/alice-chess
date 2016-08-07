@@ -1,7 +1,6 @@
 'use strict';
 
-var objectUtils = require('../utils/common-utils/object-utils'),
-  Move = require('./move/move'),
+var Move = require('./move/move'),
   Capture = require('./move/capture'),
   RookCapture = require('./move/rook-capture'),
   RookMove = require('./move/rook-move'),
