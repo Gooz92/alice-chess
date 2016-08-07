@@ -144,17 +144,6 @@ var piecePrototype = {
     return moveNames;
   },
 
-  move: function (squareName) {
-    var square = this.square.chess.getSquareByName(squareName),
-      move = this.createMove(square);
-
-    move.execute();
-  },
-
-  createMove: function (targetSquare) {
-    return Move.create(this.square, targetSquare);
-  },
-
   remove: function () {
     var playerPieces = this.square.chess.pieces[this.color.name];
 

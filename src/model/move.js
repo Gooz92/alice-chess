@@ -44,18 +44,6 @@ Move.createLongCastling = function (king, rook) {
   return new LongCastling(king, rook);
 };
 
-Move.create = function (sourceSquare, targetSquare, promotionPiece) {
-  if (targetSquare.isOccupied() && isTypeUtils.isUndefined(promotionPiece)) {
-    return new Capture(sourceSquare, targetSquare);
-  }
-
-  if (sourceSquare.piece.isPawn()) {
-    return createPawnMove(sourceSquare, targetSquare, promotionPiece);
-  }
-
-  return new Move(sourceSquare, targetSquare);
-};
-
 Move.createBigPawnMove = function (sourceSquare, targetSquare) {
   return new BigPawn(sourceSquare, targetSquare);
 };
@@ -63,32 +51,6 @@ Move.createBigPawnMove = function (sourceSquare, targetSquare) {
 Move.createEnPassant = function (sourceSquare, targetSquare) {
   return new EnPassant(sourceSquare, targetSquare);
 };
-
-function createPawnMove(sourceSquare, targetSquare, promotionPiece) {
-  var pawn, targetSquareRankIndex, chess;
-
-  if (sourceSquare.getRankDistance(targetSquare) === 2) {
-    return new BigPawn(sourceSquare, targetSquare);
-  }
-
-  chess = targetSquare.chess;
-
-  targetSquareRankIndex = targetSquare.getRankIndex();
-
-  if (targetSquare.isTargetEnPassantSquare() && (
-    (targetSquareRankIndex === 2 && chess.activeColor.isBlack()) ||
-    (targetSquareRankIndex === 5 && chess.activeColor.isWhite()))) {
-    return new EnPassant(sourceSquare, targetSquare);
-  }
-
-  pawn = sourceSquare.piece;
-
-  if (isTypeUtils.isDefined(promotionPiece)) {
-    return new PawnPromotion(sourceSquare, targetSquare, promotionPiece);
-  }
-
-  return new Move(sourceSquare, targetSquare);
-}
 
 var BigPawn = objectUtils.inherit(function (sourceSquare, targetSquare) {
   this.super.constructor.call(this, sourceSquare, targetSquare);

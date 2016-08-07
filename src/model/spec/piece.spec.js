@@ -30,7 +30,7 @@ describe('Piece', function () {
   });
 
   describe('#createMove()', function () {
-    it('create move with corresponding piece', function () {
+    it.skip('create move with corresponding piece', function () {
       var chess = new Chess(),
         targetSquare = chess.getSquareByName('a3'),
         piece = chess.placePiece('N', 'b1'),
