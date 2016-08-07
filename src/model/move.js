@@ -1,8 +1,6 @@
 'use strict';
 
-var isTypeUtils = require('../utils/common-utils/is-type-utils'),
-  objectUtils = require('../utils/common-utils/object-utils'),
-  arrayUtils = require('../utils/common-utils/array-utils'),
+var objectUtils = require('../utils/common-utils/object-utils'),
   Move = require('./move/move'),
   Capture = require('./move/capture'),
   RookCapture = require('./move/rook-capture'),
@@ -11,7 +9,8 @@ var isTypeUtils = require('../utils/common-utils/is-type-utils'),
   KingCapture = require('./move/king-capture'),
   ShortCastling = require('./move/short-castling'),
   LongCastling = require('./move/long-castling'),
-  EnPassant = require('./move/en-passant');
+  EnPassant = require('./move/en-passant'),
+  BigPawn = require('./move/big-pawn');
 
 Move.createSilentMove = function (sourceSquare, targetSquare) {
   return new Move(sourceSquare, targetSquare);
@@ -51,21 +50,6 @@ Move.createBigPawnMove = function (sourceSquare, targetSquare) {
 
 Move.createEnPassant = function (sourceSquare, targetSquare) {
   return new EnPassant(sourceSquare, targetSquare);
-};
-
-var BigPawn = objectUtils.inherit(function (sourceSquare, targetSquare) {
-  this.super.constructor.call(this, sourceSquare, targetSquare);
-}, Move);
-
-BigPawn.prototype.make = function () {
-  var chess = this.targetSquare.chess,
-    squareIndexOffset = this.piece.color.isWhite() ? -16 : 16,
-    epTargetSquareIndex = this.targetSquare.index + squareIndexOffset,
-    epTargetSquare = chess.squares[epTargetSquareIndex];
-
-  this.super.make.call(this);
-
-  chess.enPassantTargetSquare = epTargetSquare;
 };
 
 module.exports = Move;
