@@ -39,7 +39,7 @@ CapturePromotion.prototype.unMake = function () {
 };
 
 CapturePromotion.prototype.toSAN = function () {
-
+  return 'cp';
 };
 
 module.exports = CapturePromotion;
