@@ -35,8 +35,9 @@ describe('Move execution', function () {
     });
 
     it('update en passant target square for white pawn', function () {
-      var bigPawnMove = moveFactory.createBigPawnMove(chess.squares.e2, chess.squares.e4),
-        epTargetSquare = chess.squares.e3;
+      var squares = chess.squares,
+        bigPawnMove = moveFactory.createBigPawnMove(squares.e2, squares.e4),
+        epTargetSquare = squares.e3;
 
       bigPawnMove.make();
 
@@ -44,8 +45,9 @@ describe('Move execution', function () {
     });
 
     it('update en passant target square for black pawn', function () {
-      var bigPawnMove = moveFactory.createBigPawnMove(chess.squares.d7, chess.squares.d5),
-        epTargetSquare = chess.squares.d6;
+      var squares = chess.squares,
+        bigPawnMove = moveFactory.createBigPawnMove(squares.d7, squares.d5),
+        epTargetSquare = squares.d6;
 
       bigPawnMove.make();
 
