@@ -84,7 +84,7 @@ module.exports = {
       targetSquare = self.square.chess.squares[targetSquareIndex];
 
       if (targetSquare.isOccupiedByOpponent(self.color)) {
-        if (targetSquare.geclstRankIndex() === 0 ||
+        if (targetSquare.getRankIndex() === 0 ||
             targetSquare.getRankIndex() === 7) {
           promotablePieces.forEach(function (p) {
             var move = moveFactory.createCapturePromotion(self.square, targetSquare, p);
