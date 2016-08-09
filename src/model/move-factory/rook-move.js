@@ -11,7 +11,7 @@ RookMove.prototype = {
 
   make: function () {
     var chess = this.targetSquare.chess,
-      castlingRightsIndex = this.sourceSquare.getFileIndex();
+      castlingRightsIndex = this.sourceSquare.fileIndex;
 
     if (castlingRightsIndex === 7) {
       castlingRightsIndex = 1;

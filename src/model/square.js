@@ -7,6 +7,8 @@ function Square(index, chess) {
   this.index = index;
   this.chess = chess;
   this.name = boardUtils.squareIndexToName(index);
+  this.rankIndex = boardUtils.rankIndexFromSquareIndex(index);
+  this.fileIndex = boardUtils.fileIndexFromSquareIndex(index);
 }
 
 Square.fromName = function (squareName, chess) {
@@ -20,19 +22,11 @@ Square.prototype = {
   constructor: Square,
 
   getRankDistance: function (square) {
-    var sourceRankIndex = this.getRankIndex(),
-      destinationRankIndex = square.getRankIndex(),
-      rankDistance = Math.abs(sourceRankIndex - destinationRankIndex);
-
-    return rankDistance;
+    return Math.abs(this.rankIndex- square.rankIndex);
   },
 
   getFileDistance: function (square) {
-    var sourceFileIndex = this.getFileIndex(),
-      destinationFileIndex = square.getFileIndex(),
-      fileDistance = Math.abs(sourceFileIndex - destinationFileIndex);
-
-    return fileDistance;
+    return Math.abs(this.fileIndex - square.fileIndex);
   },
 
   getFileName: function () {
@@ -68,17 +62,8 @@ Square.prototype = {
     return !this.isOccupied();
   },
 
-  getRankIndex: function () {
-    return boardUtils.rankIndexFromSquareIndex(this.index);
-  },
-
-  getFileIndex: function () {
-    return boardUtils.fileIndexFromSquareIndex(this.index);
-  },
-
   isOnLastRank: function () {
-    var rankIndex = this.getRankIndex();
-    return rankIndex === 7 || rankIndex === 0;
+    return this.rankIndex === 7 || this.rankIndex === 0;
   }
 };
 

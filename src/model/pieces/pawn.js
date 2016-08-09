@@ -9,10 +9,8 @@ module.exports = {
   token: 'p',
 
   isOnStartPosition: function () {
-    var rankIndex = this.square.getRankIndex(),
-      startRankIndex = this.color.isWhite() ? 1 : 6;
-
-    return rankIndex === startRankIndex;
+    var startRankIndex = this.color.isWhite() ? 1 : 6;
+    return this.square.rankIndex === startRankIndex;
   },
 
   forEachMove: function (callback, pseudoLegal) {
@@ -37,8 +35,8 @@ module.exports = {
           if (pseudoLegal || !this.square.chess.isInCheckAfter(move)) {
             callback.call(this, move);
           }
-        } else if (targetSquare.getRankIndex() === 0 ||
-            targetSquare.getRankIndex() === 7) {
+        } else if (targetSquare.rankIndex === 0 ||
+            targetSquare.rankIndex === 7) {
           promotablePieces.forEach(function (p) {
             var move = moveFactory.createPromotion(self.square, targetSquare, p);
             if (pseudoLegal || !self.square.chess.isInCheckAfter(move)) {
@@ -84,8 +82,8 @@ module.exports = {
       targetSquare = self.square.chess.squares[targetSquareIndex];
 
       if (targetSquare.isOccupiedByOpponent(self.color)) {
-        if (targetSquare.getRankIndex() === 0 ||
-            targetSquare.getRankIndex() === 7) {
+        if (targetSquare.rankIndex === 0 ||
+            targetSquare.rankIndex === 7) {
           promotablePieces.forEach(function (p) {
             var move = moveFactory.createCapturePromotion(self.square, targetSquare, p);
             if (pseudoLegal || !self.square.chess.isInCheckAfter(move)) {
