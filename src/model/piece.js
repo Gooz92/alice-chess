@@ -3,7 +3,7 @@
 var objectUtils = require('../utils/common-utils/object-utils'),
   boardUtils = require('../utils/chess-utils/board-utils'),
   Color = require('./color'),
-  Move = require('./move'),
+  moveFactory = require('./move-factory'),
   pieces = require('./pieces'),
   arrayUtils = require('../utils/common-utils/array-utils'),
   isPieceMixin = require('./is-piece-mixin');
@@ -70,7 +70,7 @@ var piecePrototype = {
 
         if (targetSquare.isOccupied()) {
           if (targetSquare.piece.color !== self.color) {
-            move = Move.createCapture(self.square, targetSquare);
+            move = moveFactory.createCapture(self.square, targetSquare);
             if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
               callback.call(self, move);
             }
@@ -78,7 +78,7 @@ var piecePrototype = {
           return;
         }
 
-        move = Move.createSilentMove(self.square, targetSquare);
+        move = moveFactory.createSilentMove(self.square, targetSquare);
 
         if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
           callback.call(self, move);

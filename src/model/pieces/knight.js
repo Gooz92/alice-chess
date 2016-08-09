@@ -1,7 +1,7 @@
 'use strict';
 
 var boardUtils = require('../../utils/chess-utils/board-utils'),
-  Move = require('../move');
+  moveFactory = require('../move-factory');
 
 var offsets = [14, 18, 31, 33, -14, -18, -31, -33];
 
@@ -22,9 +22,9 @@ module.exports = {
       targetSquare = self.square.chess.squares[targetSquareIndex];
 
       if (targetSquare.isEmpty()) {
-        move = Move.createSilentMove(self.square, targetSquare);
+        move = moveFactory.createSilentMove(self.square, targetSquare);
       } else if (targetSquare.isOccupiedByOpponent(self.color)) {
-        move = Move.createCapture(self.square, targetSquare);
+        move = moveFactory.createCapture(self.square, targetSquare);
       } else {
         return;
       }

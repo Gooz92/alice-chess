@@ -3,7 +3,7 @@
 var Square = require('./square'),
   Color = require('./color'),
   Piece = require('./piece'),
-  Move = require('./move'),
+  moveFactory = require('./move-factory'),
   boardUtils = require('../utils/chess-utils/board-utils'),
   objectUtils = require('../utils/common-utils/object-utils'),
   rays = require('../utils/chess-utils/rays'),
@@ -320,7 +320,7 @@ objectUtils.extend(Chess.prototype, {
       sourceSquare = this.getSquareByName(squareNames[0]),
       targetSquare = this.getSquareByName(squareNames[1]);
 
-    return Move.create(sourceSquare, targetSquare);
+    return moveFactory.create(sourceSquare, targetSquare);
   },
 
   move: function (moveName) {

@@ -1,7 +1,7 @@
 'use strict';
 
 var boardUtils = require('../../utils/chess-utils/board-utils'),
-  Move = require('../move');
+  moveFactory = require('../move-factory');
 
 module.exports = {
   token: 'r',
@@ -19,7 +19,7 @@ module.exports = {
 
         if (targetSquare.isOccupied()) {
           if (targetSquare.piece.color !== self.color) {
-            move = Move.createRookCapture(self.square, targetSquare);
+            move = moveFactory.createRookCapture(self.square, targetSquare);
             if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
               callback.call(self, move);
             }
@@ -27,7 +27,7 @@ module.exports = {
           return;
         }
 
-        move = Move.createRookMove(self.square, targetSquare);
+        move = moveFactory.createRookMove(self.square, targetSquare);
 
         if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
           callback.call(self, move);

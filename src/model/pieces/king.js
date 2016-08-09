@@ -1,7 +1,7 @@
 'use strict';
 
 var boardUtils = require('../../utils/chess-utils/board-utils'),
-  Move = require('../move'),
+  moveFactory = require('../move-factory'),
   arrayUtils = require('../../utils/common-utils/array-utils');
 
 var offsets = [16, -16, 1, -1, 15, 17, -15, -17];
@@ -73,9 +73,9 @@ module.exports = {
       targetSquare = self.square.chess.squares[targetSquareIndex];
 
       if (targetSquare.isOccupiedByOpponent(self.color)) {
-        move = Move.createKingCapture(self.square, targetSquare);
+        move = moveFactory.createKingCapture(self.square, targetSquare);
       } else if (targetSquare.isEmpty()) {
-        move = Move.createKingMove(self.square, targetSquare);
+        move = moveFactory.createKingMove(self.square, targetSquare);
       } else {
         return;
       }
@@ -107,7 +107,7 @@ module.exports = {
       this.isKsideCaslingAvailable() &&
       chess.squares[this.square.index + 3].isOccupied() &&
       chess.squares[this.square.index + 3].piece.isRook()) {
-      castling = Move.createShortCastling(this,
+      castling = moveFactory.createShortCastling(this,
         chess.squares[this.square.index + 3].piece);
       callback.call(self, castling);
     }
@@ -116,7 +116,7 @@ module.exports = {
       this.isQsideCastlingAvalible() &&
       chess.squares[this.square.index - 4].isOccupied() &&
       chess.squares[this.square.index - 4].piece.isRook()) {
-      castling = Move.createLongCastling(this,
+      castling = moveFactory.createLongCastling(this,
         chess.squares[this.square.index - 4].piece);
       callback.call(self, castling);
     }

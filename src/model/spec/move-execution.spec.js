@@ -2,7 +2,7 @@
 
 var assert = require('chai').assert,
   Chess = require('../chess'),
-  Move = require('../move');
+  moveFactory = require('../move-factory');
 
 describe('Move execution', function () {
   describe('silent move', function () {
@@ -12,7 +12,7 @@ describe('Move execution', function () {
       var move;
 
       chess = Chess.createStartPosition();
-      move = Move.createSilentMove(chess.squares.e2, chess.squares.e3);
+      move = moveFactory.createSilentMove(chess.squares.e2, chess.squares.e3);
       move.make();
     });
 
@@ -35,7 +35,7 @@ describe('Move execution', function () {
     });
 
     it('update en passant target square for white pawn', function () {
-      var bigPawnMove = Move.createBigPawnMove(chess.squares.e2, chess.squares.e4),
+      var bigPawnMove = moveFactory.createBigPawnMove(chess.squares.e2, chess.squares.e4),
         epTargetSquare = chess.squares.e3;
 
       bigPawnMove.make();
@@ -44,7 +44,7 @@ describe('Move execution', function () {
     });
 
     it('update en passant target square for black pawn', function () {
-      var bigPawnMove = Move.createBigPawnMove(chess.squares.d7, chess.squares.d5),
+      var bigPawnMove = moveFactory.createBigPawnMove(chess.squares.d7, chess.squares.d5),
         epTargetSquare = chess.squares.d6;
 
       bigPawnMove.make();

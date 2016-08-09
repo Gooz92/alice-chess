@@ -1,9 +1,7 @@
 'use strict';
 
 var boardUtils = require('../../utils/chess-utils/board-utils'),
-  Move = require('../move'),
-  Promotion = require('../move/promotion'),
-  CapturePromotion = require('../move/capture-promotion');
+  moveFactory = require('../move-factory');
 
 var captureOffsets = [15, 17];
 
@@ -35,20 +33,20 @@ module.exports = {
       targetSquare = this.square.chess.squares[targetSquareIndex];
       if (targetSquare.isEmpty()) {
         if (isFirstStep) {
-          move = Move.createBigPawnMove(this.square, targetSquare);
+          move = moveFactory.createBigPawnMove(this.square, targetSquare);
           if (pseudoLegal || !this.square.chess.isInCheckAfter(move)) {
             callback.call(this, move);
           }
         } else if (targetSquare.getRankIndex() === 0 ||
             targetSquare.getRankIndex() === 7) {
           promotablePieces.forEach(function (p) {
-            var move = new Promotion(self.square, targetSquare, p);
+            var move = moveFactory.createPromotion(self.square, targetSquare, p);
             if (pseudoLegal || !self.square.chess.isInCheckAfter(move)) {
              callback.call(self, move);
             }
           });
         } else {
-          move = new Move(this.square, targetSquare);
+          move = moveFactory.createSilentMove(this.square, targetSquare);
           if (pseudoLegal || !this.square.chess.isInCheckAfter(move)) {
             callback.call(this, move);
           }
@@ -86,22 +84,22 @@ module.exports = {
       targetSquare = self.square.chess.squares[targetSquareIndex];
 
       if (targetSquare.isOccupiedByOpponent(self.color)) {
-        if (targetSquare.getRankIndex() === 0 ||
+        if (targetSquare.geclstRankIndex() === 0 ||
             targetSquare.getRankIndex() === 7) {
           promotablePieces.forEach(function (p) {
-            var move = new CapturePromotion(self.square, targetSquare, p);
+            var move = moveFactory.createCapturePromotion(self.square, targetSquare, p);
             if (pseudoLegal || !self.square.chess.isInCheckAfter(move)) {
              callback.call(self, move);
             }
           });
         } else {
-          move = Move.createCapture(self.square, targetSquare);
+          move = moveFactory.createCapture(self.square, targetSquare);
            if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
         callback.call(self, move);
       }
         }
       } else if (targetSquare.isTargetEnPassantSquare()) {
-        move = Move.createEnPassant(self.square, targetSquare);
+        move = moveFactory.createEnPassant(self.square, targetSquare);
         if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
           callback.call(self, move);
         }
