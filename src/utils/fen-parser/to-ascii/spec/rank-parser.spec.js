@@ -1,12 +1,14 @@
 'use strict';
 
-var ToAsciiRankParser = require('../to-ascii-rank-parser'),
+var RankParser = require('../rank-parser'),
   assert = require('chai').assert;
 
-
-describe('ToAsciiRankParser', function () {
+describe('to-ascii/RankParser', function () {
   describe('#parse()', function () {
-    it("use ToAsciiRankParser.defaultEmptySquareToken by default");
+    it('use RankParser.defaultEmptySquareToken by default', function () {
+      var parser = new RankParser();
+    });
+
     it("insert use emptySquareToken from options");
     it("don't insert gaps by default");
     it('insert single space gaps if gap options is true');

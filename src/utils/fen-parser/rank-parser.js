@@ -24,7 +24,7 @@ function throwTooLongRankError(rank) {
 }
 
 function throwRepeatedEmptySquareTokensError(rank) {
-  throwError("Consecutively repeated empty square tokens in rank '{0}'",rank);
+  throwError("Consecutively repeated empty square tokens in rank '{0}'", rank);
 }
 
 RankParser.prototype.parse = function (rank, data) {

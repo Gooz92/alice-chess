@@ -23,7 +23,7 @@ module.exports = function (grunt) {
       },
 
       fenParser: {
-        src: ['src/utils/fen-parser/spec/*.spec.js']
+        src: ['src/utils/fen-parser/**/spec/*.spec.js']
       },
 
       // perft5: {

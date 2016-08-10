@@ -5,6 +5,7 @@ var PiecePlacementParser = require('../piece-placement-parser');
 var piecePlacementParser = new PiecePlacementParser({
   onStart: function () {
     this.board = [];
+    this.rankIndex = 8;
   },
 
   rank: {
