@@ -315,14 +315,6 @@ objectUtils.extend(Chess.prototype, {
     this.activeColor = this.activeColor.toggle();
   },
 
-  createMove: function (moveName) {
-    var squareNames = moveName.split('-'),
-      sourceSquare = this.getSquareByName(squareNames[0]),
-      targetSquare = this.getSquareByName(squareNames[1]);
-
-    return moveFactory.create(sourceSquare, targetSquare);
-  },
-
   move: function (moveName) {
     var moves = this.generateMoves(),
       move, index;
