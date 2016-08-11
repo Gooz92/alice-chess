@@ -33,7 +33,7 @@ Promotion.prototype.unMake = function () {
 };
 
 Promotion.prototype.toSAN = function () {
-  return this.targetSquare.name + '=' + this.promotedPieceToken;
+  return this.targetSquare.name + '=' + this.promotedPieceToken.toUpperCase();
 };
 
 module.exports = Promotion;
