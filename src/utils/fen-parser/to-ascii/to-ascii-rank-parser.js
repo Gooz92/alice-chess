@@ -1,6 +1,6 @@
 'use strict';
 
-var RankParser = require('./rank-parser'),
+var RankParser = require('../rank-parser'),
   objectUtils = require('../../common-utils/object-utils'),
   createRankParseHandlers = require('./create-rank-parse-handlers');
 
