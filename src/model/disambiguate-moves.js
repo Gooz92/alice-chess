@@ -24,12 +24,12 @@ function disambiguateMoves(moves) {
 
       for (i = 0; i < moves.length; i++) {
         for (j = i + 1; j < moves.length; j++) {
-          if (moves[0].piece.square.fileIndex !== moves[1].piece.square.fileIndex) {
-            moves[0].disambiguateFileIndex = true;
-            moves[1].disambiguateFileIndex = true;
-          } else if (moves[0].piece.square.rankIndex !== moves[1].piece.square.rankIndex) {
-            moves[0].disambiguateRankIndex = true;
-            moves[1].disambiguateRankIndex = true;
+          if (moves[i].piece.square.fileIndex !== moves[j].piece.square.fileIndex) {
+            moves[i].disambiguateFileIndex = true;
+            moves[j].disambiguateFileIndex = true;
+          } else if (moves[i].piece.square.rankIndex !== moves[j].piece.square.rankIndex) {
+            moves[i].disambiguateRankIndex = true;
+            moves[j].disambiguateRankIndex = true;
           }
         }
       }
