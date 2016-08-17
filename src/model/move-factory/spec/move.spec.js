@@ -11,8 +11,8 @@ describe('Move', function () {
     beforeEach(function () {
       chess = new Chess();
       piece = chess.placePiece('P', 'e2');
-      sourceSquare = chess.getSquareByName('e2');
-      targetSquare = chess.getSquareByName('e3');
+      sourceSquare = chess.squares.e2;
+      targetSquare = chess.squares.e3;
       move = new Move(sourceSquare, targetSquare);
       move.make();
     });
@@ -40,8 +40,8 @@ describe('Move', function () {
 
     beforeEach(function () {
       chess = new Chess();
-      sourceSquare = chess.getSquareByName('d2');
-      targetSquare = chess.getSquareByName('d3');
+      sourceSquare = chess.squares.d2;
+      targetSquare = chess.squares.d3;
       piece = chess.placePiece('P', targetSquare.name);
       move = new Move(sourceSquare, targetSquare);
       move.unMake();

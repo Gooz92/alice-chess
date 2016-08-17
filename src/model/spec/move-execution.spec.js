@@ -17,12 +17,12 @@ describe('Move execution', function () {
     });
 
     it('source square should be empty after move execution', function () {
-      var sourceSquare = chess.getSquareByName('e2');
+      var sourceSquare = chess.squares.e2;
       assert.isTrue(sourceSquare.isEmpty());
     });
 
     it('target square should be occupied', function () {
-      var targetSquare = chess.getSquareByName('e3');
+      var targetSquare = chess.squares.e3;
       assert.isTrue(targetSquare.isOccupied());
     });
   });
@@ -64,10 +64,10 @@ describe('Move execution', function () {
 
     it.skip('replace captured piece on target square', function () {
       var whiteQueen = chess.placePiece('Q', 'd5'),
-        targetSquare = chess.getSquareByName('f7'),
+        targetSquare = chess.squares.f7,
         capture = whiteQueen.createMove(targetSquare);
 
-      chess.placePiece('p', 'f7');
+      chess.placePiece('p', targetSquare.name);
 
       capture.make();
 

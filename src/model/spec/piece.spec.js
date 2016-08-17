@@ -32,7 +32,7 @@ describe('Piece', function () {
   describe('#createMove()', function () {
     it.skip('create move with corresponding piece', function () {
       var chess = new Chess(),
-        targetSquare = chess.getSquareByName('a3'),
+        targetSquare = chess.squares.a3,
         piece = chess.placePiece('N', 'b1'),
         move = piece.createMove(targetSquare);
 
@@ -48,7 +48,7 @@ describe('Piece', function () {
 
     it('move piece to destination square', function () {
       var piece = chess.placePiece('P', 'e2'),
-        destinationSquare = chess.getSquareByName('e4');
+        destinationSquare = chess.squares.e4;
 
       piece.moveTo(destinationSquare);
       assert.equal(piece.square, destinationSquare);
@@ -57,7 +57,7 @@ describe('Piece', function () {
     it('remove piece from source square', function () {
       var piece = chess.placePiece('p', 'd7'),
         sourceSquare = piece.square,
-        destinationSquare = chess.getSquareByName('d5');
+        destinationSquare = chess.squares.d5;
 
       piece.moveTo(destinationSquare);
 

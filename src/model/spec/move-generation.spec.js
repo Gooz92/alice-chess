@@ -83,7 +83,7 @@ describe('Moves generation', function () {
         e8: 'r'
       });
 
-      whiteRook = chess.getSquareByName('e5').piece;
+      whiteRook = chess.squares.e5.piece;
       rookTargerSquareNames = whiteRook.generateTargetSquareNames();
 
       assert.sameMembers(rookTargerSquareNames, [
@@ -102,7 +102,7 @@ describe('Moves generation', function () {
         h7: 'B'
       });
 
-      blackPawn = chess.getSquareByName('f5').piece;
+      blackPawn = chess.squares.f5.piece;
       pawnTargetSquareNames = blackPawn.generateTargetSquareNames();
 
       assert.sameMembers(pawnTargetSquareNames, []);
@@ -117,7 +117,7 @@ describe('Moves generation', function () {
         e3: 'q'
       });
 
-      whiteKnight = chess.getSquareByName('e5').piece;
+      whiteKnight = chess.squares.e5.piece;
       knightTargetSquareNames = whiteKnight.generateTargetSquareNames();
 
       assert.sameMembers(knightTargetSquareNames, []);

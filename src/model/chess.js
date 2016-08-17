@@ -34,18 +34,12 @@ Chess.createStartPosition = function () {
 };
 
 objectUtils.extend(Chess.prototype, {
-  getSquareByName: function (squareName) {
-    var squareIndex = boardUtils.squareNameToIndex(squareName);
-
-    return this.squares[squareIndex];
-  },
-
   place: function (position) {
     objectUtils.forEachOwnProperty(position, this.placePiece.bind(this));
   },
 
   placePiece: function (fenToken, squareName) {
-    var square = this.getSquareByName(squareName),
+    var square = this.squares[squareName],
       piece = Piece.create(fenToken, square);
 
     if (piece.isKing() && !piece.isOnStartPosition()) {

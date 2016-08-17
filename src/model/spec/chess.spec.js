@@ -35,18 +35,6 @@ describe('Chess', function () {
     });
   });
 
-  describe('#getSquareByName()', function () {
-    it('return square by it correct san name', function () {
-      var squareNames = ['a1', 'h1', 'a3', 'f4', 'h5', 'a8', 'h8'];
-
-      squareNames.forEach(function (squareName) {
-        var square = chess.getSquareByName(squareName);
-        assert.strictEqual(squareName, square.name);
-      });
-
-    });
-  });
-
   describe('#turn()', function () {
     it('turn active color from white to black', function () {
       chess.turn();
@@ -162,7 +150,7 @@ describe('Chess', function () {
       chess.place(position);
 
       Object.keys(position).forEach(function (squareName) {
-        var square = chess.getSquareByName(squareName),
+        var square = chess.squares[squareName],
           pieceFenToken = square.piece.getFenToken();
 
         assert.equal(pieceFenToken, position[squareName]);

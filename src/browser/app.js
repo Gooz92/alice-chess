@@ -19,7 +19,7 @@ var table = createTable({
     var className = ['light', 'dark'][(rowIndex + columnIndex) % 2],
       rankName = boardUtils.rankIndexToName(7 - rowIndex),
       fileName = boardUtils.fileIndexToName(columnIndex),
-      square = chess.getSquareByName(fileName + rankName),
+      square = chess.squares[fileName + rankName],
       innerHTML = '';
 
     if (square.isOccupied()) {
@@ -32,7 +32,7 @@ var table = createTable({
       innerHTML: innerHTML,
       id: fileName + rankName,
       onclick: function () {
-        var square = chess.getSquareByName(this.id),
+        var square = chess.squares[this.id],
           highlightedCells = document.querySelectorAll('.highlighted'),
           targetSquareNames;
 
