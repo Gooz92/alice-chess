@@ -25,6 +25,7 @@ describe('Capture', function () {
 
   describe('#unMake()', function () {
     it('place captured piece on target square');
+  });
 
   describe('#toSAN()', function () {
     it("add 'x' before target square name by default");
