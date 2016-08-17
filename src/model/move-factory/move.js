@@ -1,6 +1,7 @@
 'use strict';
 
-var arrayUtils = require('../../utils/common-utils/array-utils');
+var arrayUtils = require('../../utils/common-utils/array-utils'),
+  objectUtils = require('../../utils/common-utils/object-utils');
 
 function Move(sourceSquare, targetSquare) {
   this.sourceSquare = sourceSquare;
@@ -31,27 +32,38 @@ Move.prototype = {
     arrayUtils.remove(chess.history, this);
   },
 
-  // TODO
-  toSAN: function (options) {
+  getSanDisambiguation: function (disambiguationOptions) {
     var disambiguation = '';
 
-    options = options || {};
+    disambiguationOptions = disambiguationOptions || {};
 
+    if (disambiguationOptions.file) {
+      disambiguation += this.sourceSquare.fileName;
+    }
+
+    if (disambiguationOptions.rank) {
+      disambiguation += this.sourceSquare.rankName;
+    }
+
+    return disambiguation;
+  },
+
+  // TODO
+  toSAN: function (options) {
     if (this.piece.isPawn()) {
       return this.targetSquare.name;
     }
 
-    if (options.disambiguateFileIndex) {
-      disambiguation += this.sourceSquare.name.charAt(0);
-    }
-
-    if (options.disambiguateRankIndex) {
-      disambiguation += this.sourceSquare.name.charAt(1);
-    }
+    options = objectUtils.defaults(options, {
+      disambiguation: {
+        rank: false,
+        file: false
+      }
+    });
 
     return [
       this.piece.token.toUpperCase(),
-      disambiguation,
+      this.getSanDisambiguation(options.disambiguation),
       this.targetSquare.name
     ].join('');
   }

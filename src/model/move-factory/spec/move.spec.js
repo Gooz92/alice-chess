@@ -175,13 +175,13 @@ describe('Move', function () {
       assert.match(san, /^K/);
     });
 
-    it("add unambiguous file if disambiguateFileIndex is true", function () {
+    it("add unambiguous file if disambiguation.file is true", function () {
       var sourceSquare = chess.squares.e5,
         targetSquare = chess.squares.c3,
         pieceToken = 'B',
         expectedSan = [
           pieceToken,
-          sourceSquare.name.charAt(0),
+          sourceSquare.fileName,
           targetSquare.name
         ].join(''),
         move, san;
@@ -190,19 +190,21 @@ describe('Move', function () {
       move = new Move(sourceSquare, targetSquare);
 
       san = move.toSAN({
-        disambiguateFileIndex: true
+        disambiguation: {
+          file: true
+        }
       });
 
       assert.strictEqual(san, expectedSan);
     });
 
-    it("add unambiguous rank if disambiguateRankIndex is true", function () {
+    it("add unambiguous rank if disambiguation.rank is true", function () {
       var sourceSquare = chess.squares.d5,
         targetSquare = chess.squares.a2,
         pieceToken = 'Q',
         expectedSan = [
           pieceToken,
-          sourceSquare.name.charAt(1),
+          sourceSquare.rankName,
           targetSquare.name
         ].join(''),
         move, san;
@@ -211,7 +213,9 @@ describe('Move', function () {
       move = new Move(sourceSquare, targetSquare);
 
       san = move.toSAN({
-        disambiguateRankIndex: true
+        disambiguation: {
+          rank: true
+        }
       });
 
       assert.strictEqual(san, expectedSan);
@@ -223,8 +227,8 @@ describe('Move', function () {
         pieceToken = 'N',
         expectedSan = [
           pieceToken,
-          sourceSquare.name.charAt(0),
-          sourceSquare.name.charAt(1),
+          sourceSquare.fileName,
+          sourceSquare.rankName,
           targetSquare.name
         ].join(''),
         move, san;
@@ -233,8 +237,10 @@ describe('Move', function () {
       move = new Move(sourceSquare, targetSquare);
 
       san = move.toSAN({
-        disambiguateRankIndex: true,
-        disambiguateFileIndex: true
+        disambiguation: {
+          rank: true,
+          file: true
+        }
       });
 
       assert.strictEqual(san, expectedSan);
