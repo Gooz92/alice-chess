@@ -66,7 +66,7 @@ describe('Move', function () {
   });
 
   describe('#toSAN()', function () {
-    it("pawn move name don't start with 'p'", function () {
+    it("pawn move name don't start with 'P'", function () {
       var chess = new Chess(),
         sourceSquare = chess.squares.e4,
         move,
