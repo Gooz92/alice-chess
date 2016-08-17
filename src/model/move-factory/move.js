@@ -32,12 +32,28 @@ Move.prototype = {
   },
 
   // TODO
-  toSAN: function () {
+  toSAN: function (options) {
+    var disambiguation = '';
+
+    options = options || {};
+
     if (this.piece.isPawn()) {
       return this.targetSquare.name;
     }
 
-    return this.piece.token.toUpperCase() + this.targetSquare.name;
+    if (options.disambiguateFileIndex) {
+      disambiguation += this.sourceSquare.name.charAt(0);
+    }
+
+    if (options.disambiguateRankIndex) {
+      disambiguation += this.sourceSquare.name.charAt(1);
+    }
+
+    return [
+      this.piece.token.toUpperCase(),
+      disambiguation,
+      this.targetSquare.name
+    ].join('');
   }
 };
 
