@@ -1,6 +1,7 @@
 'use strict';
 
-var Move = require('./move');
+var Move = require('./move'),
+  objectUtils = require('../../utils/common-utils/object-utils');
 
 function Capture(sourceSquare, targetSquare) {
   Move.call(this, sourceSquare, targetSquare);
@@ -33,11 +34,29 @@ Capture.prototype = {
   },
 
   toSAN: function (options) {
-    if (this.piece.isPawn()) {
-      return this.sourceSquare.fileName + 'x' + this.targetSquare.name;
+    var separator = '';
+
+    options = objectUtils.defaults(options, {
+      notes: {
+        capture: true
+      }
+    });
+
+    if (options.notes.capture) {
+      separator = 'x';
     }
 
-    return this.piece.token.toUpperCase() + 'x' + this.targetSquare.name;
+    if (this.piece.isPawn()) {
+      return [
+        this.sourceSquare.fileName,
+        this.targetSquare.name
+      ].join(separator);
+    }
+
+    return [
+      this.piece.token.toUpperCase(),
+      this.targetSquare.name
+    ].join(separator);
   }
 };
 
