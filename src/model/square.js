@@ -13,13 +13,6 @@ function Square(index, chess) {
   this.rankName = this.name.charAt(1);
 }
 
-Square.fromName = function (squareName, chess) {
-  var index = boardUtils.squareNameToIndex(squareName),
-    square = new Square(index, chess);
-
-  return square;
-};
-
 Square.prototype = {
   constructor: Square,
 

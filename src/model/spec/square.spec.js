@@ -1,56 +1,25 @@
 'use strict';
 
 var assert = require('chai').assert,
-  Square = require('../square.js'),
+  Square = require('../square'),
+  Chess = require('../chess'),
   Color = require('../color');
 
 describe('Square', function () {
-  var square;
 
-  beforeEach(function () {
-    square = new Square();
-  });
-
-  describe('.fromName()', function () {
-    it("create square with index 0 from name 'a1'", function () {
-      var square = Square.fromName('a1');
-      assert.strictEqual(square.index, 0);
-    });
-
-    it("create square with index 112 from name 'a8'", function () {
-      var square = Square.fromName('a8');
-      assert.strictEqual(square.index, 112);
-    });
-
-    it("create square with index 119 from name 'h8'", function () {
-      var square = Square.fromName('h8');
-      assert.strictEqual(square.index, 119);
-    });
-
-    it("create square with index 67 for name 'd5'", function () {
-      var square = Square.fromName('d5');
-      assert.strictEqual(square.index, 67);
-    });
-
-    it('set chess object new square', function () {
-      var chess = {},
-        square = Square.fromName('e3', chess);
-
-      assert.strictEqual(square.chess, chess);
-    });
-  });
+  var chess = new Chess();
 
   describe('#getRankDistance()', function () {
     it('return 0 if source and destination squares are same', function () {
-      var square = Square.fromName('e4'),
+      var square = chess.squares.e4,
         rankDistance = square.getRankDistance(square);
 
       assert.strictEqual(rankDistance, 0);
     });
 
     it('is symmetric', function () {
-      var source = Square.fromName('a2'),
-        destination = Square.fromName('d4'),
+      var source = chess.squares.a2,
+        destination = chess.squares.d4,
         source2destination = source.getRankDistance(destination),
         destination2source = destination.getRankDistance(source);
 
@@ -58,16 +27,16 @@ describe('Square', function () {
     });
 
     it('return 0 for squares a4 and h4', function () {
-      var source = Square.fromName('a4'),
-        destination = Square.fromName('h4'),
+      var source = chess.squares.a4,
+        destination = chess.squares.h4,
         distance = source.getRankDistance(destination);
 
       assert.strictEqual(distance, 0);
     });
 
     it('return 7 for squares h8 and a1', function () {
-      var source = Square.fromName('h8'),
-        destination = Square.fromName('a1'),
+      var source = chess.squares.h8,
+        destination = chess.squares.a1,
         distance = source.getRankDistance(destination);
 
       assert.strictEqual(distance, 7);
@@ -76,15 +45,15 @@ describe('Square', function () {
 
   describe('#getFileDistance()', function () {
     it('return 0 if source and destination squares are same', function () {
-      var square = Square.fromName('d5'),
+      var square = chess.squares.d5,
         fileDistance = square.getFileDistance(square);
 
       assert.strictEqual(fileDistance, 0);
     });
 
     it('is symmetric', function () {
-      var source = Square.fromName('e2'),
-        destination = Square.fromName('f6'),
+      var source = chess.squares.e2,
+        destination = chess.squares.f6,
         source2destination = source.getFileDistance(destination),
         destination2source = destination.getFileDistance(source);
 
@@ -92,16 +61,16 @@ describe('Square', function () {
     });
 
     it('return 2 for squares a2 and c8', function () {
-      var source = Square.fromName('a2'),
-        destination = Square.fromName('c8'),
+      var source = chess.squares.a2,
+        destination = chess.squares.c8,
         distance = source.getFileDistance(destination);
 
       assert.strictEqual(distance, 2);
     });
 
     it('return 7 for squares a4 and h1', function () {
-      var source = Square.fromName('a4'),
-        destination = Square.fromName('h1'),
+      var source = chess.squares.a4,
+        destination = chess.squares.h1,
         distance = source.getFileDistance(destination);
 
       assert.strictEqual(distance, 7);
@@ -110,15 +79,15 @@ describe('Square', function () {
 
   describe('#getDistance()', function () {
     it('return 0 if source and destination squares are same', function () {
-      var square = Square.fromName('c5'),
+      var square = chess.squares.c5,
         distance = square.getDistance(square);
 
       assert.strictEqual(distance, 0);
     });
 
     it('is symmetric', function () {
-      var source = Square.fromName('a3'),
-        destination = Square.fromName('b4'),
+      var source = chess.squares.a3,
+        destination = chess.squares.b4,
         source2destination = source.getDistance(destination),
         destination2source = destination.getDistance(source);
 
@@ -126,8 +95,8 @@ describe('Square', function () {
     });
 
     it('return 14 for squares a1 and h8', function () {
-      var source = Square.fromName('a1'),
-        destination = Square.fromName('h8'),
+      var source = chess.squares.a1,
+        destination = chess.squares.h8,
         distance = source.getDistance(destination);
 
       assert.strictEqual(distance, 14);
@@ -135,6 +104,12 @@ describe('Square', function () {
   });
 
   describe('#isOccupied()', function () {
+    var square;
+
+    beforeEach(function () {
+      square = new Square();
+    });
+
     it("return true if property 'piece' is not null or undefined", function () {
       square.piece = 'pawn';
       assert.isTrue(square.isOccupied());
@@ -156,12 +131,16 @@ describe('Square', function () {
   });
 
   describe('#isEmpty()', function () {
-    it('return true for new square', function () {
-      assert.isTrue(square.isEmpty());
-    });
+    it('return true for empty square');
   });
 
   describe('#isOccupiedByOpponent()', function () {
+    var square;
+
+    beforeEach(function () {
+      square = new Square();
+    });
+
     it('return true if square occupied by opponent piece', function () {
       var playerColor = Color.WHITE,
         opponentColor = playerColor.toggle();
@@ -186,17 +165,17 @@ describe('Square', function () {
 
   describe('#isOnLastRank()', function () {
     it('return true if square placed on first rank', function () {
-      var square = Square.fromName('e1');
+      var square = chess.squares.e1;
       assert.isTrue(square.isOnLastRank());
     });
 
     it('return true if square placed on eighth rank', function () {
-      var square = Square.fromName('d8');
+      var square = chess.squares.d8;
       assert.isTrue(square.isOnLastRank());
     });
 
     it('return false if square placed on third rank', function () {
-      var square = Square.fromName('f3');
+      var square = chess.squares.f3;
       assert.isFalse(square.isOnLastRank());
     });
   });
