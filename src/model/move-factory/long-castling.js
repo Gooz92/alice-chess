@@ -6,6 +6,7 @@ function LongCastling(king, rook) {
   this.sourceSquare = king.square;
   this.king = king;
   this.rook = rook;
+  this.piece = king;
   this.targetSquare = king.square.chess.squares[this.rook.square.index + 2];
 }
 
