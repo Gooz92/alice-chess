@@ -65,19 +65,19 @@ describe('Move', function () {
     });
   });
 
-  describe('#getName()', function () {
+  describe('#toSAN()', function () {
     it("pawn move name don't start with 'p'", function () {
       var chess = new Chess(),
-        sourceSquare = chess.getSquareByName('e4'),
-        targetSquare = chess.getSquareByName('e5'),
-        move = new Move(sourceSquare, targetSquare),
-        moveName;
+        sourceSquare = chess.squares.e4,
+        move,
+        san;
 
       chess.placePiece('P', sourceSquare.name);
+      move = new Move(sourceSquare, chess.squares.e5);
 
-      moveName = move.getName();
+      san = move.toSAN();
 
-      assert.isFalse(moveName.charAt(0) !== 'P');
+      assert.notEqual(san.charAt(0), 'P');
     });
 
     it('SAN move name ends with target square name');

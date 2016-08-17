@@ -11,7 +11,7 @@ module.exports = function (grunt) {
       },
 
       model: {
-        src: ['src/model/spec/*.spec.js']
+        src: ['src/model/**/spec/*.spec.js']
       },
 
       commonUtils: {
