@@ -9,6 +9,8 @@ function Square(index, chess) {
   this.name = boardUtils.squareIndexToName(index);
   this.rankIndex = boardUtils.rankIndexFromSquareIndex(index);
   this.fileIndex = boardUtils.fileIndexFromSquareIndex(index);
+  this.fileName = this.name.charAt(0);
+  this.rankName = this.name.charAt(1);
 }
 
 Square.fromName = function (squareName, chess) {
