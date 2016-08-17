@@ -35,7 +35,7 @@ EnPassant.prototype.unMake = function () {
 };
 
 EnPassant.prototype.toSAN = function () {
-  return this.sourceSquare.getFileName() + 'x' + this.targetSquare.name;
+  return this.sourceSquare.fileName + 'x' + this.targetSquare.name;
 };
 
 module.exports = EnPassant;

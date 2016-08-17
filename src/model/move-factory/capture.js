@@ -34,7 +34,7 @@ Capture.prototype = {
 
   toSAN: function (options) {
     if (this.piece.isPawn()) {
-      return this.sourceSquare.getFileName() + 'x' + this.targetSquare.name;
+      return this.sourceSquare.fileName + 'x' + this.targetSquare.name;
     }
 
     return this.piece.token.toUpperCase() + 'x' + this.targetSquare.name;
