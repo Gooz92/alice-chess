@@ -36,7 +36,7 @@ function getSanDisambiguationOptions(moves) {
             disambiguationOptions[moves.indexOf(pieceMoves[i])].file = true;
             disambiguationOptions[moves.indexOf(pieceMoves[j])].file = true;
           } else if (pieceMoves[i].piece.square.rankIndex !== pieceMoves[j].piece.square.rankIndex) {
-             disambiguationOptions[moves.indexOf(pieceMoves[i])].rank = true;
+            disambiguationOptions[moves.indexOf(pieceMoves[i])].rank = true;
             disambiguationOptions[moves.indexOf(pieceMoves[j])].rank = true;
           }
         }
