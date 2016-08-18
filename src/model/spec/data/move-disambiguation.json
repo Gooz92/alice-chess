@@ -1,0 +1,82 @@
+[
+  {
+    "description": "Two knights on same rank",
+
+    "board": {
+      "b3": "N",
+      "f3": "N"
+    },
+
+    "moves": [
+      "Na5", "Nc5", "Nc1", "Na1",
+      "Nbd4", "Nbd2",
+
+      "Ne5", "Ng5", "Nh4", "Nh2", "Ng1", "Ne1",
+      "Nfd2", "Nfd4"
+    ]
+  },
+
+  {
+    "description": "Two knights on same file",
+
+    "board": {
+      "e3": "N",
+      "e7": "N"
+    },
+
+    "moves": []
+  },
+
+  {
+    "description": "Two knights on different ranks and files (one same target squares)",
+
+    "board": {
+      "b7": "N",
+      "d3": "N"
+    },
+
+    "moves": [
+      "Na5", "Nd8", "Nd6",
+      "Nb4", "Ne5", "Nf4", "Nf2", "Ne1", "Nc1", "Nb2",
+
+      "Nbc5", "Ndc5"
+    ]
+  },
+
+  {
+    "description": "Two knights on different ranks and files (two same target squares)",
+
+    "board": {
+      "f3": "N",
+      "c6": "N"
+    }
+  },
+
+  {
+    "description": "Three knights on same rank",
+
+    "board": {},
+    "moves": {}
+  },
+
+  {
+    "description": "Three knight on same file",
+
+    "board": {},
+    "moves": {}
+  },
+
+  {
+    "description": "Two kinght on same rank and one knight on another rank",
+
+    "board": {},
+    "moves": {}
+  },
+
+  {
+    "description": "Two kinght on same file and one knight on another file",
+
+    "board": {},
+    "moves": {}
+  }
+]
