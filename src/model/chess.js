@@ -7,7 +7,8 @@ var Square = require('./square'),
   boardUtils = require('../utils/chess-utils/board-utils'),
   objectUtils = require('../utils/common-utils/object-utils'),
   rays = require('../utils/chess-utils/rays'),
-  startPosition = require('../utils/chess-utils/start-position');
+  startPosition = require('../utils/chess-utils/start-position'),
+  movesDisambiguation = require('./move-factory/moves-disambiguation');
 
 function Chess() {
   this.activeColor = Color.WHITE;
@@ -59,9 +60,28 @@ objectUtils.extend(Chess.prototype, {
   },
 
   getSanHistory: function () {
-    return this.history.map(function (move) {
-      return move.toSAN();
+    var sanHistory = [],
+      bkpHistory = [],
+      index, move, moves;
+
+    for (index = this.history.length - 1; index >= 0; index--) {
+      move = this.history[index];
+      move.unMake();
+      moves = this.generateMoves();
+      movesDisambiguation.disambiguateMove(move, moves);
+      sanHistory.unshift(move.toSAN());
+      bkpHistory.unshift(move);
+    }
+
+    bkpHistory.forEach(function (move) {
+      move.make();
     });
+
+    return sanHistory;
+
+    // return this.history.map(function (move) {
+    //   return move.toSAN();
+    // });
   },
 
   generateEmptySquares: function () {
