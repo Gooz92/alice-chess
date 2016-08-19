@@ -175,7 +175,7 @@ describe('Move', function () {
       assert.match(san, /^K/);
     });
 
-    it("add unambiguous file if disambiguation.file is true", function () {
+    it("add unambiguous file if move.disambiguateFile is true", function () {
       var sourceSquare = chess.squares.e5,
         targetSquare = chess.squares.c3,
         pieceToken = 'B',
@@ -189,16 +189,14 @@ describe('Move', function () {
       chess.placePiece(pieceToken, sourceSquare.name);
       move = new Move(sourceSquare, targetSquare);
 
-      san = move.toSAN({
-        disambiguation: {
-          file: true
-        }
-      });
+      move.disambiguateFile = true;
+
+      san = move.toSAN();
 
       assert.strictEqual(san, expectedSan);
     });
 
-    it("add unambiguous rank if disambiguation.rank is true", function () {
+    it("add unambiguous rank if move.disambiguateRank is true", function () {
       var sourceSquare = chess.squares.d5,
         targetSquare = chess.squares.a2,
         pieceToken = 'Q',
@@ -212,11 +210,9 @@ describe('Move', function () {
       chess.placePiece(pieceToken, sourceSquare.name);
       move = new Move(sourceSquare, targetSquare);
 
-      san = move.toSAN({
-        disambiguation: {
-          rank: true
-        }
-      });
+      move.disambiguateRank = true;
+
+      san = move.toSAN();
 
       assert.strictEqual(san, expectedSan);
     });
@@ -236,12 +232,10 @@ describe('Move', function () {
       chess.placePiece(pieceToken, sourceSquare.name);
       move = new Move(sourceSquare, targetSquare);
 
-      san = move.toSAN({
-        disambiguation: {
-          rank: true,
-          file: true
-        }
-      });
+      move.disambiguateRank = true;
+      move.disambiguateFile = true;
+
+      san = move.toSAN();
 
       assert.strictEqual(san, expectedSan);
     });

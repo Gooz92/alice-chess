@@ -1,20 +1,14 @@
 'use strict';
 
-var getSanDisambiguationOptions = require('../get-san-disambiguation-options'),
-  moveFactory = require('../move-factory'),
-  Chess = require('../chess'),
+var disambiguateMoves = require('../disambiguate-moves'),
+  moveFactory = require('..'),
+  Chess = require('../../chess'),
   assert = require('chai').assert;
 
-describe('getSanDisambiguationOptions()', function () {
-
+describe('disambiguateMoves()', function () {
   var chess;
   beforeEach(function () {
     chess = new Chess();
-  });
-
-  it('return empty array for empty array', function () {
-    var disambiguationOptions = getSanDisambiguationOptions([]);
-    assert.sameMembers(disambiguationOptions, []);
   });
 
   it('set file disambiguation option to true if needed', function () {
@@ -25,22 +19,13 @@ describe('getSanDisambiguationOptions()', function () {
     moves = [
       moveFactory.createRookMove(leftRook.square, targetSquare),
       moveFactory.createRookMove(rightRook.square, targetSquare)
-    ],
+    ];
 
-    disambiguationOptions = getSanDisambiguationOptions(moves);
+    disambiguateMoves(moves);
 
-    assert.isTrue(disambiguationOptions[0].file);
-    assert.isTrue(disambiguationOptions[1].file);
+    assert.isTrue(moves[0].disambiguateFile);
+    assert.isTrue(moves[1].disambiguateFile);
   });
-
-  /*
-    6 B . .
-    5 . x .
-    4 . . # <= g4
-    3 . x .
-    2 B . .
-      e f g
-  */
 
   it('set rank disambiguation option to true if needed', function () {
     var upperBishop = chess.placePiece('B', 'e6'),
@@ -50,11 +35,11 @@ describe('getSanDisambiguationOptions()', function () {
     moves = [
       moveFactory.createSilentMove(upperBishop.square, targetSquare),
       moveFactory.createSilentMove(lowerBishop.square, targetSquare)
-    ],
+    ];
 
-    disambiguationOptions = getSanDisambiguationOptions(moves);
+    disambiguateMoves(moves);
 
-    assert.isTrue(disambiguationOptions[0].rank);
-    assert.isTrue(disambiguationOptions[1].rank);
+    assert.isTrue(moves[0].disambiguateRank);
+    assert.isTrue(moves[1].disambiguateRank);
   });
 });

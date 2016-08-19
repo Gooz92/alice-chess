@@ -7,6 +7,9 @@ function Move(sourceSquare, targetSquare) {
   this.sourceSquare = sourceSquare;
   this.targetSquare = targetSquare;
   this.piece = sourceSquare.piece;
+
+  this.disambiguateRank = false;
+  this.disambiguateFile = false;
 }
 
 Move.prototype = {
@@ -32,16 +35,14 @@ Move.prototype = {
     arrayUtils.remove(chess.history, this);
   },
 
-  getSanDisambiguation: function (disambiguationOptions) {
+  getSanDisambiguation: function () {
     var disambiguation = '';
 
-    disambiguationOptions = disambiguationOptions || {};
-
-    if (disambiguationOptions.file) {
+    if (this.disambiguateFile) {
       disambiguation += this.sourceSquare.fileName;
     }
 
-    if (disambiguationOptions.rank) {
+    if (this.disambiguateRank) {
       disambiguation += this.sourceSquare.rankName;
     }
 
@@ -49,21 +50,14 @@ Move.prototype = {
   },
 
   // TODO
-  toSAN: function (options) {
+  toSAN: function () {
     if (this.piece.isPawn()) {
       return this.targetSquare.name;
     }
 
-    options = objectUtils.defaults(options, {
-      disambiguation: {
-        rank: false,
-        file: false
-      }
-    });
-
     return [
       this.piece.token.toUpperCase(),
-      this.getSanDisambiguation(options.disambiguation),
+      this.getSanDisambiguation(),
       this.targetSquare.name
     ].join('');
   }
