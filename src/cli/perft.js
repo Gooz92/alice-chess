@@ -22,14 +22,18 @@ function executeMoves(moves) {
   return true;
 }
 
-if (executeMoves(moves)) {
-  console.time('time');
-  // use callbacks insignificant slow down iteration
-  chess.traverse(initialDepth, {
-    onMaxDepthReached: function () {
-      ++leaves;
-    }
-  });
-  console.log(leaves);
-  console.timeEnd('time');
+try {
+  if (executeMoves(moves)) {
+    console.time('time');
+    // use callbacks insignificant slow down iteration
+    chess.traverse(initialDepth, {
+      onMaxDepthReached: function () {
+        ++leaves;
+      }
+    });
+    console.log(leaves);
+    console.timeEnd('time');
+  }
+} catch (e) {
+  console.log(chess.getSanHistory().join(' '));
 }

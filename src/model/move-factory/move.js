@@ -21,6 +21,8 @@ Move.prototype = {
     this.sourceSquare.piece.moveTo(this.targetSquare);
 
     chess.turn();
+    this.previousEnPassantTargetSquare = chess.enPassantTargetSquare;
+    chess.enPassantTargetSquare = null;
     chess.history.push(this);
   },
 
@@ -29,8 +31,7 @@ Move.prototype = {
 
     this.targetSquare.piece.moveTo(this.sourceSquare);
 
-    // remove this shit and update clear e.p. square during move execution
-    chess.enPassantTargetSquare = this.previousEnPassantTagetSquare;
+    chess.enPassantTargetSquare = this.previousEnPassantTargetSquare;
     chess.turn();
     arrayUtils.remove(chess.history, this);
   },

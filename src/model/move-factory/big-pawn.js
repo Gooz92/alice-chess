@@ -16,6 +16,8 @@ BigPawn.prototype.make = function () {
 
   Move.prototype.make.call(this);
 
+  this.previousEnPassantTagetSquare = chess.enPassantTargetSquare;
+
   chess.enPassantTargetSquare = epTargetSquare;
 };
 

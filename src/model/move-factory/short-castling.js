@@ -29,6 +29,8 @@ ShortCastling.prototype = {
 
     chess.castlingRights &= 12 >> this.king.color.index * 2;
 
+    this.previousEnPassantTargetSquare = chess.enPassantTargetSquare;
+    chess.enPassantTargetSquare = null;
     chess.turn();
     chess.history.push(this);
   },
@@ -41,6 +43,8 @@ ShortCastling.prototype = {
 
     chess.castlingRights = this.previousCastlingRights;
     chess.turn();
+
+    chess.enPassantTargetSquare = this.previousEnPassantTargetSquare;
 
     arrayUtils.remove(chess.history, this);
   },

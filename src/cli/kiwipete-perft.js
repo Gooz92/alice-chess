@@ -40,14 +40,18 @@ function executeMoves(moves) {
 
 var promotions = 0, castlings = 0;
 
-if (executeMoves(moves)) {
-  console.time('time');
-  // use callbacks insignificant slow down iteration
-  chess.traverse(initialDepth, {
-    onMaxDepthReached: function () {
-      ++leaves;
-    }
-  });
+try {
+  if (executeMoves(moves)) {
+    console.time('time');
+    // use callbacks insignificant slow down iteration
+    chess.traverse(initialDepth, {
+      onMaxDepthReached: function () {
+        ++leaves;
+      }
+    });
+  }
+} catch (e) {
+  console.log(chess.getSanHistory().join(' '));
 }
 
 console.log(leaves);

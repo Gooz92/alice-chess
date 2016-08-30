@@ -60,28 +60,9 @@ objectUtils.extend(Chess.prototype, {
   },
 
   getSanHistory: function () {
-    var sanHistory = [],
-      bkpHistory = [],
-      index, move, moves;
-
-    for (index = this.history.length - 1; index >= 0; index--) {
-      move = this.history[index];
-      move.unMake();
-      moves = this.generateMoves();
-      movesDisambiguation.disambiguateMove(move, moves);
-      sanHistory.unshift(move.toSAN());
-      bkpHistory.unshift(move);
-    }
-
-    bkpHistory.forEach(function (move) {
-      move.make();
+    return this.history.map(function (move) {
+      return move.toSAN();
     });
-
-    return sanHistory;
-
-    // return this.history.map(function (move) {
-    //   return move.toSAN();
-    // });
   },
 
   generateEmptySquares: function () {
@@ -323,9 +304,6 @@ objectUtils.extend(Chess.prototype, {
   },
 
   turn: function () {
-    var prevEpSquare = this.previousEnPassantTargetSquare;
-    this.previousEnPassantTargetSquare = this.enPassantTargetSquare;
-    this.enPassantTargetSquare = prevEpSquare;
     this.activeColor = this.activeColor.toggle();
   },
 
