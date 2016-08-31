@@ -40,6 +40,8 @@ function executeMoves(moves) {
 
 var promotions = 0, castlings = 0;
 
+console.time('time');
+
 try {
   if (executeMoves(moves)) {
     console.time('time');
@@ -53,5 +55,7 @@ try {
 } catch (e) {
   console.log(chess.getSanHistory().join(' '));
 }
+
+console.timeEnd('time');
 
 console.log(leaves);

@@ -13,6 +13,8 @@ Promotion.prototype.make = function () {
   var chess = this.targetSquare.chess;
 
   this.piece.remove();
+  this.previousEnPassantTargetSquare = chess.enPassantTargetSquare;
+  chess.enPassantTargetSquare = null;
   chess.placePiece(this.promotedPieceToken, this.targetSquare.name);
   chess.turn();
   chess.history.push(this);
@@ -27,7 +29,7 @@ Promotion.prototype.unMake = function () {
   this.piece.square = this.sourceSquare;
 
   chess.pieces[this.piece.color.name].push(this.piece);
-
+  chess.enPassantTargetSquare = this.previousEnPassantTargetSquare;
   chess.turn();
   arrayUtils.remove(chess.history, this);
 };
