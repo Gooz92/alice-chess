@@ -43,7 +43,8 @@ CapturePromotion.prototype.unMake = function () {
 };
 
 CapturePromotion.prototype.toSAN = function () {
-  return 'cp';
+  return this.sourceSquare.fileName + 'x' + this.targetSquare.name + '=' +
+    this.promotedPieceToken.toUpperCase();
 };
 
 module.exports = CapturePromotion;
