@@ -60,7 +60,17 @@ objectUtils.extend(Chess.prototype, {
   },
 
   getSanHistory: function () {
-    return this.history.map(function (move) {
+    var history = [], move;
+
+    while (this.history.length > 0) {
+      move = this.getLastMove();
+      move.unMake();
+      movesDisambiguation.disambiguateMove(move, this.generateMoves());
+      history.unshift(move);
+    }
+
+    return history.map(function (move) {
+      move.make();
       return move.toSAN();
     });
   },
