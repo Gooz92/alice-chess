@@ -6,6 +6,9 @@ var Move = require('./move'),
 function Capture(sourceSquare, targetSquare) {
   Move.call(this, sourceSquare, targetSquare);
   this.capturedPiece = targetSquare.piece;
+
+  this.disambiguateRank = false;
+  this.disambiguateFile = false;
 }
 
 Capture.prototype = {
@@ -34,7 +37,8 @@ Capture.prototype = {
   },
 
   toSAN: function (options) {
-    var separator = '';
+    var separator = '',
+      disambiguation = Move.prototype.getSanDisambiguation.call(this);
 
     options = objectUtils.defaults(options, {
       notes: {
@@ -54,7 +58,7 @@ Capture.prototype = {
     }
 
     return [
-      this.piece.token.toUpperCase(),
+      this.piece.token.toUpperCase() + disambiguation,
       this.targetSquare.name
     ].join(separator);
   }

@@ -31,7 +31,7 @@ RookMove.prototype = {
   },
 
   toSAN: function () {
-    return 'R' + this.targetSquare.name;
+    return 'R' + Move.prototype.getSanDisambiguation(this) + this.targetSquare.name;
   }
 };
 
