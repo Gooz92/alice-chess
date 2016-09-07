@@ -405,7 +405,8 @@ objectUtils.extend(Chess.prototype, {
 },
   require('./piece-count-mixin'),
   require('./traverse-mixin'),
-  require('./fen-serialization-mixin')
+  require('./fen-serialization-mixin'),
+  require('./ascii-serialization-mixin')
 );
 
 module.exports = Chess;
