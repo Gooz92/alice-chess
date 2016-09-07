@@ -11,16 +11,18 @@ RookMove.prototype = {
 
   make: function () {
     var chess = this.targetSquare.chess,
-      castlingRightsIndex = this.sourceSquare.fileIndex;
-
-    if (castlingRightsIndex === 7) {
-      castlingRightsIndex = 1;
-    }
-
-    castlingRightsIndex += 2 * this.sourceSquare.piece.color.index;
+      castlingRightsIndex = this.sourceSquare.fileIndex,
+      mask;
 
     this.previousCastlingRights = chess.castlingRights;
-    chess.castlingRights &= (15 ^ (1 << castlingRightsIndex));
+
+    if (castlingRightsIndex === 7) {
+      mask = this.sourceSquare.piece.color.isWhite() ? 7 : 13;
+      chess.castlingRights &= mask;
+    } else if (castlingRightsIndex === 0) {
+      mask = this.sourceSquare.piece.color.isWhite() ? 11 : 14;
+      chess.castlingRights &= mask;
+    }
 
     Move.prototype.make.call(this);
   },
@@ -31,7 +33,7 @@ RookMove.prototype = {
   },
 
   toSAN: function () {
-    return 'R' + Move.prototype.getSanDisambiguation(this) + this.targetSquare.name;
+    return 'R' + Move.prototype.getSanDisambiguation.call(this) + this.targetSquare.name;
   }
 };
 
