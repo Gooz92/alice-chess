@@ -402,6 +402,8 @@ objectUtils.extend(Chess.prototype, {
     return field;
   }
 
-});
+},
+  require('./fen-serialization-mixin')
+);
 
 module.exports = Chess;
