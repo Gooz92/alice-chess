@@ -69,6 +69,18 @@ var objectUtils = module.exports = {
     return target;
   },
 
+  omit: function (object, keys) {
+    var result = {};
+
+    Object.keys(object).forEach(function (key) {
+      if (keys.indexOf(key) === -1) {
+        result[key] = object[key];
+      }
+    });
+
+    return result;
+  },
+
   forEachOwnProperty: function (object, callback) {
     if (!isTypeUtils.isObject(object)) {
       return;

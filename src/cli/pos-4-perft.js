@@ -9,16 +9,6 @@ var chess = new Chess(),
 
 initialDepth = parseInt(initialDepth);
 
-`r  .  .  .  k  .  .  r
-P  p  p  p  .  p  p  p
-.  b  .  .  .  n  b  N
-n  P  .  .  .  .  .  .
-B  B  P  .  P  .  .  .
-q  .  .  .  .  N  .  .
-P  p  .  P  .  .  P  P
-R  .  .  Q  .  R  K  .   `;
-
-
 chess.place({
   a8: 'r',
   e8: 'k',
@@ -59,7 +49,6 @@ console.log(chess.castlingRights);
 chess.traverse(initialDepth, {
   onMaxDepthReached: function () {
     ++leaves;
-    // console.log(chess.getSanHistory().join(' ') + ' ' + chess.generateFenCastlingRights());
   }
 });
 

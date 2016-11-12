@@ -18,49 +18,68 @@ module.exports = {
     this.forEachCapture(callback, pseudoLegal);
   },
 
+  forEachPromotion: function (callback, pseudoLegal, targetSquare) {
+    var promotablePieces = (this.color.isBlack() ? 'qnbr' : 'QNBR').split(''),
+      self = this,
+      createPromotion,
+      move, p, index;
+
+    if (targetSquare.isOccupied()) {
+      createPromotion = moveFactory.createCapturePromotion;
+    } else {
+      createPromotion = moveFactory.createPromotion;
+    }
+
+    for (index = 0; index < 4; index++) {
+      p = promotablePieces[index];
+      move = createPromotion(self.square, targetSquare, p);
+      if (pseudoLegal || !self.square.chess.isInCheckAfter(move)) {
+        callback.call(self, move);
+      }
+    }
+  },
+
+  // bad name / refactor
+  enshureLegalMove: function (callback, move, pseudoLegal) {
+    if (pseudoLegal || !this.square.chess.isInCheckAfter(move)) {
+      callback.call(this, move);
+    }
+  },
+
   forEachStep: function (callback, pseudoLegal) {
     var offset = this.color.isWhite() ? 16 : -16,
       targetSquareIndex = this.square.index,
-      targetSquare, isFirstStep = false,
-      promotablePieces = (this.color.isBlack() ? 'rnbq' : 'RNBQ').split(''),
+      isFirstStep = false,
       self = this,
-      move;
+      move, targetSquare;
 
     do {
       targetSquareIndex += offset;
       targetSquare = this.square.chess.squares[targetSquareIndex];
-      if (targetSquare.isEmpty()) {
-        if (isFirstStep) {
-          move = moveFactory.createBigPawnMove(this.square, targetSquare);
-          if (pseudoLegal || !this.square.chess.isInCheckAfter(move)) {
-            callback.call(this, move);
-          }
-        } else if (targetSquare.rankIndex === 0 ||
-            targetSquare.rankIndex === 7) {
-          promotablePieces.forEach(function (p) {
-            var move = moveFactory.createPromotion(self.square, targetSquare, p);
-            if (pseudoLegal || !self.square.chess.isInCheckAfter(move)) {
-             callback.call(self, move);
-            }
-          });
-        } else {
-          move = moveFactory.createSilentMove(this.square, targetSquare);
-          if (pseudoLegal || !this.square.chess.isInCheckAfter(move)) {
-            callback.call(this, move);
-          }
-        }
 
-        isFirstStep = !isFirstStep;
-      } else {
+      if (targetSquare.isOccupied()) {
         break;
       }
+
+      if (isFirstStep) {
+        move = moveFactory.createBigPawnMove(this.square, targetSquare);
+        this.enshureLegalMove(callback, move, pseudoLegal);
+      } else if (targetSquare.rankIndex === 0 ||
+          targetSquare.rankIndex === 7) {
+
+        self.forEachPromotion(callback, pseudoLegal, targetSquare);
+      } else {
+        move = moveFactory.createSilentMove(this.square, targetSquare);
+        this.enshureLegalMove(callback, move, pseudoLegal);
+      }
+
+      isFirstStep = !isFirstStep;
     } while (isFirstStep && this.isOnStartPosition());
   },
 
   forEachCapture: function (callback, pseudoLegal) {
     var offsets,
-      self = this,
-      promotablePieces = (this.color.isBlack() ? 'rnbq' : 'RNBQ').split('');
+      self = this;
 
     if (this.color.isWhite()) {
       offsets = captureOffsets;
@@ -84,23 +103,14 @@ module.exports = {
       if (targetSquare.isOccupiedByOpponent(self.color)) {
         if (targetSquare.rankIndex === 0 ||
             targetSquare.rankIndex === 7) {
-          promotablePieces.forEach(function (p) {
-            var move = moveFactory.createCapturePromotion(self.square, targetSquare, p);
-            if (pseudoLegal || !self.square.chess.isInCheckAfter(move)) {
-             callback.call(self, move);
-            }
-          });
+         self.forEachPromotion(callback, pseudoLegal, targetSquare);
         } else {
           move = moveFactory.createCapture(self.square, targetSquare);
-           if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
-        callback.call(self, move);
-      }
+          self.enshureLegalMove(callback, move, pseudoLegal);
         }
       } else if (targetSquare.isTargetEnPassantSquare()) {
         move = moveFactory.createEnPassant(self.square, targetSquare);
-        if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
-          callback.call(self, move);
-        }
+        self.enshureLegalMove(callback, move, pseudoLegal);
       } else {
         return;
       }

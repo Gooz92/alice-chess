@@ -1,38 +1,127 @@
-.chess-board {
-  margin: 2% auto;
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #eee;
+  height: 100%;
+}
+
+#boardContainer {
+  padding: 12px 0;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+.footer {
+  color: #655;
+  height: 12px;
+  margin-top: -16px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.chessboard {
   border-collapse: collapse;
-  border: 1px solid #f0d9b5
+  margin: 0 auto;
 }
 
-.chess-board th.file-label {
-  padding: 0 2px;
+.chessboard th {
+  font-weight: 500;
+  color: #433;
+  font-size: 14px;
 }
 
-.chess-board td {
-  width: 55px;
-  height: 55px;
-  font-size: 40px;
+.chessboard td {
+  width: 52px;
+  height: 52px;
+  font-size: 36px;
   text-align: center;
 }
 
-.light.occupied, .dark.occupied {
+.chessboard tr:first-child th {
+  height: 22px;
+}
+
+.chessboard tr:last-child th {
+  height: 22px;
+}
+
+/* === borders === */
+
+.chessboard tr:first-child th:not(:first-child):not(:last-child) {
+  border-bottom: 1px solid #433;
+}
+
+.chessboard tr:last-child th:not(:first-child):not(:last-child) {
+  border-top: 1px solid #433;
+}
+
+.chessboard tr:not(:first-child):not(:last-child) th:first-child {
+  border-right: 1px solid #433;
+  width: 22px;
+}
+
+.chessboard tr:not(:first-child):not(:last-child) th:last-child {
+  border-left: 1px solid #433;
+  width: 22px;
+}
+
+/* === dark and light squares === */
+
+.chessboard tr:nth-child(even) td:nth-child(even) {
+  background-color: #edb;
+}
+
+.chessboard tr:nth-child(even) td.target-square:nth-child(even) {
+  color: #b86;
+}
+
+.chessboard tr:nth-child(even) td:nth-child(odd) {
+  background-color: #b86;
+}
+
+.chessboard tr:nth-child(even) td.target-square:nth-child(odd) {
+  color: #edb;
+}
+
+.chessboard tr:nth-child(odd) td:nth-child(even) {
+  background-color: #b86;
+}
+
+.chessboard tr:nth-child(odd) td.target-square:nth-child(even) {
+  color: #edb;
+}
+
+.chessboard tr:nth-child(odd) td:nth-child(odd) {
+  background-color: #edb;
+}
+
+.chessboard tr:nth-child(odd) td.target-square:nth-child(odd) {
+  color: #b86;
+}
+
+/* === behaviour === */
+
+.chessboard td.occupied,
+.chessboard td.target-square {
   cursor: pointer;
 }
 
-.chess-board .light {
-  background-color: #f0d9b5;
+.chessboard td.highlighted {
+  box-shadow: inset 0 0 6px 3px #433;
 }
 
-.chess-board .dark {
-  background-color: #b58863
+.chessboard td.target-square:after {
+  content: '\2022';
 }
 
-.chess-board .light.highlighted {
-  background-color: #989898;
-  cursor: pointer;
-}
-
-.chess-board .dark.highlighted {
-  background-color: #696969;
-  cursor: pointer;
+.chessboard td.captured-piece {
+  box-shadow: inset 0 0 6px 3px #a22;
 }
