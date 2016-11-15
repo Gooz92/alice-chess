@@ -21,7 +21,7 @@ function formatTime(ms) {
 
   return [h, m, s].map(function (u) {
     return u < 10 ? '0' + u : u;
-  }).join(':') + '.' + ms;
+  }).join(':') + '.' + (ms < 100 ? '0' + ms : ms);
 }
 
 module.exports = formatTime;
