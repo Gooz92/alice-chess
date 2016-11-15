@@ -25,25 +25,11 @@ chess.place({
   a1: 'R', e1: 'K', h1: 'R'
 });
 
-function executeMoves(moves) {
-  var index;
-
-  for (index = 0; index < moves.length; index++) {
-    if (!chess.move(moves[index])) {
-      console.log("Invalid move: '" + moves[index] + "'");
-      return false;
-    }
-  }
-
-  return true;
-}
-
 var promotions = 0, castlings = 0;
 
 console.time('time');
 
 try {
-  if (executeMoves(moves)) {
     console.time('time');
     // use callbacks insignificant slow down iteration
     chess.traverse(initialDepth, {
@@ -51,7 +37,6 @@ try {
         ++leaves;
       }
     });
-  }
 } catch (e) {
   console.log(chess.getSanHistory().join(' '));
 }

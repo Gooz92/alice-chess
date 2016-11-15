@@ -16,6 +16,6 @@ var benchmarkUtils = module.exports = {
       result += Date.now() - time;
     }
 
-    return result;
+    return result / times;
   }
 };

@@ -1,6 +1,7 @@
 'use strict';
 
-var Chess = require('../model/chess');
+var Chess = require('../model/chess'),
+  formatTime = require('../utils/common-utils/format-time');
 
 var chess = Chess.createStartPosition(),
   initialDepth = process.argv[2],
@@ -24,7 +25,7 @@ function executeMoves(moves) {
 
 try {
   if (executeMoves(moves)) {
-    console.time('time');
+    var time = Date.now();
     // use callbacks insignificant slow down iteration
     chess.traverse(initialDepth, {
       onMaxDepthReached: function () {
@@ -32,7 +33,7 @@ try {
       }
     });
     console.log(leaves);
-    console.timeEnd('time');
+    console.log(formatTime(Date.now() - time));
   }
 } catch (e) {
   console.log(chess.getSanHistory().join(' '));

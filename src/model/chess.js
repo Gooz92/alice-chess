@@ -403,7 +403,8 @@ objectUtils.extend(Chess.prototype, {
   }
 
 },
-  require('./fen-serialization-mixin')
+  require('./fen-serialization-mixin'),
+  require('./traverse-mixin')
 );
 
 module.exports = Chess;
