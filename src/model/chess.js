@@ -3,8 +3,6 @@
 var Square = require('./square'),
   Color = require('./color'),
   Piece = require('./piece'),
-  moveFactory = require('./move-factory'),
-  boardUtils = require('../utils/chess-utils/board-utils'),
   objectUtils = require('../utils/common-utils/object-utils'),
   rays = require('../utils/chess-utils/rays'),
   startPosition = require('../utils/chess-utils/start-position'),
@@ -20,6 +18,8 @@ function Chess() {
     white: [],
     black: []
   };
+
+  this.kings = {};
 
   this.castlingRights = 15;
 
@@ -44,8 +44,12 @@ objectUtils.extend(Chess.prototype, {
     var square = this.squares[squareName],
       piece = Piece.create(fenToken, square);
 
-    if (piece.isKing() && !piece.isOnStartPosition()) {
-      this.castlingRights &= 12 >> piece.color.index * 2;
+    if (piece.isKing()) {
+      if (!piece.isOnStartPosition()) {
+        this.castlingRights &= 12 >> piece.color.index * 2;
+      }
+
+      this.kings[piece.color.name] = piece;
     }
 
     // TODO what if piece on this square already placed ???
@@ -135,20 +139,6 @@ objectUtils.extend(Chess.prototype, {
     return null;
   },
 
-  getOpponentKing: function () {
-    var opponentPieces = this.getOpponentPieces(),
-      piece, index;
-
-    for (index = 0; index < opponentPieces.length; index++) {
-      piece = opponentPieces[index];
-      if (piece.isKing()) {
-        return piece;
-      }
-    }
-
-    return null;
-  },
-
   // TODO refactor
   generateMoves: function (pseudoLegal) {
     var moves = [], playerPieces;
@@ -178,12 +168,14 @@ objectUtils.extend(Chess.prototype, {
   },
 
   isInCheck: function () {
-    var playerKing = this.getPlayerKing(),
-      opponentColor = this.activeColor.toggle();
+    var playerKing = this.kings[this.activeColor.name],
+      opponentColor;
 
-    if (playerKing === null) {
+    if (!playerKing) {
       return false;
     }
+
+    opponentColor = this.activeColor.toggle()
 
     return this.isSquareAttacked(playerKing.square.index, opponentColor);
   },
@@ -253,40 +245,30 @@ objectUtils.extend(Chess.prototype, {
 
   // used only during move generation
   isOpponentInCheck: function () {
-     var opponentKing = this.getOpponentKing(),
-      playerColor = this.activeColor;
+    var opponentKing = this.kings[this.activeColor.toggle().name];
 
-    if (opponentKing === null) {
+    if (!opponentKing) {
       return false;
     }
 
-    return this.isSquareAttacked(opponentKing.square.index, playerColor);
+    return this.isSquareAttacked(opponentKing.square.index, this.activeColor);
   },
 
-  isSquareAttackedByPiece: function (targetSquareIndex, piece) {
-    var distance = targetSquareIndex - piece.square.index,
-      attackIndex = distance + 119,
-      squareIndex;
+  isSquareAttackedByPiece: function (target, piece) {
+    var source = piece.square.index,
+      distance = target - piece.square.index,
+      attackIndex = distance + 119;
 
-    if (!boardUtils.isMayAttacked(attackIndex, piece.token)) {
+    if (!attackUtils.isMayAttacked(source, target, piece.fenToken)) {
       return false;
-    }
-
-    if (piece.isPawn()) {
-      if (distance > 0) {
-        return piece.color.isWhite();
-      }
-      return piece.color.isBlack();
     }
 
     if (piece.isKnight() || piece.isKing()) {
       return true;
     }
 
-    squareIndex = piece.square.index;
-
-    while ((squareIndex += rays[attackIndex]) !== targetSquareIndex) {
-      if (this.squares[squareIndex].isOccupied()) {
+    while ((source += rays[attackIndex]) !== target) {
+      if (this.squares[source].isOccupied()) {
         return false;
       }
     }

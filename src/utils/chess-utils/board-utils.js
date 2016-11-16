@@ -1,16 +1,6 @@
 'use strict';
 
-var attacks = require('./attacks'),
-  squares = require('./squares');
-
-var pieceAttackMasks = {
-  p: 1,
-  n: 2,
-  b: 4,
-  r: 8,
-  q: 16,
-  k: 32
-};
+var squares = require('./squares');
 
 var fileNames = 'abcdefgh';
 
@@ -75,9 +65,5 @@ var boardUtils = module.exports = {
 
   isSquareOutOfBoard: function (squareIndex) {
     return (squareIndex & 136) !== 0;
-  },
-
-  isMayAttacked: function (attackIndex, pieceToken) {
-    return (attacks[attackIndex] & pieceAttackMasks[pieceToken]) !== 0;
   }
 };
