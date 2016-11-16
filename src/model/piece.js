@@ -22,9 +22,10 @@ function createPieceConstructors(pieces) {
 
 var constructors = createPieceConstructors(pieces);
 
-function Piece(color, square) {
+function Piece(color, square, fenToken) {
   this.color = color;
   this.square = square;
+  this.fenToken = fenToken;
 
   square.piece = this;
 }
@@ -34,7 +35,7 @@ Piece.create = function (fenToken, square) {
     color = Color.getByFlag(pieceToken !== fenToken),
     PieceConstructor = constructors[pieceToken];
 
-  return new PieceConstructor(color, square);
+  return new PieceConstructor(color, square, fenToken);
 };
 
 var piecePrototype = {
@@ -49,7 +50,7 @@ var piecePrototype = {
   },
 
   moveTo: function (square) {
-    delete this.square.piece;
+    this.square.piece = null;
     this.square = square;
     square.piece = this;
   },
@@ -91,7 +92,7 @@ var piecePrototype = {
   },
 
   forEachTargetSquareName: function (callback) {
-    this.forEachMovee(function (move) {
+    this.forEachMove(function (move) {
       var targetSquareName = move.targetSquare.name;
       callback.call(this, targetSquareName);
     });
@@ -147,7 +148,7 @@ var piecePrototype = {
   remove: function () {
     var playerPieces = this.square.chess.pieces[this.color.name];
 
-    delete this.square.piece;
+    this.square.piece = null;
 
     // TODO throw error if piece already removed ?
     arrayUtils.remove(playerPieces, this);

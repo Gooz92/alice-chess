@@ -14,14 +14,14 @@ module.exports = {
       square = this.square.chess.squares[squareIndex - 1];
 
     if (square.isOccupied() ||
-      square.chess.isSquareAttacked(square.name, this.color.toggle())) {
+      square.chess.isSquareAttacked(square.index, this.color.toggle())) {
       return false;
     }
 
     square = square.chess.squares[squareIndex - 2];
 
     if (square.isOccupied() ||
-      square.chess.isSquareAttacked(square.name, this.color.toggle())) {
+      square.chess.isSquareAttacked(square.index, this.color.toggle())) {
       return false;
     }
 
@@ -39,14 +39,14 @@ module.exports = {
       square = this.square.chess.squares[squareIndex + 1];
 
     if (square.isOccupied() ||
-      square.chess.isSquareAttacked(square.name, this.color.toggle())) {
+      square.chess.isSquareAttacked(square.index, this.color.toggle())) {
       return false;
     }
 
     square = square.chess.squares[squareIndex + 2];
 
     if (square.isOccupied() ||
-      square.chess.isSquareAttacked(square.name, this.color.toggle())) {
+      square.chess.isSquareAttacked(square.index, this.color.toggle())) {
       return false;
     }
 

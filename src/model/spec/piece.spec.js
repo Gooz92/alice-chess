@@ -61,7 +61,7 @@ describe('Piece', function () {
 
       piece.moveTo(destinationSquare);
 
-      assert.isUndefined(sourceSquare.piece);
+      assert.isTrue(sourceSquare.isEmpty());
     });
   });
 

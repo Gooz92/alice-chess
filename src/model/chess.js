@@ -8,7 +8,8 @@ var Square = require('./square'),
   objectUtils = require('../utils/common-utils/object-utils'),
   rays = require('../utils/chess-utils/rays'),
   startPosition = require('../utils/chess-utils/start-position'),
-  movesDisambiguation = require('./move-factory/moves-disambiguation');
+  movesDisambiguation = require('./move-factory/moves-disambiguation'),
+  attackUtils = require('../utils/chess-utils/attack-utils');
 
 function Chess() {
   this.activeColor = Color.WHITE;
@@ -184,7 +185,7 @@ objectUtils.extend(Chess.prototype, {
       return false;
     }
 
-    return this.isSquareAttacked(playerKing.square.name, opponentColor);
+    return this.isSquareAttacked(playerKing.square.index, opponentColor);
   },
 
   evaluate: function () {
@@ -259,7 +260,7 @@ objectUtils.extend(Chess.prototype, {
       return false;
     }
 
-    return this.isSquareAttacked(opponentKing.square.name, playerColor);
+    return this.isSquareAttacked(opponentKing.square.index, playerColor);
   },
 
   isSquareAttackedByPiece: function (targetSquareIndex, piece) {
@@ -293,14 +294,17 @@ objectUtils.extend(Chess.prototype, {
     return true;
   },
 
-  isSquareAttacked: function (squareName, color) {
-    var self = this,
-      squareIndex= boardUtils.squareNameToIndex(squareName),
-      pieces = this.pieces[color.name];
+  isSquareAttacked: function (squareIndex, color) {
+    var pieces = this.pieces[color.name],
+      index;
 
-     return pieces.some(function (piece) {
-       return self.isSquareAttackedByPiece(squareIndex, piece);
-     });
+    for (index = 0; index < pieces.length; index++) {
+      if (this.isSquareAttackedByPiece(squareIndex, pieces[index])) {
+        return true;
+      }
+    }
+
+    return false;
   },
 
   isInCheckAfter: function (move) {
