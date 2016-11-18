@@ -17,10 +17,11 @@ function PiecePlacementParser(handlers) {
   this.rankParser = new RankParser(handlers.rank);
 }
 
-PiecePlacementParser.prototype.parse = function (piecePlacement) {
-  var data = {},
-    rankParser = this.rankParser,
+PiecePlacementParser.prototype.parse = function (piecePlacement, data) {
+  var rankParser = this.rankParser,
     ranks;
+
+  data = data || {};
 
   this.handlers.onStart.call(data, piecePlacement);
 

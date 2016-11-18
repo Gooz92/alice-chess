@@ -108,7 +108,8 @@ module.exports = {
           move = moveFactory.createCapture(self.square, targetSquare);
           self.enshureLegalMove(callback, move, pseudoLegal);
         }
-      } else if (targetSquare.isTargetEnPassantSquare()) {
+      } else if ([2, 5][self.color.index] === targetSquare.rankIndex &&
+                 targetSquare.isTargetEnPassantSquare()) {
         move = moveFactory.createEnPassant(self.square, targetSquare);
         self.enshureLegalMove(callback, move, pseudoLegal);
       } else {

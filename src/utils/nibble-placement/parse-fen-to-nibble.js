@@ -25,30 +25,49 @@ var pieceNibbles = {
 };
 
 var toNibbleFenParser = new FenParser({
+  onStart: function () {
+    this.nibbles = [];
+  },
 
   piecePlacement: {
     rank: {
-      onPieceToken: function (token, nibbles) {
-       nibbles.push(pieceNibbles[token]);
+      onPieceToken: function (token) {
+       this.nibbles.push(pieceNibbles[token]);
       },
 
-      onEmptySquare: function (_, nibbles) {
-       nibbles.push(ES);
+      onEmptySquaresCount: function (count) {
+        while (count > 0) {
+          if (count === 1) {
+            this.nibbles.push(ES);
+            break;
+          } else if (count === 2) {
+            this.nibbles.push(ES, ES);
+            break;
+          }
+
+          if (count < 17) {
+            this.nibbles.push(EF, count - 3);
+            break;
+          }
+
+          this.nibbles.push(EF, 14);
+          count -= 17;
+        }
       }
     },
 
     onEnd: function (nibbles) {
-     nibbles.push(ST);
+     this.nibbles.push(ST);
      return nibbles;
     }
   },
 
   onWhiteActiveColor: function () {
-    this.push(1);
+    this.nibbles.push(1);
   },
 
   onBlackActiveColor: function () {
-    this.push(0);
+    this.nibbles.push(0);
   },
 
   castlingRights: {
@@ -109,4 +128,7 @@ var toNibbleFenParser = new FenParser({
   }
 });
 
+var fen = 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1';
 
+
+console.log(toNibbleFenParser.parse(fen));

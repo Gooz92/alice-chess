@@ -175,7 +175,7 @@ objectUtils.extend(Chess.prototype, {
       return false;
     }
 
-    opponentColor = this.activeColor.toggle()
+    opponentColor = this.activeColor.toggle();
 
     return this.isSquareAttacked(playerKing.square.index, opponentColor);
   },
