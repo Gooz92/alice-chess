@@ -22,7 +22,7 @@ var asciiSerializationMixin = module.exports = {
       if (square.isEmpty()) {
         rank.push('-');
       } else {
-        rank.push(square.piece.getFenToken());
+        rank.push(square.piece.fenToken);
       }
     }
 

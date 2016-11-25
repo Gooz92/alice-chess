@@ -128,10 +128,9 @@ describe('Chess', function () {
       chess.place(position);
 
       Object.keys(position).forEach(function (squareName) {
-        var square = chess.squares[squareName],
-          pieceFenToken = square.piece.getFenToken();
+        var square = chess.squares[squareName];
 
-        assert.equal(pieceFenToken, position[squareName]);
+        assert.equal(square.piece.fenToken, position[squareName]);
       });
     });
   });
@@ -148,7 +147,7 @@ describe('Chess', function () {
           pieceFenTokens;
 
         pieceFenTokens = rank.map(function (square) {
-          return square.piece.getFenToken();
+          return square.piece.fenToken;
         });
 
         assert.deepEqual(pieceFenTokens, rankWithWhitePawns);
@@ -160,7 +159,7 @@ describe('Chess', function () {
           pieceFenTokens;
 
         pieceFenTokens = rank.map(function (square) {
-          return square.piece.getFenToken();
+          return square.piece.fenToken;
         });
 
         assert.deepEqual(pieceFenTokens, rankWithBlackPawns);

@@ -6,14 +6,6 @@ var assert = require('chai').assert,
   Chess = require('../chess');
 
 describe('Piece', function () {
-  describe('#getFenToken()', function () {
-    it('return uppercase token for white piece', function () {
-      var piece = new Piece(Color.WHITE, {});
-      piece.token = 'p';
-
-      assert.strictEqual(piece.getFenToken(), 'P');
-    });
-  });
 
   describe('#create()', function () {
     it('create white piece for uppercase token', function () {

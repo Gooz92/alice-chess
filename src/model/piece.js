@@ -39,15 +39,6 @@ Piece.create = function (fenToken, square) {
 };
 
 var piecePrototype = {
-  getFenToken: function () {
-    var fenToken = this.token;
-
-    if (this.color.isWhite()) {
-      fenToken = fenToken.toUpperCase();
-    }
-
-    return fenToken;
-  },
 
   moveTo: function (square) {
     this.square.piece = null;

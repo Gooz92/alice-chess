@@ -125,20 +125,6 @@ objectUtils.extend(Chess.prototype, {
     return this.pieces[this.activeColor.name];
   },
 
-  getPlayerKing: function () {
-    var playerPieces = this.getPlayerPieces(),
-      piece, index;
-
-    for (index = 0; index < playerPieces.length; index++) {
-      piece = playerPieces[index];
-      if (piece.isKing()) {
-        return piece;
-      }
-    }
-
-    return null;
-  },
-
   // TODO refactor
   generateMoves: function (pseudoLegal) {
     var moves = [], playerPieces;
@@ -344,7 +330,7 @@ objectUtils.extend(Chess.prototype, {
           piecePlacement += emptySquaresCount;
           emptySquaresCount = 0;
         }
-        piecePlacement += square.piece.getFenToken();
+        piecePlacement += square.piece.fenToken;
       } else {
         ++emptySquaresCount;
       }
@@ -366,7 +352,7 @@ objectUtils.extend(Chess.prototype, {
       squareIndex = rankIndex * 16;
       for (fileIndex = 0; fileIndex < 8; fileIndex++) {
         square = this.squares[squareIndex++];
-        board += square.isEmpty() ? '-' : square.piece.getFenToken();
+        board += square.isEmpty() ? '-' : square.piece.fenToken;
       }
       board += '\n';
     }

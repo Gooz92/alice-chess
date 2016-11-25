@@ -20,7 +20,7 @@ module.exports = {
           rank += emptySquaresCount;
           emptySquaresCount = 0;
         }
-        rank += square.piece.getFenToken();
+        rank += square.piece.fenToken;
       }
 
       ++squareIndex;

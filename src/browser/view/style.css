@@ -30,6 +30,7 @@ body {
 .chessboard {
   border-collapse: collapse;
   margin: 0 auto;
+  user-select: none;
 }
 
 .chessboard th {

@@ -48,7 +48,7 @@ function createRank(rankIndex, chess) {
 
     if (rankSquares[index].isOccupied()) {
       square.innerHTML =
-        pieceCharacters[rankSquares[index].piece.getFenToken()];
+        pieceCharacters[rankSquares[index].piece.fenToken];
 
       square.classList.add('occupied');
     }
@@ -121,14 +121,14 @@ function createClickHandler(chess) {
         move.constructor.name === 'ShortCastling') {
 
         document.getElementById(move.rook.square.name).innerHTML =
-          pieceCharacters[move.rook.getFenToken()];
+          pieceCharacters[move.rook.fenToken];
 
         document.getElementById(move.rook.square.name).className = 'occupied';
         document.getElementById(move.sourceRookSquare.name).className = '';
         document.getElementById(move.sourceRookSquare.name).innerHTML = '';
       }
 
-      this.innerHTML = pieceCharacters[activePiece.getFenToken()];
+      this.innerHTML = pieceCharacters[activePiece.fenToken];
       this.className = 'occupied';
 
       document.getElementById(move.sourceSquare.name).innerHTML = '';
