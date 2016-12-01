@@ -1,8 +1,7 @@
 'use strict';
 
 var boardUtils = require('../../utils/chess-utils/board-utils'),
-  moveFactory = require('../move-factory'),
-  arrayUtils = require('../../utils/common-utils/array-utils');
+  moveFactory = require('../move-factory');
 
 var offsets = [16, -16, 1, -1, 15, 17, -15, -17];
 
@@ -57,6 +56,36 @@ module.exports = {
     return this.square.name === (this.color.isWhite() ? 'e1' : 'e8');
   },
 
+  forEachCastlings: function (callback) {
+    var chess = this.square.chess,
+      castlingRights = chess.castlingRights,
+      castling;
+
+    if (this.color.isWhite()) {
+      castlingRights >>= 2;
+    } else {
+      castlingRights &= 3;
+    }
+
+    if ((castlingRights & 2) === 2 &&
+      this.isKsideCaslingAvailable() &&
+      chess.squares[this.square.index + 3].isOccupied() &&
+      chess.squares[this.square.index + 3].piece.isRook()) {
+      castling = moveFactory.createShortCastling(this,
+        chess.squares[this.square.index + 3].piece);
+      callback.call(this, castling);
+    }
+
+    if ((castlingRights & 1) === 1 &&
+      this.isQsideCastlingAvalible() &&
+      chess.squares[this.square.index - 4].isOccupied() &&
+      chess.squares[this.square.index - 4].piece.isRook()) {
+      castling = moveFactory.createLongCastling(this,
+        chess.squares[this.square.index - 4].piece);
+      callback.call(this, castling);
+    }
+  },
+
   forEachMove: function (callback, pseudoLegal) {
     var self = this,
       opponentColor = this.color.toggle(),
@@ -94,31 +123,6 @@ module.exports = {
       return;
     }
 
-    var castlingRights = chess.castlingRights,
-      castling;
-
-    if (self.color.isWhite()) {
-      castlingRights >>= 2;
-    } else {
-      castlingRights &= 3;
-    }
-
-    if ((castlingRights & 2) === 2 &&
-      this.isKsideCaslingAvailable() &&
-      chess.squares[this.square.index + 3].isOccupied() &&
-      chess.squares[this.square.index + 3].piece.isRook()) {
-      castling = moveFactory.createShortCastling(this,
-        chess.squares[this.square.index + 3].piece);
-      callback.call(self, castling);
-    }
-
-    if ((castlingRights & 1) === 1 &&
-      this.isQsideCastlingAvalible() &&
-      chess.squares[this.square.index - 4].isOccupied() &&
-      chess.squares[this.square.index - 4].piece.isRook()) {
-      castling = moveFactory.createLongCastling(this,
-        chess.squares[this.square.index - 4].piece);
-      callback.call(self, castling);
-    }
+    this.forEachCastlings(callback);
   }
 };

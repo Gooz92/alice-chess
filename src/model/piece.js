@@ -82,13 +82,6 @@ var piecePrototype = {
     });
   },
 
-  forEachTargetSquareName: function (callback) {
-    this.forEachMove(function (move) {
-      var targetSquareName = move.targetSquare.name;
-      callback.call(this, targetSquareName);
-    });
-  },
-
   calculateMoveCount: function () {
     var moveCount = 0;
 

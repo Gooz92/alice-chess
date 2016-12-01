@@ -5,12 +5,12 @@
  *                            193672016
  */
 
-var Chess = require('../model/chess');
+var Chess = require('../model/chess'),
+  formatTime = require('../utils/common-utils/format-time');
 
 var chess = new Chess(),
   initialDepth = process.argv[2],
-  moves = process.argv.splice(3),
-  leaves = 0;
+  moves = process.argv.splice(3);
 
 initialDepth = parseInt(initialDepth);
 
@@ -25,22 +25,25 @@ chess.place({
   a1: 'R', e1: 'K', h1: 'R'
 });
 
-var promotions = 0, castlings = 0;
 
-console.time('time');
+var time = Date.now();
 
-try {
-    console.time('time');
-    // use callbacks insignificant slow down iteration
-    chess.traverse(initialDepth, {
-      onMaxDepthReached: function () {
-        ++leaves;
-      }
-    });
-} catch (e) {
-  console.log(chess.getSanHistory().join(' '));
-}
+var moves = chess.generateMoves();
 
-console.timeEnd('time');
+moves.forEach(function (move) {
+  var leaves = 0;
 
-console.log(leaves);
+  move.make();
+
+  chess.traverse(4, {
+    onMaxDepthReached: function () {
+      ++leaves;
+    }
+  });
+
+  move.unMake();
+
+  console.log(move.toSAN() + ': ' + leaves);
+});
+
+console.log(formatTime(Date.now() - time));

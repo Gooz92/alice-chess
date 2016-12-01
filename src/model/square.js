@@ -1,7 +1,6 @@
 'use strict';
 
-var isTypeUtils = require('../utils/common-utils/is-type-utils'),
-  boardUtils = require('../utils/chess-utils/board-utils');
+var boardUtils = require('../utils/chess-utils/board-utils');
 
 function Square(index, chess) {
   this.index = index;
@@ -11,6 +10,7 @@ function Square(index, chess) {
   this.fileIndex = boardUtils.fileIndexFromSquareIndex(index);
   this.fileName = this.name.charAt(0);
   this.rankName = this.name.charAt(1);
+  this.piece = null;
 }
 
 Square.prototype = {
@@ -37,7 +37,7 @@ Square.prototype = {
   },
 
   isOccupied: function () {
-    return !isTypeUtils.isNill(this.piece);
+    return this.piece !== null;
   },
 
   isOccupiedByOpponent: function (playerColor) {
@@ -50,7 +50,7 @@ Square.prototype = {
   },
 
   isEmpty: function () {
-    return !this.isOccupied();
+    return this.piece === null;
   },
 
   isOnLastRank: function () {

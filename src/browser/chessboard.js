@@ -65,20 +65,26 @@ function createRank(rankIndex, chess) {
   return rank;
 }
 
+function clearSelection() {
+  var classes = ['target-square', 'highlighted', 'captured-piece'],
+    selector = classes.map(function (className) {
+      return '.' + className;
+    }).join(',');
+
+   [].forEach.call(document.querySelectorAll(selector), function (sq) {
+     classes.forEach(function (className) {
+        sq.classList.remove(className);
+     });
+   });
+}
+
 function createClickHandler(chess) {
   return function () {
     var square = chess.squares[this.id],
       self = this,
       targetSquareNames;
 
-    [].forEach.call(document.querySelectorAll([
-      '.target-square',
-      '.highlighted',
-      '.captured-piece'].join(',')),
-      function (sq) {
-        sq.classList.remove('target-square', 'highlighted', 'captured-piece');
-      }
-    );
+    clearSelection();
 
     if (square.isOccupiedByPlayer(chess.activeColor)) {
       square.piece.generateMoves().forEach(
@@ -107,18 +113,15 @@ function createClickHandler(chess) {
       })[0];
 
       if (move.capturedPawn) { // en passant
-        document.getElementById(move.capturedPawn.square.name).innerHTML = '';
-        document.getElementById(move.capturedPawn.square.name).className = '';
-      }
+        var epSq = document.getElementById(move.capturedPawn.square.name);
 
-      if (move.constructor.name.indexOf('Promotion') > -1) {
-
+        epSq.innerHTML = '';
+        epSq.className = '';
       }
 
       move.make();
 
-      if (move.constructor.name === 'LongCastling' ||
-        move.constructor.name === 'ShortCastling') {
+      if (move.rook) { // is castling
 
         document.getElementById(move.rook.square.name).innerHTML =
           pieceCharacters[move.rook.fenToken];
@@ -131,8 +134,10 @@ function createClickHandler(chess) {
       this.innerHTML = pieceCharacters[activePiece.fenToken];
       this.className = 'occupied';
 
-      document.getElementById(move.sourceSquare.name).innerHTML = '';
-      document.getElementById(move.sourceSquare.name).className = '';
+      var sourceSquare = document.getElementById(move.sourceSquare.name);
+
+      sourceSquare.innerHTML = '';
+      sourceSquare.className = '';
       activePiece = null;
     }
   };

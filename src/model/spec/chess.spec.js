@@ -88,15 +88,6 @@ describe('Chess', function () {
     });
   });
 
-  describe('#calculateMobility()', function () {
-    it('return 20 for start position', function () {
-      var chess = Chess.createStartPosition(),
-        mobility = chess.calculateMobility();
-
-      assert.equal(mobility, 20);
-    });
-  });
-
   describe('#placePiece()', function () {
     var chess;
     beforeEach(function () {

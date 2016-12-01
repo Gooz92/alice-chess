@@ -100,22 +100,6 @@ objectUtils.extend(Chess.prototype, {
     return squares;
   },
 
-  calculateMobility: function (color) {
-    var mobility = 0,
-      pieces;
-
-    color = this.activeColor || color;
-
-    pieces = this.pieces[color.name];
-
-    pieces.forEach(function (piece) {
-      var moveCount = piece.calculateMoveCount();
-      mobility += moveCount;
-    });
-
-    return mobility;
-  },
-
   getOpponentPieces: function () {
     var opponentColor = this.activeColor.toggle();
     return this.pieces[opponentColor.name];

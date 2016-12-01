@@ -110,7 +110,7 @@ describe('Square', function () {
       square = new Square();
     });
 
-    it("return true if property 'piece' is not null or undefined", function () {
+    it("return true if property 'piece' is not null", function () {
       square.piece = 'pawn';
       assert.isTrue(square.isOccupied());
     });
@@ -121,11 +121,6 @@ describe('Square', function () {
 
     it("return false if property 'piece' is null", function () {
       square.piece = null;
-      assert.isFalse(square.isOccupied());
-    });
-
-    it("return false if property 'piece' is undefined", function () {
-      square.piece = void 0;
       assert.isFalse(square.isOccupied());
     });
   });
