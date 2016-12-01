@@ -121,6 +121,8 @@ function createClickHandler(chess) {
 
       move.make();
 
+
+
       if (move.rook) { // is castling
 
         document.getElementById(move.rook.square.name).innerHTML =
@@ -131,7 +133,12 @@ function createClickHandler(chess) {
         document.getElementById(move.sourceRookSquare.name).innerHTML = '';
       }
 
-      this.innerHTML = pieceCharacters[activePiece.fenToken];
+      if (move.promotedPieceToken) {
+        this.innerHTML = pieceCharacters[move.promotedPieceToken];
+      } else {
+        this.innerHTML = pieceCharacters[activePiece.fenToken];
+      }
+
       this.className = 'occupied';
 
       var sourceSquare = document.getElementById(move.sourceSquare.name);
