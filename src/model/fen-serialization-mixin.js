@@ -57,6 +57,20 @@ module.exports = {
     return castlingRightsUtils.toFenField(this.castlingRights);
   },
 
+  generateHalfmoveClock: function () {
+    var clock = 0, move, index;
+
+    for (index = this.history.length - 1; index >= 0; index--) {
+      move = this.history[index];
+
+      if (!move.piece.isPawn() && !move.capturedPiece) {
+        ++clock;
+      }
+    }
+
+    return clock;
+  },
+
   generateFullmoveNumber: function () {
     return Math.ceil((this.history.length + 1) / 2);
   },
@@ -67,7 +81,7 @@ module.exports = {
       this.activeColor.token,
       this.generateFenCastlingRights(),
       this.generateEnPassantTargetSquare(),
-      this.halfmoveClock,
+      this.generateHalfmoveClock(),
       this.generateFullmoveNumber()
     ].join(' ');
   }
