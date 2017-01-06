@@ -3,7 +3,17 @@
 var boardUtils = require('../../utils/chess-utils/board-utils'),
   moveFactory = require('../move-factory');
 
-var captureOffsets = [15, 17];
+var captureOffsets = [
+    [-15, -17],
+    [15, 17]
+  ],
+
+  promotionPieces = [
+    ['q', 'n', 'b', 'r'],
+    ['Q', 'N', 'B', 'R']
+  ],
+
+  stepOffsets = [-16, 16];
 
 module.exports = {
   token: 'p',
@@ -19,8 +29,7 @@ module.exports = {
   },
 
   forEachPromotion: function (callback, pseudoLegal, targetSquare) {
-    var promotablePieces = (this.color.isBlack() ? 'qnbr' : 'QNBR').split(''),
-      self = this,
+    var promotablePieces = promotionPieces[this.color.index],
       createPromotion,
       move, p, index;
 
@@ -32,9 +41,9 @@ module.exports = {
 
     for (index = 0; index < 4; index++) {
       p = promotablePieces[index];
-      move = createPromotion(self.square, targetSquare, p);
-      if (pseudoLegal || !self.square.chess.isInCheckAfter(move)) {
-        callback.call(self, move);
+      move = createPromotion(this.square, targetSquare, p);
+      if (pseudoLegal || !this.square.chess.isInCheckAfter(move)) {
+        callback.call(this, move);
       }
     }
   },
@@ -47,10 +56,9 @@ module.exports = {
   },
 
   forEachStep: function (callback, pseudoLegal) {
-    var offset = this.color.isWhite() ? 16 : -16,
+    var offset = stepOffsets[this.color.index],
       targetSquareIndex = this.square.index,
       isFirstStep = false,
-      self = this,
       move, targetSquare;
 
     do {
@@ -67,7 +75,7 @@ module.exports = {
       } else if (targetSquare.rankIndex === 0 ||
           targetSquare.rankIndex === 7) {
 
-        self.forEachPromotion(callback, pseudoLegal, targetSquare);
+        this.forEachPromotion(callback, pseudoLegal, targetSquare);
       } else {
         move = moveFactory.createSilentMove(this.square, targetSquare);
         this.enshureLegalMove(callback, move, pseudoLegal);
@@ -78,17 +86,8 @@ module.exports = {
   },
 
   forEachCapture: function (callback, pseudoLegal) {
-    var offsets,
-      self = this;
-
-    if (this.color.isWhite()) {
-      offsets = captureOffsets;
-    } else {
-      offsets = [
-        -captureOffsets[0],
-        -captureOffsets[1],
-      ];
-    }
+    var self = this,
+      offsets = captureOffsets[this.color.index];
 
     offsets.forEach(function (offset) {
       var targetSquareIndex = self.square.index + offset,

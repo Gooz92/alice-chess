@@ -26,24 +26,14 @@ chess.place({
 });
 
 
-var time = Date.now();
+var time = Date.now(), leaves = 0;
 
-var moves = chess.generateMoves();
-
-moves.forEach(function (move) {
-  var leaves = 0;
-
-  move.make();
-
-  chess.traverse(4, {
-    onMaxDepthReached: function () {
-      ++leaves;
-    }
-  });
-
-  move.unMake();
-
-  console.log(move.toSAN() + ': ' + leaves);
+chess.traverse(initialDepth, {
+  onMaxDepthReached: function () {
+    ++leaves;
+  }
 });
+
+console.log(leaves);
 
 console.log(formatTime(Date.now() - time));

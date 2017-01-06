@@ -35,17 +35,18 @@ module.exports = {
 
   isKsideCaslingAvailable: function () {
     var squareIndex = this.square.index,
-      square = this.square.chess.squares[squareIndex + 1];
+      square = this.square.chess.squares[squareIndex + 1],
+      opponentColor = this.color.toggle();
 
     if (square.isOccupied() ||
-      square.chess.isSquareAttacked(square.index, this.color.toggle())) {
+      square.chess.isSquareAttacked(square.index, opponentColor)) {
       return false;
     }
 
     square = square.chess.squares[squareIndex + 2];
 
     if (square.isOccupied() ||
-      square.chess.isSquareAttacked(square.index, this.color.toggle())) {
+      square.chess.isSquareAttacked(square.index, opponentColor)) {
       return false;
     }
 
