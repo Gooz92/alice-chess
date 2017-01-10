@@ -1,9 +1,11 @@
 'use strict';
 
 var boardUtils = require('../../utils/chess-utils/board-utils'),
-  moveFactory = require('../move-factory');
+  moveFactory = require('../move-factory'),
+  castlingRightsUtils = require('../../utils/chess-utils/castling-rights-utils');
 
-var offsets = [16, -16, 1, -1, 15, 17, -15, -17];
+var offsets = [16, -16, 1, -1, 15, 17, -15, -17],
+  extractSideCastlingRights = castlingRightsUtils.extractSideCastlingRights;
 
 module.exports = {
   token: 'k',
@@ -59,14 +61,10 @@ module.exports = {
 
   forEachCastlings: function (callback) {
     var chess = this.square.chess,
-      castlingRights = chess.castlingRights,
+      castlingRights = extractSideCastlingRights(
+        chess.castlingRights, this.color.index
+      ),
       castling;
-
-    if (this.color.isWhite()) {
-      castlingRights >>= 2;
-    } else {
-      castlingRights &= 3;
-    }
 
     if ((castlingRights & 2) === 2 &&
       this.isKsideCaslingAvailable() &&
@@ -89,7 +87,6 @@ module.exports = {
 
   forEachMove: function (callback, pseudoLegal) {
     var self = this,
-      opponentColor = this.color.toggle(),
       chess = self.square.chess;
 
     offsets.forEach(function (offset) {

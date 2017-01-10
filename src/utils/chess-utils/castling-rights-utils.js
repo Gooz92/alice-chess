@@ -14,7 +14,16 @@ var masks = {
   Q: W_LONG_CASLTING_MASK
 };
 
-var castlingTokens = ['K', 'Q', 'k', 'q'];
+var castlingTokens = ['K', 'Q', 'k', 'q'],
+  extractCastlingRightsFns = [
+    function (castlingRights) {
+      return castlingRights & 3;
+    },
+
+    function (castlingRights) {
+      return castlingRights >> 2;
+    }
+  ];
 
 module.exports = {
   isWhiteShortCastlingPossible: function (castlingRights) {
@@ -31,6 +40,10 @@ module.exports = {
 
   isBlackLongCastlingPossible: function (castlingRights) {
     return (castlingRights & B_LONG_CASTLING_MASK) === B_LONG_CASTLING_MASK;
+  },
+
+  extractSideCastlingRights: function (castlingRights, colorIndex) {
+    return extractCastlingRightsFns[colorIndex](castlingRights);
   },
 
   toFenField: function (castlingRights) {
