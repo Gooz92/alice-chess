@@ -28,11 +28,6 @@ var attacks = [
   40,  0,  0,  0,  0,  0,  0, 48,  0,  0,  0,  0,  0,  0, 40
 ];
 
-/*
- * TODO pawn attacks is asymmentric may be use
- * different flags for white and black pawns is better way ?
- */
-
 var attackUtils = module.exports = {
   isMayAttacked: function (fromIndex, toIndex, pieceFenToken) {
     var attackIndex = toIndex - fromIndex + offset,
