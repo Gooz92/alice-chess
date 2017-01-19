@@ -10,9 +10,12 @@ var objectUtils = require('../utils/common-utils/object-utils'),
 
 function createPieceConstructors(pieces) {
   return objectUtils.map(pieces, function (piecePrototype) {
-    var PieceConstructor = objectUtils.inherit(function () {
+    var PieceConstructor = function () {
       this.super.constructor.apply(this, arguments);
-    }, Piece);
+    };
+
+    PieceConstructor.prototype = Object.create(Piece.prototype);
+    PieceConstructor.prototype.super = Piece.prototype;
 
     objectUtils.extend(PieceConstructor.prototype, piecePrototype);
 

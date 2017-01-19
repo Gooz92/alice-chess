@@ -110,23 +110,4 @@ describe('objectUtils', function () {
       });
     });
   });
-
-  describe('.inherit()', function () {
-    function Parent() {
-
-    }
-
-    Parent.prototype.parentMethod = function () {
-      return 'parent';
-    };
-
-    function Child() {
-
-    }
-
-    it('return Child constructor', function () {
-      var Constructor = objectUtils.inherit(Child, Parent);
-      assert.strictEqual(Constructor, Child);
-    });
-  });
 });

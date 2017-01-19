@@ -109,14 +109,5 @@ var objectUtils = module.exports = {
     });
 
     return result;
-  },
-
-  inherit: function (Child, Parent) {
-    // rewrite childs prototype it's ok ???
-    Child.prototype = Object.create(Parent.prototype);
-    Child.prototype.constructor = Child;
-    Child.prototype.super = Parent.prototype;
-
-    return Child;
   }
 };
