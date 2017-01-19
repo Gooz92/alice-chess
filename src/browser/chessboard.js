@@ -78,6 +78,11 @@ function clearSelection() {
    });
 }
 
+function clearSquare(square) {
+  square.innerHTML = '';
+  square.className = '';
+}
+
 function createClickHandler(chess) {
   return function () {
     var square = chess.squares[this.id],
@@ -115,8 +120,7 @@ function createClickHandler(chess) {
       if (move.capturedPawn) { // en passant
         var epSq = document.getElementById(move.capturedPawn.square.name);
 
-        epSq.innerHTML = '';
-        epSq.className = '';
+        clearSquare(epSq);
       }
 
       move.make();
@@ -129,8 +133,8 @@ function createClickHandler(chess) {
           pieceCharacters[move.rook.fenToken];
 
         document.getElementById(move.rook.square.name).className = 'occupied';
-        document.getElementById(move.sourceRookSquare.name).className = '';
-        document.getElementById(move.sourceRookSquare.name).innerHTML = '';
+
+        clearSquare(move.sourceRookSquare.name);
       }
 
       if (move.promotedPieceToken) {
@@ -143,8 +147,7 @@ function createClickHandler(chess) {
 
       var sourceSquare = document.getElementById(move.sourceSquare.name);
 
-      sourceSquare.innerHTML = '';
-      sourceSquare.className = '';
+      clearSquare(sourceSquare);
       activePiece = null;
     }
   };

@@ -12,17 +12,18 @@ module.exports = {
 
   isQsideCastlingAvalible: function () {
     var squareIndex = this.square.index,
-      square = this.square.chess.squares[squareIndex - 1];
+      square = this.square.chess.squares[squareIndex - 1],
+      opponentColor = this.color.toggle();
 
     if (square.isOccupied() ||
-      square.chess.isSquareAttacked(square.index, this.color.toggle())) {
+      square.chess.isSquareAttacked(square.index, opponentColor)) {
       return false;
     }
 
     square = square.chess.squares[squareIndex - 2];
 
     if (square.isOccupied() ||
-      square.chess.isSquareAttacked(square.index, this.color.toggle())) {
+      square.chess.isSquareAttacked(square.index, opponentColor)) {
       return false;
     }
 
@@ -56,7 +57,7 @@ module.exports = {
   },
 
   isOnStartPosition: function () {
-    return this.square.name === (this.color.isWhite() ? 'e1' : 'e8');
+    return this.square.index === [116, 4][this.color.index];
   },
 
   forEachCastlings: function (callback) {
@@ -64,23 +65,25 @@ module.exports = {
       castlingRights = extractSideCastlingRights(
         chess.castlingRights, this.color.index
       ),
-      castling;
+      targetSquare, castling;
+    
+    targetSquare = chess.squares[this.square.index + 3];
 
     if ((castlingRights & 2) === 2 &&
       this.isKsideCaslingAvailable() &&
-      chess.squares[this.square.index + 3].isOccupied() &&
-      chess.squares[this.square.index + 3].piece.isRook()) {
-      castling = moveFactory.createShortCastling(this,
-        chess.squares[this.square.index + 3].piece);
+      targetSquare.isOccupied() &&
+      targetSquare.piece.isRook()) {
+      castling = moveFactory.createShortCastling(this, targetSquare.piece);
       callback.call(this, castling);
     }
 
+    targetSquare = chess.squares[this.square.index - 4];
+
     if ((castlingRights & 1) === 1 &&
       this.isQsideCastlingAvalible() &&
-      chess.squares[this.square.index - 4].isOccupied() &&
-      chess.squares[this.square.index - 4].piece.isRook()) {
-      castling = moveFactory.createLongCastling(this,
-        chess.squares[this.square.index - 4].piece);
+      targetSquare.isOccupied() &&
+      targetSquare.piece.isRook()) {
+      castling = moveFactory.createLongCastling(this, targetSquare.piece);
       callback.call(this, castling);
     }
   },

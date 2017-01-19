@@ -57,63 +57,60 @@ module.exports = {
 
   forEachStep: function (callback, pseudoLegal) {
     var offset = stepOffsets[this.color.index],
-      targetSquareIndex = this.square.index,
-      isFirstStep = false,
-      move, targetSquare;
+      targetSquareIndex = this.square.index + offset,
+      targetSquare = this.square.chess.squares[targetSquareIndex],
+      move;
 
-    do {
-      targetSquareIndex += offset;
-      targetSquare = this.square.chess.squares[targetSquareIndex];
+    if (targetSquare.isOccupied()) {
+      return;
+    }
 
-      if (targetSquare.isOccupied()) {
-        break;
-      }
+    if (targetSquare.rankIndex !== 0 && targetSquare.rankIndex !== 7) {
+      move = moveFactory.createSilentMove(this.square, targetSquare);
+      this.enshureLegalMove(callback, move, pseudoLegal);
+    } else {
+      this.forEachPromotion(callback, pseudoLegal, targetSquare);
+    }
 
-      if (isFirstStep) {
-        move = moveFactory.createBigPawnMove(this.square, targetSquare);
-        this.enshureLegalMove(callback, move, pseudoLegal);
-      } else if (targetSquare.rankIndex === 0 ||
+    targetSquare = this.square.chess.squares[targetSquareIndex + offset];
+
+    if (!this.isOnStartPosition() || targetSquare.isOccupied()) {
+      return;
+    }
+
+    move = moveFactory.createBigPawnMove(this.square, targetSquare);
+    this.enshureLegalMove(callback, move, pseudoLegal);
+  },
+
+  capture: function (callback, pseudoLegal, offset) {
+    var targetSquareIndex = this.square.index + offset,
+      targetSquare, move;
+
+    if (boardUtils.isSquareOutOfBoard(targetSquareIndex)) {
+      return;
+    }
+
+    targetSquare = this.square.chess.squares[targetSquareIndex];
+
+    if (targetSquare.isOccupiedByOpponent(this.color)) {
+      if (targetSquare.rankIndex === 0 ||
           targetSquare.rankIndex === 7) {
-
         this.forEachPromotion(callback, pseudoLegal, targetSquare);
       } else {
-        move = moveFactory.createSilentMove(this.square, targetSquare);
+        move = moveFactory.createCapture(this.square, targetSquare);
         this.enshureLegalMove(callback, move, pseudoLegal);
       }
-
-      isFirstStep = !isFirstStep;
-    } while (isFirstStep && this.isOnStartPosition());
+    } else if ([2, 5][this.color.index] === targetSquare.rankIndex &&
+                targetSquare.isTargetEnPassantSquare()) {
+      move = moveFactory.createEnPassant(this.square, targetSquare);
+      this.enshureLegalMove(callback, move, pseudoLegal);
+    }
   },
 
   forEachCapture: function (callback, pseudoLegal) {
-    var self = this,
-      offsets = captureOffsets[this.color.index];
+    var offsets = captureOffsets[this.color.index];
 
-    offsets.forEach(function (offset) {
-      var targetSquareIndex = self.square.index + offset,
-        targetSquare, move;
-
-      if (boardUtils.isSquareOutOfBoard(targetSquareIndex)) {
-        return;
-      }
-
-      targetSquare = self.square.chess.squares[targetSquareIndex];
-
-      if (targetSquare.isOccupiedByOpponent(self.color)) {
-        if (targetSquare.rankIndex === 0 ||
-            targetSquare.rankIndex === 7) {
-         self.forEachPromotion(callback, pseudoLegal, targetSquare);
-        } else {
-          move = moveFactory.createCapture(self.square, targetSquare);
-          self.enshureLegalMove(callback, move, pseudoLegal);
-        }
-      } else if ([2, 5][self.color.index] === targetSquare.rankIndex &&
-                 targetSquare.isTargetEnPassantSquare()) {
-        move = moveFactory.createEnPassant(self.square, targetSquare);
-        self.enshureLegalMove(callback, move, pseudoLegal);
-      } else {
-        return;
-      }
-    });
+    this.capture(callback, pseudoLegal, offsets[0]);
+    this.capture(callback, pseudoLegal, offsets[1]);
   }
 };
