@@ -31,7 +31,7 @@ EnPassant.prototype.unMake = function () {
 
   this.capturedPawn.square = chess.squares[capturedPawnSquareIndex];
   this.capturedPawn.square.piece = this.capturedPawn;
-  chess.pieces[this.capturedPawn.color.name].push(this.capturedPawn);
+  chess.pieces[this.capturedPawn.color.index].push(this.capturedPawn);
 };
 
 EnPassant.prototype.toSAN = function () {

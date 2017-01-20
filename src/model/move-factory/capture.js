@@ -28,12 +28,12 @@ Capture.prototype = {
   },
 
   _placeCapturedPiece: function () {
-    var opponentColorName = this.capturedPiece.color.name;
+    var opponentColorIndex = this.capturedPiece.color.index;
 
     this.targetSquare.piece = this.capturedPiece;
     this.capturedPiece.square = this.targetSquare;
 
-    this.targetSquare.chess.pieces[opponentColorName].push(this.capturedPiece);
+    this.targetSquare.chess.pieces[opponentColorIndex].push(this.capturedPiece);
   },
 
   toSAN: function (options) {

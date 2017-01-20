@@ -28,7 +28,7 @@ Promotion.prototype.unMake = function () {
   this.sourceSquare.piece = this.piece;
   this.piece.square = this.sourceSquare;
 
-  chess.pieces[this.piece.color.name].push(this.piece);
+  chess.pieces[this.piece.color.index].push(this.piece);
   chess.enPassantTargetSquare = this.previousEnPassantTargetSquare;
   chess.turn();
   arrayUtils.remove(chess.history, this);

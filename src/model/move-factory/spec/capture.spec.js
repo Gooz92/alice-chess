@@ -19,7 +19,7 @@ describe('Capture', function () {
       capture = new Capture(sourceSquare, targetSquare);
       capture.make();
 
-      assert.notInclude(chess.pieces[capturedPiece.color.name], capturedPiece);
+      assert.notInclude(chess.pieces[capturedPiece.color.index], capturedPiece);
     });
   });
 
@@ -39,7 +39,7 @@ describe('Capture', function () {
       capture.unMake();
 
      assert.strictEqual(targetSquare.piece, capturedPiece);
-     assert.include(chess.pieces[capturedPiece.color.name], capturedPiece);
+     assert.include(chess.pieces[capturedPiece.color.index], capturedPiece);
     });
   });
 

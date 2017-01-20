@@ -60,7 +60,8 @@ module.exports = {
       targetSquareIndex = this.square.index + offset,
       targetSquare = this.square.chess.squares[targetSquareIndex],
       move;
-
+    
+    if (!targetSquare) console.log(this);
     if (targetSquare.isOccupied()) {
       return;
     }

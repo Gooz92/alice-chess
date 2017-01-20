@@ -96,12 +96,12 @@ describe('Chess', function () {
 
     it('add white piece in white pieces array', function () {
       var addedPiece = chess.placePiece('P', 'e4');
-      assert.equal(addedPiece, chess.pieces.white[0]);
+      assert.equal(addedPiece, chess.pieces[1][0]);
     });
 
     it('add black piece in black pieces array', function () {
       var addedPiece = chess.placePiece('p', 'd5');
-      assert.equal(addedPiece, chess.pieces.black[0]);
+      assert.equal(addedPiece, chess.pieces[0][0]);
     });
   });
 

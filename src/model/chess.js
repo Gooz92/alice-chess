@@ -14,10 +14,7 @@ function Chess() {
 
   this.history = [];
 
-  this.pieces = {
-    white: [],
-    black: []
-  };
+  this.pieces = [[], []];
 
   this.kings = {};
 
@@ -53,7 +50,7 @@ objectUtils.extend(Chess.prototype, {
     }
 
     // TODO what if piece on this square already placed ???
-    this.pieces[piece.color.name].push(piece);
+    this.pieces[piece.color.index].push(piece);
 
     return piece;
   },
@@ -102,11 +99,11 @@ objectUtils.extend(Chess.prototype, {
 
   getOpponentPieces: function () {
     var opponentColor = this.activeColor.toggle();
-    return this.pieces[opponentColor.name];
+    return this.pieces[opponentColor.index];
   },
 
   getPlayerPieces: function () {
-    return this.pieces[this.activeColor.name];
+    return this.pieces[this.activeColor.index];
   },
 
   // TODO refactor
@@ -247,7 +244,7 @@ objectUtils.extend(Chess.prototype, {
   },
 
   isSquareAttacked: function (squareIndex, color) {
-    var pieces = this.pieces[color.name],
+    var pieces = this.pieces[color.index],
       index;
 
     for (index = 0; index < pieces.length; index++) {
@@ -347,11 +344,11 @@ objectUtils.extend(Chess.prototype, {
   generateFieldPlainObject: function () {
     var field = {};
 
-    this.pieces.white.forEach(function (piece) {
+    this.pieces[1].forEach(function (piece) {
       field[piece.square.name] = piece.token.toUpperCase();
     });
 
-    this.pieces.black.forEach(function (piece) {
+    this.pieces[0].forEach(function (piece) {
       field[piece.square.name] = piece.token;
     });
 

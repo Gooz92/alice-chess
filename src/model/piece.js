@@ -133,7 +133,7 @@ var piecePrototype = {
   },
 
   remove: function () {
-    var playerPieces = this.square.chess.pieces[this.color.name];
+    var playerPieces = this.square.chess.pieces[this.color.index];
 
     this.square.piece = null;
 

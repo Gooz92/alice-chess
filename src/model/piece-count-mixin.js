@@ -8,7 +8,7 @@ module.exports = {
     var pieceToken = fenToken.toLowerCase(),
       isWhite = fenToken !== pieceToken,
       color = Color.getByFlag(isWhite),
-      pieces = this.pieces[color.name];
+      pieces = this.pieces[color.index];
 
     return arrayUtils.count(pieces, function (piece) {
       return piece.token === pieceToken;
@@ -19,7 +19,7 @@ module.exports = {
     var pieces;
 
     color = color || this.activeColor;
-    pieces = this.pieces[color.name];
+    pieces = this.pieces[color.index];
 
     return arrayUtils.count(pieces, function (piece) {
       return piece.isPawn();
