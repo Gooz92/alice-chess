@@ -61,7 +61,6 @@ module.exports = {
       targetSquare = this.square.chess.squares[targetSquareIndex],
       move;
     
-    if (!targetSquare) console.log(this);
     if (targetSquare.isOccupied()) {
       return;
     }
