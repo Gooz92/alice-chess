@@ -15,14 +15,14 @@ KingMove.prototype = {
 
     this.previousCastlingRigths = chess.castlingRights;
 
-    Move.prototype.make.call(this);
+    Move.make(this);
 
     chess.castlingRights &= castlingRightsUpdateMask;
   },
 
   unMake: function () {
     this.targetSquare.chess.castlingRights = this.previousCastlingRigths;
-    Move.prototype.unMake.call(this);
+    Move.unMake(this);
   },
 
   toSAN: function () {

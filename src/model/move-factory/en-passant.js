@@ -18,13 +18,13 @@ EnPassant.prototype.getCapturedPawn = function () {
 
 EnPassant.prototype.make = function () {
   this.capturedPawn.remove();
-  Move.prototype.make.call(this);
+  Move.make(this);
 };
 
 EnPassant.prototype.unMake = function () {
   var chess = this.targetSquare.chess;
 
-  Move.prototype.unMake.call(this);
+  Move.unMake(this);
 
   var squareIndexOffset = this.sourceSquare.piece.color.isWhite() ? -16 : 16,
     capturedPawnSquareIndex = this.targetSquare.index + squareIndexOffset;

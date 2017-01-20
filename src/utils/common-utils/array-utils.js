@@ -15,7 +15,13 @@ var arrayUtils = module.exports = {
 
   remove: function (array, item) {
     var index = array.indexOf(item);
-    return arrayUtils.removeAt(array, index);
+
+    if (index > -1 && index < array.length) {
+      while (index++ < array.length - 1) {
+        array[index - 1] = array[index];
+      }
+      --array.length;
+    }
   },
 
   sum: function (arr) {
@@ -26,15 +32,6 @@ var arrayUtils = module.exports = {
 
   mean: function (arr) {
     return arrayUtils.sum(arr) / arr.length;
-  },
-
-  removeAt: function (array, index) {
-    if (index < 0 || index >= array.length) {
-      return false;
-    }
-
-    array.splice(index, 1);
-    return true;
   },
 
   toArray: function (arg) {

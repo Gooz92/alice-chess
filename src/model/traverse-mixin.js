@@ -1,7 +1,8 @@
 'use strict';
 
 var noop = require('../utils/common-utils/lang-fns').noop,
-  objectUtils = require('../utils/common-utils/object-utils');
+  objectUtils = require('../utils/common-utils/object-utils'),
+  arrayUtils = require('../utils/common-utils/array-utils');
 
 var traverseMixin = module.exports = {
   traverse: function (depth, callbacks) {
@@ -18,23 +19,25 @@ var traverseMixin = module.exports = {
 };
 
 function traverse(depthLeft, callbacks, chess) {
-  var moves;
+  var playerPieces, index;
 
   if (depthLeft === 0) {
     return callbacks.onMaxDepthReached();
   }
 
-  moves = chess.generateMoves(true);
+  playerPieces = [].concat(chess.getPlayerPieces());
 
-  moves.forEach(function (move) {
-    move.make();
+  for (index = 0; index < playerPieces.length; index++) {
+    playerPieces[index].forEachMove(function (move) {
+      move.make();
 
-    if (!chess.isOpponentInCheck()) {
-      callbacks.onBranchStartTraverse(move);
-      traverse(depthLeft - 1, callbacks, chess);
-      callbacks.onBranchEndTraverse(move);
-    }
+      if (!chess.isOpponentInCheck()) {
+        callbacks.onBranchStartTraverse(move);
+        traverse(depthLeft - 1, callbacks, chess);
+        callbacks.onBranchEndTraverse(move);
+      }
 
-    move.unMake();
-  });
+      move.unMake();
+    }, true);
+  }
 }

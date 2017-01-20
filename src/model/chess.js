@@ -7,7 +7,7 @@ var Square = require('./square'),
   rays = require('../utils/chess-utils/rays'),
   startPosition = require('../utils/chess-utils/start-position'),
   movesDisambiguation = require('./move-factory/moves-disambiguation'),
-  attackUtils = require('../utils/chess-utils/attack-utils');
+  isMayAttacked = require('../utils/chess-utils/is-may-attacked');
 
 function Chess() {
   this.activeColor = Color.WHITE;
@@ -16,7 +16,7 @@ function Chess() {
 
   this.pieces = [[], []];
 
-  this.kings = {};
+  this.kings = [];
 
   this.castlingRights = 15;
 
@@ -46,7 +46,7 @@ objectUtils.extend(Chess.prototype, {
         this.castlingRights &= 12 >> piece.color.index * 2;
       }
 
-      this.kings[piece.color.name] = piece;
+      this.kings[piece.color.index] = piece;
     }
 
     // TODO what if piece on this square already placed ???
@@ -135,7 +135,7 @@ objectUtils.extend(Chess.prototype, {
   },
 
   isInCheck: function () {
-    var playerKing = this.kings[this.activeColor.name],
+    var playerKing = this.kings[this.activeColor.index],
       opponentColor;
 
     if (!playerKing) {
@@ -212,7 +212,7 @@ objectUtils.extend(Chess.prototype, {
 
   // used only during move generation
   isOpponentInCheck: function () {
-    var opponentKing = this.kings[this.activeColor.toggle().name];
+    var opponentKing = this.kings[+!this.activeColor.index];
 
     if (!opponentKing) {
       return false;
@@ -226,7 +226,7 @@ objectUtils.extend(Chess.prototype, {
       distance = target - piece.square.index,
       attackIndex = distance + 119;
 
-    if (!attackUtils.isMayAttacked(source, target, piece.fenToken)) {
+    if (!isMayAttacked(source, target, piece.fenToken)) {
       return false;
     }
 

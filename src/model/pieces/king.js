@@ -74,7 +74,7 @@ module.exports = {
       targetSquare.isOccupied() &&
       targetSquare.piece.isRook()) {
       castling = moveFactory.createShortCastling(this, targetSquare.piece);
-      callback.call(this, castling);
+      callback(castling);
     }
 
     targetSquare = chess.squares[this.square.index - 4];
@@ -84,7 +84,7 @@ module.exports = {
       targetSquare.isOccupied() &&
       targetSquare.piece.isRook()) {
       castling = moveFactory.createLongCastling(this, targetSquare.piece);
-      callback.call(this, castling);
+      callback(castling);
     }
   },
 
@@ -116,7 +116,7 @@ module.exports = {
 
       if (targetSquare.isEmpty() ||
         targetSquare.isOccupiedByOpponent(self.color)) {
-        callback.call(self, move);
+        callback(move);
       }
     });
 

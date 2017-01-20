@@ -12,28 +12,36 @@ function Move(sourceSquare, targetSquare) {
   this.disambiguateFile = false;
 }
 
+Move.make = function (move) {
+  var chess = move.targetSquare.chess;
+
+  move.sourceSquare.piece.moveTo(move.targetSquare);
+
+  chess.turn();
+  move.previousEnPassantTargetSquare = chess.enPassantTargetSquare;
+  chess.enPassantTargetSquare = null;
+  // chess.history.push(move);
+};
+
+Move.unMake = function (move) {
+  var chess = move.targetSquare.chess;
+
+  move.targetSquare.piece.moveTo(move.sourceSquare);
+
+  chess.enPassantTargetSquare = move.previousEnPassantTargetSquare;
+  chess.turn();
+  // arrayUtils.remove(chess.history, move);
+}
+
 Move.prototype = {
   constructor: Move,
 
   make: function () {
-    var chess = this.targetSquare.chess;
-
-    this.sourceSquare.piece.moveTo(this.targetSquare);
-
-    chess.turn();
-    this.previousEnPassantTargetSquare = chess.enPassantTargetSquare;
-    chess.enPassantTargetSquare = null;
-    chess.history.push(this);
+    Move.make(this);
   },
 
   unMake: function () {
-    var chess = this.targetSquare.chess;
-
-    this.targetSquare.piece.moveTo(this.sourceSquare);
-
-    chess.enPassantTargetSquare = this.previousEnPassantTargetSquare;
-    chess.turn();
-    arrayUtils.remove(chess.history, this);
+    Move.unMake(this);
   },
 
   getSanDisambiguation: function () {

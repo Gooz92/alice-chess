@@ -14,7 +14,7 @@ BigPawn.prototype.make = function () {
     epTargetSquareIndex = this.targetSquare.index + squareIndexOffset,
     epTargetSquare = chess.squares[epTargetSquareIndex];
 
-  Move.prototype.make.call(this);
+  Move.make(this);
 
   this.previousEnPassantTagetSquare = chess.enPassantTargetSquare;
 

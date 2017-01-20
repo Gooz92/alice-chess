@@ -24,12 +24,12 @@ RookMove.prototype = {
       chess.castlingRights &= mask;
     }
 
-    Move.prototype.make.call(this);
+    Move.make(this);
   },
 
   unMake: function () {
     this.targetSquare.chess.castlingRights = this.previousCastlingRights;
-    Move.prototype.unMake.call(this);
+    Move.unMake(this);
   },
 
   toSAN: function () {

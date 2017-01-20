@@ -11,18 +11,22 @@ function Capture(sourceSquare, targetSquare) {
   this.disambiguateFile = false;
 }
 
+Capture.placeCapturedPiece = function (move) {
+
+};
+
 Capture.prototype = {
   constructor: Capture,
 
   make: function () {
     this.capturedPiece.remove();
-    Move.prototype.make.call(this);
+    Move.make(this);
   },
 
   unMake: function () {
     var opponentColorName = this.capturedPiece.color.name;
 
-    Move.prototype.unMake.call(this);
+    Move.unMake(this);
 
     this._placeCapturedPiece();
   },

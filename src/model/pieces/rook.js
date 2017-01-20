@@ -21,7 +21,7 @@ module.exports = {
           if (targetSquare.piece.color !== self.color) {
             move = moveFactory.createRookCapture(self.square, targetSquare);
             if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
-              callback.call(self, move);
+              callback(move);
             }
           }
           return;
@@ -30,7 +30,7 @@ module.exports = {
         move = moveFactory.createRookMove(self.square, targetSquare);
 
         if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
-          callback.call(self, move);
+          callback(move);
         }
 
         targetSquareIndex += offset;

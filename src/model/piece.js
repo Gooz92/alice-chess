@@ -67,7 +67,7 @@ var piecePrototype = {
           if (targetSquare.piece.color !== self.color) {
             move = moveFactory.createCapture(self.square, targetSquare);
             if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
-              callback.call(self, move);
+              callback(move);
             }
           }
           return;
@@ -76,7 +76,7 @@ var piecePrototype = {
         move = moveFactory.createSilentMove(self.square, targetSquare);
 
         if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
-          callback.call(self, move);
+          callback(move);
         }
 
         targetSquareIndex += offset;
@@ -99,7 +99,7 @@ var piecePrototype = {
     var results = [];
 
     this.forEachMove(function (move) {
-      var result = callback.call(this, move.targetSquare);
+      var result = callback(move.targetSquare);
       results.push(result);
     });
 

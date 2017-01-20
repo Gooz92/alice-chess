@@ -30,7 +30,7 @@ module.exports = {
       }
 
       if (pseuodoLegal || !targetSquare.chess.isInCheckAfter(move)) {
-        callback.call(self, move);
+        callback(move);
       }
     });
   }

@@ -43,7 +43,7 @@ module.exports = {
       p = promotablePieces[index];
       move = createPromotion(this.square, targetSquare, p);
       if (pseudoLegal || !this.square.chess.isInCheckAfter(move)) {
-        callback.call(this, move);
+        callback(move);
       }
     }
   },
@@ -51,7 +51,7 @@ module.exports = {
   // bad name / refactor
   enshureLegalMove: function (callback, move, pseudoLegal) {
     if (pseudoLegal || !this.square.chess.isInCheckAfter(move)) {
-      callback.call(this, move);
+      callback(move);
     }
   },
 
