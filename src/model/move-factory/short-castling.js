@@ -32,7 +32,9 @@ ShortCastling.prototype = {
     this.previousEnPassantTargetSquare = chess.enPassantTargetSquare;
     chess.enPassantTargetSquare = null;
     chess.turn();
-    chess.history.push(this);
+
+    this.previousMove = chess.previousMove;
+    chess.previousMove = this;
   },
 
   unMake: function () {
@@ -46,7 +48,7 @@ ShortCastling.prototype = {
 
     chess.enPassantTargetSquare = this.previousEnPassantTargetSquare;
 
-    arrayUtils.remove(chess.history, this);
+    chess.previousMove = this.previousMove;
   },
 
   toSAN: function () {

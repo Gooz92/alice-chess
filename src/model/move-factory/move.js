@@ -20,7 +20,9 @@ Move.make = function (move) {
   chess.turn();
   move.previousEnPassantTargetSquare = chess.enPassantTargetSquare;
   chess.enPassantTargetSquare = null;
-  // chess.history.push(move);
+
+  move.previuosMove = chess.previuosMove;
+  chess.previuosMove = move;
 };
 
 Move.unMake = function (move) {
@@ -30,7 +32,8 @@ Move.unMake = function (move) {
 
   chess.enPassantTargetSquare = move.previousEnPassantTargetSquare;
   chess.turn();
-  // arrayUtils.remove(chess.history, move);
+
+  chess.previuosMove = move.previuosMove;
 }
 
 Move.prototype = {

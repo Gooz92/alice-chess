@@ -54,35 +54,32 @@ var piecePrototype = {
    * For pawn, knight and king used implementation placed in corresonding module
    */
   forEachMove: function (callback, pseudoLegal) {
-    var self = this;
+    var targetSquareIndex, targetSquare, move, index, offset;
 
-    this.offsets.forEach(function (offset) {
-      var targetSquareIndex = self.square.index + offset,
-        targetSquare, move;
+    for (index = 0; index < this.offsets.length; index++) {
+      offset = this.offsets[index];
+      targetSquareIndex = this.square.index;
 
-      while (boardUtils.isSquareOnBoard(targetSquareIndex)) {
-        targetSquare = self.square.chess.squares[targetSquareIndex];
+      while (boardUtils.isSquareOnBoard(targetSquareIndex += offset)) {
+        targetSquare = this.square.chess.squares[targetSquareIndex];
 
         if (targetSquare.isOccupied()) {
-          if (targetSquare.piece.color !== self.color) {
-            move = moveFactory.createCapture(self.square, targetSquare);
+          if (targetSquare.piece.color !== this.color) {
+            move = moveFactory.createCapture(this.square, targetSquare);
             if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
               callback(move);
             }
           }
-          return;
+          break;
         }
 
-        move = moveFactory.createSilentMove(self.square, targetSquare);
+        move = moveFactory.createSilentMove(this.square, targetSquare);
 
         if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
           callback(move);
         }
-
-        targetSquareIndex += offset;
       }
-
-    });
+    }
   },
 
   calculateMoveCount: function () {

@@ -54,9 +54,8 @@ describe('Move', function () {
       assert.isTrue(chess.activeColor.isBlack());
     });
 
-    it.skip('remove itself from history', function () {
-      var lastMove = chess.history[chess.history.length - 1];
-      assert.notStrictEqual(lastMove, move);
+    it('set previous move', function () {
+      assert.notStrictEqual(chess.previousMove, move.previousMove);
     });
   });
 

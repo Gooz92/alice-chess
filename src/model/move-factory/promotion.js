@@ -17,7 +17,9 @@ Promotion.prototype.make = function () {
   chess.enPassantTargetSquare = null;
   chess.placePiece(this.promotedPieceToken, this.targetSquare.name);
   chess.turn();
-  chess.history.push(this);
+  
+  this.previousMove = chess.previousMove;
+  chess.previousMove = this;
 };
 
 Promotion.prototype.unMake = function () {
@@ -31,7 +33,8 @@ Promotion.prototype.unMake = function () {
   chess.pieces[this.piece.color.index].push(this.piece);
   chess.enPassantTargetSquare = this.previousEnPassantTargetSquare;
   chess.turn();
-  arrayUtils.remove(chess.history, this);
+  
+  chess.previousMove = this.previousMove;
 };
 
 Promotion.prototype.toSAN = function () {

@@ -12,7 +12,7 @@ var Square = require('./square'),
 function Chess() {
   this.activeColor = Color.WHITE;
 
-  this.history = [];
+  this.previousMove = null;
 
   this.pieces = [[], []];
 
@@ -59,22 +59,6 @@ objectUtils.extend(Chess.prototype, {
     var placePiece = this.placePiece.bind(this);
 
     objectUtils.forEachOwnProperty(startPosition, placePiece);
-  },
-
-  getSanHistory: function () {
-    var history = [], move;
-
-    while (this.history.length > 0) {
-      move = this.getLastMove();
-      move.unMake();
-      movesDisambiguation.disambiguateMove(move, this.generateMoves());
-      history.unshift(move);
-    }
-
-    return history.map(function (move) {
-      move.make();
-      return move.toSAN();
-    });
   },
 
   generateEmptySquares: function () {
@@ -283,10 +267,6 @@ objectUtils.extend(Chess.prototype, {
     }
 
     return null;
-  },
-
-  getLastMove: function () {
-    return this.history[this.history.length - 1];
   },
 
   getRank: function (rankIndex) {

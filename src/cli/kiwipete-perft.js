@@ -25,7 +25,6 @@ chess.place({
   a1: 'R', e1: 'K', h1: 'R'
 });
 
-
 var time = Date.now(), leaves = 0;
 
 chess.traverse(initialDepth, {

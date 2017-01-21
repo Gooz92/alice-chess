@@ -22,7 +22,9 @@ CapturePromotion.prototype.make = function () {
 
   chess.placePiece(this.promotedPieceToken, this.targetSquare.name);
   chess.turn();
-  chess.history.push(this);
+  
+  this.previousMove = chess.previousMove;
+  chess.previousMove = this;
 };
 
 CapturePromotion.prototype.unMake = function () {
@@ -39,7 +41,8 @@ CapturePromotion.prototype.unMake = function () {
 
   chess.enPassantTargetSquare = this.previousEnPassantTargetSquare;
   chess.turn();
-  arrayUtils.remove(chess.history, this);
+  
+  chess.previousMove = this;
 };
 
 CapturePromotion.prototype.toSAN = function () {
