@@ -152,6 +152,50 @@ objectUtils.extend(Chess.prototype, {
     return result + 0.1 * mobility;
   },
 
+  findBestMoveAB: function () {
+    var self = this, bestMove;
+
+    var ab = function (alpha, beta, depth) {
+      var score, moves, index;
+  
+      if (depth === 0) {
+        score = self.evaluate();
+        self.turn();
+        score -= self.evaluate();
+        self.turn();
+        return score;
+      }
+
+      moves = self.generateMoves();
+
+      for (index = 0; index < moves.length; index++) {
+        moves[index].make();
+        score = -ab(-beta, -alpha, depth - 1);
+        moves[index].unMake();
+
+        if (score >= beta) {
+          if (depth === 3) {
+            bestMove = moves[index];
+          }
+          return beta;
+        }
+
+        if (score > alpha) {
+          if (depth === 3) {
+            bestMove = moves[index];
+          }
+          alpha = score;
+        }
+      }
+
+      return alpha;
+    };
+    
+
+   ab(Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY, 3);
+   return bestMove.toSAN();
+  },
+
   findBestMove: function () {
     var self = this,
       bestMove;
@@ -166,8 +210,7 @@ objectUtils.extend(Chess.prototype, {
         score -= self.evaluate();
         self.turn();
         return {
-          score: score,
-          history: self.getSanHistory()
+          score: score
         };
       }
 
