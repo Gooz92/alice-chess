@@ -193,7 +193,7 @@ objectUtils.extend(Chess.prototype, {
     
 
    ab(Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY, 3);
-   return bestMove.toSAN();
+   return bestMove;
   },
 
   findBestMove: function () {

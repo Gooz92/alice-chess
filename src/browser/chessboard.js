@@ -83,6 +83,39 @@ function clearSquare(square) {
   square.className = '';
 }
 
+function makeMove(move) {
+  if (move.capturedPawn) { // en passant
+    var epSq = document.getElementById(move.capturedPawn.square.name);
+
+    clearSquare(epSq);
+  }
+
+  move.make();
+
+  if (move.rook) { // is castling
+
+    document.getElementById(move.rook.square.name).innerHTML =
+      pieceCharacters[move.rook.fenToken];
+
+    document.getElementById(move.rook.square.name).className = 'occupied';
+
+    clearSquare(move.sourceRookSquare.name);
+  }
+
+  if (move.promotedPieceToken) {
+    this.innerHTML = pieceCharacters[move.promotedPieceToken];
+  } else {
+    this.innerHTML = pieceCharacters[activePiece.fenToken];
+  }
+
+  this.className = 'occupied';
+
+  var sourceSquare = document.getElementById(move.sourceSquare.name);
+
+  clearSquare(sourceSquare);
+  activePiece = null;
+}
+
 function createClickHandler(chess) {
   return function () {
     var square = chess.squares[this.id],
@@ -117,38 +150,9 @@ function createClickHandler(chess) {
         return mv.targetSquare.name === self.id;
       })[0];
 
-      if (move.capturedPawn) { // en passant
-        var epSq = document.getElementById(move.capturedPawn.square.name);
-
-        clearSquare(epSq);
-      }
-
-      move.make();
-
-
-
-      if (move.rook) { // is castling
-
-        document.getElementById(move.rook.square.name).innerHTML =
-          pieceCharacters[move.rook.fenToken];
-
-        document.getElementById(move.rook.square.name).className = 'occupied';
-
-        clearSquare(move.sourceRookSquare.name);
-      }
-
-      if (move.promotedPieceToken) {
-        this.innerHTML = pieceCharacters[move.promotedPieceToken];
-      } else {
-        this.innerHTML = pieceCharacters[activePiece.fenToken];
-      }
-
-      this.className = 'occupied';
-
-      var sourceSquare = document.getElementById(move.sourceSquare.name);
-
-      clearSquare(sourceSquare);
-      activePiece = null;
+      makeMove.call(this, move);
+      var opMove = chess.findBestMoveAB();
+      makeMove.call(this, opMove);
     }
   };
 }
