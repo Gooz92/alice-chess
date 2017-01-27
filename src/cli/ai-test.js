@@ -17,16 +17,14 @@ rl
     if (!chess.move(line)) {
       console.log('invalid move');
     } else {
-      console.time('full');
-      opponentMove = chess.findBestMove().toSAN();
-      console.log(opponentMove);
-      console.timeEnd('full');
       console.time('ab');
-      console.log(chess.findBestMoveAB().toSAN());
+      opponentMove = chess.findBestMoveAB();
+      opponentMove.make();
+      console.log(opponentMove.toSAN());
       console.timeEnd('ab');
     }
 
-    chess.move(opponentMove);
+    
   })
   .on('close', () => {
     process.exit(0);

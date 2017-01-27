@@ -9,6 +9,15 @@ var Square = require('./square'),
   movesDisambiguation = require('./move-factory/moves-disambiguation'),
   isMayAttacked = require('../utils/chess-utils/is-may-attacked');
 
+
+var pieceCost = {
+  q: 9,
+  r: 5,
+  b: 3,
+  n: 3,
+  p: 1
+};
+
 function Chess() {
   this.activeColor = Color.WHITE;
 
@@ -132,13 +141,6 @@ objectUtils.extend(Chess.prototype, {
   },
 
   evaluate: function () {
-    var pieceCost = {
-      q: 9,
-      r: 5,
-      b: 3,
-      n: 3,
-      p: 1
-    };
 
     var playerPieces = this.getPlayerPieces();
     var result = 0, mobility = 0;
@@ -194,47 +196,6 @@ objectUtils.extend(Chess.prototype, {
 
    ab(Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY, 3);
    return bestMove;
-  },
-
-  findBestMove: function () {
-    var self = this,
-      bestMove;
-
-    var negaMax = function (depth) {
-      var max = Number.NEGATIVE_INFINITY,
-        moves, score, data, bestMoveData;
-
-      if (depth === 0) {
-        score = self.evaluate();
-        self.turn();
-        score -= self.evaluate();
-        self.turn();
-        return {
-          score: score
-        };
-      }
-
-      moves = self.generateMoves();
-
-      moves.forEach(function (move) {
-        move.make();
-        data = negaMax(depth - 1);
-        data.score = -data.score;
-        if (data.score > max) {
-          max = data.score;
-          bestMoveData = data;
-          if (depth === 3) {
-            bestMove = move;
-          }
-        }
-        move.unMake();
-      });
-
-      return bestMoveData;
-    };
-
-    console.log(negaMax(3));
-    return bestMove;
   },
 
   // used only during move generation
