@@ -84,6 +84,8 @@ function clearSquare(square) {
 }
 
 function makeMove(move) {
+  var targetSquare = document.getElementById(move.targetSquare.name);
+
   if (move.capturedPawn) { // en passant
     var epSq = document.getElementById(move.capturedPawn.square.name);
 
@@ -103,12 +105,12 @@ function makeMove(move) {
   }
 
   if (move.promotedPieceToken) {
-    this.innerHTML = pieceCharacters[move.promotedPieceToken];
+    targetSquare.innerHTML = pieceCharacters[move.promotedPieceToken];
   } else {
-    this.innerHTML = pieceCharacters[activePiece.fenToken];
+    targetSquare.innerHTML = pieceCharacters[move.targetSquare.piece.fenToken];
   }
 
-  this.className = 'occupied';
+  targetSquare.className = 'occupied';
 
   var sourceSquare = document.getElementById(move.sourceSquare.name);
 

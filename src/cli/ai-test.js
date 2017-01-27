@@ -22,7 +22,7 @@ rl
       console.log(opponentMove);
       console.timeEnd('full');
       console.time('ab');
-      console.log(chess.findBestMoveAB());
+      console.log(chess.findBestMoveAB().toSAN());
       console.timeEnd('ab');
     }
 
