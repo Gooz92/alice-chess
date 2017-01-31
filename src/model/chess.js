@@ -7,8 +7,12 @@ var Square = require('./square'),
   rays = require('../utils/chess-utils/rays'),
   startPosition = require('../utils/chess-utils/start-position'),
   movesDisambiguation = require('./move-factory/moves-disambiguation'),
-  isMayAttacked = require('../utils/chess-utils/is-may-attacked');
+  isMayAttacked = require('../utils/chess-utils/is-may-attacked'),
+  squares = require('../utils/chess-utils/squares');
 
+var squareIndexes = Object.keys(squares).map(function (square) {
+  return squares[square];
+});
 
 var pieceCost = {
   q: 9,
@@ -140,6 +144,18 @@ objectUtils.extend(Chess.prototype, {
     return this.isSquareAttacked(playerKing.square.index, opponentColor);
   },
 
+  calculateMobility: function () {
+    var mobility = 0, index;
+
+    for (index = 0; index < squareIndexes.length; index++) {
+      if (this.squares[squareIndexes[index]].isEmpty() && this.isSquareAttacked(squareIndexes[index], this.activeColor)) {
+        ++mobility;
+      }
+    }
+
+    return mobility;
+  },
+
   evaluate: function () {
 
     var playerPieces = this.getPlayerPieces();
@@ -147,12 +163,12 @@ objectUtils.extend(Chess.prototype, {
 
     playerPieces.forEach(function (piece) {
       if (piece.isKing()) return;
-      mobility += piece.calculateMoveCount();
       result += pieceCost[piece.token];
     });
 
-    return result + 0.1 * mobility;
+    return result + 0.1 * this.calculateMobility();
   },
+  
 
   findBestMoveAB: function () {
     var self = this, bestMove;
