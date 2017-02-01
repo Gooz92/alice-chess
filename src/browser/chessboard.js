@@ -118,6 +118,8 @@ function makeMove(move) {
   activePiece = null;
 }
 
+var counter = 0;
+
 function createClickHandler(chess) {
   return function () {
     var square = chess.squares[this.id],
@@ -155,6 +157,8 @@ function createClickHandler(chess) {
       makeMove.call(this, move);
       var opMove = chess.findBestMoveAB();
       makeMove.call(this, opMove);
+
+      console.log(++counter + '. ' + move.toSAN() + ' ' + opMove.toSAN());
     }
   };
 }
