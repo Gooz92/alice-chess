@@ -1,6 +1,6 @@
 {
   "name": "alice-chess",
-  "version": "0.0.0",
+  "version": "0.0.4",
   "description": "Yet another chess engine",
   "main": "Gruntfile.js",
   "repository": {
