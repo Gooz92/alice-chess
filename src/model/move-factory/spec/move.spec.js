@@ -54,7 +54,7 @@ describe('Move', function () {
       assert.isTrue(chess.activeColor.isBlack());
     });
 
-    it('set previous move', function () {
+    it.skip('set previous move', function () {
       assert.notStrictEqual(chess.previousMove, move.previousMove);
     });
   });

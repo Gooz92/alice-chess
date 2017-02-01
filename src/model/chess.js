@@ -117,6 +117,17 @@ objectUtils.extend(Chess.prototype, {
     return moves;
   },
 
+  getSanHistory: function () {
+    var history = [], move = this.previousMove;
+
+    do {
+      history.unshift(move.toSAN());
+      move = move.previousMove;
+    } while (move);
+
+    return history;
+  },
+
   // TODO refactor
   generateMoveNames: function () {
     var moveNames = [], playerPieces;
