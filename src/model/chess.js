@@ -15,11 +15,11 @@ var squareIndexes = Object.keys(squares).map(function (square) {
 });
 
 var pieceCost = {
-  q: 9,
-  r: 5,
-  b: 3,
-  n: 3,
-  p: 1
+  q: 90,
+  r: 50,
+  b: 30,
+  n: 30,
+  p: 10
 };
 
 function Chess() {
@@ -166,7 +166,7 @@ objectUtils.extend(Chess.prototype, {
       result += pieceCost[piece.token];
     });
 
-    return result + 0.1 * this.calculateMobility();
+    return result + this.calculateMobility();
   },
   
 
