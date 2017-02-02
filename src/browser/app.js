@@ -6,6 +6,6 @@ var createChessboard = require('./chessboard'),
 var chess = Chess.createStartPosition();
 
 document.addEventListener('DOMContentLoaded', function (event) {
-  document.getElementById('boardContainer')
+  document.getElementById('board-container')
     .appendChild(createChessboard(chess));
 });

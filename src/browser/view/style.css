@@ -13,7 +13,7 @@ body {
   height: 100%;
 }
 
-#boardContainer {
+#board-container {
   padding: 12px 0;
   min-height: 100%;
   box-sizing: border-box;
@@ -76,36 +76,24 @@ body {
 
 /* === dark and light squares === */
 
-.chessboard tr:nth-child(even) td:nth-child(even) {
-  background-color: #edb;
-}
-
-.chessboard tr:nth-child(even) td.target-square:nth-child(even) {
-  color: #b86;
-}
-
-.chessboard tr:nth-child(even) td:nth-child(odd) {
-  background-color: #b86;
-}
-
-.chessboard tr:nth-child(even) td.target-square:nth-child(odd) {
-  color: #edb;
-}
-
-.chessboard tr:nth-child(odd) td:nth-child(even) {
-  background-color: #b86;
-}
-
-.chessboard tr:nth-child(odd) td.target-square:nth-child(even) {
-  color: #edb;
-}
-
+.chessboard tr:nth-child(even) td:nth-child(even),
 .chessboard tr:nth-child(odd) td:nth-child(odd) {
   background-color: #edb;
 }
 
+.chessboard tr:nth-child(even) td.target-square:nth-child(even),
 .chessboard tr:nth-child(odd) td.target-square:nth-child(odd) {
   color: #b86;
+}
+
+.chessboard tr:nth-child(even) td:nth-child(odd),
+.chessboard tr:nth-child(odd) td:nth-child(even) {
+  background-color: #b86;
+}
+
+.chessboard tr:nth-child(even) td.target-square:nth-child(odd),
+.chessboard tr:nth-child(odd) td.target-square:nth-child(even) {
+  color: #edb;
 }
 
 /* === behaviour === */
