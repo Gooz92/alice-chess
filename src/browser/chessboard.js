@@ -157,9 +157,9 @@ function createClickHandler(chess) {
         return mv.targetSquare.name === self.id;
       })[0];
 
-      makeMove.call(this, move);
+      makeMove(move);
       var opMove = chess.findBestMove();
-      makeMove.call(this, opMove);
+      makeMove(opMove);
 
       console.log(++counter + '. ' + move.toSAN() + ' ' + opMove.toSAN());
     }
