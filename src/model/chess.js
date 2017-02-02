@@ -181,7 +181,7 @@ objectUtils.extend(Chess.prototype, {
   },
   
 
-  findBestMoveAB: function () {
+  findBestMove: function () {
     var self = this, bestMove;
 
     var ab = function (alpha, beta, depth) {

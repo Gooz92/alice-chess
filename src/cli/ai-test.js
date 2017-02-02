@@ -18,7 +18,7 @@ rl
       console.log('invalid move');
     } else {
       console.time('ab');
-      opponentMove = chess.findBestMoveAB();
+      opponentMove = chess.findBestMove();
       opponentMove.make();
       console.log(opponentMove.toSAN());
       console.timeEnd('ab');

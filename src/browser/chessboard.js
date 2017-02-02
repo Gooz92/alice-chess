@@ -6,7 +6,7 @@ var createElement = require('./utils/dom-utils').createElement,
   objectUtils = require('../utils/common-utils/object-utils'),
   langFns = require('../utils/common-utils/lang-fns');
 
-var activePiece;
+var squares = {}, activePiece;
 
 function createFilesLabelRow() {
   var row = createElement('tr'), label, fileName, index;
@@ -41,10 +41,13 @@ function createRank(rankIndex, chess) {
 
   for (index = 0; index < 8; index++) {
     fileName = boardUtils.fileIndexToName(index);
+
     square = createElement('td', {
       id: fileName + rankName,
       onclick: createClickHandler(chess)
     });
+
+    squares[square.id] = square;
 
     if (rankSquares[index].isOccupied()) {
       square.innerHTML =
@@ -84,10 +87,10 @@ function clearSquare(square) {
 }
 
 function makeMove(move) {
-  var targetSquare = document.getElementById(move.targetSquare.name), epSq;
+  var targetSquare = squares[move.targetSquare.name], epSq;
 
   if (move.capturedPawn) { // en passant
-    epSq = document.getElementById(move.capturedPawn.square.name);
+    epSq = squares[move.capturedPawn.square.name];
 
     clearSquare(epSq);
   }
@@ -96,12 +99,12 @@ function makeMove(move) {
 
   if (move.rook) { // is castling
 
-    document.getElementById(move.rook.square.name).innerHTML =
+    squares[move.rook.square.name].innerHTML =
       pieceCharacters[move.rook.fenToken];
 
-    document.getElementById(move.rook.square.name).className = 'occupied';
+    squares[move.rook.square.name].className = 'occupied';
 
-    clearSquare(document.getElementById(move.sourceRookSquare.name));
+    clearSquare(squares[move.sourceRookSquare.name]);
   }
 
   if (move.promotedPieceToken) {
@@ -112,7 +115,7 @@ function makeMove(move) {
 
   targetSquare.className = 'occupied';
 
-  var sourceSquare = document.getElementById(move.sourceSquare.name);
+  var sourceSquare = squares[move.sourceSquare.name];
 
   clearSquare(sourceSquare);
   activePiece = null;
@@ -131,7 +134,7 @@ function createClickHandler(chess) {
     if (square.isOccupiedByPlayer(chess.activeColor)) {
       square.piece.generateMoves().forEach(
         function (mv) {
-          var square = document.getElementById(mv.targetSquare.name);
+          var square = squares[mv.targetSquare.name];
 
           if (mv.targetSquare.isEmpty()) {
             square.className = 'target-square';
@@ -140,7 +143,7 @@ function createClickHandler(chess) {
           }
 
           if (mv.capturedPawn) { // en passant
-            square = document.getElementById(mv.capturedPawn.square.name);
+            square = squares[mv.capturedPawn.square.name];
             square.classList.add('captured-piece');
           }
         }
@@ -155,7 +158,7 @@ function createClickHandler(chess) {
       })[0];
 
       makeMove.call(this, move);
-      var opMove = chess.findBestMoveAB();
+      var opMove = chess.findBestMove();
       makeMove.call(this, opMove);
 
       console.log(++counter + '. ' + move.toSAN() + ' ' + opMove.toSAN());
