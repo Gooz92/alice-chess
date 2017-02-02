@@ -11,10 +11,6 @@ function Capture(sourceSquare, targetSquare) {
   this.disambiguateFile = false;
 }
 
-Capture.placeCapturedPiece = function (move) {
-
-};
-
 Capture.prototype = {
   constructor: Capture,
 

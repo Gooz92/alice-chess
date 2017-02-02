@@ -3,10 +3,10 @@
 var assert = require('chai').assert,
   Color = require('../color');
 
-describe('Color', function() {
+describe('Color', function () {
 
-  describe('#constructor', function() {
-    it('throw error', function( ) {
+  describe('#constructor', function () {
+    it('throw error', function () {
       var createColor = function () {
         return new Color('white');
       };
@@ -15,7 +15,7 @@ describe('Color', function() {
     });
   });
 
-  describe('#isWhite()', function() {
+  describe('#isWhite()', function () {
     it('return true for Color.WHITE', function () {
       var color = Color.WHITE;
       assert.isTrue(color.isWhite());
@@ -39,7 +39,7 @@ describe('Color', function() {
     });
   });
 
-  describe('#toggle()', function() {
+  describe('#toggle()', function () {
     it('return Color.WHITE for Color.BLACK', function () {
       var white = Color.BLACK.toggle();
       assert.equal(white, Color.WHITE);
@@ -71,10 +71,9 @@ describe('Color', function() {
     });
   });
 
-  describe('.getByToken()', function() {
+  describe('.getByToken()', function () {
     it("return Color.WHITE for 'w'", function () {
-      var color;
-      color = Color.getByToken('w');
+      var color = Color.getByToken('w');
       return assert.equal(color, Color.WHITE);
     });
 
@@ -84,7 +83,7 @@ describe('Color', function() {
     });
 
     it("throw error if token is not 'w' or 'b'", function () {
-      var getNotExistingColor = function() {
+      var getNotExistingColor = function () {
         return Color.getByToken('r');
       };
 
@@ -102,18 +101,17 @@ describe('Color', function() {
       var color = Color.getByFlag(false);
       assert.equal(color, Color.BLACK);
     });
-
-    describe('.getByIndex()', function () {
-      it('return Color.WHITE for 1', function () {
-        var color = Color.getByIndex(1);
-        assert.equal(color, Color.WHITE);
-      });
-
-      it('return Color.BLACK for 0', function () {
-        var color = Color.getByIndex(0);
-        assert.equal(color, Color.BLACK);
-      });
-    });
   });
 
+  describe('.getByIndex()', function () {
+    it('return Color.WHITE for 1', function () {
+      var color = Color.getByIndex(1);
+      assert.equal(color, Color.WHITE);
+    });
+
+    it('return Color.BLACK for 0', function () {
+      var color = Color.getByIndex(0);
+      assert.equal(color, Color.BLACK);
+    });
+  });
 });
