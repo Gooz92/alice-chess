@@ -52,12 +52,16 @@ describe('Moves generation', function () {
     });
 
     it("queen shoul'd jump over pieces", function () {
-      var queen = chess.placePiece('Q', 'b1'),
-        queenMoveTargetSquareNames;
+      var queen, queenMoveTargetSquareNames;
+      
+      chess.place({
+        b1: 'Q',
+        d3: 'P',
+        b3: 'P',
+        e1: 'P'
+      });
 
-      chess.placePiece('P', 'b3');
-      chess.placePiece('P', 'd3');
-      chess.placePiece('P', 'e1');
+      queen = chess.squares.b1.piece;
 
       queenMoveTargetSquareNames = queen.generateTargetSquareNames();
 
@@ -74,7 +78,7 @@ describe('Moves generation', function () {
       chess = new Chess();
     });
 
-    it('lang-ranged piece', function () {
+    it('long-ranged piece', function () {
       var whiteRook, rookTargerSquareNames;
 
       chess.place({
