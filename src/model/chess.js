@@ -6,7 +6,6 @@ var Square = require('./square'),
   objectUtils = require('../utils/common-utils/object-utils'),
   rays = require('../utils/chess-utils/rays'),
   startPosition = require('../utils/chess-utils/start-position'),
-  movesDisambiguation = require('./move-factory/moves-disambiguation'),
   isMayAttacked = require('../utils/chess-utils/is-may-attacked'),
   squares = require('../utils/chess-utils/squares');
 
