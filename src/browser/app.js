@@ -6,6 +6,12 @@ var createChessboard = require('./chessboard'),
 var chess = Chess.createStartPosition();
 
 document.addEventListener('DOMContentLoaded', function (event) {
-  document.getElementById('board-container')
-    .appendChild(createChessboard(chess));
+  var boardContainer = document.getElementById('board-container'),
+    fen = document.createElement('div');
+  
+  fen.id = 'fen-container';
+  fen.innerText = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
+
+  boardContainer.appendChild(createChessboard(chess));
+  boardContainer.appendChild(fen);
 });

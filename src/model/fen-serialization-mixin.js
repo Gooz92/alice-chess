@@ -58,10 +58,10 @@ module.exports = {
   },
 
   generateHalfmoveClock: function () {
-    var clock = 0, move, index;
+    var clock = 0, history = this.getHistory(), move, index;
 
-    for (index = this.history.length - 1; index >= 0; index--) {
-      move = this.history[index];
+    for (index = history.length - 1; index >= 0; index--) {
+      move = history[index];
 
       if (!move.piece.isPawn() && !move.capturedPiece) {
         ++clock;
@@ -72,7 +72,7 @@ module.exports = {
   },
 
   generateFullmoveNumber: function () {
-    return Math.ceil((this.history.length + 1) / 2);
+    return Math.ceil((this.getHistory().length + 1) / 2);
   },
 
   generateFen: function () {

@@ -162,6 +162,8 @@ function createClickHandler(chess) {
       makeMove(opMove);
 
       console.log(++counter + '. ' + move.toSAN() + ' ' + opMove.toSAN());
+
+      document.getElementById('fen-container').innerText = chess.generateFen();
     }
   };
 }

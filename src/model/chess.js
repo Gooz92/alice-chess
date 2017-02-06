@@ -116,15 +116,23 @@ objectUtils.extend(Chess.prototype, {
     return moves;
   },
 
-  getSanHistory: function () {
+  getHistory: function () {
     var history = [], move = this.previousMove;
 
     do {
-      history.unshift(move.toSAN());
+      history.unshift(move);
       move = move.previousMove;
     } while (move);
 
     return history;
+  },
+
+  getSanHistory: function () {
+    var history = this.getHistory();
+
+    return history.map(function (move) {
+      return move.toSAN();
+    });
   },
 
   // TODO refactor
