@@ -178,7 +178,6 @@ objectUtils.extend(Chess.prototype, {
 
     return result + this.calculateMobility();
   },
-  
 
   findBestMove: function () {
     var self = this, bestMove;
@@ -221,7 +220,9 @@ objectUtils.extend(Chess.prototype, {
     
 
    ab(Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY, 3);
-   return bestMove;
+   
+   // fix this. What I should do in mate\stalemate positions (score = -Infinity)
+   return bestMove || this.generateMoves()[0];
   },
 
   // used only during move generation
