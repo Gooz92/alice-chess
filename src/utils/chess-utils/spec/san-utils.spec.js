@@ -1,6 +1,6 @@
 'use strict';
 
-var assert = require('chai').assert,
+var { assert } = require('chai'),
   sanUtils = require('../san-utils');
 
 describe('sanUtils', function () {

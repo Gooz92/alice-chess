@@ -3,8 +3,7 @@
 var fenUtils = require('../chess-utils/fen-utils'),
   langFns = require('../common-utils/lang-fns'),
   fnUtils = require('../common-utils/fn-utils'),
-  objectUtils = require('../common-utils/object-utils'),
-  throwError = require('../common-utils/throw-error');
+  objectUtils = require('../common-utils/object-utils');
 
 var rankLength = 8,
   maxFileIndex = 7;
@@ -20,11 +19,11 @@ function RankParser(handlers) {
 }
 
 function throwTooLongRankError(rank) {
-  throwError("Rank '{0}' is too long", rank);
+  throw new Error(`Rank '${rank}' is too long`);
 }
 
 function throwRepeatedEmptySquareTokensError(rank) {
-  throwError("Consecutively repeated empty square tokens in rank '{0}'", rank);
+  throw new Error(`Consecutively repeated empty square tokens in rank '${rank}'`);
 }
 
 RankParser.prototype.parse = function (rank, data) {
@@ -65,12 +64,12 @@ RankParser.prototype.parse = function (rank, data) {
 
       handlers.onPieceToken.call(data, token, fileIndex++);
     } else {
-      throwError("Unknown token '{0}' in rank '{1}'", token, rank);
+      throw new Error(`Unknown token '${token}' in rank '${rank}'`);
     }
   });
 
   if (fileIndex < rankLength) {
-    throwError("Rank '{0}' is too short", rank);
+    throw new Error(`Rank '${rank}' is too short`);
   }
 
   return handlers.onEnd.call(data, rank);

@@ -1,7 +1,5 @@
 'use strict';
 
-var throwError = require('./throw-error');
-
 /**
  * @module booleanUtils
  */
@@ -108,6 +106,6 @@ var booleanUtils = module.exports = {
       return false;
     }
 
-    throwError("Invalid argument: '{0}'. It must be 'true' or 'false'!", value);
+    throw new Error(`Invalid argument: '${value}'. It must be 'true' or 'false'!`);
   }
 };

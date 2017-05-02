@@ -1,6 +1,6 @@
 'use strict';
 
-var isTypeUtils = require('./is-type-utils');
+const { isNill } = require('./is-type-utils');
 
 var stringUtils = module.exports = {
   repeat: function (str, times) {
@@ -42,7 +42,7 @@ var stringUtils = module.exports = {
       doubleQuotesCount = 0,
       qoutes, match;
 
-    if (isTypeUtils.isNill(str)) {
+    if (isNill(str)) {
       return "''";
     }
 

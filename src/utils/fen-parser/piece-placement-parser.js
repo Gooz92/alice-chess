@@ -1,8 +1,7 @@
 'use strict';
 
 var RankParser = require('./rank-parser'),
-  langFns = require('../common-utils/lang-fns'),
-  throwError = require('../common-utils/throw-error');
+  langFns = require('../common-utils/lang-fns');
 
 var ranksCount = 8;
 
@@ -28,7 +27,7 @@ PiecePlacementParser.prototype.parse = function (piecePlacement, data) {
   ranks = piecePlacement.split('/');
 
   if (ranks.length !== ranksCount) {
-    throwError("Invalid ranks count: '{0}'", ranks.length);
+    throw new Error(`Invalid ranks count: '${ranks.length}'`);
   }
 
   ranks.forEach(function (rank) {
