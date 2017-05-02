@@ -1,10 +1,8 @@
-'use strict';
-
 /**
  * @module isTypeUtils
  */
 
-var isTypeUtils = module.exports = {
+const isTypeUtils = module.exports = {
 
   /**
    * Checks if a value is object and not null
@@ -14,9 +12,7 @@ var isTypeUtils = module.exports = {
    * @return {boolean}
    */
 
-  isObject: function (value) {
-    return value !== null && typeof value === 'object';
-  },
+  isObject: value => value !== null && typeof value === 'object',
 
   /**
    * Checks if a value is plain object
@@ -27,9 +23,7 @@ var isTypeUtils = module.exports = {
    * @returns {boolean}
    */
 
-  isPlainObject: function (value) {
-    return isTypeUtils.isObject(value) && value.constructor.name === 'Object';
-  },
+  isPlainObject: value => isTypeUtils.isObject(value) && value.constructor.name === 'Object',
 
   /**
    * Checks if type of value is function
@@ -39,9 +33,7 @@ var isTypeUtils = module.exports = {
    * @return {boolean}
    */
 
-  isFunction: function (value) {
-    return typeof value === 'function';
-  },
+  isFunction: value => typeof value === 'function',
 
   /**
    * Checks if type of value is string
@@ -51,9 +43,7 @@ var isTypeUtils = module.exports = {
    * @return {boolean}
    */
 
-  isString: function (value) {
-    return typeof value === 'string';
-  },
+  isString: value => typeof value === 'string',
 
   /**
    * Checks if type of value is number
@@ -63,9 +53,7 @@ var isTypeUtils = module.exports = {
    * @return {boolean}
    */
 
-  isNumber: function (value) {
-    return typeof value === 'number';
-  },
+  isNumber: value => typeof value === 'number',
 
   /**
    * Checks if type of value is boolean
@@ -75,9 +63,7 @@ var isTypeUtils = module.exports = {
    * @return {boolean}
    */
 
-  isBoolean: function (value) {
-    return typeof value === 'boolean';
-  },
+  isBoolean: value => typeof value === 'boolean',
 
   /**
    * Checks if type of value is undefined
@@ -87,9 +73,7 @@ var isTypeUtils = module.exports = {
    * @return {boolean}
    */
 
-  isUndefined: function (value) {
-    return typeof value === 'undefined';
-  },
+  isUndefined: (value) => typeof value === 'undefined',
 
   /**
    * Checks if type of value is not undefined
@@ -99,9 +83,7 @@ var isTypeUtils = module.exports = {
    * @return {boolean}
    */
 
-  isDefined: function (value) {
-    return typeof value !== 'undefined';
-  },
+  isDefined: value => typeof value !== 'undefined',
 
   /**
    * Checks if a value is null or undefined
@@ -111,9 +93,7 @@ var isTypeUtils = module.exports = {
    * @return {boolean}
    */
 
-  isNill: function (value) {
-    return value === null || isTypeUtils.isUndefined(value);
-  },
+  isNill: value => value === null || isTypeUtils.isUndefined(value),
 
   /**
    * Check if a value is not null and not undefined
@@ -123,7 +103,5 @@ var isTypeUtils = module.exports = {
    * @return {boolean}
    */
 
-  isNotNill: function (value) {
-    return value !== null && isTypeUtils.isDefined(value);
-  }
+  isNotNill: value => value !== null && isTypeUtils.isDefined(value)
 };

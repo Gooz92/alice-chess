@@ -1,6 +1,6 @@
 'use strict';
 
-var Square = require('./square'),
+const Square = require('./square'),
   Color = require('./color'),
   Piece = require('./piece'),
   objectUtils = require('../utils/common-utils/object-utils'),
@@ -9,11 +9,9 @@ var Square = require('./square'),
   isMayAttacked = require('../utils/chess-utils/is-may-attacked'),
   squares = require('../utils/chess-utils/squares');
 
-var squareIndexes = Object.keys(squares).map(function (square) {
-  return squares[square];
-});
+const squareIndexes = Object.keys(squares).map(squareName => squares[squareName]);
 
-var pieceCost = {
+const pieceCost = {
   q: 90,
   r: 50,
   b: 30,

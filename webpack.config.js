@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 
-const version = require('./package.json').version;
+const { version } = require('./package.json');
 const date = getDate();
 
 function getDate() {
@@ -30,7 +30,14 @@ module.exports = {
 
   module: {
     loaders: [
-      { test: /\.hbs$/, loader: 'handlebars-loader' }
+      { test: /\.hbs$/, loader: 'handlebars-loader' },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015']
+        }
+      }
     ]
   },
 

@@ -14,7 +14,7 @@ module.exports = {
    * @arg {function} fn
    */
 
-  times: function (n, fn) {
+  times(n, fn) {
     while (n-- > 0) {
       fn();
     }
@@ -28,9 +28,5 @@ module.exports = {
    * @return {function} function that return given value
    */
 
-  constant: function (value) {
-    return function () {
-      return value;
-    };
-  }
+  constant: value => () => value
 };
