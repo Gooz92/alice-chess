@@ -1,7 +1,6 @@
 'use strict';
 
-var isTypeUtils = require('../../common-utils/is-type-utils'),
-  stringUtils = require('../../common-utils/string-utils'),
+var stringUtils = require('../../common-utils/string-utils'),
   objectUtils = require('../../common-utils/object-utils');
 
 var defaultOptions = {

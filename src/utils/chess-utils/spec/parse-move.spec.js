@@ -1,7 +1,7 @@
 'use strict';
 
 var parseMove = require('../parse-move'),
-  assert = require('chai').assert;
+  { assert } = require('chai');
 
 describe('parseMove()', function () {
   it("return object with piece = 'P' for pawn moves", function () {

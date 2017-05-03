@@ -175,7 +175,7 @@ objectUtils.extend(Chess.prototype, {
   evaluate: function () {
 
     var playerPieces = this.getPlayerPieces();
-    var result = 0, mobility = 0;
+    var result = 0;
 
     playerPieces.forEach(function (piece) {
       if (piece.isKing()) return;

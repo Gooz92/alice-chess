@@ -1,6 +1,6 @@
 'use strict';
 
-var assert = require('chai').assert,
+const { assert } = require('chai'),
   fenUtils = require('../fen-utils');
 
 describe('fenUtils', function () {

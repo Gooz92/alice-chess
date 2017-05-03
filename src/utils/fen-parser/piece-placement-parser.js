@@ -1,17 +1,17 @@
 'use strict';
 
-var RankParser = require('./rank-parser'),
-  langFns = require('../common-utils/lang-fns');
+const RankParser = require('./rank-parser'),
+  { noop } = require('../common-utils/lang-fns'),
+  { defaults } = require('../common-utils/object-utils');
 
 var ranksCount = 8;
 
-function PiecePlacementParser(handlers) {
-  handlers = handlers || {};
+function PiecePlacementParser(handlers = {}) {
 
-  this.handlers = {
-    onStart: handlers.onStart || langFns.noop,
-    onEnd: handlers.onEnd || langFns.noop
-  };
+  this.handlers = defaults(handlers, {
+    onStart: noop,
+    onEnd: noop
+  });
 
   this.rankParser = new RankParser(handlers.rank);
 }
