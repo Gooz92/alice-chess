@@ -185,7 +185,7 @@ objectUtils.extend(Chess.prototype, {
     return result + this.calculateMobility();
   },
 
-  findBestMove: function () {
+  findBestMove: function (maxDepth = 3) {
     var self = this, bestMove;
 
     var ab = function (alpha, beta, depth) {
@@ -207,14 +207,14 @@ objectUtils.extend(Chess.prototype, {
         moves[index].unMake();
 
         if (score >= beta) {
-          if (depth === 3) {
+          if (depth === maxDepth) {
             bestMove = moves[index];
           }
           return beta;
         }
 
         if (score > alpha) {
-          if (depth === 3) {
+          if (depth === maxDepth) {
             bestMove = moves[index];
           }
           alpha = score;
