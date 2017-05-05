@@ -1,7 +1,5 @@
 'use strict';
 
-var arrayUtils = require('../../utils/common-utils/array-utils');
-
 function ShortCastling(king, rook) {
   this.sourceSquare = king.square;
   this.king = king;

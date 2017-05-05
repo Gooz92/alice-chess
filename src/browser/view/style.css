@@ -52,13 +52,11 @@ body {
   text-align: center;
 }
 
-.chessboard tr:first-child th {
-  height: 22px;
-}
-
+.chessboard tr:first-child th,
 .chessboard tr:last-child th {
   height: 22px;
 }
+
 
 /* === borders === */
 

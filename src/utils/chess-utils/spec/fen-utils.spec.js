@@ -131,16 +131,4 @@ describe('fenUtils', function () {
       assert.isTrue(fenUtils.isEnPassantSquareToken('-'));
     });
   });
-
-  describe('.colorNameFromPieceToken()', function () {
-    it("return 'white' color name for uppercase fen piece token", function () {
-      var colorName = fenUtils.colorNameFromPieceToken('P');
-      assert.strictEqual(colorName, 'white');
-    });
-
-    it("return 'black' color name for lowercase fen piece token", function () {
-      var colorName = fenUtils.colorNameFromPieceToken('p');
-      assert.strictEqual(colorName, 'black');
-    });
-  });
 });

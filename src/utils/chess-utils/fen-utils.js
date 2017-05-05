@@ -1,59 +1,14 @@
-'use strict';
-
-var sanUtils = require('./san-utils');
-
-var pieceTokenPattern = /^[prnbqk]$/i,
-  emptySquaresToken = /^[1-8]$/,
-  castlingTokens = 'kqKQ';
-
-var pieceNames = {
-  p: 'pawn',
-  r: 'rook',
-  n: 'knight',
-  b: 'bishop',
-  q: 'queen',
-  k: 'king'
-};
+const test = pattern => token => pattern.test(token);
 
 module.exports = {
-  isPieceToken: function (token) {
-    return pieceTokenPattern.test(token);
-  },
 
-  isEmptySquaresToken: function (token) {
-    return emptySquaresToken.test(token);
-  },
+  isPieceToken: test(/^[prnbqk]$/i),
 
-  isColorToken: function (token) {
-    return token === 'w' || token === 'b';
-  },
+  isEmptySquaresToken: test(/^[1-8]$/),
 
-  isCastlingToken: function (token) {
-    return castlingTokens.indexOf(token) !== -1;
-  },
+  isColorToken: test(/^[wb]$/),
 
-  isEnPassantSquareToken: function (squareName) {
-    var rankName;
+  isCastlingToken: test(/^[kq]$/i),
 
-    if (squareName === '-') {
-      return true;
-    }
-
-    if (!sanUtils.isSquareName(squareName)) {
-      return false;
-    }
-
-    rankName = squareName.charAt(1);
-    return rankName === '6' || rankName === '3';
-  },
-
-  colorNameFromPieceToken: function (fenPieceToken) {
-    var pieceToken = fenPieceToken.toLowerCase();
-
-    return pieceToken === fenPieceToken ? 'black' : 'white';
-  },
-
-  tokenToPieceName: function (fenPieceToken) {
-    return pieceNames[fenPieceToken];
-  }
+  isEnPassantSquareToken: test(/^([a-h][63])|-$/)
 };
