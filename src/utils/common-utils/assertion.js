@@ -1,26 +1,19 @@
-'use strict';
+const throwError = require('./throw-error'),
+  { isTrue, isFalse } = require('./boolean-utils.js'),
+  { equal } = require('./lang-fns.js');
 
-var arrayUtils = require('./array-utils'),
-  throwError = require('./throw-error');
+const DEFAULT_MESSAGE = 'Assertion error';
 
-function createUnaryAssertion(fn, message) {
-  var defaultMessage = message || 'Assertion error';
-
-  return function (arg, customMessage) {
-    var message = customMessage || defaultMessage;
-
+function createUnaryAssertion(fn, message = DEFAULT_MESSAGE) {
+  return (arg, customMessage = message) => {
     if (!fn(arg)) {
-       throwError(message, arg);
+       throwError(customMessage, arg);
     }
   };
 }
 
-function createBinaryAssertion(fn, message) {
-  var defaultMessage = message || 'Assertion error';
-
-  return function (arg1, arg2, customMessage) {
-    var message = customMessage || defaultMessage;
-
+function createBinaryAssertion(fn, message = DEFAULT_MESSAGE) {
+  return (arg1, arg2, customMessage = message) => {
     if (!fn(arg1, arg2)) {
       throwError(message, arg1, arg2);
     }
@@ -28,18 +21,12 @@ function createBinaryAssertion(fn, message) {
 }
 
 module.exports = {
-  createUnaryAssertion: createUnaryAssertion,
-  createBinaryAssertion: createBinaryAssertion,
+  createUnaryAssertion,
+  createBinaryAssertion,
 
-  isTrue: createUnaryAssertion(function (arg) {
-    return arg === true;
-  }),
+  isTrue: createUnaryAssertion(isTrue),
 
-  isFalse: createUnaryAssertion(function (arg) {
-      return arg === false;
-  }),
+  isFalse: createUnaryAssertion(isFalse),
 
-  equal: createBinaryAssertion(function (arg1, arg2) {
-    return arg1 == arg2;
-  })
+  equal: createBinaryAssertion(equal)
 };
