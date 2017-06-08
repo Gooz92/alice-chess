@@ -31,7 +31,7 @@ describe('assertion', () => {
   describe('.isFalse()', () => {
 
     it('throw error when argument is true', () => {
-      assert.throws(() => assertion.isFalse(false));
+      assert.throws(() => assertion.isFalse(true));
     });
 
     it('throw error when argument is falsy', () => {
@@ -43,7 +43,7 @@ describe('assertion', () => {
     });
 
     it('do nothing if argument is false', () => {
-      assertion.isFalse(true);
+      assertion.isFalse(false);
     });
   });
 });
