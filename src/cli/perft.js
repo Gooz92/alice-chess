@@ -1,40 +1,29 @@
-'use strict';
-
-var Chess = require('../model/chess'),
-  formatTime = require('../utils/common-utils/format-time');
+const Chess = require('../model/chess');
+const formatTime = require('../utils/common-utils/format-time');
 
 var chess = Chess.createStartPosition(),
   initialDepth = process.argv[2],
-  moves = process.argv.splice(3),
   leaves = 0;
 
 initialDepth = parseInt(initialDepth);
 
-function executeMoves(moves) {
-  var index;
+const results = [
+  1,
+  20,
+  400,
+  8902,
+  197281,
+  4865609,
+  119060324
+];
 
-  for (index = 0; index < moves.length; index++) {
-    if (!chess.move(moves[index])) {
-      console.log("Invalid move: '" + moves[index] + "'");
-      return false;
-    }
+var time = Date.now();
+// use callbacks insignificant slow down iteration
+chess.traverse(initialDepth, {
+  onMaxDepthReached: function () {
+    ++leaves;
   }
+});
 
-  return true;
-}
-
-try {
-  if (executeMoves(moves)) {
-    var time = Date.now();
-    // use callbacks insignificant slow down iteration
-    chess.traverse(initialDepth, {
-      onMaxDepthReached: function () {
-        ++leaves;
-      }
-    });
-    console.log(leaves);
-    console.log(formatTime(Date.now() - time));
-  }
-} catch (e) {
-  console.log(chess.getSanHistory().join(' '));
-}
+console.log(leaves, results[initialDepth] === leaves);
+console.log(formatTime(Date.now() - time));

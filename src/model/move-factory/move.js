@@ -1,8 +1,5 @@
 'use strict';
 
-var arrayUtils = require('../../utils/common-utils/array-utils'),
-  objectUtils = require('../../utils/common-utils/object-utils');
-
 function Move(sourceSquare, targetSquare) {
   this.sourceSquare = sourceSquare;
   this.targetSquare = targetSquare;

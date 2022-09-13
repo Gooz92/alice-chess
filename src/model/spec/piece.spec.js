@@ -2,7 +2,6 @@
 
 var assert = require('chai').assert,
   Piece = require('../piece'),
-  Color = require('../color'),
   Chess = require('../chess');
 
 describe('Piece', function () {

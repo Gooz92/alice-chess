@@ -4,7 +4,7 @@ var assert = require('chai').assert,
   Chess = require('../chess');
 
 describe('King', function () {
-  describe('#generateTargetSquareNames()', function (params) {
+  describe('#generateTargetSquareNames()', function () {
 
     var chess;
     beforeEach(function () {

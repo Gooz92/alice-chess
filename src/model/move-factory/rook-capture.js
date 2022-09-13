@@ -15,7 +15,7 @@ RookCapture.prototype = {
    RookMove.prototype.make.call(this);
   },
 
-  unMake: function (params) {
+  unMake: function () {
     RookMove.prototype.unMake.call(this);
     Capture.prototype._placeCapturedPiece.call(this);
   },

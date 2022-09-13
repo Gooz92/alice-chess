@@ -9,8 +9,7 @@ var Chess = require('../model/chess'),
   formatTime = require('../utils/common-utils/format-time');
 
 var chess = new Chess(),
-  initialDepth = process.argv[2],
-  moves = process.argv.splice(3);
+  initialDepth = process.argv[2];
 
 initialDepth = parseInt(initialDepth);
 

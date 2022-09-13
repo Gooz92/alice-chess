@@ -1,6 +1,4 @@
-'use strict';
-
-var objectUtils = require('../utils/common-utils/object-utils'),
+const objectUtils = require('../utils/common-utils/object-utils'),
   boardUtils = require('../utils/chess-utils/board-utils'),
   Color = require('./color'),
   moveFactory = require('./move-factory'),
@@ -23,7 +21,7 @@ function createPieceConstructors(pieces) {
   });
 }
 
-var constructors = createPieceConstructors(pieces);
+const constructors = createPieceConstructors(pieces);
 
 function Piece(color, square, fenToken) {
   this.color = color;
@@ -41,7 +39,7 @@ Piece.create = function (fenToken, square) {
   return new PieceConstructor(color, square, fenToken);
 };
 
-var piecePrototype = {
+const piecePrototype = {
 
   moveTo: function (square) {
     this.square.piece = null;
@@ -50,18 +48,18 @@ var piecePrototype = {
   },
 
   /*
-   * This implemetation use by rook, bishop and queen.
-   * For pawn, knight and king used implementation placed in corresonding module
+   * This implementation use by rook, bishop and queen.
+   * For pawn, knight and king used implementation placed in corresponding module
    */
   forEachMove: function (callback, pseudoLegal) {
-    var targetSquareIndex, targetSquare, move, index, offset;
+    var move;
 
-    for (index = 0; index < this.offsets.length; index++) {
-      offset = this.offsets[index];
-      targetSquareIndex = this.square.index;
+    for (let index = 0; index < this.offsets.length; index++) {
+      const offset = this.offsets[index];
+      let targetSquareIndex = this.square.index;
 
       while (boardUtils.isSquareOnBoard(targetSquareIndex += offset)) {
-        targetSquare = this.square.chess.squares[targetSquareIndex];
+        const targetSquare = this.square.chess.squares[targetSquareIndex];
 
         if (targetSquare.isOccupied()) {
           if (targetSquare.piece.color !== this.color) {

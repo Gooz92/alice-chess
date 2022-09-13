@@ -1,10 +1,9 @@
 'use strict';
 
 var noop = require('../utils/common-utils/lang-fns').noop,
-  objectUtils = require('../utils/common-utils/object-utils'),
-  arrayUtils = require('../utils/common-utils/array-utils');
+  objectUtils = require('../utils/common-utils/object-utils');
 
-var traverseMixin = module.exports = {
+module.exports = {
   traverse: function (depth, callbacks) {
     var chess = this;
 
