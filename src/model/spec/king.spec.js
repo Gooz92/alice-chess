@@ -4,10 +4,10 @@ var assert = require('chai').assert,
   Chess = require('../chess');
 
 describe('King', function () {
-  describe('#generateTargetSquareNames()', function () {
+  describe('#generateTargetSquareNames()', () => {
 
-    var chess;
-    beforeEach(function () {
+    let chess;
+    beforeEach(() => {
       chess = new Chess();
     });
 

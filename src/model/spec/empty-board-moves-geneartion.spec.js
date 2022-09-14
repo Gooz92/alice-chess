@@ -17,7 +17,7 @@ describe('Empty board moves', function () {
           var moves = squares[square],
             chess = new Chess(),
             piece = chess.placePiece(pieceToken, square),
-            generatedMoves = piece.generateTargetSquareNames();
+            generatedMoves = piece.generateTargetSquareNames(true);
 
           assert.sameMembers(generatedMoves, moves);
         });

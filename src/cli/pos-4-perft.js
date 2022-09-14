@@ -4,7 +4,6 @@ var Chess = require('../model/chess');
 
 var chess = new Chess(),
   initialDepth = process.argv[2],
-  moves = process.argv.splice(3),
   leaves = 0;
 
 initialDepth = parseInt(initialDepth);

@@ -19,7 +19,7 @@ describe('Moves generation', function () {
 
       chess.placePiece('N', 'c3');
 
-      pawnMoves = pawn.generateMoves();
+      pawnMoves = pawn.generateMoves(true);
 
       assert.sameMembers(pawnMoves, []);
     });
@@ -31,7 +31,7 @@ describe('Moves generation', function () {
       chess.placePiece('N', 'd8'); // black rook may capture this white knight
       chess.placePiece('b', 'a6');
 
-      rookMoveTargetSquareNames = rook.generateTargetSquareNames();
+      rookMoveTargetSquareNames = rook.generateTargetSquareNames(true);
 
       assert.sameMembers(rookMoveTargetSquareNames, [
         'b8', 'c8', 'd8', 'a7'
@@ -44,7 +44,7 @@ describe('Moves generation', function () {
 
       chess.placePiece('r', 'f6');
 
-      bishopMoveTargetSquareNames = bishop.generateTargetSquareNames();
+      bishopMoveTargetSquareNames = bishop.generateTargetSquareNames(true);
 
       assert.sameMembers(bishopMoveTargetSquareNames, [
         'b2', 'c3', 'd4', 'e5'
@@ -63,7 +63,7 @@ describe('Moves generation', function () {
 
       queen = chess.squares.b1.piece;
 
-      queenMoveTargetSquareNames = queen.generateTargetSquareNames();
+      queenMoveTargetSquareNames = queen.generateTargetSquareNames(true);
 
       assert.sameMembers(queenMoveTargetSquareNames, [
         'a1', 'c1', 'd1', 'b2', 'a2', 'c2'

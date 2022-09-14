@@ -18,7 +18,7 @@ describe('Pawn', function () {
       chess.placePiece('p', 'd5');
       chess.enPassantTargetSquare = chess.squares.d6;
 
-      moves = pawn.generateTargetSquareNames();
+      moves = pawn.generateTargetSquareNames(true);
 
       assert.sameMembers(moves, ['e6', 'd6']);
     });
@@ -30,7 +30,7 @@ describe('Pawn', function () {
       chess.placePiece('P', 'e4');
       chess.enPassantTargetSquare = chess.squares.e3;
 
-      captures = pawn.generateTargetSquareNames();
+      captures = pawn.generateTargetSquareNames(true);
 
       assert.sameMembers(captures, ['d3', 'e3']);
     });

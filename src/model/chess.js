@@ -231,18 +231,12 @@ objectUtils.extend(Chess.prototype, {
 
   // used only during move generation
   isOpponentInCheck: function () {
-    var opponentKing = this.kings[+!this.activeColor.index];
-
-    if (!opponentKing) {
-      return false;
-    }
-
+    const opponentKing = this.kings[+!this.activeColor.index];
     return this.isSquareAttacked(opponentKing.square.index, this.activeColor);
   },
 
   isSquareAttackedByPiece: function (target, piece) {
     let source = piece.square.index;
-    const attackIndex = target - piece.square.index + 119;
 
     if (!isMayAttacked(source, target, piece.fenToken)) {
       return false;
@@ -252,6 +246,7 @@ objectUtils.extend(Chess.prototype, {
       return true;
     }
 
+    const attackIndex = target - piece.square.index + 119;
     while ((source += rays[attackIndex]) !== target) {
       if (this.squares[source].isOccupied()) {
         return false;

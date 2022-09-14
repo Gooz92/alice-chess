@@ -30,8 +30,8 @@ const attacks = [
 ];
 
 module.exports = function (fromIndex, toIndex, pieceFenToken) {
-  var attackIndex = toIndex - fromIndex + offset,
-    pieceAttackMask = pieceAttackMasks[pieceFenToken];
+  const attackIndex = toIndex - fromIndex + offset;
+  const pieceAttackMask = pieceAttackMasks[pieceFenToken];
 
   return (attacks[attackIndex] & pieceAttackMask) !== 0;
 };

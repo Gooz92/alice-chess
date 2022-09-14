@@ -89,21 +89,19 @@ const piecePrototype = {
     return moveCount;
   },
 
-  mapTargetSquares: function (callback) {
-    var results = [];
+  mapTargetSquares: function (callback, pseudoLegal) {
+    const results = [];
 
-    this.forEachMove(function (move) {
-      var result = callback(move.targetSquare);
+    this.forEachMove(move => {
+      const result = callback(move.targetSquare);
       results.push(result);
-    });
+    }, pseudoLegal);
 
     return results;
   },
 
-  generateTargetSquareNames: function () {
-    return this.mapTargetSquares(function (square) {
-      return square.name;
-    });
+  generateTargetSquareNames(pseudoLegal = false) {
+    return this.mapTargetSquares(square => square.name, pseudoLegal);
   },
 
   generateMoves: function (pseudoLegal) {

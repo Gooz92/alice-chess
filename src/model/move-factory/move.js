@@ -10,7 +10,7 @@ function Move(sourceSquare, targetSquare) {
 }
 
 Move.make = function (move) {
-  var chess = move.targetSquare.chess;
+  const chess = move.targetSquare.chess;
 
   move.sourceSquare.piece.moveTo(move.targetSquare);
 
