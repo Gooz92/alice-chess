@@ -18,25 +18,22 @@ module.exports = {
 };
 
 function traverse(depthLeft, callbacks, chess) {
-  var playerPieces, index;
 
   if (depthLeft === 0) {
     return callbacks.onMaxDepthReached();
   }
 
-  playerPieces = [].concat(chess.getPlayerPieces());
+  const moves = chess.generateMoves(true);
 
-  for (index = 0; index < playerPieces.length; index++) {
-    playerPieces[index].forEachMove(function (move) {
-      move.make();
+  moves.forEach(move => {
+    move.make();
 
-      if (!chess.isOpponentInCheck()) {
-        callbacks.onBranchStartTraverse(move);
-        traverse(depthLeft - 1, callbacks, chess);
-        callbacks.onBranchEndTraverse(move);
-      }
+    if (!chess.isOpponentInCheck()) {
+      callbacks.onBranchStartTraverse(move);
+      traverse(depthLeft - 1, callbacks, chess);
+      callbacks.onBranchEndTraverse(move);
+    }
 
-      move.unMake();
-    }, true);
-  }
+    move.unMake();
+  });
 }

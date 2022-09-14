@@ -1,35 +1,34 @@
 'use strict';
 
-var boardUtils = require('../../utils/chess-utils/board-utils'),
-  moveFactory = require('../move-factory');
+const boardUtils = require('../../utils/chess-utils/board-utils');
+const moveFactory = require('../move-factory');
 
-var offsets = [14, 18, 31, 33, -14, -18, -31, -33];
+const offsets = [14, 18, 31, 33, -14, -18, -31, -33];
 
 module.exports = {
   token: 'n',
 
-  forEachMove: function (callback, pseuodoLegal) {
-    var self = this;
+  forEachMove: function (callback, pseudoLegal) {
 
-    offsets.forEach(function (offset) {
-      var targetSquareIndex = self.square.index + offset,
+    offsets.forEach(offset => {
+      var targetSquareIndex = this.square.index + offset,
         targetSquare, move;
 
       if (boardUtils.isSquareOutOfBoard(targetSquareIndex)) {
         return;
       }
 
-      targetSquare = self.square.chess.squares[targetSquareIndex];
+      targetSquare = this.square.chess.squares[targetSquareIndex];
 
       if (targetSquare.isEmpty()) {
-        move = moveFactory.createSilentMove(self.square, targetSquare);
-      } else if (targetSquare.isOccupiedByOpponent(self.color)) {
-        move = moveFactory.createCapture(self.square, targetSquare);
+        move = moveFactory.createSilentMove(this.square, targetSquare);
+      } else if (targetSquare.isOccupiedByOpponent(this.color)) {
+        move = moveFactory.createCapture(this.square, targetSquare);
       } else {
         return;
       }
 
-      if (pseuodoLegal || !targetSquare.chess.isInCheckAfter(move)) {
+      if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
         callback(move);
       }
     });

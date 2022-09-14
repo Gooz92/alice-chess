@@ -1,8 +1,7 @@
 'use strict';
 
 var assert = require('chai').assert,
-  Chess = require('../chess'),
-  boardUtils = require('../../utils/chess-utils/board-utils');
+  Chess = require('../chess');
 
 describe('Pawn', function () {
   var chess;

@@ -110,7 +110,7 @@ module.exports = {
         return;
       }
 
-      if (chess.isInCheckAfter(move)) {
+      if (!pseudoLegal && chess.isInCheckAfter(move)) {
         return;
       }
 

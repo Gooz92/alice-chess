@@ -7,9 +7,7 @@ const Square = require('./square'),
   rays = require('../utils/chess-utils/rays'),
   startPosition = require('../utils/chess-utils/start-position'),
   isMayAttacked = require('../utils/chess-utils/is-may-attacked'),
-  squares = require('../utils/chess-utils/squares');
-
-const squareIndexes = Object.keys(squares).map(squareName => squares[squareName]);
+  { squareIndexes } = require('../utils/chess-utils/board-utils');
 
 const pieceCost = {
   q: 90,
@@ -100,27 +98,15 @@ objectUtils.extend(Chess.prototype, {
     return this.pieces[this.activeColor.index];
   },
 
-  // TODO refactor
-  generateMoves: function (pseudoLegal) {
-    var moves = [], playerPieces;
-
-    playerPieces = this.getPlayerPieces();
-
-    playerPieces.forEach(function (piece) {
-      var pieceMoves = piece.generateMoves(pseudoLegal);
-      moves = moves.concat(pieceMoves);
-    });
-
-    return moves;
-  },
-
   getHistory: function () {
-    var history = [], move = this.previousMove;
+    const history = [];
+    
+    let move = this.previousMove;
 
-    do {
+    while (move) {
       history.unshift(move);
       move = move.previousMove;
-    } while (move);
+    }
 
     return history;
   },
@@ -133,15 +119,27 @@ objectUtils.extend(Chess.prototype, {
     });
   },
 
+  generateMoves(pseudoLegal = false) {
+    const moves = [];
+    const playerPieces = this.getPlayerPieces();
+
+    playerPieces.forEach(piece => {
+      const pieceMoves = piece.generateMoves(pseudoLegal);
+      moves.push(...pieceMoves);
+    });
+
+    return moves;
+  },
+
   // TODO refactor
   generateMoveNames: function () {
-    var moveNames = [], playerPieces;
+    const moveNames = [];
 
-    playerPieces = this.getPlayerPieces();
+    const playerPieces = this.getPlayerPieces();
 
     playerPieces.forEach(function (piece) {
       var pieceMoveNames = piece.generateSanMoves();
-      moveNames = moveNames.concat(pieceMoveNames);
+      moveNames.push(...pieceMoveNames);
     });
 
     return moveNames;
@@ -243,9 +241,8 @@ objectUtils.extend(Chess.prototype, {
   },
 
   isSquareAttackedByPiece: function (target, piece) {
-    var source = piece.square.index,
-      distance = target - piece.square.index,
-      attackIndex = distance + 119;
+    let source = piece.square.index;
+    const attackIndex = target - piece.square.index + 119;
 
     if (!isMayAttacked(source, target, piece.fenToken)) {
       return false;
@@ -265,10 +262,9 @@ objectUtils.extend(Chess.prototype, {
   },
 
   isSquareAttacked: function (squareIndex, color) {
-    var pieces = this.pieces[color.index],
-      index;
+    const pieces = this.pieces[color.index];
 
-    for (index = 0; index < pieces.length; index++) {
+    for (let index = 0; index < pieces.length; index++) {
       if (this.isSquareAttackedByPiece(squareIndex, pieces[index])) {
         return true;
       }
@@ -278,7 +274,7 @@ objectUtils.extend(Chess.prototype, {
   },
 
   isInCheckAfter: function (move) {
-    var inCheck;
+    let inCheck;
 
     move.make();
     inCheck = this.isOpponentInCheck();

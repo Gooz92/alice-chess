@@ -52,7 +52,6 @@ const piecePrototype = {
    * For pawn, knight and king used implementation placed in corresponding module
    */
   forEachMove: function (callback, pseudoLegal) {
-    var move;
 
     for (let index = 0; index < this.offsets.length; index++) {
       const offset = this.offsets[index];
@@ -63,7 +62,7 @@ const piecePrototype = {
 
         if (targetSquare.isOccupied()) {
           if (targetSquare.piece.color !== this.color) {
-            move = moveFactory.createCapture(this.square, targetSquare);
+            const move = moveFactory.createCapture(this.square, targetSquare);
             if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
               callback(move);
             }
@@ -71,7 +70,7 @@ const piecePrototype = {
           break;
         }
 
-        move = moveFactory.createSilentMove(this.square, targetSquare);
+        const move = moveFactory.createSilentMove(this.square, targetSquare);
 
         if (pseudoLegal || !targetSquare.chess.isInCheckAfter(move)) {
           callback(move);
@@ -108,9 +107,9 @@ const piecePrototype = {
   },
 
   generateMoves: function (pseudoLegal) {
-    var moves = [];
+    const moves = [];
 
-    this.forEachMove(function (move) {
+    this.forEachMove(move => {
       moves.push(move);
     }, pseudoLegal);
 

@@ -1,16 +1,17 @@
 'use strict';
 
-var offset = 119,
-  pieceAttackMasks = {
-    p: 1, P: 2,
-    n: 4, N: 4,
-    b: 8, B: 8,
-    r: 16, R: 16,
-    q: 32, Q: 32,
-    k: 64, K: 64,
-  };
+const offset = 119;
 
-var attacks = [
+const pieceAttackMasks = {
+  p: 1, P: 2,
+  n: 4, N: 4,
+  b: 8, B: 8,
+  r: 16, R: 16,
+  q: 32, Q: 32,
+  k: 64, K: 64,
+};
+
+const attacks = [
   40,  0,  0,  0,  0,  0,  0, 48,  0,  0,  0,  0,  0,  0, 40,  0,
    0, 40,  0,  0,  0,  0,  0, 48,  0,  0,  0,  0,  0, 40,  0,  0,
    0,  0, 40,  0,  0,  0,  0, 48,  0,  0,  0,  0, 40,  0,  0,  0,

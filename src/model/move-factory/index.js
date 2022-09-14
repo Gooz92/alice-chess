@@ -1,6 +1,6 @@
 'use strict';
 
-var Move = require('./move'),
+const Move = require('./move'),
   Capture = require('./capture'),
   RookCapture = require('./rook-capture'),
   RookMove = require('./rook-move'),

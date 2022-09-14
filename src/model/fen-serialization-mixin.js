@@ -1,6 +1,6 @@
 'use strict';
 
-var castlingRightsUtils = require('../utils/chess-utils/castling-rights-utils');
+const castlingRightsUtils = require('../utils/chess-utils/castling-rights-utils');
 
 module.exports = {
   generateFenRank: function (rankIndex) {

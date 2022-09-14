@@ -1,10 +1,12 @@
 'use strict';
 
-var squares = require('./squares');
+const squares = require('./squares');
 
-var fileNames = 'abcdefgh';
+const fileNames = 'abcdefgh';
 
-var boardUtils = module.exports = {
+const boardUtils = module.exports = {
+  squareIndexes: Object.keys(squares).map(squareName => squares[squareName]),
+
   isLineIndex: function (arg) {
     return 0 <= arg && arg < 8;
   },

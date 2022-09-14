@@ -1,9 +1,7 @@
 'use strict';
 
 var fenSerializationMixin = require('../fen-serialization-mixin'),
-  castlingUtils = require('../../utils/chess-utils/castling-rights-utils'),
   assert = require('chai').assert,
-  sinon = require('sinon'),
   Chess = require('../chess');
 
 describe('fenSerializationMixin', function () {

@@ -83,26 +83,25 @@ module.exports = {
   },
 
   capture: function (callback, pseudoLegal, offset) {
-    var targetSquareIndex = this.square.index + offset,
-      targetSquare, move;
+    const targetSquareIndex = this.square.index + offset;
 
     if (boardUtils.isSquareOutOfBoard(targetSquareIndex)) {
       return;
     }
 
-    targetSquare = this.square.chess.squares[targetSquareIndex];
+    const targetSquare = this.square.chess.squares[targetSquareIndex];
 
     if (targetSquare.isOccupiedByOpponent(this.color)) {
       if (targetSquare.rankIndex === 0 ||
           targetSquare.rankIndex === 7) {
         this.forEachPromotion(callback, pseudoLegal, targetSquare);
       } else {
-        move = moveFactory.createCapture(this.square, targetSquare);
+        const move = moveFactory.createCapture(this.square, targetSquare);
         this.enshureLegalMove(callback, move, pseudoLegal);
       }
     } else if ([2, 5][this.color.index] === targetSquare.rankIndex &&
                 targetSquare.isTargetEnPassantSquare()) {
-      move = moveFactory.createEnPassant(this.square, targetSquare);
+      const move = moveFactory.createEnPassant(this.square, targetSquare);
       this.enshureLegalMove(callback, move, pseudoLegal);
     }
   },
