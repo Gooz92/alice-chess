@@ -308,30 +308,6 @@ objectUtils.extend(Chess.prototype, {
     return rank;
   },
 
-  getRankPiecePlacement: function (rankIndex) {
-    var piecePlacement = '',
-      rank = this.getRank(rankIndex),
-      emptySquaresCount = 0;
-
-    rank.forEach(function (square) {
-      if (square.isOccupied()) {
-        if (emptySquaresCount > 0) {
-          piecePlacement += emptySquaresCount;
-          emptySquaresCount = 0;
-        }
-        piecePlacement += square.piece.fenToken;
-      } else {
-        ++emptySquaresCount;
-      }
-    });
-
-    if (emptySquaresCount > 0) {
-      piecePlacement += emptySquaresCount;
-    }
-
-    return piecePlacement;
-  },
-
   toASCII: function () {
     var board = '',
       square, fileIndex, rankIndex, squareIndex;

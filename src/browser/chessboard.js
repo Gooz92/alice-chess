@@ -126,8 +126,7 @@ var counter = 0;
 function createClickHandler(chess) {
   return function () {
     var square = chess.squares[this.id],
-      self = this,
-      targetSquareNames;
+      self = this;
 
     clearSelection();
 
@@ -158,12 +157,16 @@ function createClickHandler(chess) {
       })[0];
 
       makeMove(move);
-      var opMove = chess.findBestMove();
-      makeMove(opMove);
+      const opMove = chess.findBestMove();
 
-      console.log(++counter + '. ' + move.toSAN() + ' ' + opMove.toSAN());
+      if (opMove) {
+        makeMove(opMove);
+        console.log(++counter + '. ' + move.toSAN() + ' ' + opMove.toSAN());
 
-      document.getElementById('fen-container').innerText = chess.generateFen();
+        document.getElementById('fen-container').innerText = chess.generateFen();
+      } else {
+        alert('You win!');
+      }
     }
   };
 }
