@@ -1,9 +1,11 @@
 'use strict';
 
-var Chess = require('../model/chess'),
+const traverse = require('../model/traverse');
+
+const Chess = require('../model/chess'),
   averageTime = require('../utils/common-utils/benchmark-utils').averageTime;
 
-var chess = new Chess();
+const chess = new Chess();
 
 chess.place({
   a8: 'r', e8: 'k',  h8: 'r',
@@ -16,6 +18,6 @@ chess.place({
   a1: 'R', e1: 'K', h1: 'R'
 });
 
-console.log(averageTime(function () {
-  chess.traverse(3);
+console.log(averageTime(() => {
+  traverse(chess, 4);
 }, 10));

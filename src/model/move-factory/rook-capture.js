@@ -1,28 +1,22 @@
 'use strict';
 
-var RookMove = require('./rook-move'),
+const RookMove = require('./rook-move'),
   Capture = require('./capture');
 
-function RookCapture(sourceSquare, targetSquare) {
-  Capture.call(this, sourceSquare, targetSquare);
-}
-
-RookCapture.prototype = {
-  constructor: RookCapture,
-
-  make: function () {
-   this.capturedPiece.remove();
-   RookMove.prototype.make.call(this);
-  },
-
-  unMake: function () {
+class RookCapture extends Capture {
+  make() {
+    this.capturedPiece.remove();
+    RookMove.prototype.make.call(this);
+  }
+ 
+  unMake() {
     RookMove.prototype.unMake.call(this);
     Capture.prototype._placeCapturedPiece.call(this);
-  },
+  }
 
-  toSAN: function () {
+  toSAN() {
     return 'Rx' + this.targetSquare.name;
   }
-};
+}
 
 module.exports = RookCapture;

@@ -1,29 +1,20 @@
-const Chess = require('../model/chess');
-const formatTime = require('../utils/common-utils/format-time');
+const Chess = require('../model/chess'),
+  formatTime = require('../utils/common-utils/format-time'),
+  traverse = require('../model/traverse');
 
-var chess = Chess.createStartPosition(),
-  initialDepth = process.argv[2],
-  leaves = 0;
+module.exports = (position, depth, expectedNodes) => {
+  const chess = new Chess();
+  chess.place(position);
 
-initialDepth = parseInt(initialDepth);
+  let leaves = 0;
+  const time = Date.now();
 
-const results = [
-  1,
-  20,
-  400,
-  8902,
-  197281,
-  4865609,
-  119060324
-];
+  traverse(chess, depth, {
+    onMaxDepthReached: () => {
+      ++leaves;
+    }
+  });
 
-var time = Date.now();
-// use callbacks insignificant slow down iteration
-chess.traverse(initialDepth, {
-  onMaxDepthReached: function () {
-    ++leaves;
-  }
-});
-
-console.log(leaves, results[initialDepth] === leaves);
-console.log(formatTime(Date.now() - time));
+  const result = leaves === expectedNodes ? 'PASSED' : 'FAILED'; 
+  console.log(`${result}; nodes: ${leaves}; time: ${formatTime(Date.now() - time)}`);
+};

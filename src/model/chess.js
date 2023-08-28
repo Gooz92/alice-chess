@@ -7,7 +7,8 @@ const Square = require('./square'),
   rays = require('../utils/chess-utils/rays'),
   startPosition = require('../utils/chess-utils/start-position'),
   isMayAttacked = require('../utils/chess-utils/is-may-attacked'),
-  { squareIndexes } = require('../utils/chess-utils/board-utils');
+  { squareIndexes } = require('../utils/chess-utils/board-utils'),
+  castlingRightsUtils = require('../utils/chess-utils/castling-rights-utils');
 
 const pieceCost = {
   q: 90,
@@ -17,36 +18,37 @@ const pieceCost = {
   p: 10
 };
 
-function Chess() {
-  this.activeColor = Color.WHITE;
+class Chess {
 
-  this.previousMove = null;
-
-  this.pieces = [[], []];
-
-  this.kings = [];
-
-  this.castlingRights = 15;
-
-  this.squares = this.generateEmptySquares();
-}
-
-Chess.createStartPosition = function () {
-  var chess = new Chess(),
+  static createStartPosition() {
+    const chess = new Chess(),
     placePiece = chess.placePiece.bind(chess);
 
-  objectUtils.forEachOwnProperty(startPosition, placePiece);
+    objectUtils.forEachOwnProperty(startPosition, placePiece);
 
-  return chess;
-};
+    return chess;
+  }
 
-objectUtils.extend(Chess.prototype, {
-  place: function (position) {
+  constructor() {
+    this.activeColor = Color.WHITE;
+
+    this.previousMove = null;
+  
+    this.pieces = [[], []];
+  
+    this.kings = [];
+  
+    this.castlingRights = 15;
+  
+    this.squares = this.generateEmptySquares();
+  }
+
+  place(position) {
     objectUtils.forEachOwnProperty(position, this.placePiece.bind(this));
-  },
+  }
 
-  placePiece: function (fenToken, squareName) {
-    var square = this.squares[squareName],
+  placePiece(fenToken, squareName) {
+    const square = this.squares[squareName],
       piece = Piece.create(fenToken, square);
 
     if (piece.isKing()) {
@@ -61,25 +63,15 @@ objectUtils.extend(Chess.prototype, {
     this.pieces[piece.color.index].push(piece);
 
     return piece;
-  },
+  }
 
-  initStartPosition: function () {
-    var placePiece = this.placePiece.bind(this);
+  generateEmptySquares() {
+    const squares = [];
 
-    objectUtils.forEachOwnProperty(startPosition, placePiece);
-  },
-
-  generateEmptySquares: function () {
-    var squares = [],
-      square,
-      fileIndex,
-      rankIndex,
-      squareIndex;
-
-    for (rankIndex = 0; rankIndex < 8; rankIndex++) {
-      squareIndex = rankIndex * 16;
-      for (fileIndex = 0; fileIndex < 8; fileIndex++) {
-        square = new Square(squareIndex, this);
+    for (let rankIndex = 0; rankIndex < 8; rankIndex++) {
+      let squareIndex = rankIndex * 16;
+      for (let fileIndex = 0; fileIndex < 8; fileIndex++) {
+        const square = new Square(squareIndex, this);
         squares[squareIndex] = square;
         squares[square.name] = square;
         ++squareIndex;
@@ -87,18 +79,18 @@ objectUtils.extend(Chess.prototype, {
     }
 
     return squares;
-  },
+  }
 
-  getOpponentPieces: function () {
-    var opponentColor = this.activeColor.toggle();
+  getOpponentPieces() {
+    const opponentColor = this.activeColor.toggle();
     return this.pieces[opponentColor.index];
-  },
+  }
 
-  getPlayerPieces: function () {
+  getPlayerPieces() {
     return this.pieces[this.activeColor.index];
-  },
+  }
 
-  getHistory: function () {
+  getHistory() {
     const history = [];
     
     let move = this.previousMove;
@@ -109,15 +101,13 @@ objectUtils.extend(Chess.prototype, {
     }
 
     return history;
-  },
+  }
 
-  getSanHistory: function () {
-    var history = this.getHistory();
+  getSanHistory () {
+    const history = this.getHistory();
 
-    return history.map(function (move) {
-      return move.toSAN();
-    });
-  },
+    return history.map(move => move.toSAN());
+  }
 
   generateMoves(pseudoLegal = false) {
     const moves = [];
@@ -129,10 +119,9 @@ objectUtils.extend(Chess.prototype, {
     });
 
     return moves;
-  },
+  }
 
-  // TODO refactor
-  generateMoveNames: function () {
+  generateMoveNames() {
     const moveNames = [];
 
     const playerPieces = this.getPlayerPieces();
@@ -143,34 +132,33 @@ objectUtils.extend(Chess.prototype, {
     });
 
     return moveNames;
-  },
+  }
 
-  isInCheck: function () {
-    var playerKing = this.kings[this.activeColor.index],
-      opponentColor;
+  isInCheck() {
+    const playerKing = this.kings[this.activeColor.index];
 
     if (!playerKing) {
       return false;
     }
 
-    opponentColor = this.activeColor.toggle();
+    const opponentColor = this.activeColor.toggle();
 
     return this.isSquareAttacked(playerKing.square.index, opponentColor);
-  },
+  }
 
-  calculateMobility: function () {
-    var mobility = 0, index;
+  calculateMobility() {
+    let mobility = 0;
 
-    for (index = 0; index < squareIndexes.length; index++) {
+    for (let index = 0; index < squareIndexes.length; index++) {
       if (this.squares[squareIndexes[index]].isEmpty() && this.isSquareAttacked(squareIndexes[index], this.activeColor)) {
         ++mobility;
       }
     }
 
     return mobility;
-  },
+  }
 
-  evaluate: function () {
+  evaluate() {
 
     var playerPieces = this.getPlayerPieces();
     var result = 0;
@@ -181,9 +169,9 @@ objectUtils.extend(Chess.prototype, {
     });
 
     return result + this.calculateMobility();
-  },
+  }
 
-  findBestMove: function (maxDepth = 3) {
+  findBestMove(maxDepth = 3) {
     var self = this, bestMove;
 
     var ab = function (alpha, beta, depth) {
@@ -227,15 +215,15 @@ objectUtils.extend(Chess.prototype, {
    
    // fix this. What I should do in mate\stalemate positions (score = -Infinity)
    return bestMove || this.generateMoves()[0];
-  },
+  }
 
   // used only during move generation
-  isOpponentInCheck: function () {
+  isOpponentInCheck() {
     const opponentKing = this.kings[+!this.activeColor.index];
     return this.isSquareAttacked(opponentKing.square.index, this.activeColor);
-  },
+  }
 
-  isSquareAttackedByPiece: function (target, piece) {
+  isSquareAttackedByPiece(target, piece) {
     let source = piece.square.index;
 
     if (!isMayAttacked(source, target, piece.fenToken)) {
@@ -254,9 +242,9 @@ objectUtils.extend(Chess.prototype, {
     }
 
     return true;
-  },
+  }
 
-  isSquareAttacked: function (squareIndex, color) {
+  isSquareAttacked(squareIndex, color) {
     const pieces = this.pieces[color.index];
 
     for (let index = 0; index < pieces.length; index++) {
@@ -266,9 +254,9 @@ objectUtils.extend(Chess.prototype, {
     }
 
     return false;
-  },
+  }
 
-  isInCheckAfter: function (move) {
+  isInCheckAfter(move) {
     let inCheck;
 
     move.make();
@@ -276,13 +264,13 @@ objectUtils.extend(Chess.prototype, {
     move.unMake();
 
     return inCheck;
-  },
+  }
 
-  turn: function () {
+  turn() {
     this.activeColor = this.activeColor.toggle();
-  },
+  }
 
-  move: function (moveName) {
+  move(moveName) {
     var moves = this.generateMoves(),
       move, index;
 
@@ -295,9 +283,9 @@ objectUtils.extend(Chess.prototype, {
     }
 
     return null;
-  },
+  }
 
-  getRank: function (rankIndex) {
+  getRank(rankIndex) {
     var rank = [],
       squareIndex = rankIndex * 16;
 
@@ -306,9 +294,9 @@ objectUtils.extend(Chess.prototype, {
     }
 
     return rank;
-  },
+  }
 
-  toASCII: function () {
+  toASCII() {
     var board = '',
       square, fileIndex, rankIndex, squareIndex;
 
@@ -323,9 +311,13 @@ objectUtils.extend(Chess.prototype, {
     }
 
     return board;
-  },
+  }
 
-  generateFieldPlainObject: function () {
+  generateFenCastlingRights() {
+    return castlingRightsUtils.toFenField(this.castlingRights);
+  }
+
+  generateFieldPlainObject() {
     var field = {};
 
     this.pieces[1].forEach(function (piece) {
@@ -338,10 +330,7 @@ objectUtils.extend(Chess.prototype, {
 
     return field;
   }
+}
 
-},
-  require('./fen-serialization-mixin'),
-  require('./traverse-mixin')
-);
 
 module.exports = Chess;

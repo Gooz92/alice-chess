@@ -1,16 +1,10 @@
 'use strict';
 
-var Move = require('./move');
+const Move = require('./move');
 
-function KingMove(sourceSquare, targetSquare) {
-  Move.call(this, sourceSquare, targetSquare);
-}
-
-KingMove.prototype = {
-  constructor: KingMove,
-
-  make: function () {
-    var castlingRightsUpdateMask = 12 >> this.piece.color.index * 2,
+class KingMove extends Move {
+  make() {
+    const castlingRightsUpdateMask = 12 >> this.piece.color.index * 2,
       chess = this.targetSquare.chess;
 
     this.previousCastlingRigths = chess.castlingRights;
@@ -18,16 +12,16 @@ KingMove.prototype = {
     Move.make(this);
 
     chess.castlingRights &= castlingRightsUpdateMask;
-  },
+  }
 
-  unMake: function () {
+  unMake() {
     this.targetSquare.chess.castlingRights = this.previousCastlingRigths;
     Move.unMake(this);
-  },
+  }
 
-  toSAN: function () {
+  toSAN() {
     return 'K' + this.targetSquare.name;
   }
-};
+}
 
 module.exports = KingMove;

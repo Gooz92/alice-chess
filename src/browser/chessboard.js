@@ -1,10 +1,10 @@
 'use strict';
 
+const FenSerializer = require('../model/fen-serializer');
+
 var createElement = require('./utils/dom-utils').createElement,
   boardUtils = require('../utils/chess-utils/board-utils'),
-  pieceCharacters = require('./utils/piece-characters'),
-  objectUtils = require('../utils/common-utils/object-utils'),
-  langFns = require('../utils/common-utils/lang-fns');
+  pieceCharacters = require('./utils/piece-characters');
 
 var squares = {}, activePiece;
 
@@ -124,6 +124,8 @@ function makeMove(move) {
 var counter = 0;
 
 function createClickHandler(chess) {
+  const fenSerializer = new FenSerializer(chess);
+
   return function () {
     var square = chess.squares[this.id],
       self = this;
@@ -163,7 +165,7 @@ function createClickHandler(chess) {
         makeMove(opMove);
         console.log(++counter + '. ' + move.toSAN() + ' ' + opMove.toSAN());
 
-        document.getElementById('fen-container').innerText = chess.generateFen();
+        document.getElementById('fen-container').innerText = fenSerializer.generateFen();
       } else {
         alert('You win!');
       }

@@ -1,10 +1,11 @@
 'use strict';
 
-var assert = require('chai').assert,
+const assert = require('chai').assert,
   Chess = require('../../chess'),
   Move = require('../move');
 
-describe('Move', function () {
+describe('Move', () => {
+
   describe('#make()', function () {
 
     var chess, sourceSquare, targetSquare, move, piece;

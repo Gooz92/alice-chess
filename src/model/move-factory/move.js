@@ -1,12 +1,49 @@
 'use strict';
 
-function Move(sourceSquare, targetSquare) {
-  this.sourceSquare = sourceSquare;
-  this.targetSquare = targetSquare;
-  this.piece = sourceSquare.piece;
+class Move {
 
-  this.disambiguateRank = false;
-  this.disambiguateFile = false;
+  constructor(sourceSquare, targetSquare) {
+    this.sourceSquare = sourceSquare;
+    this.targetSquare = targetSquare;
+    this.piece = sourceSquare.piece;
+
+    this.disambiguateRank = false;
+    this.disambiguateFile = false;
+  }
+
+  make() {
+    Move.make(this);
+  }
+
+  unMake() {
+    Move.unMake(this);
+  }
+
+  getSanDisambiguation() {
+    var disambiguation = '';
+
+    if (this.disambiguateFile) {
+      disambiguation += this.sourceSquare.fileName;
+    }
+
+    if (this.disambiguateRank) {
+      disambiguation += this.sourceSquare.rankName;
+    }
+
+    return disambiguation;
+  }
+
+  toSAN() {
+    if (this.piece.isPawn()) {
+      return this.targetSquare.name;
+    }
+
+    return [
+      this.piece.token.toUpperCase(),
+      this.getSanDisambiguation(),
+      this.targetSquare.name
+    ].join('');
+  }
 }
 
 Move.make = function (move) {
@@ -33,44 +70,5 @@ Move.unMake = function (move) {
 
   chess.previousMove = move.previousMove;
 }
-
-Move.prototype = {
-  constructor: Move,
-
-  make: function () {
-    Move.make(this);
-  },
-
-  unMake: function () {
-    Move.unMake(this);
-  },
-
-  getSanDisambiguation: function () {
-    var disambiguation = '';
-
-    if (this.disambiguateFile) {
-      disambiguation += this.sourceSquare.fileName;
-    }
-
-    if (this.disambiguateRank) {
-      disambiguation += this.sourceSquare.rankName;
-    }
-
-    return disambiguation;
-  },
-
-  // TODO
-  toSAN: function () {
-    if (this.piece.isPawn()) {
-      return this.targetSquare.name;
-    }
-
-    return [
-      this.piece.token.toUpperCase(),
-      this.getSanDisambiguation(),
-      this.targetSquare.name
-    ].join('');
-  }
-};
 
 module.exports = Move;

@@ -106,37 +106,37 @@ body {
 
     &:nth-child(even) {
       td:nth-child(odd) {
-        background-color: @light-square;
+        background-color: @dark-square;
       }
 
       .target-square:nth-child(odd) {
-        color: @dark-square;
+        color: @light-square;;
       }
 
       .target-square:nth-child(even) {
-        color: @light-square;
+        color:  @dark-square;
       }
 
       td:nth-child(even) {
-        background-color: @dark-square;
+        background-color: @light-square;
       }
     }
 
     &:nth-child(odd) {
       td:nth-child(even) {
-        background-color: @light-square;
+        background-color:  @dark-square;
       }
 
       .target-square:nth-child(odd) {
-        color: @light-square;
-      }
-
-      .target-square:nth-child(even) {
         color: @dark-square;
       }
 
+      .target-square:nth-child(even) {
+        color: @light-square;
+      }
+
       td:nth-child(odd) {
-        background-color: @dark-square;
+        background-color: @light-square;
       }
     }
   }

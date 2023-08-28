@@ -1,28 +1,20 @@
-'use strict';
-
-var KingMove = require('./king-move'),
+const KingMove = require('./king-move'),
   Capture = require('./capture');
 
-function KingCapture(sourceSquare, targetSquare) {
-  Capture.call(this, sourceSquare, targetSquare);
-}
-
-KingCapture.prototype = {
-  constructor: KingCapture,
-
-  make: function () {
+class KingCapture extends Capture {
+  make() {
     this.capturedPiece.remove();
     KingMove.prototype.make.call(this);
-  },
+  }
 
-  unMake: function () {
+  unMake() {
     KingMove.prototype.unMake.call(this);
     Capture.prototype._placeCapturedPiece.call(this);
-  },
+  }
 
-  toSAN: function () {
+  toSAN() {
     return 'Kx' + this.targetSquare.name;
   }
-};
+}
 
 module.exports = KingCapture;

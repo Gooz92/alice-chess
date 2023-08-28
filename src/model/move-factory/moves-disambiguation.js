@@ -11,27 +11,26 @@ function isUnambiguousPiece(piece) {
 
 function disambiguateMove(disambiguatedMove, moves) {
   var firstSourceSquare = disambiguatedMove.sourceSquare,
-    secondSourceSquare,
-    index;
+    secondSourceSquare;
 
   if (isUnambiguousPiece(disambiguatedMove.piece)) {
     return;
   }
 
-  for (index = 0; index < moves.length; index++) {
-    if (disambiguatedMove === moves[index]) {
+  for (const move of moves) {
+    if (disambiguatedMove === move) {
       continue;
     }
 
-    if (isUnambiguousPiece(moves[index].piece)) {
+    if (isUnambiguousPiece(move.piece)) {
       continue;
     }
 
-    if (isUnambiguous(moves[index], disambiguatedMove)) {
+    if (isUnambiguous(move, disambiguatedMove)) {
       continue;
     }
 
-    secondSourceSquare = moves[index].sourceSquare;
+    secondSourceSquare = move.sourceSquare;
 
     if (firstSourceSquare.fileIndex !== secondSourceSquare.fileIndex) {
       disambiguatedMove.disambiguateFile = true;

@@ -1,15 +1,10 @@
-'use strict';
+const perft = require('./perft');
 
-var Chess = require('../model/chess');
+const depth = parseInt(process.argv[2]);
 
-var chess = new Chess(),
-  initialDepth = process.argv[2],
-  moves = process.argv.splice(3),
-  leaves = 0;
+const nodesCounts = [ 14, 191, 2812, 43238, 674624, 11030083 ];
 
-initialDepth = parseInt(initialDepth);
-
-chess.place({
+const position = {
   c7: 'p',
   d6: 'p',
   a5: 'K',
@@ -20,13 +15,6 @@ chess.place({
   h4: 'k',
   e2: 'P',
   g2: 'P'
-});
+};
 
-
-chess.traverse(initialDepth, {
-  onMaxDepthReached: function () {
-    ++leaves;
-  }
-});
-
-console.log(leaves);
+perft(position, depth, nodesCounts[depth - 1]);
