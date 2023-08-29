@@ -87,11 +87,10 @@ function clearSquare(square) {
 }
 
 function makeMove(move) {
-  var targetSquare = squares[move.targetSquare.name], epSq;
+  const targetSquare = squares[move.targetSquare.name];
 
   if (move.capturedPawn) { // en passant
-    epSq = squares[move.capturedPawn.square.name];
-
+    const epSq = squares[move.capturedPawn.square.name];
     clearSquare(epSq);
   }
 
@@ -115,7 +114,7 @@ function makeMove(move) {
 
   targetSquare.className = 'occupied';
 
-  var sourceSquare = squares[move.sourceSquare.name];
+  const sourceSquare = squares[move.sourceSquare.name];
 
   clearSquare(sourceSquare);
   activePiece = null;
