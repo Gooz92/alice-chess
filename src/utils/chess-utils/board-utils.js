@@ -11,18 +11,13 @@ const boardUtils = module.exports = {
     return 0 <= arg && arg < 8;
   },
 
-  fileIndexToName: function (fileIndex) {
-    return fileNames.charAt(fileIndex);
-  },
+  fileIndexToName: fileIndex => fileNames.charAt(fileIndex),
 
   fileNameToIndex: function (fileName) {
     return fileNames.indexOf(fileName);
   },
 
-  rankIndexToName: function (rankIndex) {
-    var rankName = rankIndex + 1;
-    return rankName.toString();
-  },
+  rankIndexToName: rankIndex => String(rankIndex + 1),
 
   rankNameToIndex: function (rankName) {
     return rankName - 1;
