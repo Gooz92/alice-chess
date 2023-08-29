@@ -1,5 +1,6 @@
 'use strict';
 
+const sanUtils = require('../utils/chess-utils/san-utils');
 const Square = require('./square'),
   Color = require('./color'),
   Piece = require('./piece'),
@@ -25,6 +26,17 @@ class Chess {
     placePiece = chess.placePiece.bind(chess);
 
     objectUtils.forEachOwnProperty(startPosition, placePiece);
+
+    return chess;
+  }
+
+  static fromLanHistory(moves) {
+    const chess = Chess.createStartPosition();
+
+    for (const lanMove of moves) {
+      const move = chess.parseLAN(lanMove);
+      move.make();
+    }
 
     return chess;
   }
@@ -107,6 +119,12 @@ class Chess {
     const history = this.getHistory();
 
     return history.map(move => move.toSAN());
+  }
+
+  getLanHistory() {
+    const history = this.getHistory();
+
+    return history.map(move => move.toLAN());
   }
 
   generateMoves(pseudoLegal = false) {
@@ -294,6 +312,31 @@ class Chess {
     }
 
     return rank;
+  }
+
+  parseLAN(lanMove) {
+    const rawMove = sanUtils.parseLAN(lanMove);
+
+    if (rawMove === null) {
+      throw new Error(`Wrong move '${lanMove}'`);
+    }
+
+    const [ from, to, promotionToken ] = rawMove;
+
+    const { piece } = this.squares[from];
+
+    if (piece === null || piece.color !== this.activeColor) {
+      throw new Error(`Wrong move '${lanMove}'`);
+    }
+
+    const pieceMoves = piece.generateMoves();
+
+    if (promotionToken === null) {
+      return pieceMoves.find(move => move.targetSquare.name === to);
+    }
+
+    // TODO promotedPieceToken can be not defined ?
+    return pieceMoves.find(move => move.targetSquare.name === to && move.promotedPieceToken.toLowerCase() === promotionToken);
   }
 
   toASCII() {

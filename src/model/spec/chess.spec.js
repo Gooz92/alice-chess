@@ -1,8 +1,6 @@
-'use strict';
-
-var assert = require('chai').assert,
-  Chess = require('../chess'),
-  Color = require('../color');
+const { assert } = require('chai');
+const Chess = require('../chess');
+const Color = require('../color');
 
 describe('Chess', function () {
   var chess;
@@ -155,6 +153,18 @@ describe('Chess', function () {
 
         assert.deepEqual(pieceFenTokens, rankWithBlackPawns);
       });
+    });
+  });
+
+
+  describe('.parseLAN()', () => {
+    it('e2e4', () => {
+      const chess = Chess.createStartPosition();
+      const move = chess.parseLAN('e2e4');
+      
+      assert.strictEqual(move.sourceSquare.name, 'e2');
+      assert.strictEqual(move.targetSquare.name, 'e4');
+      assert.strictEqual(move.piece.fenToken, 'P');
     });
   });
 

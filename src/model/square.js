@@ -1,6 +1,6 @@
 'use strict';
 
-var boardUtils = require('../utils/chess-utils/board-utils');
+const boardUtils = require('../utils/chess-utils/board-utils');
 
 function Square(index, chess) {
   this.index = index;
@@ -17,7 +17,7 @@ Square.prototype = {
   constructor: Square,
 
   getRankDistance: function (square) {
-    return Math.abs(this.rankIndex- square.rankIndex);
+    return Math.abs(this.rankIndex - square.rankIndex);
   },
 
   getFileDistance: function (square) {

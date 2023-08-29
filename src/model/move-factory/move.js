@@ -44,6 +44,14 @@ class Move {
       this.targetSquare.name
     ].join('');
   }
+
+  toLAN() {
+    return [
+      this.sourceSquare.name,
+      this.targetSquare.name,
+      this.promotedPieceToken ? this.promotedPieceToken.toLowerCase() : ''
+    ].join('');
+  }
 }
 
 Move.make = function (move) {

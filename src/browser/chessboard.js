@@ -121,8 +121,6 @@ function makeMove(move) {
   activePiece = null;
 }
 
-var counter = 0;
-
 function createClickHandler(chess) {
   const fenSerializer = new FenSerializer(chess);
 
@@ -163,8 +161,6 @@ function createClickHandler(chess) {
 
       if (opMove) {
         makeMove(opMove);
-        console.log(++counter + '. ' + move.toSAN() + ' ' + opMove.toSAN());
-
         document.getElementById('fen-container').innerText = fenSerializer.generateFen();
       } else {
         alert('You win!');

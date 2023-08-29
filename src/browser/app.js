@@ -1,9 +1,7 @@
-'use strict';
-
 import './view/style.less';
 
-var createChessboard = require('./chessboard'),
-  Chess = require('../model/chess');
+const createChessboard = require('./chessboard');
+const Chess = require('../model/chess');
 
 const chess = Chess.createStartPosition();
 
